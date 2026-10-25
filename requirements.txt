@@ -1,0 +1,21 @@
+# Core
+numpy
+pandas
+pyyaml
+tqdm
+python-dotenv
+matplotlib
+jupyter
+
+# Data
+datasets            # SQuAD 2.0
+
+# Retrieval
+sentence-transformers
+faiss-cpu
+
+# Front-end
+streamlit
+
+# Dev
+pytest

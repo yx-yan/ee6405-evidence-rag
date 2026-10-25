@@ -1,0 +1,18 @@
+# Reviewers are requested automatically for changes to these paths.
+# TODO: replace each @teammate-X with the member's GitHub username once they join.
+
+*                               @yx-yan
+
+# Interface, evaluation, demo (E)
+/src/evrag/schema.py            @yx-yan
+/src/evrag/methods/base.py      @yx-yan
+/src/evrag/evaluation/          @yx-yan
+/app/                           @yx-yan
+
+# Uncomment after adding usernames:
+# /src/evrag/retriever.py        @teammate-B @yx-yan
+# /src/evrag/llm.py              @teammate-B @yx-yan
+# /src/evrag/methods/            @teammate-B @yx-yan
+# /src/evrag/data/               @teammate-A @yx-yan
+# /data/                         @teammate-A @yx-yan
+# /src/evrag/evaluation/         @yx-yan @teammate-C
