@@ -107,9 +107,29 @@ is missing, so E's scorer must detect prose refusals or the baseline is scored a
 hallucinated; (2) the evidence judge's cost is coverage (3/20 over-refusals), which is where
 prompt tuning on dev should go.
 
-## Label audit (first pass)
+## Label audit (first pass, `results/d_medquad_trial/label_audit_dev60.json`)
 
-_To be filled: per-scenario verdicts for the 60 trial questions._
+Each of the 60 trial questions was checked by a Claude agent that read the question's top-10
+retrieved chunks, every remaining chunk of the same page, the held-out page list, and grepped the
+corpus for synonyms, parent conditions and the gold answer's facts. This stands in for, and does
+not replace, the manual audit the proposal requires.
+
+| Scenario | valid | partial (a related page covers part of the answer) | leaked (a remaining chunk states the answer) | unclear |
+|---|---|---|---|---|
+| A (20) | 19 | - | - | 1 (the AMD "causes" gold is a fragment about drusen) |
+| B (20) | 11 | 8 (6 of them outside the top 5) | 1 (Neurosyphilis: a related page says "penicillin to treat neurosyphilis") | - |
+| C (20) | 6 | 8 (6 outside the top 5) | 6 (4 inside the top 5; e.g. the Symptoms section of Troyer syndrome states the prognosis; Arrhythmia—Treatment names the drugs for atrial fibrillation) | - |
+
+B labels are mostly sound: when a related page covers part of the answer it is usually a parent
+or subtype page ranked 6-10, which the methods never see. C labels are the weak point: NIH pages
+restate prognosis inside Symptoms or Treatment sections, which the summary hold-out and the
+restatement gate (70% of a sentence's content words) do not catch when the wording differs.
+Either C holds out every section of the page except the overview (making C a "page summary
+only" scenario), or C candidates are audited by hand before use; the automatic gates alone are not
+enough for C.
+
+Note that the evidence judge still abstained on 18 of the 20 C questions, including 3 of the 4
+whose answer had leaked into the top 5: the judge errs on the conservative side there.
 
 ## How this was checked
 
@@ -122,6 +142,10 @@ the current build and covered by `tests/test_member_d_medquad.py` (54 tests pass
 
 ## Known limits and next steps
 
+- Scenario C needs a stricter construction or a manual audit (see the label audit); B needs the
+  parent/subtype hold-out widened by name (e.g. "Epilepsy" for a seizure-disorder subtype).
+- Page titles that are procedures or topics ("Knee Replacement") still slip through the title
+  filter; a short stop-list of procedure words would remove them.
 - Most accepted questions are NINDS pages (clean overview/section structure); NIDDK, NHLBI and CDC
   pages are often rejected because their overviews restate the sections. Per-source quotas would
   need relaxed gates or more pages.
