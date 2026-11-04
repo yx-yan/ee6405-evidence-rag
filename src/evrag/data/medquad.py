@@ -15,11 +15,12 @@ knowledge base holds for them after hold-outs:
 
 A "no answer" label is only valid against the whole corpus, so: pages about one concept
 (same focus name or same specific UMLS CUI set, across sites) and their neighbours (pages
-sharing a specific CUI) are held out together; exact-duplicate chunks are merged within a
-concept before labelling; and B/C candidates whose gold answer still overlaps a remaining
-chunk (word 8-grams) are rejected.
-The labels are automatic, so dataset.csv marks them evidence_scenario_status=auto until A
-audits them.
+sharing a specific CUI, or a subtype or parent by name) are held out together; C also holds
+out the summary sections (overview, points to remember); exact-duplicate chunks are merged
+within a concept and boilerplate shared by many concepts is dropped; and every candidate whose
+gold answer is copied (word 8-grams) or restated (content words of one sentence) in a remaining
+chunk is rejected. The labels are automatic, so dataset.csv marks them
+evidence_scenario_status=auto until A audits them.
 """
 from __future__ import annotations
 
@@ -42,22 +43,33 @@ DEFAULT_OUT = DATA_DIR / "medquad"
 
 # Sites about common conditions. GARD and GHR (rare and genetic diseases) stay corpus-only.
 QUESTION_SOURCES = ("CancerGov", "NIDDK", "NINDS", "SeniorHealth", "NHLBI", "CDC")
-# Question types a user would ask a health chatbot. "information" (What is X?) is corpus-only
-# and is the usual section left behind in scenario C.
+# Question types a user would ask a health chatbot. "information" (What is X?) is corpus-only, and
+# "considerations" (NIDDK "Points to Remember") summarises the whole page: both are SUMMARY
+# sections, held out together with the asked section in scenario C.
 QUESTION_TYPES = ("symptoms", "treatment", "causes", "exams and tests", "outlook", "prevention",
-                  "susceptibility", "complications", "considerations", "stages")
+                  "susceptibility", "complications", "stages")
+SUMMARY_TYPES = ("information", "considerations")
 SECTION_NAMES = {"information": "Overview", "exams and tests": "Exams and tests",
                  "genetic changes": "Genetic changes", "support groups": "Support groups"}
 HOLDOUT_CUI_DOCS = 40     # a CUI on more pages than this is an umbrella term, not a related page
 CHUNK_WORDS = 150         # MiniLM reads 256 word pieces and silently truncates the rest
 SHINGLE_WORDS = 8
-LEAK_MAX = 0.10           # reject a B/C candidate if a remaining chunk shares >= 10% of its gold 8-grams
+LEAK_MAX = 0.10           # reject a candidate if a remaining chunk shares >= 10% of its gold 8-grams
+RESTATE_MAX = 0.70        # ... or holds >= 70% of the content words of one gold sentence
+RESTATE_MIN_WORDS = 6     # sentences with fewer content words are too generic to count
+COMMON_WORD_SHARE = 0.2   # a word in more than this share of chunks carries no signal
 ANSWER_WORDS = (20, 400)  # gold answers outside this range are too thin or too long to grade
 COLUMNS = ("question_id", "question", "gold_answers", "scenario", "split", "gold_doc_ids",
-           "source_doc_id", "evidence_scenario_status", "focus", "qtype", "source", "leak_overlap")
+           "source_doc_id", "evidence_scenario_status", "focus", "qtype", "source", "leak_overlap",
+           "sentence_overlap")
 
 _SENTENCE = re.compile(r"(?<=[.!?])\s+")
 _WORD = re.compile(r"[a-z0-9]+")
+_STOP = set("""a an the and or but if of to in on at by for with from as into than then that this these those
+is are was were be been being do does did have has had it its they them their there here he she his her we
+our you your i not no nor so such very can could may might will would shall should must also only both each
+any all some more most other another same own which who whom whose what when where why how about above below
+over under between through during before after again further once out off up down""".split())
 
 
 @dataclass
@@ -86,6 +98,7 @@ class Corpus:
     owners: dict                      # chunk id -> qids whose answer contains this chunk
     pair_chunks: dict                 # qid -> canonical chunk ids, in answer order
     duplicates: int = 0
+    boilerplate: int = 0              # chunks dropped because their body is on many concepts' pages
 
 
 def short_source(dirname: str) -> str:
@@ -272,17 +285,29 @@ def shingles(text: str, n: int = SHINGLE_WORDS) -> set:
     return {" ".join(words[i:i + n]) for i in range(len(words) - n + 1)}
 
 
-def build_chunks(docs: list[Doc], groups: dict, max_words: int = CHUNK_WORDS) -> Corpus:
+def build_chunks(docs: list[Doc], groups: dict, max_words: int = CHUNK_WORDS,
+                 boilerplate_groups: int = HOLDOUT_CUI_DOCS) -> Corpus:
     """Chunk every answer. Identical chunk bodies are kept once per concept group (the same page
     on two sites), never across concepts: a paragraph shared by two conditions stays under each
-    condition's own header, so holding one condition out leaves no chunk named after it."""
+    condition's own header, so holding one condition out leaves no chunk named after it. A body
+    found on pages of more than boilerplate_groups concepts (HPO table legends, "press Escape to
+    close the video", site credits) is boilerplate and is dropped from the corpus and from gold."""
+    spread = defaultdict(set)
+    for doc in docs:
+        for pair in doc.pairs:
+            for body in chunk_answer(pair.answer, max_words):
+                spread[" ".join(_WORD.findall(body.lower()))].add(groups[doc.key])
     canonical, corpus = {}, Corpus([], {}, defaultdict(set), {})
     for doc in docs:
         for pair in doc.pairs:
             header = f"{doc.focus} — {section_name(pair.qtype)}" if doc.focus else section_name(pair.qtype)
             ids = []
             for i, body in enumerate(chunk_answer(pair.answer, max_words)):
-                norm = (groups[doc.key], " ".join(_WORD.findall(body.lower())))
+                words = " ".join(_WORD.findall(body.lower()))
+                if len(spread[words]) > boilerplate_groups:
+                    corpus.boilerplate += 1
+                    continue
+                norm = (groups[doc.key], words)
                 cid = canonical.get(norm)
                 if cid is None:
                     cid = canonical[norm] = f"{pair.qid}#{i}"
@@ -304,9 +329,48 @@ class Item:
     group: str
     held: set                       # qids whose chunks leave the corpus because of this item
     gold_doc_ids: list
-    unit: set = field(default_factory=set)   # qids of the asked section across the neighbourhood
+    unit: set = field(default_factory=set)   # asked + summary sections across the neighbourhood
     leak: float = 0.0               # largest share of the gold's 8-grams in a chunk outside the unit
+    restated: float = 0.0           # largest share of one gold sentence's content words in such a chunk
     split: str = ""
+
+
+def _content_words(text: str) -> list:
+    return [w for w in _WORD.findall(text.lower()) if w not in _STOP and len(w) > 1]
+
+
+def _restatement_checker(pool, corpus):
+    """Return restated(i, held): the largest share of the content words of one gold sentence of
+    pool answer i that a single chunk outside `held` contains. Catches answers restated in other
+    words or another order, which the verbatim 8-gram check misses."""
+    postings, n = defaultdict(list), len(corpus.chunk_ids)
+    for k, cid in enumerate(corpus.chunk_ids):
+        for word in set(_content_words(corpus.texts[cid])):
+            postings[word].append(k)
+    common = {w for w, ks in postings.items() if len(ks) > COMMON_WORD_SHARE * n}
+    sentences = []
+    for _, pair in pool:
+        sets = []
+        for paragraph in pair.answer.split("\n"):
+            for sentence in _SENTENCE.split(paragraph):
+                words = frozenset(_content_words(sentence)) - common
+                if len(words) >= RESTATE_MIN_WORDS and words not in sets:
+                    sets.append(words)
+        sentences.append(sets)
+
+    def restated(i, held):
+        best = 0.0
+        for words in sentences[i]:
+            need = -(-RESTATE_MAX * len(words) // 1)          # ceil
+            count = Counter()
+            for word in words:
+                for k in postings.get(word, ()):
+                    count[k] += 1
+            for k, c in count.items():
+                if c / len(words) > best and corpus.owners[corpus.chunk_ids[k]] - held:
+                    best = c / len(words)
+        return best
+    return restated
 
 
 def _overlap_counts(pool, corpus):
@@ -332,10 +396,13 @@ def select_items(docs, groups, corpus, *, per_scenario, rng, question_sources=QU
 
     Every scenario uses the same eligibility filter, and a group that fails it is dropped, never
     recycled into another scenario: otherwise A would be exactly the boilerplate-heavy questions
-    that B and C rejected. Accepted groups are dealt round-robin to the scenario with the most
-    open quota. B holds out the whole neighbourhood of the group; C holds out the asked section
-    across the neighbourhood and keeps the group's other sections; A holds out nothing. A group
-    whose neighbourhood touches an earlier item is skipped, so hold-outs never delete gold chunks.
+    that B and C rejected. The filter: outside the group's "unit" (the asked section plus the
+    summary sections, across the neighbourhood) no chunk may copy >= LEAK_MAX of the gold's
+    8-grams or restate >= RESTATE_MAX of one gold sentence's content words. Accepted groups are
+    dealt round-robin to the scenario with the most open quota. B holds out the whole
+    neighbourhood of the group; C holds out the unit and keeps the group's other sections; A holds
+    out nothing. A group whose neighbourhood touches an earlier item is skipped, so hold-outs
+    never delete gold chunks.
     """
     group_pairs = defaultdict(list)
     for doc in docs:
@@ -357,6 +424,7 @@ def select_items(docs, groups, corpus, *, per_scenario, rng, question_sources=QU
         if candidates:
             pool.append((group, rng.choice(candidates)))
     counts, sizes = _overlap_counts(pool, corpus)
+    restated = _restatement_checker(pool, corpus)
 
     def leak_after(i, held):
         remaining = (c for cid, c in counts[i].items() if corpus.owners[cid] - held)
@@ -371,13 +439,18 @@ def select_items(docs, groups, corpus, *, per_scenario, rng, question_sources=QU
             skipped["neighbour_used"] += 1
             continue
         own = group_pairs[group]
-        unit = {p.qid for g in hood[group] for p in group_pairs[g] if p.qtype == pair.qtype}
-        # One filter for all scenarios: the gold text must not survive outside the asked section.
+        unit_types = (pair.qtype,) + SUMMARY_TYPES
+        unit = {p.qid for g in hood[group] for p in group_pairs[g] if p.qtype in unit_types}
+        # One filter for all scenarios: the gold must not survive outside the unit, verbatim or restated.
         leak = leak_after(i, unit)
         if leak >= leak_max:
             skipped["leak"] += 1
             continue
-        has_other = any(p.qtype != pair.qtype for p in own)
+        restate = restated(i, unit)
+        if restate >= RESTATE_MAX:
+            skipped["restated"] += 1
+            continue
+        has_other = any(p.qtype not in unit_types and corpus.pair_chunks[p.qid] for p in own)
         choices = [s for s in ("B", "C", "A") if quotas[s] and (s != "C" or has_other)]
         if not choices:
             skipped["C_no_other_section"] += 1
@@ -392,16 +465,20 @@ def select_items(docs, groups, corpus, *, per_scenario, rng, question_sources=QU
             for p in sorted(own, key=lambda p: p.qid):
                 if p.qtype == pair.qtype and _norm_question(p.question) == asked:
                     gold.extend(c for c in corpus.pair_chunks[p.qid] if c not in gold)
-            items.append(Item("A", pair, group, set(), gold, unit, leak))
+            if not gold:
+                skipped["A_no_gold_chunks"] += 1
+                continue
+            items.append(Item("A", pair, group, set(), gold, unit, leak, restate))
         else:
             held = unit if scenario == "C" else {p.qid for g in hood[group] for p in group_pairs[g]}
-            items.append(Item(scenario, pair, group, held, [], unit, leak))
+            items.append(Item(scenario, pair, group, held, [], unit, leak, restate))
         used |= hood[group]
         quotas[scenario] -= 1
     held = set().union(*(item.held for item in items)) if items else set()
     position = {entry[1].qid: k for k, entry in enumerate(pool)}
-    for item in items:                              # final leak against the corpus everybody searches
+    for item in items:                              # final values against the corpus everybody searches
         item.leak = leak_after(position[item.pair.qid], held | item.unit)
+        item.restated = restated(position[item.pair.qid], held | item.unit)
     stats = {"pool_groups": len(pool), "malformed_questions_excluded": malformed,
              "unfilled": {s: q for s, q in quotas.items() if q}, "skipped": dict(skipped),
              "neighbourhood_groups": {"median": sorted(len(h) for h in hood.values())[len(hood) // 2],
@@ -466,21 +543,25 @@ def build(source: Path, out: Path, *, per_scenario=60, test_fraction=0.25, seed=
             writer.writerow([f"MQ_{item.scenario}_{pair.qid}", pair.question,
                              json.dumps([pair.answer], ensure_ascii=False), item.scenario, item.split,
                              json.dumps(item.gold_doc_ids), pair.qid, "auto", pair.doc.focus, pair.qtype,
-                             pair.doc.source, f"{item.leak:.3f}"])
+                             pair.doc.source, f"{item.leak:.3f}", f"{item.restated:.3f}"])
     manifest = {
         "medquad_commit": commit,
         "note": "Automatic labels (evidence_scenario_status=auto). leak_overlap is the largest share "
-                "of the gold answer's word 8-grams found in one chunk outside the asked section.",
+                "of the gold answer's word 8-grams found in one chunk outside the asked and summary "
+                "sections; sentence_overlap the largest share of one gold sentence's content words "
+                "found in such a chunk.",
         "parameters": {"seed": seed, "per_scenario": per_scenario, "test_fraction": test_fraction,
                        "chunk_words": chunk_words, "shingle_words": SHINGLE_WORDS, "leak_max": leak_max,
+                       "restate_max": RESTATE_MAX, "restate_min_words": RESTATE_MIN_WORDS,
                        "holdout_cui_docs": HOLDOUT_CUI_DOCS,
                        "answer_words": list(ANSWER_WORDS), "question_sources": list(question_sources),
-                       "question_types": list(QUESTION_TYPES)},
+                       "question_types": list(QUESTION_TYPES), "summary_types": list(SUMMARY_TYPES)},
         "counts": {"docs": len(docs), "answered_pairs": sum(len(d.pairs) for d in docs),
                    "pairs_by_source": dict(Counter(d.source for d in docs for _ in d.pairs)),
                    "concept_groups": len(set(groups.values())),
-                   "chunks_before_dedupe": len(corpus.chunk_ids) + corpus.duplicates,
-                   "duplicate_chunks_merged": corpus.duplicates, "chunks_total": len(corpus.chunk_ids),
+                   "chunks_before_dedupe": len(corpus.chunk_ids) + corpus.duplicates + corpus.boilerplate,
+                   "duplicate_chunks_merged": corpus.duplicates, "boilerplate_chunks_dropped": corpus.boilerplate,
+                   "chunks_total": len(corpus.chunk_ids),
                    "chunks_held_out": len(corpus.chunk_ids) - len(kept), "corpus_chunks": len(kept),
                    **stats},
         "scenarios": {s: dict(Counter(item.split for item in items if item.scenario == s))
@@ -491,7 +572,7 @@ def build(source: Path, out: Path, *, per_scenario=60, test_fraction=0.25, seed=
                       "held_pairs": sorted(item.held),
                       "held_chunks": sum(1 for cid in corpus.chunk_ids
                                          if not (corpus.owners[cid] - held) and corpus.owners[cid] & item.held),
-                      "leak_overlap": round(item.leak, 3)}
+                      "leak_overlap": round(item.leak, 3), "sentence_overlap": round(item.restated, 3)}
                      for item in items if item.scenario != "A"],
     }
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",

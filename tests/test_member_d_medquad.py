@@ -67,6 +67,15 @@ def source(tmp_path):
               {q: fn('Gout booklet') for q, fn in PAIRS.items()})
     write_doc(src, '5_NIDDK_QA', '0000031', 'Nutrition for Early Gout', 'C31',
               {q: fn('Gout nutrition') for q, fn in PAIRS.items()})
+    # Pleurisy's treatment sentence is restated, in another order, in an unrelated page's overview:
+    # no 8-gram is shared, but the content words are, so Pleurisy must never become a question.
+    write_doc(src, '6_NINDS_QA', '0000040', 'Pleurisy', 'C40', {
+        'information': PAIRS['information']('Pleurisy'),
+        'treatment': 'Doctors treat pleurisy with antibiotics, pain relievers, chest drainage and rest for '
+                     'several weeks. ' + PAIRS['treatment']('Pleurisy')})
+    write_doc(src, '9_CDC_QA', '0000041', 'Chest Pain', 'C41', {
+        'information': 'Rest for several weeks, chest drainage, pain relievers and antibiotics are how doctors '
+                       'treat this. ' + PAIRS['information']('Chest Pain')})
     return src
 
 
@@ -107,6 +116,8 @@ def test_grouping_and_neighbourhoods(source):
     full = medquad.build_chunks(docs, groups)
     assert full.duplicates == 1 and full.pair_chunks['NIDDK_0000001-2'] == full.pair_chunks['GARD_0000009-1']
     assert full.pair_chunks['NINDS_0000010-2'] != full.pair_chunks['CDC_0000011-2']   # unrelated pages: two chunks
+    trimmed = medquad.build_chunks(docs, groups, boilerplate_groups=1)   # a body on 2 concepts is boilerplate
+    assert trimmed.boilerplate == 2 and trimmed.pair_chunks['NINDS_0000010-2'] == [] == trimmed.pair_chunks['CDC_0000011-2']
 
 
 def test_build_holds_out_and_labels(source, tmp_path):
@@ -124,6 +135,7 @@ def test_build_holds_out_and_labels(source, tmp_path):
     assert not any(r['focus'] in ('What I need to know about Gout?', 'Nutrition for Early Gout') for r in rows)
     assert manifest['counts']['malformed_questions_excluded'] >= 2   # booklet titles never become questions
     assert not any(r['focus'] in ('Lupus', 'Measles') for r in rows)   # leaky pages are dropped, not recycled
+    assert not any(r['focus'] == 'Pleurisy' for r in rows) and manifest['counts']['skipped'].get('restated', 0) >= 1
     docs = medquad.parse_medquad(source)
     groups = medquad.concept_groups(docs)
     hood = medquad.neighbourhoods(docs, groups)
@@ -132,20 +144,21 @@ def test_build_holds_out_and_labels(source, tmp_path):
     for row in rows:
         pair = by_qid[row['source_doc_id']]
         gold = json.loads(row['gold_doc_ids'])
+        unit_types = (pair.qtype,) + medquad.SUMMARY_TYPES
         same_group = {p.qid for d in docs for p in d.pairs if groups[d.key] == groups[pair.doc.key]}
         neighbours = {p.qid for d in docs for p in d.pairs if groups[d.key] in hood[groups[pair.doc.key]]}
         own_chunks = {c for qid in same_group if by_qid[qid].qtype == pair.qtype for c in full.pair_chunks[qid]}
-        other_chunks = {c for qid in same_group if by_qid[qid].qtype != pair.qtype for c in full.pair_chunks[qid]}
-        near_same = {c for qid in neighbours if by_qid[qid].qtype == pair.qtype for c in full.pair_chunks[qid]}
+        other_chunks = {c for qid in same_group if by_qid[qid].qtype not in unit_types for c in full.pair_chunks[qid]}
+        near_unit = {c for qid in neighbours if by_qid[qid].qtype in unit_types for c in full.pair_chunks[qid]}
         near_all = {c for qid in neighbours for c in full.pair_chunks[qid]}
         assert row['evidence_scenario_status'] == 'auto' and json.loads(row['gold_answers']) == [pair.answer]
-        assert float(row['leak_overlap']) < medquad.LEAK_MAX
+        assert float(row['leak_overlap']) < medquad.LEAK_MAX and float(row['sentence_overlap']) < medquad.RESTATE_MAX
         if row['scenario'] == 'A':
             assert gold and set(gold) <= set(ids) and set(gold) == own_chunks
         elif row['scenario'] == 'B':
             assert not gold and not near_all & set(ids)
         else:
-            assert not gold and not near_same & set(ids) and other_chunks & set(ids)
+            assert not gold and not near_unit & set(ids) and other_chunks & set(ids)
         if row['scenario'] != 'A':  # the gold text must not survive anywhere in the corpus
             norm = ' '.join(medquad._WORD.findall(pair.answer.lower()))
             assert all(norm not in ' '.join(medquad._WORD.findall(d['text'].lower())) for d in corpus)
