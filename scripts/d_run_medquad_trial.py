@@ -39,6 +39,51 @@ def load_questions(split, per_scenario):
     return picked
 
 
+def prime_cache(config, data_dir, cache_dir):
+    """Embed every MedQuAD chunk once (corpus_all.jsonl, keyed by text) and write B's cache file
+    for the current corpus.jsonl from it, so rebuilding the hold-outs never re-embeds 30k chunks."""
+    import hashlib
+    import numpy as np
+    from evrag.retriever import load_corpus
+
+    everything = data_dir / "corpus_all.jsonl"
+    if not everything.exists():
+        return
+    model_name = config["retrieval"]["embedding_model"]
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    master = cache_dir / "all_chunks.npz"
+    keys, vectors = [], None
+    if master.exists():
+        stored = np.load(master, allow_pickle=False)
+        if str(stored["model"]) == model_name:
+            keys, vectors = [str(k) for k in stored["keys"]], stored["vectors"]
+    index = {k: i for i, k in enumerate(keys)}
+
+    def digest(text):
+        return hashlib.sha1(text.encode("utf-8")).hexdigest()
+
+    all_docs = load_corpus(everything)
+    missing = list(dict.fromkeys(d["text"] for d in all_docs if digest(d["text"]) not in index))
+    if missing:
+        from sentence_transformers import SentenceTransformer
+        print(f"embedding {len(missing)} chunks once with {model_name} ...", flush=True)
+        encoder = SentenceTransformer(model_name)
+        new = encoder.encode(missing, convert_to_numpy=True, show_progress_bar=False, batch_size=64)
+        new = np.asarray(new, dtype=np.float32)
+        for text in missing:
+            index[digest(text)] = len(keys)
+            keys.append(digest(text))
+        vectors = new if vectors is None else np.vstack([vectors, new])
+        np.savez(master, model=np.array(model_name), keys=np.array(keys), vectors=vectors)
+    documents = load_corpus(data_dir / "corpus.jsonl")
+    fingerprint = hashlib.sha256(json.dumps({"format": 1, "model": model_name, "documents": documents},
+                                            sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+    target = cache_dir / f"{fingerprint}.npy"
+    if not target.exists():
+        np.save(target, vectors[[index[digest(d["text"])] for d in documents]], allow_pickle=False)
+    print(f"embedding cache: {len(keys)} chunks embedded in total, {len(missing)} new this run", flush=True)
+
+
 def chunk_focus(text):
     """The page name from a chunk header '<Focus> — <Section>'."""
     return text.split("\n", 1)[0].rsplit(" — ", 1)[0].strip().lower()
@@ -128,7 +173,9 @@ def main():
     questions = load_questions(args.split, args.per_scenario)
     if not questions:
         raise ValueError(f"No {args.split} questions in {DATA_DIR / 'dataset.csv'}")
-    searcher = Retriever(DATA_DIR / "corpus.jsonl", config=config, cache_dir=ROOT / "models" / "retrieval_medquad")
+    cache_dir = ROOT / "models" / "retrieval_medquad"
+    prime_cache(config, DATA_DIR, cache_dir)
+    searcher = Retriever(DATA_DIR / "corpus.jsonl", config=config, cache_dir=cache_dir)
     print(f"corpus: {len(searcher.documents)} chunks, cache_hit={searcher.cache_hit}; "
           f"{len(questions)} {args.split} questions")
     RUNS_DIR.mkdir(parents=True, exist_ok=True)

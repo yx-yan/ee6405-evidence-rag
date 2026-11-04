@@ -1,5 +1,6 @@
 {
   "medquad_commit": "577bd37b96c02d1833b2c9eed2de9f96964e96cb",
+  "note": "Automatic labels (evidence_scenario_status=auto). leak_overlap is the largest share of the gold answer's word 8-grams found in one chunk outside the asked section.",
   "parameters": {
     "seed": 42,
     "per_scenario": 60,
@@ -51,18 +52,18 @@
     "chunks_before_dedupe": 31433,
     "duplicate_chunks_merged": 461,
     "chunks_total": 30972,
-    "chunks_held_out": 1799,
-    "corpus_chunks": 29173,
-    "pool_groups": 627,
+    "chunks_held_out": 1446,
+    "corpus_chunks": 29526,
+    "pool_groups": 596,
+    "malformed_questions_excluded": 275,
     "unfilled": {},
     "skipped": {
-      "B_leak": 20,
-      "C_leak": 52,
-      "C_neighbour_used": 6
+      "leak": 67,
+      "neighbour_used": 54
     },
     "neighbourhood_groups": {
       "median": 1,
-      "max": 53
+      "max": 73
     }
   },
   "scenarios": {
@@ -81,1096 +82,52 @@
   },
   "held_out": [
     {
-      "question_id": "MQ_B_NINDS_0000185-2",
-      "scenario": "B",
-      "focus": "Locked-In Syndrome",
-      "qtype": "treatment",
-      "held_pages": [
-        "NINDS_0000185 (Locked-In Syndrome)"
-      ],
-      "held_pairs": [
-        "NINDS_0000185-1",
-        "NINDS_0000185-2",
-        "NINDS_0000185-3",
-        "NINDS_0000185-4"
-      ],
-      "held_chunks": 4,
-      "leak_overlap": 0.049
-    },
-    {
-      "question_id": "MQ_B_NHLBI_0000130-3",
-      "scenario": "B",
-      "focus": "Thrombocytopenia",
-      "qtype": "susceptibility",
-      "held_pages": [
-        "GARD_0006526 (X-linked thrombocytopenia)",
-        "GHR_0000307 (dyserythropoietic anemia and thrombocytopenia)",
-        "GHR_0001065 (X-linked thrombocytopenia)",
-        "NHLBI_0000130 (Thrombocytopenia)"
-      ],
-      "held_pairs": [
-        "GARD_0006526-1",
-        "GHR_0000307-1",
-        "GHR_0000307-2",
-        "GHR_0000307-3",
-        "GHR_0000307-4",
-        "GHR_0000307-5",
-        "GHR_0001065-1",
-        "GHR_0001065-2",
-        "GHR_0001065-3",
-        "GHR_0001065-4",
-        "GHR_0001065-5",
-        "NHLBI_0000130-1",
-        "NHLBI_0000130-2",
-        "NHLBI_0000130-3",
-        "NHLBI_0000130-4",
-        "NHLBI_0000130-5",
-        "NHLBI_0000130-6",
-        "NHLBI_0000130-7"
-      ],
-      "held_chunks": 38,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000202-3",
-      "scenario": "B",
-      "focus": "Multiple Sclerosis",
-      "qtype": "outlook",
-      "held_pages": [
-        "GARD_0004205 (Multiple sclerosis)",
-        "GHR_0000694 (multiple sclerosis)",
-        "MPlus_Health_Topics_0000627 (Multiple Sclerosis)",
-        "NINDS_0000202 (Multiple Sclerosis)"
-      ],
-      "held_pairs": [
-        "GARD_0004205-1",
-        "GARD_0004205-2",
-        "GARD_0004205-3",
-        "GARD_0004205-4",
-        "GHR_0000694-1",
-        "GHR_0000694-2",
-        "GHR_0000694-3",
-        "GHR_0000694-4",
-        "GHR_0000694-5",
-        "MPlus_Health_Topics_0000627-1",
-        "NINDS_0000202-1",
-        "NINDS_0000202-2",
-        "NINDS_0000202-3",
-        "NINDS_0000202-4"
-      ],
-      "held_chunks": 32,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000127-2",
-      "scenario": "B",
-      "focus": "Hereditary Spastic Paraplegia",
-      "qtype": "treatment",
-      "held_pages": [
-        "GARD_0005699 (Spastic paraplegia 10)",
-        "GARD_0005700 (Spastic paraplegia 11)",
-        "GARD_0005703 (Spastic paraplegia 14)",
-        "GARD_0005704 (Spastic paraplegia 15)",
-        "GARD_0005705 (Spastic paraplegia 16)",
-        "GARD_0005707 (Spastic paraplegia 18)",
-        "GARD_0005708 (Spastic paraplegia 19)",
-        "GARD_0005713 (Spastic paraplegia 26)",
-        "GARD_0005718 (Spastic paraplegia 39)",
-        "GARD_0005720 (Spastic paraplegia 51)",
-        "GARD_0005722 (Spastic paraplegia 5B)",
-        "GARD_0005723 (Spastic paraplegia 6)",
-        "GHR_0000926 (spastic paraplegia type 15)",
-        "GHR_0000928 (spastic paraplegia type 31)",
-        "NINDS_0000127 (Hereditary Spastic Paraplegia)"
-      ],
-      "held_pairs": [
-        "GARD_0005699-1",
-        "GARD_0005700-1",
-        "GARD_0005700-2",
-        "GARD_0005703-1",
-        "GARD_0005704-1",
-        "GARD_0005705-1",
-        "GARD_0005707-1",
-        "GARD_0005708-1",
-        "GARD_0005713-1",
-        "GARD_0005718-1",
-        "GARD_0005720-1",
-        "GARD_0005722-1",
-        "GARD_0005723-1",
-        "GHR_0000926-1",
-        "GHR_0000926-2",
-        "GHR_0000926-3",
-        "GHR_0000926-4",
-        "GHR_0000926-5",
-        "GHR_0000928-1",
-        "GHR_0000928-2",
-        "GHR_0000928-3",
-        "GHR_0000928-4",
-        "GHR_0000928-5",
-        "NINDS_0000127-1",
-        "NINDS_0000127-2",
-        "NINDS_0000127-3",
-        "NINDS_0000127-4"
-      ],
-      "held_chunks": 47,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000171-2",
+      "question_id": "MQ_C_NHLBI_0000066-8",
       "scenario": "C",
-      "focus": "Klippel-Trenaunay Syndrome (KTS)",
-      "qtype": "treatment",
-      "held_pages": [
-        "NINDS_0000171 (Klippel-Trenaunay Syndrome (KTS))"
-      ],
-      "held_pairs": [
-        "NINDS_0000171-2"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NIDDK_0000139-10",
-      "scenario": "B",
-      "focus": "Childhood Nephrotic Syndrome",
-      "qtype": "considerations",
-      "held_pages": [
-        "NIDDK_0000139 (Childhood Nephrotic Syndrome)",
-        "NIDDK_0000161 (Nephrotic Syndrome in Adults)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000139-1",
-        "NIDDK_0000139-10",
-        "NIDDK_0000139-11",
-        "NIDDK_0000139-2",
-        "NIDDK_0000139-3",
-        "NIDDK_0000139-5",
-        "NIDDK_0000139-6",
-        "NIDDK_0000139-7",
-        "NIDDK_0000139-8",
-        "NIDDK_0000139-9",
-        "NIDDK_0000161-1",
-        "NIDDK_0000161-2",
-        "NIDDK_0000161-3",
-        "NIDDK_0000161-4",
-        "NIDDK_0000161-5",
-        "NIDDK_0000161-6",
-        "NIDDK_0000161-7",
-        "NIDDK_0000161-8"
-      ],
-      "held_chunks": 38,
-      "leak_overlap": 0.087
-    },
-    {
-      "question_id": "MQ_C_NIDDK_0000144-11",
-      "scenario": "C",
-      "focus": "Glomerular Diseases",
-      "qtype": "considerations",
-      "held_pages": [
-        "NIDDK_0000144 (Glomerular Diseases)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000144-11",
-        "NIDDK_0000144-12"
-      ],
-      "held_chunks": 3,
-      "leak_overlap": 0.004
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000262-2",
-      "scenario": "C",
-      "focus": "SUNCT Headache",
-      "qtype": "treatment",
-      "held_pages": [
-        "NINDS_0000143 (Headache)",
-        "NINDS_0000262 (SUNCT Headache)"
-      ],
-      "held_pairs": [
-        "NINDS_0000143-2",
-        "NINDS_0000262-2"
-      ],
-      "held_chunks": 2,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NIDDK_0000001-9",
-      "scenario": "C",
-      "focus": "Acromegaly",
-      "qtype": "considerations",
-      "held_pages": [
-        "NIDDK_0000001 (Acromegaly)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000001-9"
-      ],
-      "held_chunks": 2,
-      "leak_overlap": 0.064
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000040-2",
-      "scenario": "C",
-      "focus": "Myotonia Congenita",
-      "qtype": "treatment",
-      "held_pages": [
-        "GHR_0000709 (myotonia congenita)",
-        "NINDS_0000040 (Myotonia Congenita)"
-      ],
-      "held_pairs": [
-        "GHR_0000709-5",
-        "NINDS_0000040-2"
-      ],
-      "held_chunks": 2,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000075-2",
-      "scenario": "B",
-      "focus": "Chorea",
-      "qtype": "treatment",
-      "held_pages": [
-        "NINDS_0000075 (Chorea)"
-      ],
-      "held_pairs": [
-        "NINDS_0000075-1",
-        "NINDS_0000075-2",
-        "NINDS_0000075-3",
-        "NINDS_0000075-4"
-      ],
-      "held_chunks": 4,
-      "leak_overlap": 0.016
-    },
-    {
-      "question_id": "MQ_B_CDC_0000341-4",
-      "scenario": "B",
-      "focus": "Q Fever",
+      "focus": "Heart Valve Disease",
       "qtype": "prevention",
       "held_pages": [
-        "CDC_0000341 (Q Fever)",
-        "GARD_0005229 (Q fever)"
+        "NHLBI_0000066 (Heart Valve Disease)"
       ],
       "held_pairs": [
-        "CDC_0000341-1",
-        "CDC_0000341-3",
-        "CDC_0000341-4",
-        "GARD_0005229-1"
-      ],
-      "held_chunks": 22,
-      "leak_overlap": 0.003
-    },
-    {
-      "question_id": "MQ_C_CancerGov_0000013_2_1-3",
-      "scenario": "C",
-      "focus": "Polycythemia Vera",
-      "qtype": "exams and tests",
-      "held_pages": [
-        "CancerGov_0000013_2_1 (Polycythemia Vera)",
-        "NHLBI_0000106 (Polycythemia Vera)"
-      ],
-      "held_pairs": [
-        "CancerGov_0000013_2_1-3",
-        "NHLBI_0000106-6"
-      ],
-      "held_chunks": 6,
-      "leak_overlap": 0.027
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000039-2",
-      "scenario": "C",
-      "focus": "Batten Disease",
-      "qtype": "treatment",
-      "held_pages": [
-        "GHR_0000545 (juvenile Batten disease)",
-        "NINDS_0000039 (Batten Disease)"
-      ],
-      "held_pairs": [
-        "GHR_0000545-5",
-        "NINDS_0000039-2"
-      ],
-      "held_chunks": 2,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000259-3",
-      "scenario": "C",
-      "focus": "Stiff-Person Syndrome",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000259 (Stiff-Person Syndrome)"
-      ],
-      "held_pairs": [
-        "NINDS_0000259-3"
+        "NHLBI_0000066-8"
       ],
       "held_chunks": 1,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_B_CDC_0000199-14",
-      "scenario": "B",
-      "focus": "",
-      "qtype": "susceptibility",
-      "held_pages": [
-        "CDC_0000199 ()"
-      ],
-      "held_pairs": [
-        "CDC_0000199-12",
-        "CDC_0000199-14",
-        "CDC_0000199-19",
-        "CDC_0000199-20"
-      ],
-      "held_chunks": 13,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_CDC_0000344-6",
-      "scenario": "C",
-      "focus": "Parasites - Baylisascaris infection",
-      "qtype": "treatment",
-      "held_pages": [
-        "CDC_0000344 (Parasites - Baylisascaris infection)"
-      ],
-      "held_pairs": [
-        "CDC_0000344-6"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000196-2",
-      "scenario": "C",
-      "focus": "Mitochondrial Myopathy",
-      "qtype": "treatment",
-      "held_pages": [
-        "NINDS_0000196 (Mitochondrial Myopathy)"
-      ],
-      "held_pairs": [
-        "NINDS_0000196-2"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NIDDK_0000110-11",
-      "scenario": "C",
-      "focus": "Inguinal Hernia",
-      "qtype": "considerations",
-      "held_pages": [
-        "NIDDK_0000110 (Inguinal Hernia)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000110-11",
-        "NIDDK_0000110-12"
-      ],
-      "held_chunks": 3,
-      "leak_overlap": 0.077
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000002-2",
-      "scenario": "C",
-      "focus": "Acid Lipase Disease",
-      "qtype": "treatment",
-      "held_pages": [
-        "NINDS_0000002 (Acid Lipase Disease)"
-      ],
-      "held_pairs": [
-        "NINDS_0000002-2"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_SeniorHealth_0000034-4",
-      "scenario": "B",
-      "focus": "Heart Failure",
-      "qtype": "symptoms",
-      "held_pages": [
-        "MPlus_Health_Topics_0000446 (Heart Failure)",
-        "NHLBI_0000061 (Heart Failure)",
-        "SeniorHealth_0000034 (Heart Failure)"
-      ],
-      "held_pairs": [
-        "MPlus_Health_Topics_0000446-1",
-        "NHLBI_0000061-1",
-        "NHLBI_0000061-3",
-        "NHLBI_0000061-4",
-        "NHLBI_0000061-5",
-        "NHLBI_0000061-6",
-        "NHLBI_0000061-7",
-        "NHLBI_0000061-8",
-        "SeniorHealth_0000034-1",
-        "SeniorHealth_0000034-11",
-        "SeniorHealth_0000034-12",
-        "SeniorHealth_0000034-13",
-        "SeniorHealth_0000034-14",
-        "SeniorHealth_0000034-15",
-        "SeniorHealth_0000034-16",
-        "SeniorHealth_0000034-17",
-        "SeniorHealth_0000034-18",
-        "SeniorHealth_0000034-19",
-        "SeniorHealth_0000034-2",
-        "SeniorHealth_0000034-20",
-        "SeniorHealth_0000034-21",
-        "SeniorHealth_0000034-22",
-        "SeniorHealth_0000034-23",
-        "SeniorHealth_0000034-24",
-        "SeniorHealth_0000034-3",
-        "SeniorHealth_0000034-4",
-        "SeniorHealth_0000034-5",
-        "SeniorHealth_0000034-6"
-      ],
-      "held_chunks": 77,
-      "leak_overlap": 0.02
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000198-2",
-      "scenario": "C",
-      "focus": "Moyamoya Disease",
-      "qtype": "treatment",
-      "held_pages": [
-        "GARD_0004144 (Moyamoya disease)",
-        "GHR_0000671 (moyamoya disease)",
-        "NINDS_0000198 (Moyamoya Disease)"
-      ],
-      "held_pairs": [
-        "GARD_0004144-4",
-        "GHR_0000671-5",
-        "NINDS_0000198-2"
-      ],
-      "held_chunks": 4,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_CDC_0000305-4",
-      "scenario": "C",
-      "focus": "Nocardiosis",
-      "qtype": "treatment",
-      "held_pages": [
-        "CDC_0000305 (Nocardiosis)"
-      ],
-      "held_pairs": [
-        "CDC_0000305-4"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000221-2",
-      "scenario": "B",
-      "focus": "Paraneoplastic Syndromes",
-      "qtype": "treatment",
-      "held_pages": [
-        "NINDS_0000221 (Paraneoplastic Syndromes)"
-      ],
-      "held_pairs": [
-        "NINDS_0000221-1",
-        "NINDS_0000221-2",
-        "NINDS_0000221-3",
-        "NINDS_0000221-4"
-      ],
-      "held_chunks": 4,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000044-3",
-      "scenario": "C",
-      "focus": "Monomelic Amyotrophy",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000044 (Monomelic Amyotrophy)"
-      ],
-      "held_pairs": [
-        "NINDS_0000044-3"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_SeniorHealth_0000018-10",
-      "scenario": "B",
-      "focus": "Dry Mouth",
-      "qtype": "causes",
-      "held_pages": [
-        "MPlus_Health_Topics_0000304 (Dry Mouth)",
-        "SeniorHealth_0000018 (Dry Mouth)"
-      ],
-      "held_pairs": [
-        "MPlus_Health_Topics_0000304-1",
-        "SeniorHealth_0000018-1",
-        "SeniorHealth_0000018-10",
-        "SeniorHealth_0000018-11",
-        "SeniorHealth_0000018-12",
-        "SeniorHealth_0000018-13",
-        "SeniorHealth_0000018-14",
-        "SeniorHealth_0000018-15",
-        "SeniorHealth_0000018-17",
-        "SeniorHealth_0000018-2",
-        "SeniorHealth_0000018-24",
-        "SeniorHealth_0000018-3",
-        "SeniorHealth_0000018-6",
-        "SeniorHealth_0000018-7",
-        "SeniorHealth_0000018-8",
-        "SeniorHealth_0000018-9"
-      ],
-      "held_chunks": 22,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_CancerGov_0000026_3-3",
-      "scenario": "B",
-      "focus": "Wilms Tumor and Other Childhood Kidney Tumors",
-      "qtype": "symptoms",
-      "held_pages": [
-        "CancerGov_0000026_3 (Wilms Tumor and Other Childhood Kidney Tumors)",
-        "MPlus_Health_Topics_0000972 (Wilms Tumor)"
-      ],
-      "held_pairs": [
-        "CancerGov_0000026_3-1",
-        "CancerGov_0000026_3-2",
-        "CancerGov_0000026_3-3",
-        "CancerGov_0000026_3-4",
-        "CancerGov_0000026_3-5",
-        "CancerGov_0000026_3-6",
-        "CancerGov_0000026_3-7",
-        "CancerGov_0000026_3-8",
-        "MPlus_Health_Topics_0000972-1"
-      ],
-      "held_chunks": 60,
-      "leak_overlap": 0.09
-    },
-    {
-      "question_id": "MQ_B_NHLBI_0000108-8",
-      "scenario": "B",
-      "focus": "Pulmonary Embolism",
-      "qtype": "prevention",
-      "held_pages": [
-        "MPlus_Health_Topics_0000757 (Pulmonary Embolism)",
-        "NHLBI_0000108 (Pulmonary Embolism)"
-      ],
-      "held_pairs": [
-        "MPlus_Health_Topics_0000757-1",
-        "NHLBI_0000108-1",
-        "NHLBI_0000108-3",
-        "NHLBI_0000108-4",
-        "NHLBI_0000108-5",
-        "NHLBI_0000108-6",
-        "NHLBI_0000108-7",
-        "NHLBI_0000108-8"
-      ],
-      "held_chunks": 22,
-      "leak_overlap": 0.047
-    },
-    {
-      "question_id": "MQ_C_CDC_0000366-2",
-      "scenario": "C",
-      "focus": "Parasites - Schistosomiasis",
-      "qtype": "susceptibility",
-      "held_pages": [
-        "CDC_0000366 (Parasites - Schistosomiasis)"
-      ],
-      "held_pairs": [
-        "CDC_0000366-2"
-      ],
-      "held_chunks": 2,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000041-2",
-      "scenario": "C",
-      "focus": "Behcet's Disease",
-      "qtype": "treatment",
-      "held_pages": [
-        "GARD_0000673 (Behcet's disease)",
-        "NINDS_0000041 (Behcet's Disease)"
-      ],
-      "held_pairs": [
-        "GARD_0000673-4",
-        "NINDS_0000041-2"
-      ],
-      "held_chunks": 3,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NHLBI_0000077-6",
-      "scenario": "C",
-      "focus": "Hypotension",
-      "qtype": "symptoms",
-      "held_pages": [
-        "NHLBI_0000077 (Hypotension)"
-      ],
-      "held_pairs": [
-        "NHLBI_0000077-6"
-      ],
-      "held_chunks": 3,
-      "leak_overlap": 0.038
-    },
-    {
-      "question_id": "MQ_B_NIDDK_0000192-8",
-      "scenario": "B",
-      "focus": "Viral Hepatitis: A through E and Beyond",
-      "qtype": "considerations",
-      "held_pages": [
-        "NIDDK_0000192 (Viral Hepatitis: A through E and Beyond)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000192-1",
-        "NIDDK_0000192-2",
-        "NIDDK_0000192-8",
-        "NIDDK_0000192-9"
-      ],
-      "held_chunks": 4,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NIDDK_0000208-14",
-      "scenario": "B",
-      "focus": "Prostate Enlargement: Benign Prostatic Hyperplasia",
-      "qtype": "considerations",
-      "held_pages": [
-        "MPlus_Health_Topics_0000330 (Enlarged Prostate (BPH))",
-        "NIDDK_0000208 (Prostate Enlargement: Benign Prostatic Hyperplasia)"
-      ],
-      "held_pairs": [
-        "MPlus_Health_Topics_0000330-1",
-        "NIDDK_0000208-1",
-        "NIDDK_0000208-10",
-        "NIDDK_0000208-11",
-        "NIDDK_0000208-12",
-        "NIDDK_0000208-13",
-        "NIDDK_0000208-14",
-        "NIDDK_0000208-2",
-        "NIDDK_0000208-3",
-        "NIDDK_0000208-4",
-        "NIDDK_0000208-6",
-        "NIDDK_0000208-7",
-        "NIDDK_0000208-9"
-      ],
-      "held_chunks": 44,
-      "leak_overlap": 0.077
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000201-3",
-      "scenario": "C",
-      "focus": "Multifocal Motor Neuropathy",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000201 (Multifocal Motor Neuropathy)"
-      ],
-      "held_pairs": [
-        "NINDS_0000201-3"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NIDDK_0000131-12",
-      "scenario": "B",
-      "focus": "What I need to know about Lactose Intolerance",
-      "qtype": "considerations",
-      "held_pages": [
-        "GHR_0000573 (lactose intolerance)",
-        "MPlus_Health_Topics_0000546 (Lactose Intolerance)",
-        "NIDDK_0000114 (Lactose Intolerance)",
-        "NIDDK_0000131 (What I need to know about Lactose Intolerance)"
-      ],
-      "held_pairs": [
-        "GHR_0000573-1",
-        "GHR_0000573-2",
-        "GHR_0000573-3",
-        "GHR_0000573-4",
-        "GHR_0000573-5",
-        "MPlus_Health_Topics_0000546-1",
-        "NIDDK_0000114-1",
-        "NIDDK_0000114-10",
-        "NIDDK_0000114-13",
-        "NIDDK_0000114-2",
-        "NIDDK_0000114-3",
-        "NIDDK_0000114-5",
-        "NIDDK_0000114-7",
-        "NIDDK_0000114-9",
-        "NIDDK_0000131-1",
-        "NIDDK_0000131-12",
-        "NIDDK_0000131-2",
-        "NIDDK_0000131-4",
-        "NIDDK_0000131-9"
-      ],
-      "held_chunks": 37,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000147-3",
-      "scenario": "B",
-      "focus": "Refsum Disease",
-      "qtype": "outlook",
-      "held_pages": [
-        "GHR_0000862 (Refsum disease)",
-        "NINDS_0000147 (Refsum Disease)"
-      ],
-      "held_pairs": [
-        "GHR_0000862-1",
-        "GHR_0000862-2",
-        "GHR_0000862-3",
-        "GHR_0000862-4",
-        "GHR_0000862-5",
-        "NINDS_0000147-1",
-        "NINDS_0000147-2",
-        "NINDS_0000147-3",
-        "NINDS_0000147-4"
-      ],
-      "held_chunks": 12,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000194-2",
-      "scenario": "B",
-      "focus": "Migraine",
-      "qtype": "treatment",
-      "held_pages": [
-        "MPlus_Health_Topics_0000610 (Migraine)",
-        "NINDS_0000194 (Migraine)"
-      ],
-      "held_pairs": [
-        "MPlus_Health_Topics_0000610-1",
-        "NINDS_0000194-1",
-        "NINDS_0000194-2",
-        "NINDS_0000194-3",
-        "NINDS_0000194-4"
-      ],
-      "held_chunks": 9,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000107-2",
-      "scenario": "B",
-      "focus": "Schilder's Disease",
-      "qtype": "treatment",
-      "held_pages": [
-        "NINDS_0000107 (Schilder's Disease)"
-      ],
-      "held_pairs": [
-        "NINDS_0000107-1",
-        "NINDS_0000107-2",
-        "NINDS_0000107-3",
-        "NINDS_0000107-4"
-      ],
-      "held_chunks": 4,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000054-2",
-      "scenario": "B",
-      "focus": "Brown-Sequard Syndrome",
-      "qtype": "treatment",
-      "held_pages": [
-        "GARD_0000860 (Brown-Sequard syndrome)",
-        "NINDS_0000054 (Brown-Sequard Syndrome)"
-      ],
-      "held_pairs": [
-        "GARD_0000860-1",
-        "GARD_0000860-2",
-        "NINDS_0000054-1",
-        "NINDS_0000054-2",
-        "NINDS_0000054-3",
-        "NINDS_0000054-4"
-      ],
-      "held_chunks": 6,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000247-2",
-      "scenario": "B",
-      "focus": "Rett Syndrome",
-      "qtype": "treatment",
-      "held_pages": [
-        "GARD_0005347 (Rett syndrome)",
-        "GHR_0000874 (Rett syndrome)",
-        "MPlus_Health_Topics_0000779 (Rett Syndrome)",
-        "NINDS_0000247 (Rett Syndrome)"
-      ],
-      "held_pairs": [
-        "GARD_0005347-1",
-        "GARD_0005347-2",
-        "GARD_0005347-3",
-        "GARD_0005347-4",
-        "GHR_0000874-1",
-        "GHR_0000874-2",
-        "GHR_0000874-3",
-        "GHR_0000874-4",
-        "GHR_0000874-5",
-        "MPlus_Health_Topics_0000779-1",
-        "NINDS_0000247-1",
-        "NINDS_0000247-2",
-        "NINDS_0000247-3",
-        "NINDS_0000247-4"
-      ],
-      "held_chunks": 20,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000096-2",
-      "scenario": "B",
-      "focus": "Septo-Optic Dysplasia",
-      "qtype": "treatment",
-      "held_pages": [
-        "GARD_0005548 (Septo-optic dysplasia)",
-        "GHR_0000899 (septo-optic dysplasia)",
-        "NINDS_0000096 (Septo-Optic Dysplasia)"
-      ],
-      "held_pairs": [
-        "GARD_0005548-1",
-        "GARD_0005548-2",
-        "GARD_0005548-3",
-        "GARD_0005548-4",
-        "GARD_0005548-5",
-        "GHR_0000899-1",
-        "GHR_0000899-2",
-        "GHR_0000899-3",
-        "GHR_0000899-4",
-        "GHR_0000899-5",
-        "NINDS_0000096-1",
-        "NINDS_0000096-2",
-        "NINDS_0000096-3",
-        "NINDS_0000096-4"
-      ],
-      "held_chunks": 20,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_CancerGov_0000001_5-6",
-      "scenario": "B",
-      "focus": "Hairy Cell Leukemia",
-      "qtype": "stages",
-      "held_pages": [
-        "CancerGov_0000001_5 (Hairy Cell Leukemia)",
-        "GARD_0002709 (Hairy cell leukemia)"
-      ],
-      "held_pairs": [
-        "CancerGov_0000001_5-1",
-        "CancerGov_0000001_5-2",
-        "CancerGov_0000001_5-3",
-        "CancerGov_0000001_5-4",
-        "CancerGov_0000001_5-5",
-        "CancerGov_0000001_5-6",
-        "CancerGov_0000001_5-7",
-        "CancerGov_0000001_5-8",
-        "GARD_0002709-1"
-      ],
-      "held_chunks": 27,
-      "leak_overlap": 0.05
-    },
-    {
-      "question_id": "MQ_B_NHLBI_0000098-5",
-      "scenario": "B",
-      "focus": "Patent Ductus Arteriosus",
-      "qtype": "symptoms",
-      "held_pages": [
-        "NHLBI_0000098 (Patent Ductus Arteriosus)"
-      ],
-      "held_pairs": [
-        "NHLBI_0000098-1",
-        "NHLBI_0000098-3",
-        "NHLBI_0000098-4",
-        "NHLBI_0000098-5",
-        "NHLBI_0000098-6",
-        "NHLBI_0000098-7"
-      ],
-      "held_chunks": 14,
-      "leak_overlap": 0.062
-    },
-    {
-      "question_id": "MQ_C_CDC_0000008-6",
-      "scenario": "C",
-      "focus": "Alkhurma Hemorrhagic Fever (AHF)",
-      "qtype": "prevention",
-      "held_pages": [
-        "CDC_0000008 (Alkhurma Hemorrhagic Fever (AHF))"
-      ],
-      "held_pairs": [
-        "CDC_0000008-6"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000226-3",
-      "scenario": "B",
-      "focus": "Parry-Romberg",
-      "qtype": "outlook",
-      "held_pages": [
-        "GARD_0005086 (Progressive hemifacial atrophy)",
-        "NINDS_0000226 (Parry-Romberg)"
-      ],
-      "held_pairs": [
-        "GARD_0005086-1",
-        "GARD_0005086-2",
-        "GARD_0005086-3",
-        "NINDS_0000226-1",
-        "NINDS_0000226-2",
-        "NINDS_0000226-3",
-        "NINDS_0000226-4"
-      ],
-      "held_chunks": 10,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_SeniorHealth_0000013-11",
-      "scenario": "B",
-      "focus": "Creating a Family Health History",
-      "qtype": "causes",
-      "held_pages": [
-        "MPlus_Health_Topics_0000947 (Veterans and Military Family Health)",
-        "SeniorHealth_0000013 (Creating a Family Health History)"
-      ],
-      "held_pairs": [
-        "MPlus_Health_Topics_0000947-1",
-        "SeniorHealth_0000013-10",
-        "SeniorHealth_0000013-11",
-        "SeniorHealth_0000013-12",
-        "SeniorHealth_0000013-15",
-        "SeniorHealth_0000013-16",
-        "SeniorHealth_0000013-18",
-        "SeniorHealth_0000013-2",
-        "SeniorHealth_0000013-22",
-        "SeniorHealth_0000013-25",
-        "SeniorHealth_0000013-26",
-        "SeniorHealth_0000013-6",
-        "SeniorHealth_0000013-9"
-      ],
-      "held_chunks": 22,
-      "leak_overlap": 0.01
-    },
-    {
-      "question_id": "MQ_C_CDC_0000163-7",
-      "scenario": "C",
-      "focus": "Parasites - Fascioliasis (Fasciola Infection)",
-      "qtype": "prevention",
-      "held_pages": [
-        "CDC_0000163 (Parasites - Fascioliasis (Fasciola Infection))"
-      ],
-      "held_pairs": [
-        "CDC_0000163-7"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.009
-    },
-    {
-      "question_id": "MQ_B_NHLBI_0000115-8",
-      "scenario": "B",
-      "focus": "Rh Incompatibility",
-      "qtype": "prevention",
-      "held_pages": [
-        "MPlus_Health_Topics_0000781 (Rh Incompatibility)",
-        "NHLBI_0000115 (Rh Incompatibility)"
-      ],
-      "held_pairs": [
-        "MPlus_Health_Topics_0000781-1",
-        "NHLBI_0000115-1",
-        "NHLBI_0000115-3",
-        "NHLBI_0000115-4",
-        "NHLBI_0000115-5",
-        "NHLBI_0000115-6",
-        "NHLBI_0000115-7",
-        "NHLBI_0000115-8"
-      ],
-      "held_chunks": 21,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NIDDK_0000204-4",
-      "scenario": "C",
-      "focus": "Kidney Stones in Children",
-      "qtype": "causes",
-      "held_pages": [
-        "NIDDK_0000203 (Kidney Stones in Adults)",
-        "NIDDK_0000204 (Kidney Stones in Children)",
-        "NIDDK_0000221 (What I need to know about Kidney Stones)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000203-4",
-        "NIDDK_0000204-4",
-        "NIDDK_0000221-3"
-      ],
-      "held_chunks": 7,
-      "leak_overlap": 0.006
-    },
-    {
-      "question_id": "MQ_C_SeniorHealth_0000042-7",
-      "scenario": "C",
-      "focus": "Low Vision",
-      "qtype": "causes",
-      "held_pages": [
-        "SeniorHealth_0000042 (Low Vision)"
-      ],
-      "held_pairs": [
-        "SeniorHealth_0000042-2",
-        "SeniorHealth_0000042-7"
-      ],
-      "held_chunks": 2,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_CDC_0000319-2",
+      "question_id": "MQ_C_CDC_0000319-5",
       "scenario": "C",
       "focus": "Parasites - Paragonimiasis (also known as Paragonimus Infection)",
-      "qtype": "susceptibility",
+      "qtype": "exams and tests",
       "held_pages": [
         "CDC_0000319 (Parasites - Paragonimiasis (also known as Paragonimus Infection))"
       ],
       "held_pairs": [
-        "CDC_0000319-2"
+        "CDC_0000319-5"
       ],
       "held_chunks": 1,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_C_NINDS_0000248-3",
+      "question_id": "MQ_C_NIDDK_0000141-5",
       "scenario": "C",
-      "focus": "Reye's Syndrome",
-      "qtype": "outlook",
+      "focus": "Ectopic Kidney",
+      "qtype": "complications",
       "held_pages": [
-        "NINDS_0000248 (Reye's Syndrome)"
+        "NIDDK_0000141 (Ectopic Kidney)"
       ],
       "held_pairs": [
-        "NINDS_0000248-3"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.01
-    },
-    {
-      "question_id": "MQ_C_NIDDK_0000103-7",
-      "scenario": "C",
-      "focus": "Gastritis",
-      "qtype": "treatment",
-      "held_pages": [
-        "NIDDK_0000103 (Gastritis)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000103-7"
+        "NIDDK_0000141-5"
       ],
       "held_chunks": 3,
-      "leak_overlap": 0.072
+      "leak_overlap": 0.049
     },
     {
-      "question_id": "MQ_B_CDC_0000144-2",
-      "scenario": "B",
-      "focus": "Parasites - Echinococcosis",
-      "qtype": "susceptibility",
-      "held_pages": [
-        "CDC_0000144 (Parasites - Echinococcosis)"
-      ],
-      "held_pairs": [
-        "CDC_0000144-1",
-        "CDC_0000144-2",
-        "CDC_0000144-5",
-        "CDC_0000144-6",
-        "CDC_0000144-7"
-      ],
-      "held_chunks": 7,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000180-2",
+      "question_id": "MQ_B_NINDS_0000180-3",
       "scenario": "B",
       "focus": "Lesch-Nyhan Syndrome",
-      "qtype": "treatment",
+      "qtype": "outlook",
       "held_pages": [
         "GARD_0003550 (Lesch Nyhan syndrome)",
         "GHR_0000595 (Lesch-Nyhan syndrome)",
@@ -1191,611 +148,211 @@
         "NINDS_0000180-4"
       ],
       "held_chunks": 17,
-      "leak_overlap": 0.0
+      "leak_overlap": 0.062
     },
     {
-      "question_id": "MQ_C_NHLBI_0000079-5",
-      "scenario": "C",
-      "focus": "Immune Thrombocytopenia",
-      "qtype": "symptoms",
-      "held_pages": [
-        "GARD_0002424 (Frank Ter Haar syndrome)",
-        "GARD_0003148 (Idiopathic thrombocytopenic purpura)",
-        "NHLBI_0000079 (Immune Thrombocytopenia)"
-      ],
-      "held_pairs": [
-        "GARD_0002424-2",
-        "GARD_0003148-2",
-        "NHLBI_0000079-5"
-      ],
-      "held_chunks": 7,
-      "leak_overlap": 0.084
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000019-3",
+      "question_id": "MQ_B_NINDS_0000084-3",
       "scenario": "B",
-      "focus": "Anencephaly",
+      "focus": "Congenital Myasthenia",
       "qtype": "outlook",
       "held_pages": [
-        "GARD_0000341 (Anencephaly)",
-        "GHR_0000057 (anencephaly)",
-        "NINDS_0000019 (Anencephaly)"
+        "GARD_0001540 (Congenital myasthenic syndrome)",
+        "GARD_0001541 (Congenital myasthenic syndrome associated with acetylcholine receptor deficiency)",
+        "GHR_0000235 (congenital myasthenic syndrome)",
+        "NINDS_0000084 (Congenital Myasthenia)"
       ],
       "held_pairs": [
-        "GARD_0000341-1",
-        "GARD_0000341-2",
-        "GARD_0000341-3",
-        "GARD_0000341-4",
-        "GHR_0000057-1",
-        "GHR_0000057-2",
-        "GHR_0000057-3",
-        "GHR_0000057-4",
-        "GHR_0000057-5",
-        "NINDS_0000019-1",
-        "NINDS_0000019-2",
-        "NINDS_0000019-3",
-        "NINDS_0000019-4"
+        "GARD_0001540-1",
+        "GARD_0001540-2",
+        "GARD_0001541-1",
+        "GHR_0000235-1",
+        "GHR_0000235-2",
+        "GHR_0000235-3",
+        "GHR_0000235-4",
+        "GHR_0000235-5",
+        "NINDS_0000084-1",
+        "NINDS_0000084-2",
+        "NINDS_0000084-3",
+        "NINDS_0000084-4"
       ],
-      "held_chunks": 20,
+      "held_chunks": 19,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_B_NINDS_0000170-3",
+      "question_id": "MQ_B_NIDDK_0000110-10",
       "scenario": "B",
-      "focus": "Klippel Feil Syndrome",
-      "qtype": "outlook",
-      "held_pages": [
-        "GARD_0003402 (Klippel Feil syndrome)",
-        "GHR_0000562 (Klippel-Feil syndrome)",
-        "NINDS_0000170 (Klippel Feil Syndrome)"
-      ],
-      "held_pairs": [
-        "GARD_0003402-1",
-        "GARD_0003402-2",
-        "GARD_0003402-3",
-        "GARD_0003402-4",
-        "GARD_0003402-5",
-        "GARD_0003402-6",
-        "GHR_0000562-1",
-        "GHR_0000562-2",
-        "GHR_0000562-3",
-        "GHR_0000562-4",
-        "GHR_0000562-5",
-        "NINDS_0000170-1",
-        "NINDS_0000170-2",
-        "NINDS_0000170-3",
-        "NINDS_0000170-4"
-      ],
-      "held_chunks": 28,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000035-2",
-      "scenario": "B",
-      "focus": "Autism",
-      "qtype": "treatment",
-      "held_pages": [
-        "NINDS_0000035 (Autism)"
-      ],
-      "held_pairs": [
-        "NINDS_0000035-1",
-        "NINDS_0000035-2",
-        "NINDS_0000035-3",
-        "NINDS_0000035-4"
-      ],
-      "held_chunks": 4,
-      "leak_overlap": 0.059
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000141-2",
-      "scenario": "C",
-      "focus": "Guillain-Barr Syndrome",
-      "qtype": "treatment",
-      "held_pages": [
-        "GHR_0000443 (Guillain-Barr syndrome)",
-        "NINDS_0000141 (Guillain-Barr Syndrome)"
-      ],
-      "held_pairs": [
-        "GHR_0000443-5",
-        "NINDS_0000141-2"
-      ],
-      "held_chunks": 3,
-      "leak_overlap": 0.013
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000241-3",
-      "scenario": "B",
-      "focus": "Progressive Multifocal Leukoencephalopathy",
-      "qtype": "outlook",
-      "held_pages": [
-        "GARD_0005088 (Progressive multifocal leukoencephalopathy)",
-        "NINDS_0000241 (Progressive Multifocal Leukoencephalopathy)"
-      ],
-      "held_pairs": [
-        "GARD_0005088-1",
-        "GARD_0005088-2",
-        "NINDS_0000241-1",
-        "NINDS_0000241-2",
-        "NINDS_0000241-3",
-        "NINDS_0000241-4"
-      ],
-      "held_chunks": 8,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000060-3",
-      "scenario": "C",
-      "focus": "Cavernous Malformation",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000060 (Cavernous Malformation)"
-      ],
-      "held_pairs": [
-        "NINDS_0000060-3"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000229-3",
-      "scenario": "C",
-      "focus": "Peripheral Neuropathy",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000229 (Peripheral Neuropathy)"
-      ],
-      "held_pairs": [
-        "NINDS_0000229-3"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000169-2",
-      "scenario": "C",
-      "focus": "Kleine-Levin Syndrome",
-      "qtype": "treatment",
-      "held_pages": [
-        "NINDS_0000169 (Kleine-Levin Syndrome)"
-      ],
-      "held_pairs": [
-        "NINDS_0000169-2"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000242-3",
-      "scenario": "C",
-      "focus": "Progressive Supranuclear Palsy",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000242 (Progressive Supranuclear Palsy)"
-      ],
-      "held_pairs": [
-        "NINDS_0000242-3"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000273-2",
-      "scenario": "B",
-      "focus": "Tuberous Sclerosis",
-      "qtype": "treatment",
-      "held_pages": [
-        "GARD_0001065 (Cerebral sclerosis similar to Pelizaeus-Merzbacher disease)",
-        "GARD_0006234 (Tuberous sclerosis, type 1)",
-        "GARD_0006235 (Tuberous sclerosis, type 2)",
-        "GHR_0000999 (tuberous sclerosis complex)",
-        "MPlus_Health_Topics_0000919 (Tuberous Sclerosis)",
-        "NINDS_0000273 (Tuberous Sclerosis)"
-      ],
-      "held_pairs": [
-        "GARD_0001065-1",
-        "GARD_0006234-1",
-        "GARD_0006235-1",
-        "GHR_0000999-1",
-        "GHR_0000999-2",
-        "GHR_0000999-3",
-        "GHR_0000999-4",
-        "GHR_0000999-5",
-        "MPlus_Health_Topics_0000919-1",
-        "NINDS_0000273-1",
-        "NINDS_0000273-2",
-        "NINDS_0000273-3",
-        "NINDS_0000273-4"
-      ],
-      "held_chunks": 18,
-      "leak_overlap": 0.029
-    },
-    {
-      "question_id": "MQ_B_NIDDK_0000123-10",
-      "scenario": "B",
-      "focus": "Viral Gastroenteritis",
-      "qtype": "considerations",
-      "held_pages": [
-        "NIDDK_0000123 (Viral Gastroenteritis)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000123-1",
-        "NIDDK_0000123-10",
-        "NIDDK_0000123-2",
-        "NIDDK_0000123-3",
-        "NIDDK_0000123-4",
-        "NIDDK_0000123-6",
-        "NIDDK_0000123-7",
-        "NIDDK_0000123-8",
-        "NIDDK_0000123-9"
-      ],
-      "held_chunks": 15,
-      "leak_overlap": 0.098
-    },
-    {
-      "question_id": "MQ_C_NIDDK_0000183-4",
-      "scenario": "C",
-      "focus": "Biliary Atresia",
-      "qtype": "causes",
-      "held_pages": [
-        "NIDDK_0000183 (Biliary Atresia)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000183-4"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.008
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000253-3",
-      "scenario": "C",
-      "focus": "Sjgren's Syndrome",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000253 (Sjgren's Syndrome)"
-      ],
-      "held_pairs": [
-        "NINDS_0000253-3"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NHLBI_0000056-7",
-      "scenario": "B",
-      "focus": "Endocarditis",
+      "focus": "Inguinal Hernia",
       "qtype": "prevention",
       "held_pages": [
-        "MPlus_Health_Topics_0000326 (Endocarditis)",
-        "NHLBI_0000056 (Endocarditis)"
+        "MPlus_Health_Topics_0000464 (Hernia)",
+        "NIDDK_0000110 (Inguinal Hernia)"
       ],
       "held_pairs": [
-        "MPlus_Health_Topics_0000326-1",
-        "NHLBI_0000056-1",
-        "NHLBI_0000056-2",
-        "NHLBI_0000056-3",
-        "NHLBI_0000056-4",
-        "NHLBI_0000056-5",
-        "NHLBI_0000056-6",
-        "NHLBI_0000056-7"
+        "MPlus_Health_Topics_0000464-1",
+        "NIDDK_0000110-1",
+        "NIDDK_0000110-10",
+        "NIDDK_0000110-11",
+        "NIDDK_0000110-12",
+        "NIDDK_0000110-2",
+        "NIDDK_0000110-3",
+        "NIDDK_0000110-5",
+        "NIDDK_0000110-6",
+        "NIDDK_0000110-8",
+        "NIDDK_0000110-9"
       ],
       "held_chunks": 21,
-      "leak_overlap": 0.015
+      "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_C_NHLBI_0000081-4",
+      "question_id": "MQ_C_NHLBI_0000053-7",
       "scenario": "C",
-      "focus": "Insomnia",
-      "qtype": "symptoms",
-      "held_pages": [
-        "NHLBI_0000081 (Insomnia)"
-      ],
-      "held_pairs": [
-        "NHLBI_0000081-4"
-      ],
-      "held_chunks": 2,
-      "leak_overlap": 0.016
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000240-2",
-      "scenario": "C",
-      "focus": "Tabes Dorsalis",
+      "focus": "Disseminated Intravascular Coagulation",
       "qtype": "treatment",
       "held_pages": [
-        "NINDS_0000240 (Tabes Dorsalis)"
+        "NHLBI_0000053 (Disseminated Intravascular Coagulation)"
       ],
       "held_pairs": [
-        "NINDS_0000240-2"
+        "NHLBI_0000053-7"
+      ],
+      "held_chunks": 2,
+      "leak_overlap": 0.033
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000024-3",
+      "scenario": "C",
+      "focus": "Antiphospholipid Syndrome",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000024 (Antiphospholipid Syndrome)"
+      ],
+      "held_pairs": [
+        "NINDS_0000024-3"
       ],
       "held_chunks": 1,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_B_NIDDK_0000201-2",
+      "question_id": "MQ_B_NINDS_0000243-3",
       "scenario": "B",
-      "focus": "Hematuria (Blood in the Urine)",
-      "qtype": "symptoms",
-      "held_pages": [
-        "GARD_0003662 (Loin pain hematuria syndrome)",
-        "NIDDK_0000201 (Hematuria (Blood in the Urine))"
-      ],
-      "held_pairs": [
-        "GARD_0003662-1",
-        "GARD_0003662-2",
-        "GARD_0003662-3",
-        "GARD_0003662-4",
-        "GARD_0003662-5",
-        "NIDDK_0000201-1",
-        "NIDDK_0000201-2",
-        "NIDDK_0000201-3",
-        "NIDDK_0000201-4",
-        "NIDDK_0000201-5",
-        "NIDDK_0000201-6",
-        "NIDDK_0000201-7",
-        "NIDDK_0000201-8",
-        "NIDDK_0000201-9"
-      ],
-      "held_chunks": 20,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NHLBI_0000031-5",
-      "scenario": "B",
-      "focus": "Carotid Artery Disease",
-      "qtype": "exams and tests",
-      "held_pages": [
-        "MPlus_Health_Topics_0000154 (Carotid Artery Disease)",
-        "NHLBI_0000031 (Carotid Artery Disease)"
-      ],
-      "held_pairs": [
-        "MPlus_Health_Topics_0000154-1",
-        "NHLBI_0000031-1",
-        "NHLBI_0000031-2",
-        "NHLBI_0000031-3",
-        "NHLBI_0000031-4",
-        "NHLBI_0000031-5",
-        "NHLBI_0000031-6",
-        "NHLBI_0000031-7"
-      ],
-      "held_chunks": 32,
-      "leak_overlap": 0.044
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000203-2",
-      "scenario": "B",
-      "focus": "Multiple System Atrophy",
-      "qtype": "treatment",
-      "held_pages": [
-        "GARD_0004210 (Multiple system atrophy)",
-        "GHR_0000696 (multiple system atrophy)",
-        "NINDS_0000203 (Multiple System Atrophy)",
-        "NINDS_0000204 (Multiple System Atrophy with Orthostatic Hypotension)"
-      ],
-      "held_pairs": [
-        "GARD_0004210-1",
-        "GARD_0004210-2",
-        "GHR_0000696-1",
-        "GHR_0000696-2",
-        "GHR_0000696-3",
-        "GHR_0000696-4",
-        "GHR_0000696-5",
-        "NINDS_0000203-1",
-        "NINDS_0000203-2",
-        "NINDS_0000203-3",
-        "NINDS_0000203-4",
-        "NINDS_0000204-1",
-        "NINDS_0000204-2",
-        "NINDS_0000204-3",
-        "NINDS_0000204-4"
-      ],
-      "held_chunks": 21,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000234-3",
-      "scenario": "C",
-      "focus": "Pituitary Tumors",
+      "focus": "Prosopagnosia",
       "qtype": "outlook",
       "held_pages": [
-        "CancerGov_0000035_1 (Pituitary Tumors)",
-        "NINDS_0000234 (Pituitary Tumors)"
+        "GARD_0005106 (Prosopagnosia, hereditary)",
+        "NINDS_0000243 (Prosopagnosia)"
       ],
       "held_pairs": [
-        "CancerGov_0000035_1-5",
-        "NINDS_0000234-3"
+        "GARD_0005106-1",
+        "NINDS_0000243-1",
+        "NINDS_0000243-2",
+        "NINDS_0000243-3",
+        "NINDS_0000243-4"
+      ],
+      "held_chunks": 7,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000040-3",
+      "scenario": "C",
+      "focus": "Myotonia Congenita",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000040 (Myotonia Congenita)",
+        "NINDS_0000210 (Myotonia)"
+      ],
+      "held_pairs": [
+        "NINDS_0000040-3",
+        "NINDS_0000210-3"
       ],
       "held_chunks": 2,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_B_SeniorHealth_0000052-11",
-      "scenario": "B",
-      "focus": "Parkinson's Disease",
-      "qtype": "causes",
+      "question_id": "MQ_C_NINDS_0000109-2",
+      "scenario": "C",
+      "focus": "Dysgraphia",
+      "qtype": "treatment",
       "held_pages": [
-        "GARD_0004740 (Parkinson disease)",
-        "GARD_0004742 (Parkinson disease type 9)",
-        "GHR_0000773 (Parkinson disease)",
-        "MPlus_Health_Topics_0000692 (Parkinson's Disease)",
-        "NINDS_0000097 (Deep Brain Stimulation for Parkinson's Disease)",
-        "NINDS_0000223 (Parkinson's Disease)",
-        "SeniorHealth_0000052 (Parkinson's Disease)"
+        "NINDS_0000109 (Dysgraphia)"
       ],
       "held_pairs": [
-        "GARD_0004740-1",
-        "GARD_0004740-2",
-        "GARD_0004740-3",
-        "GARD_0004740-4",
-        "GARD_0004740-5",
-        "GARD_0004742-1",
-        "GHR_0000773-1",
-        "GHR_0000773-2",
-        "GHR_0000773-3",
-        "GHR_0000773-4",
-        "GHR_0000773-5",
-        "MPlus_Health_Topics_0000692-1",
-        "NINDS_0000097-1",
-        "NINDS_0000097-2",
-        "NINDS_0000097-3",
-        "NINDS_0000097-4",
-        "NINDS_0000223-1",
-        "NINDS_0000223-2",
-        "NINDS_0000223-3",
-        "NINDS_0000223-4",
-        "SeniorHealth_0000052-1",
-        "SeniorHealth_0000052-10",
-        "SeniorHealth_0000052-11",
-        "SeniorHealth_0000052-13",
-        "SeniorHealth_0000052-14",
-        "SeniorHealth_0000052-19",
-        "SeniorHealth_0000052-2",
-        "SeniorHealth_0000052-20",
-        "SeniorHealth_0000052-23",
-        "SeniorHealth_0000052-24",
-        "SeniorHealth_0000052-25",
-        "SeniorHealth_0000052-26",
-        "SeniorHealth_0000052-3",
-        "SeniorHealth_0000052-31",
-        "SeniorHealth_0000052-32",
-        "SeniorHealth_0000052-33",
-        "SeniorHealth_0000052-5",
-        "SeniorHealth_0000052-6",
-        "SeniorHealth_0000052-8",
-        "SeniorHealth_0000052-9"
+        "NINDS_0000109-2"
       ],
-      "held_chunks": 92,
+      "held_chunks": 1,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_C_NHLBI_0000104-4",
+      "question_id": "MQ_C_NHLBI_0000104-3",
       "scenario": "C",
       "focus": "Pleurisy and Other Pleural Disorders",
-      "qtype": "symptoms",
+      "qtype": "causes",
       "held_pages": [
         "NHLBI_0000104 (Pleurisy and Other Pleural Disorders)"
       ],
       "held_pairs": [
-        "NHLBI_0000104-4"
-      ],
-      "held_chunks": 2,
-      "leak_overlap": 0.012
-    },
-    {
-      "question_id": "MQ_B_NIDDK_0000167-12",
-      "scenario": "B",
-      "focus": "Polycystic Kidney Disease",
-      "qtype": "symptoms",
-      "held_pages": [
-        "GARD_0004939 (Polycystic kidney disease)",
-        "GHR_0000804 (polycystic kidney disease)",
-        "NIDDK_0000167 (Polycystic Kidney Disease)"
-      ],
-      "held_pairs": [
-        "GARD_0004939-1",
-        "GARD_0004939-2",
-        "GHR_0000804-1",
-        "GHR_0000804-2",
-        "GHR_0000804-3",
-        "GHR_0000804-4",
-        "GHR_0000804-5",
-        "NIDDK_0000167-1",
-        "NIDDK_0000167-11",
-        "NIDDK_0000167-12",
-        "NIDDK_0000167-13",
-        "NIDDK_0000167-16",
-        "NIDDK_0000167-17",
-        "NIDDK_0000167-18",
-        "NIDDK_0000167-2",
-        "NIDDK_0000167-4",
-        "NIDDK_0000167-5",
-        "NIDDK_0000167-6",
-        "NIDDK_0000167-7"
-      ],
-      "held_chunks": 38,
-      "leak_overlap": 0.016
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000272-2",
-      "scenario": "C",
-      "focus": "Troyer Syndrome",
-      "qtype": "treatment",
-      "held_pages": [
-        "GARD_0006224 (Troyer syndrome)",
-        "GHR_0000998 (Troyer syndrome)",
-        "NINDS_0000272 (Troyer Syndrome)"
-      ],
-      "held_pairs": [
-        "GARD_0006224-5",
-        "GHR_0000998-5",
-        "NINDS_0000272-2"
+        "NHLBI_0000104-3"
       ],
       "held_chunks": 3,
-      "leak_overlap": 0.0
+      "leak_overlap": 0.02
     },
     {
-      "question_id": "MQ_B_NHLBI_0000062-5",
-      "scenario": "B",
-      "focus": "Heart Murmur",
-      "qtype": "symptoms",
-      "held_pages": [
-        "NHLBI_0000062 (Heart Murmur)"
-      ],
-      "held_pairs": [
-        "NHLBI_0000062-1",
-        "NHLBI_0000062-4",
-        "NHLBI_0000062-5",
-        "NHLBI_0000062-6",
-        "NHLBI_0000062-7"
-      ],
-      "held_chunks": 16,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000160-3",
+      "question_id": "MQ_C_NINDS_0000036-3",
       "scenario": "C",
-      "focus": "Neuroaxonal dystrophy",
+      "focus": "Dysautonomia",
       "qtype": "outlook",
       "held_pages": [
-        "NINDS_0000160 (Neuroaxonal dystrophy)"
+        "NINDS_0000036 (Dysautonomia)"
       ],
       "held_pairs": [
-        "NINDS_0000160-3"
+        "NINDS_0000036-3"
       ],
       "held_chunks": 1,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_C_NINDS_0000179-3",
+      "question_id": "MQ_C_NIDDK_0000189-7",
       "scenario": "C",
-      "focus": "Lennox-Gastaut Syndrome",
-      "qtype": "outlook",
+      "focus": "Porphyria",
+      "qtype": "exams and tests",
       "held_pages": [
-        "NINDS_0000179 (Lennox-Gastaut Syndrome)"
+        "GARD_0000117 (Acute intermittent porphyria)",
+        "NIDDK_0000189 (Porphyria)"
       ],
       "held_pairs": [
-        "NINDS_0000179-3"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_CDC_0000419-17",
-      "scenario": "B",
-      "focus": "Typhoid Fever",
-      "qtype": "symptoms",
-      "held_pages": [
-        "CDC_0000419 (Typhoid Fever)"
-      ],
-      "held_pairs": [
-        "CDC_0000419-17"
+        "GARD_0000117-5",
+        "NIDDK_0000189-7"
       ],
       "held_chunks": 2,
-      "leak_overlap": 0.008
+      "leak_overlap": 0.057
     },
     {
-      "question_id": "MQ_B_NHLBI_0000013-6",
+      "question_id": "MQ_B_NINDS_0000175-2",
+      "scenario": "B",
+      "focus": "Lambert-Eaton Myasthenic Syndrome",
+      "qtype": "treatment",
+      "held_pages": [
+        "GARD_0001542 (Congenital myasthenic syndrome with episodic apnea)",
+        "GARD_0003459 (Lambert Eaton myasthenic syndrome)",
+        "NINDS_0000175 (Lambert-Eaton Myasthenic Syndrome)"
+      ],
+      "held_pairs": [
+        "GARD_0001542-1",
+        "GARD_0003459-1",
+        "GARD_0003459-2",
+        "GARD_0003459-3",
+        "GARD_0003459-4",
+        "NINDS_0000175-1",
+        "NINDS_0000175-2",
+        "NINDS_0000175-3",
+        "NINDS_0000175-4"
+      ],
+      "held_chunks": 11,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NHLBI_0000013-4",
       "scenario": "B",
       "focus": "Atrial Fibrillation",
-      "qtype": "symptoms",
+      "qtype": "causes",
       "held_pages": [
         "GARD_0002230 (Familial atrial fibrillation)",
         "GHR_0000341 (familial atrial fibrillation)",
@@ -1826,302 +383,160 @@
         "NINDS_0000034-4"
       ],
       "held_chunks": 50,
-      "leak_overlap": 0.031
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000092-3",
-      "scenario": "C",
-      "focus": "Neurological Consequences of Cytomegalovirus Infection",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000092 (Neurological Consequences of Cytomegalovirus Infection)"
-      ],
-      "held_pairs": [
-        "NINDS_0000092-3"
-      ],
-      "held_chunks": 2,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_C_NIDDK_0000189-9",
+      "question_id": "MQ_C_NINDS_0000194-2",
       "scenario": "C",
-      "focus": "Porphyria",
-      "qtype": "considerations",
-      "held_pages": [
-        "NIDDK_0000189 (Porphyria)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000189-10",
-        "NIDDK_0000189-9"
-      ],
-      "held_chunks": 3,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NHLBI_0000126-4",
-      "scenario": "C",
-      "focus": "Tetralogy of Fallot",
-      "qtype": "symptoms",
-      "held_pages": [
-        "GARD_0003023 (Hypertelorism and tetralogy of Fallot)",
-        "GARD_0006045 (Tetralogy of Fallot)",
-        "GARD_0006046 (Tetralogy of fallot and glaucoma)",
-        "NHLBI_0000126 (Tetralogy of Fallot)"
-      ],
-      "held_pairs": [
-        "GARD_0003023-1",
-        "GARD_0006045-2",
-        "GARD_0006046-1",
-        "NHLBI_0000126-4"
-      ],
-      "held_chunks": 9,
-      "leak_overlap": 0.052
-    },
-    {
-      "question_id": "MQ_B_CancerGov_0000019_1-4",
-      "scenario": "B",
-      "focus": "Ovarian Epithelial, Fallopian Tube, and Primary Peritoneal Cancer",
-      "qtype": "prevention",
-      "held_pages": [
-        "CancerGov_0000019_1 (Ovarian Epithelial, Fallopian Tube, and Primary Peritoneal Cancer)",
-        "CancerGov_0000019_4 (Ovarian, Fallopian Tube, and Primary Peritoneal Cancer)",
-        "CancerGov_0000019_5 (Ovarian, Fallopian Tube, and Primary Peritoneal Cancer)"
-      ],
-      "held_pairs": [
-        "CancerGov_0000019_1-1",
-        "CancerGov_0000019_1-10",
-        "CancerGov_0000019_1-2",
-        "CancerGov_0000019_1-3",
-        "CancerGov_0000019_1-4",
-        "CancerGov_0000019_1-5",
-        "CancerGov_0000019_1-6",
-        "CancerGov_0000019_1-7",
-        "CancerGov_0000019_1-8",
-        "CancerGov_0000019_1-9",
-        "CancerGov_0000019_4-1",
-        "CancerGov_0000019_4-2",
-        "CancerGov_0000019_4-3",
-        "CancerGov_0000019_4-4",
-        "CancerGov_0000019_5-1",
-        "CancerGov_0000019_5-2"
-      ],
-      "held_chunks": 58,
-      "leak_overlap": 0.056
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000239-2",
-      "scenario": "C",
-      "focus": "Transmissible Spongiform Encephalopathies",
+      "focus": "Migraine",
       "qtype": "treatment",
       "held_pages": [
-        "GHR_0000826 (prion disease)",
-        "NINDS_0000239 (Transmissible Spongiform Encephalopathies)"
+        "GARD_0000657 (Basilar migraine)",
+        "GARD_0002255 (Familial hemiplegic migraine type 1)",
+        "GARD_0002256 (Familial hemiplegic migraine type 2)",
+        "GHR_0000351 (familial hemiplegic migraine)",
+        "GHR_0000950 (sporadic hemiplegic migraine)",
+        "NINDS_0000194 (Migraine)"
       ],
       "held_pairs": [
-        "GHR_0000826-5",
-        "NINDS_0000239-2"
+        "GARD_0000657-6",
+        "GARD_0002255-3",
+        "GARD_0002256-3",
+        "GHR_0000351-5",
+        "GHR_0000950-5",
+        "NINDS_0000194-2"
       ],
-      "held_chunks": 2,
+      "held_chunks": 6,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_C_NINDS_0000119-3",
+      "question_id": "MQ_C_NIDDK_0000213-10",
       "scenario": "C",
-      "focus": "Sturge-Weber Syndrome",
-      "qtype": "outlook",
+      "focus": "Urinary Retention",
+      "qtype": "prevention",
       "held_pages": [
-        "NINDS_0000119 (Sturge-Weber Syndrome)"
+        "NIDDK_0000213 (Urinary Retention)"
       ],
       "held_pairs": [
-        "NINDS_0000119-3"
+        "NIDDK_0000213-10"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.071
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000186-3",
+      "scenario": "C",
+      "focus": "Neurological Sequelae Of Lupus",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000186 (Neurological Sequelae Of Lupus)"
+      ],
+      "held_pairs": [
+        "NINDS_0000186-3"
       ],
       "held_chunks": 1,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_B_NINDS_0000232-2",
+      "question_id": "MQ_B_NIDDK_0000083-4",
       "scenario": "B",
-      "focus": "Pinched Nerve",
-      "qtype": "treatment",
+      "focus": "Abdominal Adhesions",
+      "qtype": "susceptibility",
       "held_pages": [
-        "NINDS_0000232 (Pinched Nerve)"
+        "MPlus_Health_Topics_0000012 (Adhesions)",
+        "NIDDK_0000083 (Abdominal Adhesions)"
       ],
       "held_pairs": [
-        "NINDS_0000232-1",
-        "NINDS_0000232-2",
-        "NINDS_0000232-3",
-        "NINDS_0000232-4"
+        "MPlus_Health_Topics_0000012-1",
+        "NIDDK_0000083-1",
+        "NIDDK_0000083-10",
+        "NIDDK_0000083-11",
+        "NIDDK_0000083-12",
+        "NIDDK_0000083-2",
+        "NIDDK_0000083-3",
+        "NIDDK_0000083-4",
+        "NIDDK_0000083-5",
+        "NIDDK_0000083-6",
+        "NIDDK_0000083-7",
+        "NIDDK_0000083-8",
+        "NIDDK_0000083-9"
       ],
-      "held_chunks": 5,
-      "leak_overlap": 0.02
+      "held_chunks": 18,
+      "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_C_NINDS_0000122-3",
+      "question_id": "MQ_C_CancerGov_0000031_1-5",
       "scenario": "C",
-      "focus": "Essential Tremor",
+      "focus": "Neuroblastoma",
       "qtype": "outlook",
       "held_pages": [
-        "NINDS_0000122 (Essential Tremor)"
+        "CancerGov_0000031_1 (Neuroblastoma)"
       ],
       "held_pairs": [
-        "NINDS_0000122-3"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000112-2",
-      "scenario": "C",
-      "focus": "Dystonias",
-      "qtype": "treatment",
-      "held_pages": [
-        "GHR_0000496 (hypermanganesemia with dystonia, polycythemia, and cirrhosis)",
-        "GHR_0000859 (rapid-onset dystonia parkinsonism)",
-        "GHR_0001051 (X-linked dystonia-parkinsonism)",
-        "NINDS_0000112 (Dystonias)"
-      ],
-      "held_pairs": [
-        "GHR_0000496-5",
-        "GHR_0000859-5",
-        "GHR_0001051-5",
-        "NINDS_0000112-2"
-      ],
-      "held_chunks": 4,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_CDC_0000001-2",
-      "scenario": "C",
-      "focus": "Acanthamoeba - Granulomatous Amebic Encephalitis (GAE); Keratitis",
-      "qtype": "susceptibility",
-      "held_pages": [
-        "CDC_0000001 (Acanthamoeba - Granulomatous Amebic Encephalitis (GAE); Keratitis)"
-      ],
-      "held_pairs": [
-        "CDC_0000001-2"
+        "CancerGov_0000031_1-5"
       ],
       "held_chunks": 2,
-      "leak_overlap": 0.004
+      "leak_overlap": 0.072
     },
     {
-      "question_id": "MQ_B_CDC_0000265-5",
+      "question_id": "MQ_B_NINDS_0000039-3",
       "scenario": "B",
-      "focus": "Parasites - Loiasis",
-      "qtype": "susceptibility",
+      "focus": "Batten Disease",
+      "qtype": "outlook",
       "held_pages": [
-        "CDC_0000265 (Parasites - Loiasis)"
+        "GHR_0000545 (juvenile Batten disease)",
+        "NINDS_0000039 (Batten Disease)"
       ],
       "held_pairs": [
-        "CDC_0000265-10",
-        "CDC_0000265-4",
-        "CDC_0000265-5",
-        "CDC_0000265-8",
-        "CDC_0000265-9"
+        "GHR_0000545-1",
+        "GHR_0000545-2",
+        "GHR_0000545-3",
+        "GHR_0000545-4",
+        "GHR_0000545-5",
+        "NINDS_0000039-1",
+        "NINDS_0000039-2",
+        "NINDS_0000039-3",
+        "NINDS_0000039-4"
       ],
-      "held_chunks": 8,
+      "held_chunks": 11,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_B_CDC_0000121-8",
+      "question_id": "MQ_B_CDC_0000273-15",
       "scenario": "B",
-      "focus": "Parasites - Cysticercosis",
-      "qtype": "prevention",
+      "focus": "Marine Toxins",
+      "qtype": "treatment",
       "held_pages": [
-        "CDC_0000121 (Parasites - Cysticercosis)"
+        "CDC_0000273 (Marine Toxins)"
       ],
       "held_pairs": [
-        "CDC_0000121-2",
-        "CDC_0000121-3",
-        "CDC_0000121-6",
-        "CDC_0000121-7",
-        "CDC_0000121-8"
+        "CDC_0000273-12",
+        "CDC_0000273-14",
+        "CDC_0000273-15",
+        "CDC_0000273-17",
+        "CDC_0000273-18",
+        "CDC_0000273-19",
+        "CDC_0000273-20"
       ],
       "held_chunks": 7,
-      "leak_overlap": 0.09
-    },
-    {
-      "question_id": "MQ_B_NIDDK_0000115-2",
-      "scenario": "B",
-      "focus": "Mntriers Disease",
-      "qtype": "causes",
-      "held_pages": [
-        "NIDDK_0000115 (Mntriers Disease)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000115-1",
-        "NIDDK_0000115-2",
-        "NIDDK_0000115-3",
-        "NIDDK_0000115-4",
-        "NIDDK_0000115-5",
-        "NIDDK_0000115-6",
-        "NIDDK_0000115-7",
-        "NIDDK_0000115-8"
-      ],
-      "held_chunks": 14,
-      "leak_overlap": 0.008
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000199-3",
-      "scenario": "B",
-      "focus": "Mucolipidoses",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000199 (Mucolipidoses)"
-      ],
-      "held_pairs": [
-        "NINDS_0000199-1",
-        "NINDS_0000199-2",
-        "NINDS_0000199-3",
-        "NINDS_0000199-4"
-      ],
-      "held_chunks": 5,
-      "leak_overlap": 0.022
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000048-2",
-      "scenario": "C",
-      "focus": "Incontinentia Pigmenti",
-      "qtype": "treatment",
-      "held_pages": [
-        "GHR_0000517 (incontinentia pigmenti)",
-        "NINDS_0000048 (Incontinentia Pigmenti)"
-      ],
-      "held_pairs": [
-        "GHR_0000517-5",
-        "NINDS_0000048-2"
-      ],
-      "held_chunks": 2,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_C_NINDS_0000151-2",
-      "scenario": "C",
-      "focus": "Tropical Spastic Paraparesis",
-      "qtype": "treatment",
+      "question_id": "MQ_B_CDC_0000163-5",
+      "scenario": "B",
+      "focus": "Parasites - Fascioliasis (Fasciola Infection)",
+      "qtype": "exams and tests",
       "held_pages": [
-        "GARD_0002930 (HTLV-1 associated myelopathy/tropical spastic paraparesis)",
-        "NINDS_0000151 (Tropical Spastic Paraparesis)"
+        "CDC_0000163 (Parasites - Fascioliasis (Fasciola Infection))"
       ],
       "held_pairs": [
-        "GARD_0002930-3",
-        "NINDS_0000151-2"
+        "CDC_0000163-1",
+        "CDC_0000163-2",
+        "CDC_0000163-5",
+        "CDC_0000163-6",
+        "CDC_0000163-7"
       ],
-      "held_chunks": 2,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_CDC_0000087-3",
-      "scenario": "C",
-      "focus": "Crimean-Congo Hemorrhagic Fever (CCHF)",
-      "qtype": "susceptibility",
-      "held_pages": [
-        "CDC_0000087 (Crimean-Congo Hemorrhagic Fever (CCHF))"
-      ],
-      "held_pairs": [
-        "CDC_0000087-1",
-        "CDC_0000087-3"
-      ],
-      "held_chunks": 2,
+      "held_chunks": 8,
       "leak_overlap": 0.0
     },
     {
@@ -2154,357 +569,106 @@
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_C_NHLBI_0000019-4",
+      "question_id": "MQ_C_NINDS_0000035-2",
       "scenario": "C",
-      "focus": "Broken Heart Syndrome",
+      "focus": "Autism",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000035 (Autism)"
+      ],
+      "held_pairs": [
+        "NINDS_0000035-2"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.059
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000206-3",
+      "scenario": "C",
+      "focus": "Myasthenia Gravis",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000206 (Myasthenia Gravis)"
+      ],
+      "held_pairs": [
+        "NINDS_0000206-3"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000155-2",
+      "scenario": "B",
+      "focus": "Normal Pressure Hydrocephalus",
+      "qtype": "treatment",
+      "held_pages": [
+        "GHR_0000469 (hereditary neuropathy with liability to pressure palsies)",
+        "MPlus_Health_Topics_0000107 (Blood Pressure Medicines)",
+        "MPlus_Health_Topics_0000493 (Hydrocephalus)",
+        "NINDS_0000154 (Hydrocephalus)",
+        "NINDS_0000155 (Normal Pressure Hydrocephalus)"
+      ],
+      "held_pairs": [
+        "GHR_0000469-1",
+        "GHR_0000469-2",
+        "GHR_0000469-3",
+        "GHR_0000469-4",
+        "GHR_0000469-5",
+        "MPlus_Health_Topics_0000107-1",
+        "MPlus_Health_Topics_0000493-1",
+        "NINDS_0000154-1",
+        "NINDS_0000154-2",
+        "NINDS_0000154-3",
+        "NINDS_0000154-4",
+        "NINDS_0000155-1",
+        "NINDS_0000155-2",
+        "NINDS_0000155-3",
+        "NINDS_0000155-4"
+      ],
+      "held_chunks": 20,
+      "leak_overlap": 0.018
+    },
+    {
+      "question_id": "MQ_B_NHLBI_0000063-3",
+      "scenario": "B",
+      "focus": "Heart Palpitations",
       "qtype": "susceptibility",
       "held_pages": [
-        "NHLBI_0000019 (Broken Heart Syndrome)"
+        "NHLBI_0000063 (Heart Palpitations)"
       ],
       "held_pairs": [
-        "NHLBI_0000019-4"
+        "NHLBI_0000063-1",
+        "NHLBI_0000063-2",
+        "NHLBI_0000063-3",
+        "NHLBI_0000063-4",
+        "NHLBI_0000063-5",
+        "NHLBI_0000063-6",
+        "NHLBI_0000063-7"
       ],
-      "held_chunks": 1,
-      "leak_overlap": 0.06
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000036-3",
-      "scenario": "B",
-      "focus": "Dysautonomia",
-      "qtype": "outlook",
-      "held_pages": [
-        "MPlus_Health_Topics_0000074 (Autonomic Nervous System Disorders)",
-        "NINDS_0000036 (Dysautonomia)"
-      ],
-      "held_pairs": [
-        "MPlus_Health_Topics_0000074-1",
-        "NINDS_0000036-1",
-        "NINDS_0000036-2",
-        "NINDS_0000036-3",
-        "NINDS_0000036-4"
-      ],
-      "held_chunks": 6,
+      "held_chunks": 18,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_B_NIDDK_0000022-7",
-      "scenario": "B",
-      "focus": "Am I at Risk for Type 2 Diabetes? Taking Steps to Lower Your Risk of Getting Diabetes",
-      "qtype": "susceptibility",
-      "held_pages": [
-        "GARD_0000212 (Alaninuria with microcephaly, dwarfism, enamel hypoplasia and diabetes mellitus)",
-        "GARD_0002146 (Epiphyseal dysplasia multiple with early-onset diabetes mellitus)",
-        "GARD_0003826 (Maternally inherited diabetes and deafness)",
-        "GARD_0004218 (Muscular atrophy ataxia retinitis pigmentosa and diabetes mellitus)",
-        "GHR_0000629 (maternally inherited diabetes and deafness)",
-        "MPlus_Health_Topics_0000266 (Diabetes)",
-        "MPlus_Health_Topics_0000267 (Diabetes and Pregnancy)",
-        "MPlus_Health_Topics_0000273 (Diabetes Type 2)",
-        "NIDDK_0000018 (4 Steps to Manage Your Diabetes for Life)",
-        "NIDDK_0000022 (Am I at Risk for Type 2 Diabetes? Taking Steps to Lower Your Risk of Getting Diabetes)",
-        "NIDDK_0000027 (Causes of Diabetes)",
-        "NIDDK_0000032 (Diabetes, Heart Disease, and Stroke)",
-        "NIDDK_0000034 (Diabetic Neuropathies: The Nerve Damage of Diabetes)",
-        "NIDDK_0000035 (Diagnosis of Diabetes and Prediabetes)",
-        "NIDDK_0000036 (Financial Help for Diabetes Care)",
-        "NIDDK_0000037 (Causes of Diabetes)",
-        "NIDDK_0000043 (I Can Lower My Risk for Type 2 Diabetes: A Guide for American Indians)",
-        "NIDDK_0000048 (Monitor Your Diabetes)",
-        "NIDDK_0000049 (Monogenic Forms of Diabetes: Neonatal Diabetes Mellitus and Maturity-onset Diabetes of the Young)",
-        "NIDDK_0000054 (Prevent diabetes problems: Keep your diabetes under control)",
-        "NIDDK_0000055 (Prevent diabetes problems: Keep your eyes healthy)",
-        "NIDDK_0000057 (Prevent diabetes problems: Keep your heart and blood vessels healthy)",
-        "NIDDK_0000058 (Prevent diabetes problems: Keep your kidneys healthy)",
-        "NIDDK_0000059 (Prevent diabetes problems: Keep your mouth healthy)",
-        "NIDDK_0000060 (Prevent diabetes problems: Keep your nervous system healthy)",
-        "NIDDK_0000061 (Sexual and Urologic Problems of Diabetes)",
-        "NIDDK_0000070 (Causes of Diabetes)",
-        "NIDDK_0000071 (Causes of Diabetes)",
-        "NIDDK_0000079 (What I need to know about Physical Activity and Diabetes)",
-        "NIDDK_0000080 (What I need to know about Preparing for Pregnancy if I Have Diabetes)",
-        "NIDDK_0000081 (Your Diabetes Care Records)",
-        "NIDDK_0000082 (Your Guide to Diabetes: Type 1 and Type 2)",
-        "NIDDK_0000153 (Kidney Disease of Diabetes)",
-        "SeniorHealth_0000015 (Diabetes)"
-      ],
-      "held_pairs": [
-        "GARD_0000212-1",
-        "GARD_0002146-1",
-        "GARD_0003826-1",
-        "GARD_0003826-2",
-        "GARD_0003826-3",
-        "GARD_0004218-1",
-        "GHR_0000629-1",
-        "GHR_0000629-2",
-        "GHR_0000629-3",
-        "GHR_0000629-4",
-        "GHR_0000629-5",
-        "MPlus_Health_Topics_0000266-1",
-        "MPlus_Health_Topics_0000267-1",
-        "MPlus_Health_Topics_0000273-1",
-        "NIDDK_0000018-1",
-        "NIDDK_0000022-1",
-        "NIDDK_0000022-10",
-        "NIDDK_0000022-11",
-        "NIDDK_0000022-2",
-        "NIDDK_0000022-3",
-        "NIDDK_0000022-4",
-        "NIDDK_0000022-7",
-        "NIDDK_0000022-9",
-        "NIDDK_0000027-1",
-        "NIDDK_0000027-2",
-        "NIDDK_0000027-3",
-        "NIDDK_0000027-4",
-        "NIDDK_0000027-5",
-        "NIDDK_0000027-6",
-        "NIDDK_0000027-7",
-        "NIDDK_0000032-1",
-        "NIDDK_0000032-11",
-        "NIDDK_0000032-13",
-        "NIDDK_0000032-14",
-        "NIDDK_0000032-15",
-        "NIDDK_0000032-2",
-        "NIDDK_0000032-3",
-        "NIDDK_0000032-4",
-        "NIDDK_0000032-5",
-        "NIDDK_0000032-6",
-        "NIDDK_0000032-7",
-        "NIDDK_0000032-8",
-        "NIDDK_0000032-9",
-        "NIDDK_0000034-1",
-        "NIDDK_0000034-10",
-        "NIDDK_0000034-11",
-        "NIDDK_0000034-12",
-        "NIDDK_0000034-13",
-        "NIDDK_0000034-2",
-        "NIDDK_0000034-3",
-        "NIDDK_0000034-4",
-        "NIDDK_0000034-6",
-        "NIDDK_0000034-7",
-        "NIDDK_0000034-8",
-        "NIDDK_0000034-9",
-        "NIDDK_0000035-1",
-        "NIDDK_0000035-10",
-        "NIDDK_0000035-2",
-        "NIDDK_0000035-3",
-        "NIDDK_0000035-5",
-        "NIDDK_0000035-8",
-        "NIDDK_0000035-9",
-        "NIDDK_0000036-1",
-        "NIDDK_0000036-15",
-        "NIDDK_0000036-16",
-        "NIDDK_0000036-2",
-        "NIDDK_0000036-4",
-        "NIDDK_0000036-5",
-        "NIDDK_0000036-6",
-        "NIDDK_0000036-8",
-        "NIDDK_0000037-1",
-        "NIDDK_0000037-2",
-        "NIDDK_0000037-3",
-        "NIDDK_0000037-4",
-        "NIDDK_0000037-5",
-        "NIDDK_0000037-6",
-        "NIDDK_0000037-7",
-        "NIDDK_0000043-1",
-        "NIDDK_0000043-2",
-        "NIDDK_0000043-4",
-        "NIDDK_0000043-6",
-        "NIDDK_0000048-2",
-        "NIDDK_0000049-2",
-        "NIDDK_0000049-3",
-        "NIDDK_0000049-4",
-        "NIDDK_0000049-5",
-        "NIDDK_0000054-1",
-        "NIDDK_0000054-12",
-        "NIDDK_0000054-14",
-        "NIDDK_0000054-6",
-        "NIDDK_0000054-9",
-        "NIDDK_0000055-3",
-        "NIDDK_0000055-7",
-        "NIDDK_0000057-1",
-        "NIDDK_0000057-11",
-        "NIDDK_0000057-4",
-        "NIDDK_0000057-7",
-        "NIDDK_0000057-8",
-        "NIDDK_0000057-9",
-        "NIDDK_0000058-1",
-        "NIDDK_0000058-11",
-        "NIDDK_0000058-3",
-        "NIDDK_0000058-6",
-        "NIDDK_0000058-9",
-        "NIDDK_0000059-3",
-        "NIDDK_0000060-1",
-        "NIDDK_0000060-10",
-        "NIDDK_0000060-3",
-        "NIDDK_0000060-4",
-        "NIDDK_0000060-8",
-        "NIDDK_0000061-5",
-        "NIDDK_0000061-6",
-        "NIDDK_0000061-7",
-        "NIDDK_0000070-1",
-        "NIDDK_0000070-2",
-        "NIDDK_0000070-3",
-        "NIDDK_0000070-4",
-        "NIDDK_0000070-5",
-        "NIDDK_0000070-6",
-        "NIDDK_0000070-7",
-        "NIDDK_0000071-1",
-        "NIDDK_0000071-2",
-        "NIDDK_0000071-3",
-        "NIDDK_0000071-4",
-        "NIDDK_0000071-5",
-        "NIDDK_0000071-6",
-        "NIDDK_0000071-7",
-        "NIDDK_0000079-6",
-        "NIDDK_0000080-1",
-        "NIDDK_0000080-7",
-        "NIDDK_0000081-2",
-        "NIDDK_0000082-1",
-        "NIDDK_0000082-2",
-        "NIDDK_0000082-3",
-        "NIDDK_0000153-10",
-        "NIDDK_0000153-15",
-        "NIDDK_0000153-16",
-        "NIDDK_0000153-5",
-        "NIDDK_0000153-6",
-        "NIDDK_0000153-9",
-        "SeniorHealth_0000015-1",
-        "SeniorHealth_0000015-10",
-        "SeniorHealth_0000015-11",
-        "SeniorHealth_0000015-13",
-        "SeniorHealth_0000015-14",
-        "SeniorHealth_0000015-15",
-        "SeniorHealth_0000015-16",
-        "SeniorHealth_0000015-17",
-        "SeniorHealth_0000015-18",
-        "SeniorHealth_0000015-19",
-        "SeniorHealth_0000015-2",
-        "SeniorHealth_0000015-24",
-        "SeniorHealth_0000015-29",
-        "SeniorHealth_0000015-3",
-        "SeniorHealth_0000015-30",
-        "SeniorHealth_0000015-32",
-        "SeniorHealth_0000015-33",
-        "SeniorHealth_0000015-4",
-        "SeniorHealth_0000015-8"
-      ],
-      "held_chunks": 373,
-      "leak_overlap": 0.097
-    },
-    {
-      "question_id": "MQ_B_NIDDK_0000098-7",
-      "scenario": "B",
-      "focus": "Dumping Syndrome",
-      "qtype": "treatment",
-      "held_pages": [
-        "NIDDK_0000098 (Dumping Syndrome)"
-      ],
-      "held_pairs": [
-        "NIDDK_0000098-1",
-        "NIDDK_0000098-2",
-        "NIDDK_0000098-3",
-        "NIDDK_0000098-5",
-        "NIDDK_0000098-6",
-        "NIDDK_0000098-7",
-        "NIDDK_0000098-8",
-        "NIDDK_0000098-9"
-      ],
-      "held_chunks": 14,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000015-3",
-      "scenario": "C",
-      "focus": "Alpers' Disease",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000015 (Alpers' Disease)"
-      ],
-      "held_pairs": [
-        "NINDS_0000015-3"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000224-2",
-      "scenario": "C",
-      "focus": "Paroxysmal Choreoathetosis",
-      "qtype": "treatment",
-      "held_pages": [
-        "GHR_0000364 (familial paroxysmal nonkinesigenic dyskinesia)",
-        "NINDS_0000224 (Paroxysmal Choreoathetosis)"
-      ],
-      "held_pairs": [
-        "GHR_0000364-5",
-        "NINDS_0000224-2"
-      ],
-      "held_chunks": 2,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000062-2",
-      "scenario": "B",
-      "focus": "Central Pain Syndrome",
-      "qtype": "treatment",
-      "held_pages": [
-        "NINDS_0000062 (Central Pain Syndrome)"
-      ],
-      "held_pairs": [
-        "NINDS_0000062-1",
-        "NINDS_0000062-2",
-        "NINDS_0000062-3",
-        "NINDS_0000062-4"
-      ],
-      "held_chunks": 5,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000175-2",
-      "scenario": "C",
-      "focus": "Lambert-Eaton Myasthenic Syndrome",
-      "qtype": "treatment",
-      "held_pages": [
-        "GARD_0003459 (Lambert Eaton myasthenic syndrome)",
-        "NINDS_0000175 (Lambert-Eaton Myasthenic Syndrome)"
-      ],
-      "held_pairs": [
-        "GARD_0003459-4",
-        "NINDS_0000175-2"
-      ],
-      "held_chunks": 2,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_C_NINDS_0000132-3",
-      "scenario": "C",
-      "focus": "Foot Drop",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000132 (Foot Drop)"
-      ],
-      "held_pairs": [
-        "NINDS_0000132-3"
-      ],
-      "held_chunks": 1,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NINDS_0000100-3",
+      "question_id": "MQ_B_NINDS_0000100-2",
       "scenario": "B",
       "focus": "Frontotemporal Dementia",
-      "qtype": "outlook",
+      "qtype": "treatment",
       "held_pages": [
+        "GARD_0001773 (Dementia familial British)",
         "GARD_0002450 (Frontotemporal dementia)",
         "GARD_0002451 (Frontotemporal dementia, ubiquitin-positive)",
         "GARD_0003181 (Inclusion body myopathy with early-onset Paget disease and frontotemporal dementia)",
         "GARD_0004415 (Niemann-Pick disease type A)",
         "GHR_0000178 (CHMP2B-related frontotemporal dementia)",
         "GHR_0000391 (frontotemporal dementia with parkinsonism-17)",
+        "GHR_0000441 (GRN-related frontotemporal dementia)",
         "GHR_0000516 (inclusion body myopathy with early-onset Paget disease and frontotemporal dementia)",
+        "MPlus_Health_Topics_0000260 (Dementia)",
+        "NINDS_0000098 (Dementia)",
         "NINDS_0000100 (Frontotemporal Dementia)"
       ],
       "held_pairs": [
+        "GARD_0001773-1",
         "GARD_0002450-1",
         "GARD_0002450-2",
         "GARD_0002451-1",
@@ -2522,80 +686,1628 @@
         "GHR_0000391-3",
         "GHR_0000391-4",
         "GHR_0000391-5",
+        "GHR_0000441-1",
+        "GHR_0000441-2",
+        "GHR_0000441-3",
+        "GHR_0000441-4",
+        "GHR_0000441-5",
         "GHR_0000516-1",
         "GHR_0000516-2",
         "GHR_0000516-3",
         "GHR_0000516-4",
         "GHR_0000516-5",
+        "MPlus_Health_Topics_0000260-1",
+        "NINDS_0000098-1",
+        "NINDS_0000098-2",
+        "NINDS_0000098-3",
+        "NINDS_0000098-4",
         "NINDS_0000100-1",
         "NINDS_0000100-2",
         "NINDS_0000100-3",
         "NINDS_0000100-4"
       ],
-      "held_chunks": 40,
+      "held_chunks": 56,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_B_NINDS_0000063-3",
-      "scenario": "B",
-      "focus": "Central Pontine Myelinolysis",
-      "qtype": "outlook",
-      "held_pages": [
-        "NINDS_0000063 (Central Pontine Myelinolysis)"
-      ],
-      "held_pairs": [
-        "NINDS_0000063-1",
-        "NINDS_0000063-2",
-        "NINDS_0000063-3",
-        "NINDS_0000063-4"
-      ],
-      "held_chunks": 6,
-      "leak_overlap": 0.0
-    },
-    {
-      "question_id": "MQ_B_NHLBI_0000006-4",
-      "scenario": "B",
-      "focus": "Aplastic Anemia",
-      "qtype": "symptoms",
-      "held_pages": [
-        "MPlus_Health_Topics_0000051 (Aplastic Anemia)",
-        "NHLBI_0000006 (Aplastic Anemia)"
-      ],
-      "held_pairs": [
-        "MPlus_Health_Topics_0000051-1",
-        "NHLBI_0000006-1",
-        "NHLBI_0000006-2",
-        "NHLBI_0000006-3",
-        "NHLBI_0000006-4",
-        "NHLBI_0000006-5",
-        "NHLBI_0000006-6"
-      ],
-      "held_chunks": 23,
-      "leak_overlap": 0.04
-    },
-    {
-      "question_id": "MQ_C_SeniorHealth_0000014-19",
+      "question_id": "MQ_C_NINDS_0000009-2",
       "scenario": "C",
-      "focus": "Depression",
+      "focus": "Agenesis of the Corpus Callosum",
       "qtype": "treatment",
       "held_pages": [
-        "GHR_0000903 (short stature, hyperextensibility, hernia, ocular depression, Rieger anomaly, and teething delay)",
-        "SeniorHealth_0000014 (Depression)"
+        "NINDS_0000009 (Agenesis of the Corpus Callosum)"
       ],
       "held_pairs": [
-        "GHR_0000903-5",
-        "SeniorHealth_0000014-19",
-        "SeniorHealth_0000014-23",
-        "SeniorHealth_0000014-28"
+        "NINDS_0000009-2"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.087
+    },
+    {
+      "question_id": "MQ_B_CancerGov_0000005_1-2",
+      "scenario": "B",
+      "focus": "Anal Cancer",
+      "qtype": "susceptibility",
+      "held_pages": [
+        "CancerGov_0000005_1 (Anal Cancer)",
+        "CancerGov_0000005_2 (Anal Cancer)",
+        "MPlus_Health_Topics_0000030 (Anal Cancer)",
+        "MPlus_Health_Topics_0000141 (Cancer)"
+      ],
+      "held_pairs": [
+        "CancerGov_0000005_1-1",
+        "CancerGov_0000005_1-2",
+        "CancerGov_0000005_1-3",
+        "CancerGov_0000005_1-4",
+        "CancerGov_0000005_1-5",
+        "CancerGov_0000005_1-6",
+        "CancerGov_0000005_1-7",
+        "CancerGov_0000005_1-8",
+        "CancerGov_0000005_2-1",
+        "MPlus_Health_Topics_0000030-1",
+        "MPlus_Health_Topics_0000141-1"
+      ],
+      "held_chunks": 41,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000176-3",
+      "scenario": "B",
+      "focus": "Wallenberg's Syndrome",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000176 (Wallenberg's Syndrome)"
+      ],
+      "held_pairs": [
+        "NINDS_0000176-1",
+        "NINDS_0000176-2",
+        "NINDS_0000176-3",
+        "NINDS_0000176-4"
+      ],
+      "held_chunks": 5,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NIDDK_0000144-12",
+      "scenario": "B",
+      "focus": "Glomerular Diseases",
+      "qtype": "considerations",
+      "held_pages": [
+        "GARD_0002582 (Glomerulopathy with fibronectin deposits 1)",
+        "GARD_0002583 (Glomerulopathy with fibronectin deposits 2)",
+        "GARD_0003173 (Immunotactoid or fibrillary glomerulopathy)",
+        "GHR_0000142 (C3 glomerulopathy)",
+        "NIDDK_0000144 (Glomerular Diseases)"
+      ],
+      "held_pairs": [
+        "GARD_0002582-1",
+        "GARD_0002583-1",
+        "GARD_0003173-1",
+        "GHR_0000142-1",
+        "GHR_0000142-2",
+        "GHR_0000142-3",
+        "GHR_0000142-4",
+        "GHR_0000142-5",
+        "NIDDK_0000144-1",
+        "NIDDK_0000144-10",
+        "NIDDK_0000144-11",
+        "NIDDK_0000144-12",
+        "NIDDK_0000144-2",
+        "NIDDK_0000144-5",
+        "NIDDK_0000144-6",
+        "NIDDK_0000144-7",
+        "NIDDK_0000144-8",
+        "NIDDK_0000144-9"
+      ],
+      "held_chunks": 40,
+      "leak_overlap": 0.007
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000230-3",
+      "scenario": "B",
+      "focus": "Periventricular Leukomalacia",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000230 (Periventricular Leukomalacia)"
+      ],
+      "held_pairs": [
+        "NINDS_0000230-1",
+        "NINDS_0000230-2",
+        "NINDS_0000230-3",
+        "NINDS_0000230-4"
+      ],
+      "held_chunks": 5,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_CDC_0000053-2",
+      "scenario": "B",
+      "focus": "Parasites - Lice - Body Lice",
+      "qtype": "susceptibility",
+      "held_pages": [
+        "CDC_0000053 (Parasites - Lice - Body Lice)",
+        "MPlus_Health_Topics_0000557 (Lice)"
+      ],
+      "held_pairs": [
+        "CDC_0000053-1",
+        "CDC_0000053-2",
+        "CDC_0000053-5",
+        "CDC_0000053-6",
+        "CDC_0000053-7",
+        "MPlus_Health_Topics_0000557-1"
       ],
       "held_chunks": 8,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_B_NHLBI_0000007-5",
+      "question_id": "MQ_C_NINDS_0000023-3",
+      "scenario": "C",
+      "focus": "Cerebral Hypoxia",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000023 (Cerebral Hypoxia)"
+      ],
+      "held_pairs": [
+        "NINDS_0000023-3"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NHLBI_0000090-8",
+      "scenario": "B",
+      "focus": "Metabolic Syndrome",
+      "qtype": "prevention",
+      "held_pages": [
+        "MPlus_Health_Topics_0000608 (Metabolic Syndrome)",
+        "NHLBI_0000090 (Metabolic Syndrome)"
+      ],
+      "held_pairs": [
+        "MPlus_Health_Topics_0000608-1",
+        "NHLBI_0000090-1",
+        "NHLBI_0000090-3",
+        "NHLBI_0000090-4",
+        "NHLBI_0000090-5",
+        "NHLBI_0000090-6",
+        "NHLBI_0000090-7",
+        "NHLBI_0000090-8"
+      ],
+      "held_chunks": 26,
+      "leak_overlap": 0.014
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000253-3",
+      "scenario": "C",
+      "focus": "Sjgren's Syndrome",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000253 (Sjgren's Syndrome)"
+      ],
+      "held_pairs": [
+        "NINDS_0000253-3"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000003-2",
+      "scenario": "B",
+      "focus": "Pompe Disease",
+      "qtype": "treatment",
+      "held_pages": [
+        "GHR_0000808 (Pompe disease)",
+        "NINDS_0000003 (Pompe Disease)"
+      ],
+      "held_pairs": [
+        "GHR_0000808-1",
+        "GHR_0000808-2",
+        "GHR_0000808-3",
+        "GHR_0000808-4",
+        "GHR_0000808-5",
+        "NINDS_0000003-1",
+        "NINDS_0000003-2",
+        "NINDS_0000003-3",
+        "NINDS_0000003-4"
+      ],
+      "held_chunks": 12,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000075-3",
+      "scenario": "C",
+      "focus": "Chorea",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000075 (Chorea)",
+        "NINDS_0000076 (Neuroacanthocytosis)",
+        "NINDS_0000249 (Sydenham Chorea)"
+      ],
+      "held_pairs": [
+        "NINDS_0000075-3",
+        "NINDS_0000076-3",
+        "NINDS_0000249-3"
+      ],
+      "held_chunks": 3,
+      "leak_overlap": 0.074
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000196-2",
+      "scenario": "C",
+      "focus": "Mitochondrial Myopathy",
+      "qtype": "treatment",
+      "held_pages": [
+        "GHR_0000202 (collagen VI-related myopathy)",
+        "NINDS_0000196 (Mitochondrial Myopathy)",
+        "NINDS_0000208 (Myopathy)"
+      ],
+      "held_pairs": [
+        "GHR_0000202-5",
+        "NINDS_0000196-2",
+        "NINDS_0000208-2"
+      ],
+      "held_chunks": 3,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000259-2",
+      "scenario": "C",
+      "focus": "Stiff-Person Syndrome",
+      "qtype": "treatment",
+      "held_pages": [
+        "GARD_0005895 (Stiff person syndrome)",
+        "GHR_0000463 (hereditary hyperekplexia)",
+        "NINDS_0000259 (Stiff-Person Syndrome)"
+      ],
+      "held_pairs": [
+        "GARD_0005895-6",
+        "GHR_0000463-5",
+        "NINDS_0000259-2"
+      ],
+      "held_chunks": 3,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000107-2",
+      "scenario": "B",
+      "focus": "Schilder's Disease",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000107 (Schilder's Disease)"
+      ],
+      "held_pairs": [
+        "NINDS_0000107-1",
+        "NINDS_0000107-2",
+        "NINDS_0000107-3",
+        "NINDS_0000107-4"
+      ],
+      "held_chunks": 4,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000177-3",
+      "scenario": "B",
+      "focus": "Learning Disabilities",
+      "qtype": "outlook",
+      "held_pages": [
+        "MPlus_Health_Topics_0000290 (Disabilities)",
+        "NINDS_0000177 (Learning Disabilities)"
+      ],
+      "held_pairs": [
+        "MPlus_Health_Topics_0000290-1",
+        "NINDS_0000177-1",
+        "NINDS_0000177-2",
+        "NINDS_0000177-3",
+        "NINDS_0000177-4"
+      ],
+      "held_chunks": 5,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000145-2",
+      "scenario": "B",
+      "focus": "Hemifacial Spasm",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000145 (Hemifacial Spasm)"
+      ],
+      "held_pairs": [
+        "NINDS_0000145-1",
+        "NINDS_0000145-2",
+        "NINDS_0000145-3",
+        "NINDS_0000145-4"
+      ],
+      "held_chunks": 5,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000119-2",
+      "scenario": "B",
+      "focus": "Sturge-Weber Syndrome",
+      "qtype": "treatment",
+      "held_pages": [
+        "GARD_0004739 (Parkes Weber syndrome)",
+        "GARD_0005912 (Sturge-Weber syndrome)",
+        "GHR_0000772 (Parkes Weber syndrome)",
+        "NINDS_0000119 (Sturge-Weber Syndrome)"
+      ],
+      "held_pairs": [
+        "GARD_0004739-1",
+        "GARD_0004739-2",
+        "GARD_0004739-3",
+        "GARD_0005912-1",
+        "GARD_0005912-2",
+        "GARD_0005912-3",
+        "GHR_0000772-1",
+        "GHR_0000772-2",
+        "GHR_0000772-3",
+        "GHR_0000772-4",
+        "GHR_0000772-5",
+        "NINDS_0000119-1",
+        "NINDS_0000119-2",
+        "NINDS_0000119-3",
+        "NINDS_0000119-4"
+      ],
+      "held_chunks": 24,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000131-2",
+      "scenario": "C",
+      "focus": "Hypotonia",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000131 (Hypotonia)"
+      ],
+      "held_pairs": [
+        "NINDS_0000131-2"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000181-2",
+      "scenario": "C",
+      "focus": "Leukodystrophy",
+      "qtype": "treatment",
+      "held_pages": [
+        "GHR_0000647 (metachromatic leukodystrophy)",
+        "GHR_0000802 (Pol III-related leukodystrophy)",
+        "NINDS_0000181 (Leukodystrophy)",
+        "NINDS_0000192 (Metachromatic Leukodystrophy)"
+      ],
+      "held_pairs": [
+        "GHR_0000647-5",
+        "GHR_0000802-5",
+        "NINDS_0000181-2",
+        "NINDS_0000192-2"
+      ],
+      "held_chunks": 4,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NHLBI_0000019-4",
+      "scenario": "B",
+      "focus": "Broken Heart Syndrome",
+      "qtype": "susceptibility",
+      "held_pages": [
+        "NHLBI_0000019 (Broken Heart Syndrome)"
+      ],
+      "held_pairs": [
+        "NHLBI_0000019-1",
+        "NHLBI_0000019-3",
+        "NHLBI_0000019-4",
+        "NHLBI_0000019-5",
+        "NHLBI_0000019-6",
+        "NHLBI_0000019-7",
+        "NHLBI_0000019-8"
+      ],
+      "held_chunks": 24,
+      "leak_overlap": 0.01
+    },
+    {
+      "question_id": "MQ_C_NHLBI_0000056-7",
+      "scenario": "C",
+      "focus": "Endocarditis",
+      "qtype": "prevention",
+      "held_pages": [
+        "NHLBI_0000056 (Endocarditis)"
+      ],
+      "held_pairs": [
+        "NHLBI_0000056-7"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.099
+    },
+    {
+      "question_id": "MQ_B_SeniorHealth_0000042-3",
+      "scenario": "B",
+      "focus": "Low Vision",
+      "qtype": "symptoms",
+      "held_pages": [
+        "MPlus_Health_Topics_0000950 (Vision Impairment and Blindness)",
+        "SeniorHealth_0000042 (Low Vision)"
+      ],
+      "held_pairs": [
+        "MPlus_Health_Topics_0000950-1",
+        "SeniorHealth_0000042-1",
+        "SeniorHealth_0000042-18",
+        "SeniorHealth_0000042-2",
+        "SeniorHealth_0000042-3",
+        "SeniorHealth_0000042-6",
+        "SeniorHealth_0000042-7",
+        "SeniorHealth_0000042-9"
+      ],
+      "held_chunks": 10,
+      "leak_overlap": 0.012
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000171-3",
+      "scenario": "C",
+      "focus": "Klippel-Trenaunay Syndrome (KTS)",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000171 (Klippel-Trenaunay Syndrome (KTS))"
+      ],
+      "held_pairs": [
+        "NINDS_0000171-3"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NHLBI_0000130-6",
+      "scenario": "B",
+      "focus": "Thrombocytopenia",
+      "qtype": "treatment",
+      "held_pages": [
+        "GARD_0002337 (Fetal and neonatal alloimmune thrombocytopenia)",
+        "GARD_0002751 (Hemangioma thrombocytopenia syndrome)",
+        "GARD_0002799 (Heparin-induced thrombocytopenia)",
+        "GARD_0004738 (Paris-Trousseau thrombocytopenia)",
+        "GARD_0006080 (Thrombocytopenia with elevated serum IgA and renal disease)",
+        "GARD_0006526 (X-linked thrombocytopenia)",
+        "GHR_0000307 (dyserythropoietic anemia and thrombocytopenia)",
+        "GHR_0000979 (thrombocytopenia-absent radius syndrome)",
+        "GHR_0001065 (X-linked thrombocytopenia)",
+        "NHLBI_0000079 (Immune Thrombocytopenia)",
+        "NHLBI_0000130 (Thrombocytopenia)"
+      ],
+      "held_pairs": [
+        "GARD_0002337-1",
+        "GARD_0002337-2",
+        "GARD_0002751-1",
+        "GARD_0002751-2",
+        "GARD_0002799-1",
+        "GARD_0004738-1",
+        "GARD_0006080-1",
+        "GARD_0006526-1",
+        "GHR_0000307-1",
+        "GHR_0000307-2",
+        "GHR_0000307-3",
+        "GHR_0000307-4",
+        "GHR_0000307-5",
+        "GHR_0000979-1",
+        "GHR_0000979-2",
+        "GHR_0000979-3",
+        "GHR_0000979-4",
+        "GHR_0000979-5",
+        "GHR_0001065-1",
+        "GHR_0001065-2",
+        "GHR_0001065-3",
+        "GHR_0001065-4",
+        "GHR_0001065-5",
+        "NHLBI_0000079-1",
+        "NHLBI_0000079-3",
+        "NHLBI_0000079-4",
+        "NHLBI_0000079-5",
+        "NHLBI_0000079-6",
+        "NHLBI_0000079-7",
+        "NHLBI_0000079-8",
+        "NHLBI_0000130-1",
+        "NHLBI_0000130-2",
+        "NHLBI_0000130-3",
+        "NHLBI_0000130-4",
+        "NHLBI_0000130-5",
+        "NHLBI_0000130-6",
+        "NHLBI_0000130-7"
+      ],
+      "held_chunks": 72,
+      "leak_overlap": 0.043
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000080-3",
+      "scenario": "B",
+      "focus": "Coffin Lowry Syndrome",
+      "qtype": "outlook",
+      "held_pages": [
+        "GHR_0000195 (Coffin-Lowry syndrome)",
+        "NINDS_0000080 (Coffin Lowry Syndrome)"
+      ],
+      "held_pairs": [
+        "GHR_0000195-1",
+        "GHR_0000195-2",
+        "GHR_0000195-3",
+        "GHR_0000195-4",
+        "GHR_0000195-5",
+        "NINDS_0000080-1",
+        "NINDS_0000080-2",
+        "NINDS_0000080-3",
+        "NINDS_0000080-4"
+      ],
+      "held_chunks": 11,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NHLBI_0000069-3",
+      "scenario": "C",
+      "focus": "Hemophilia",
+      "qtype": "causes",
+      "held_pages": [
+        "NHLBI_0000069 (Hemophilia)"
+      ],
+      "held_pairs": [
+        "NHLBI_0000069-3"
+      ],
+      "held_chunks": 3,
+      "leak_overlap": 0.01
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000117-3",
+      "scenario": "B",
+      "focus": "Encephaloceles",
+      "qtype": "outlook",
+      "held_pages": [
+        "GARD_0002084 (Encephalocele)",
+        "NINDS_0000117 (Encephaloceles)"
+      ],
+      "held_pairs": [
+        "GARD_0002084-1",
+        "NINDS_0000117-1",
+        "NINDS_0000117-2",
+        "NINDS_0000117-3",
+        "NINDS_0000117-4"
+      ],
+      "held_chunks": 6,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000051-2",
+      "scenario": "B",
+      "focus": "Orthostatic Hypotension",
+      "qtype": "treatment",
+      "held_pages": [
+        "GARD_0005059 (Primary orthostatic hypotension)",
+        "NHLBI_0000077 (Hypotension)",
+        "NINDS_0000051 (Orthostatic Hypotension)",
+        "NINDS_0000204 (Multiple System Atrophy with Orthostatic Hypotension)"
+      ],
+      "held_pairs": [
+        "GARD_0005059-1",
+        "NHLBI_0000077-1",
+        "NHLBI_0000077-4",
+        "NHLBI_0000077-5",
+        "NHLBI_0000077-6",
+        "NHLBI_0000077-7",
+        "NHLBI_0000077-8",
+        "NINDS_0000051-1",
+        "NINDS_0000051-2",
+        "NINDS_0000051-3",
+        "NINDS_0000051-4",
+        "NINDS_0000204-1",
+        "NINDS_0000204-2",
+        "NINDS_0000204-3",
+        "NINDS_0000204-4"
+      ],
+      "held_chunks": 32,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NHLBI_0000082-7",
+      "scenario": "B",
+      "focus": "Iron-Deficiency Anemia",
+      "qtype": "prevention",
+      "held_pages": [
+        "GARD_0000339 (Anemia due to Adenosine triphosphatase deficiency)",
+        "GHR_0000529 (iron-refractory iron deficiency anemia)",
+        "MPlus_Health_Topics_0000034 (Anemia)",
+        "MPlus_Health_Topics_0000525 (Iron)",
+        "NHLBI_0000002 (Anemia)",
+        "NHLBI_0000082 (Iron-Deficiency Anemia)"
+      ],
+      "held_pairs": [
+        "GARD_0000339-1",
+        "GHR_0000529-1",
+        "GHR_0000529-2",
+        "GHR_0000529-3",
+        "GHR_0000529-4",
+        "GHR_0000529-5",
+        "MPlus_Health_Topics_0000034-1",
+        "MPlus_Health_Topics_0000525-1",
+        "NHLBI_0000002-1",
+        "NHLBI_0000002-3",
+        "NHLBI_0000002-4",
+        "NHLBI_0000002-5",
+        "NHLBI_0000002-6",
+        "NHLBI_0000002-7",
+        "NHLBI_0000002-8",
+        "NHLBI_0000082-1",
+        "NHLBI_0000082-2",
+        "NHLBI_0000082-3",
+        "NHLBI_0000082-4",
+        "NHLBI_0000082-5",
+        "NHLBI_0000082-6",
+        "NHLBI_0000082-7"
+      ],
+      "held_chunks": 64,
+      "leak_overlap": 0.005
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000122-3",
+      "scenario": "C",
+      "focus": "Essential Tremor",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000122 (Essential Tremor)",
+        "NINDS_0000271 (Tremor)"
+      ],
+      "held_pairs": [
+        "NINDS_0000122-3",
+        "NINDS_0000271-3"
+      ],
+      "held_chunks": 2,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NHLBI_0000100-4",
+      "scenario": "B",
+      "focus": "Pericarditis",
+      "qtype": "susceptibility",
+      "held_pages": [
+        "GARD_0000904 (Camptodactyly arthropathy coxa vara pericarditis syndrome)",
+        "NHLBI_0000100 (Pericarditis)"
+      ],
+      "held_pairs": [
+        "GARD_0000904-1",
+        "NHLBI_0000100-1",
+        "NHLBI_0000100-3",
+        "NHLBI_0000100-4",
+        "NHLBI_0000100-5",
+        "NHLBI_0000100-6",
+        "NHLBI_0000100-7",
+        "NHLBI_0000100-8"
+      ],
+      "held_chunks": 17,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NIDDK_0000014-5",
+      "scenario": "C",
+      "focus": "Primary Hyperparathyroidism",
+      "qtype": "causes",
+      "held_pages": [
+        "NIDDK_0000014 (Primary Hyperparathyroidism)"
+      ],
+      "held_pairs": [
+        "NIDDK_0000014-5"
+      ],
+      "held_chunks": 2,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_CDC_0000199-14",
+      "scenario": "B",
+      "focus": "",
+      "qtype": "susceptibility",
+      "held_pages": [
+        "CDC_0000199 ()"
+      ],
+      "held_pairs": [
+        "CDC_0000199-12",
+        "CDC_0000199-14",
+        "CDC_0000199-19",
+        "CDC_0000199-20"
+      ],
+      "held_chunks": 13,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000002-2",
+      "scenario": "B",
+      "focus": "Acid Lipase Disease",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000002 (Acid Lipase Disease)"
+      ],
+      "held_pairs": [
+        "NINDS_0000002-1",
+        "NINDS_0000002-2",
+        "NINDS_0000002-3",
+        "NINDS_0000002-4"
+      ],
+      "held_chunks": 6,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000216-2",
+      "scenario": "C",
+      "focus": "Neurosyphilis",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000216 (Neurosyphilis)"
+      ],
+      "held_pairs": [
+        "NINDS_0000216-2"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NIDDK_0000107-5",
+      "scenario": "C",
+      "focus": "Gastroparesis",
+      "qtype": "treatment",
+      "held_pages": [
+        "NIDDK_0000107 (Gastroparesis)"
+      ],
+      "held_pairs": [
+        "NIDDK_0000107-5",
+        "NIDDK_0000107-7"
+      ],
+      "held_chunks": 3,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000160-2",
+      "scenario": "C",
+      "focus": "Neuroaxonal dystrophy",
+      "qtype": "treatment",
+      "held_pages": [
+        "GHR_0000518 (infantile neuroaxonal dystrophy)",
+        "NINDS_0000160 (Neuroaxonal dystrophy)"
+      ],
+      "held_pairs": [
+        "GHR_0000518-5",
+        "NINDS_0000160-2"
+      ],
+      "held_chunks": 2,
+      "leak_overlap": 0.02
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000185-2",
+      "scenario": "C",
+      "focus": "Locked-In Syndrome",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000185 (Locked-In Syndrome)"
+      ],
+      "held_pairs": [
+        "NINDS_0000185-2"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.049
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000048-2",
+      "scenario": "B",
+      "focus": "Incontinentia Pigmenti",
+      "qtype": "treatment",
+      "held_pages": [
+        "GHR_0000517 (incontinentia pigmenti)",
+        "NINDS_0000048 (Incontinentia Pigmenti)"
+      ],
+      "held_pairs": [
+        "GHR_0000517-1",
+        "GHR_0000517-2",
+        "GHR_0000517-3",
+        "GHR_0000517-4",
+        "GHR_0000517-5",
+        "NINDS_0000048-1",
+        "NINDS_0000048-2",
+        "NINDS_0000048-3",
+        "NINDS_0000048-4"
+      ],
+      "held_chunks": 12,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000199-2",
+      "scenario": "B",
+      "focus": "Mucolipidoses",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000199 (Mucolipidoses)"
+      ],
+      "held_pairs": [
+        "NINDS_0000199-1",
+        "NINDS_0000199-2",
+        "NINDS_0000199-3",
+        "NINDS_0000199-4"
+      ],
+      "held_chunks": 5,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NHLBI_0000047-4",
+      "scenario": "B",
+      "focus": "Cough",
+      "qtype": "symptoms",
+      "held_pages": [
+        "MPlus_Health_Topics_0000213 (Cold and Cough Medicines)",
+        "MPlus_Health_Topics_0000242 (Cough)",
+        "MPlus_Health_Topics_0000971 (Whooping Cough)",
+        "NHLBI_0000047 (Cough)"
+      ],
+      "held_pairs": [
+        "MPlus_Health_Topics_0000213-1",
+        "MPlus_Health_Topics_0000242-1",
+        "MPlus_Health_Topics_0000971-1",
+        "NHLBI_0000047-1",
+        "NHLBI_0000047-2",
+        "NHLBI_0000047-3",
+        "NHLBI_0000047-4",
+        "NHLBI_0000047-5",
+        "NHLBI_0000047-6"
+      ],
+      "held_chunks": 23,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000191-3",
+      "scenario": "B",
+      "focus": "Menkes Disease",
+      "qtype": "outlook",
+      "held_pages": [
+        "GARD_0003917 (Menkes disease)",
+        "GHR_0000646 (Menkes syndrome)",
+        "NINDS_0000191 (Menkes Disease)"
+      ],
+      "held_pairs": [
+        "GARD_0003917-1",
+        "GARD_0003917-2",
+        "GHR_0000646-1",
+        "GHR_0000646-2",
+        "GHR_0000646-3",
+        "GHR_0000646-4",
+        "GHR_0000646-5",
+        "NINDS_0000191-1",
+        "NINDS_0000191-2",
+        "NINDS_0000191-3",
+        "NINDS_0000191-4"
+      ],
+      "held_chunks": 15,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NIDDK_0000088-9",
+      "scenario": "C",
+      "focus": "Celiac Disease",
+      "qtype": "exams and tests",
+      "held_pages": [
+        "NIDDK_0000088 (Celiac Disease)",
+        "NIDDK_0000095 (Dermatitis Herpetiformis: Skin Manifestation of Celiac Disease (For Health Care Professionals))"
+      ],
+      "held_pairs": [
+        "NIDDK_0000088-8",
+        "NIDDK_0000088-9",
+        "NIDDK_0000095-3"
+      ],
+      "held_chunks": 8,
+      "leak_overlap": 0.011
+    },
+    {
+      "question_id": "MQ_C_CDC_0000001-5",
+      "scenario": "C",
+      "focus": "Acanthamoeba - Granulomatous Amebic Encephalitis (GAE); Keratitis",
+      "qtype": "exams and tests",
+      "held_pages": [
+        "CDC_0000001 (Acanthamoeba - Granulomatous Amebic Encephalitis (GAE); Keratitis)"
+      ],
+      "held_pairs": [
+        "CDC_0000001-5"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.034
+    },
+    {
+      "question_id": "MQ_C_CDC_0000440-6",
+      "scenario": "C",
+      "focus": "Parasites - Zoonotic Hookworm",
+      "qtype": "treatment",
+      "held_pages": [
+        "CDC_0000440 (Parasites - Zoonotic Hookworm)"
+      ],
+      "held_pairs": [
+        "CDC_0000440-6"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.052
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000234-2",
+      "scenario": "C",
+      "focus": "Pituitary Tumors",
+      "qtype": "treatment",
+      "held_pages": [
+        "CancerGov_0000035_1 (Pituitary Tumors)",
+        "NINDS_0000234 (Pituitary Tumors)"
+      ],
+      "held_pairs": [
+        "CancerGov_0000035_1-7",
+        "NINDS_0000234-2"
+      ],
+      "held_chunks": 11,
+      "leak_overlap": 0.009
+    },
+    {
+      "question_id": "MQ_B_CDC_0000144-2",
+      "scenario": "B",
+      "focus": "Parasites - Echinococcosis",
+      "qtype": "susceptibility",
+      "held_pages": [
+        "CDC_0000144 (Parasites - Echinococcosis)"
+      ],
+      "held_pairs": [
+        "CDC_0000144-1",
+        "CDC_0000144-2",
+        "CDC_0000144-5",
+        "CDC_0000144-6",
+        "CDC_0000144-7"
+      ],
+      "held_chunks": 7,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000083-2",
+      "scenario": "C",
+      "focus": "Moebius Syndrome",
+      "qtype": "treatment",
+      "held_pages": [
+        "GHR_0000667 (Moebius syndrome)",
+        "NINDS_0000083 (Moebius Syndrome)"
+      ],
+      "held_pairs": [
+        "GHR_0000667-5",
+        "NINDS_0000083-2"
+      ],
+      "held_chunks": 2,
+      "leak_overlap": 0.012
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000189-2",
+      "scenario": "C",
+      "focus": "Megalencephaly",
+      "qtype": "treatment",
+      "held_pages": [
+        "GHR_0000641 (megalencephaly-capillary malformation syndrome)",
+        "NINDS_0000189 (Megalencephaly)"
+      ],
+      "held_pairs": [
+        "GHR_0000641-5",
+        "NINDS_0000189-2"
+      ],
+      "held_chunks": 2,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NIDDK_0000001-9",
+      "scenario": "C",
+      "focus": "Acromegaly",
+      "qtype": "considerations",
+      "held_pages": [
+        "NIDDK_0000001 (Acromegaly)"
+      ],
+      "held_pairs": [
+        "NIDDK_0000001-9"
+      ],
+      "held_chunks": 2,
+      "leak_overlap": 0.064
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000054-2",
+      "scenario": "B",
+      "focus": "Brown-Sequard Syndrome",
+      "qtype": "treatment",
+      "held_pages": [
+        "GARD_0000860 (Brown-Sequard syndrome)",
+        "NINDS_0000054 (Brown-Sequard Syndrome)"
+      ],
+      "held_pairs": [
+        "GARD_0000860-1",
+        "GARD_0000860-2",
+        "NINDS_0000054-1",
+        "NINDS_0000054-2",
+        "NINDS_0000054-3",
+        "NINDS_0000054-4"
+      ],
+      "held_chunks": 6,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000242-2",
+      "scenario": "C",
+      "focus": "Progressive Supranuclear Palsy",
+      "qtype": "treatment",
+      "held_pages": [
+        "GHR_0000832 (progressive supranuclear palsy)",
+        "NINDS_0000242 (Progressive Supranuclear Palsy)"
+      ],
+      "held_pairs": [
+        "GHR_0000832-5",
+        "NINDS_0000242-2"
+      ],
+      "held_chunks": 3,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000201-3",
+      "scenario": "B",
+      "focus": "Multifocal Motor Neuropathy",
+      "qtype": "outlook",
+      "held_pages": [
+        "GARD_0004180 (Multifocal motor neuropathy)",
+        "NINDS_0000201 (Multifocal Motor Neuropathy)"
+      ],
+      "held_pairs": [
+        "GARD_0004180-1",
+        "GARD_0004180-2",
+        "GARD_0004180-3",
+        "GARD_0004180-4",
+        "GARD_0004180-5",
+        "NINDS_0000201-1",
+        "NINDS_0000201-2",
+        "NINDS_0000201-3",
+        "NINDS_0000201-4"
+      ],
+      "held_chunks": 9,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000041-2",
+      "scenario": "B",
+      "focus": "Behcet's Disease",
+      "qtype": "treatment",
+      "held_pages": [
+        "GARD_0000673 (Behcet's disease)",
+        "MPlus_Health_Topics_0000085 (Behcet's Syndrome)",
+        "NINDS_0000041 (Behcet's Disease)"
+      ],
+      "held_pairs": [
+        "GARD_0000673-1",
+        "GARD_0000673-2",
+        "GARD_0000673-3",
+        "GARD_0000673-4",
+        "MPlus_Health_Topics_0000085-1",
+        "NINDS_0000041-1",
+        "NINDS_0000041-2",
+        "NINDS_0000041-3",
+        "NINDS_0000041-4"
+      ],
+      "held_chunks": 17,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NIDDK_0000033-11",
+      "scenario": "B",
+      "focus": "Diabetic Kidney Disease",
+      "qtype": "treatment",
+      "held_pages": [
+        "GHR_0001009 (uromodulin-associated kidney disease)",
+        "MPlus_Health_Topics_0000278 (Diabetic Kidney Problems)",
+        "MPlus_Health_Topics_0000538 (Kidney Diseases)",
+        "NIDDK_0000033 (Diabetic Kidney Disease)",
+        "NIDDK_0000165 (Overview of Kidney Disease in Children)",
+        "SeniorHealth_0000038 (Kidney Disease)"
+      ],
+      "held_pairs": [
+        "GHR_0001009-1",
+        "GHR_0001009-2",
+        "GHR_0001009-3",
+        "GHR_0001009-4",
+        "GHR_0001009-5",
+        "MPlus_Health_Topics_0000278-1",
+        "MPlus_Health_Topics_0000538-1",
+        "NIDDK_0000033-1",
+        "NIDDK_0000033-10",
+        "NIDDK_0000033-11",
+        "NIDDK_0000033-12",
+        "NIDDK_0000033-2",
+        "NIDDK_0000033-3",
+        "NIDDK_0000033-6",
+        "NIDDK_0000033-7",
+        "NIDDK_0000033-8",
+        "NIDDK_0000033-9",
+        "NIDDK_0000165-2",
+        "NIDDK_0000165-3",
+        "NIDDK_0000165-4",
+        "NIDDK_0000165-5",
+        "NIDDK_0000165-6",
+        "NIDDK_0000165-7",
+        "SeniorHealth_0000038-1",
+        "SeniorHealth_0000038-11",
+        "SeniorHealth_0000038-12",
+        "SeniorHealth_0000038-13",
+        "SeniorHealth_0000038-14",
+        "SeniorHealth_0000038-16",
+        "SeniorHealth_0000038-2",
+        "SeniorHealth_0000038-20",
+        "SeniorHealth_0000038-22",
+        "SeniorHealth_0000038-27",
+        "SeniorHealth_0000038-28",
+        "SeniorHealth_0000038-3",
+        "SeniorHealth_0000038-32",
+        "SeniorHealth_0000038-33",
+        "SeniorHealth_0000038-4",
+        "SeniorHealth_0000038-5",
+        "SeniorHealth_0000038-8"
+      ],
+      "held_chunks": 113,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000137-3",
+      "scenario": "C",
+      "focus": "Gerstmann-Straussler-Scheinker Disease",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000137 (Gerstmann-Straussler-Scheinker Disease)"
+      ],
+      "held_pairs": [
+        "NINDS_0000137-3"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000225-3",
+      "scenario": "C",
+      "focus": "Paroxysmal Hemicrania",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000225 (Paroxysmal Hemicrania)"
+      ],
+      "held_pairs": [
+        "NINDS_0000225-3"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000240-2",
+      "scenario": "C",
+      "focus": "Tabes Dorsalis",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000240 (Tabes Dorsalis)"
+      ],
+      "held_pairs": [
+        "NINDS_0000240-2"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000092-2",
+      "scenario": "C",
+      "focus": "Neurological Consequences of Cytomegalovirus Infection",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000092 (Neurological Consequences of Cytomegalovirus Infection)"
+      ],
+      "held_pairs": [
+        "NINDS_0000092-2"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NIDDK_0000002-9",
+      "scenario": "B",
+      "focus": "Adrenal Insufficiency and Addison's Disease",
+      "qtype": "treatment",
+      "held_pages": [
+        "MPlus_Health_Topics_0000011 (Addison Disease)",
+        "NIDDK_0000002 (Adrenal Insufficiency and Addison's Disease)"
+      ],
+      "held_pairs": [
+        "MPlus_Health_Topics_0000011-1",
+        "NIDDK_0000002-1",
+        "NIDDK_0000002-11",
+        "NIDDK_0000002-12",
+        "NIDDK_0000002-14",
+        "NIDDK_0000002-15",
+        "NIDDK_0000002-3",
+        "NIDDK_0000002-4",
+        "NIDDK_0000002-5",
+        "NIDDK_0000002-6",
+        "NIDDK_0000002-7",
+        "NIDDK_0000002-8",
+        "NIDDK_0000002-9"
+      ],
+      "held_chunks": 31,
+      "leak_overlap": 0.063
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000096-2",
+      "scenario": "C",
+      "focus": "Septo-Optic Dysplasia",
+      "qtype": "treatment",
+      "held_pages": [
+        "GARD_0005548 (Septo-optic dysplasia)",
+        "GHR_0000899 (septo-optic dysplasia)",
+        "NINDS_0000096 (Septo-Optic Dysplasia)"
+      ],
+      "held_pairs": [
+        "GARD_0005548-5",
+        "GHR_0000899-5",
+        "NINDS_0000096-2"
+      ],
+      "held_chunks": 3,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000221-3",
+      "scenario": "C",
+      "focus": "Paraneoplastic Syndromes",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000221 (Paraneoplastic Syndromes)"
+      ],
+      "held_pairs": [
+        "NINDS_0000221-3"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000198-2",
+      "scenario": "C",
+      "focus": "Moyamoya Disease",
+      "qtype": "treatment",
+      "held_pages": [
+        "GARD_0004144 (Moyamoya disease)",
+        "GHR_0000671 (moyamoya disease)",
+        "NINDS_0000198 (Moyamoya Disease)"
+      ],
+      "held_pairs": [
+        "GARD_0004144-4",
+        "GHR_0000671-5",
+        "NINDS_0000198-2"
+      ],
+      "held_chunks": 4,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000224-3",
+      "scenario": "B",
+      "focus": "Paroxysmal Choreoathetosis",
+      "qtype": "outlook",
+      "held_pages": [
+        "GARD_0002001 (Dystonia 8)",
+        "GARD_0003190 (Infantile convulsions and paroxysmal choreoathetosis, familial)",
+        "GHR_0000364 (familial paroxysmal nonkinesigenic dyskinesia)",
+        "NINDS_0000224 (Paroxysmal Choreoathetosis)"
+      ],
+      "held_pairs": [
+        "GARD_0002001-1",
+        "GARD_0002001-2",
+        "GARD_0002001-3",
+        "GARD_0003190-1",
+        "GHR_0000364-1",
+        "GHR_0000364-2",
+        "GHR_0000364-3",
+        "GHR_0000364-4",
+        "GHR_0000364-5",
+        "NINDS_0000224-1",
+        "NINDS_0000224-2",
+        "NINDS_0000224-3",
+        "NINDS_0000224-4"
+      ],
+      "held_chunks": 16,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_CancerGov_0000001_5-6",
+      "scenario": "B",
+      "focus": "Hairy Cell Leukemia",
+      "qtype": "stages",
+      "held_pages": [
+        "CancerGov_0000001_5 (Hairy Cell Leukemia)",
+        "GARD_0002709 (Hairy cell leukemia)",
+        "MPlus_Health_Topics_0000554 (Leukemia)",
+        "SeniorHealth_0000040 (Leukemia)"
+      ],
+      "held_pairs": [
+        "CancerGov_0000001_5-1",
+        "CancerGov_0000001_5-2",
+        "CancerGov_0000001_5-3",
+        "CancerGov_0000001_5-4",
+        "CancerGov_0000001_5-5",
+        "CancerGov_0000001_5-6",
+        "CancerGov_0000001_5-7",
+        "CancerGov_0000001_5-8",
+        "GARD_0002709-1",
+        "MPlus_Health_Topics_0000554-1",
+        "SeniorHealth_0000040-1",
+        "SeniorHealth_0000040-10",
+        "SeniorHealth_0000040-11",
+        "SeniorHealth_0000040-12",
+        "SeniorHealth_0000040-13",
+        "SeniorHealth_0000040-14",
+        "SeniorHealth_0000040-15",
+        "SeniorHealth_0000040-18",
+        "SeniorHealth_0000040-19",
+        "SeniorHealth_0000040-2",
+        "SeniorHealth_0000040-20",
+        "SeniorHealth_0000040-21",
+        "SeniorHealth_0000040-22",
+        "SeniorHealth_0000040-23",
+        "SeniorHealth_0000040-24",
+        "SeniorHealth_0000040-3",
+        "SeniorHealth_0000040-4",
+        "SeniorHealth_0000040-5",
+        "SeniorHealth_0000040-6",
+        "SeniorHealth_0000040-8",
+        "SeniorHealth_0000040-9"
+      ],
+      "held_chunks": 69,
+      "leak_overlap": 0.05
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000112-3",
+      "scenario": "B",
+      "focus": "Dystonias",
+      "qtype": "outlook",
+      "held_pages": [
+        "GARD_0001754 (Deafness, dystonia, and cerebral hypomyelination)",
+        "GARD_0001986 (Dystonia 1)",
+        "GARD_0001996 (Dystonia 2, torsion, autosomal recessive)",
+        "GARD_0003008 (Hypermanganesemia with dystonia polycythemia and cirrhosis)",
+        "GARD_0003196 (Infantile Parkinsonism-dystonia)",
+        "GARD_0003571 (Leukoencephalopathy - dystonia - motor neuropathy)",
+        "GHR_0000496 (hypermanganesemia with dystonia, polycythemia, and cirrhosis)",
+        "GHR_0000859 (rapid-onset dystonia parkinsonism)",
+        "GHR_0001051 (X-linked dystonia-parkinsonism)",
+        "MPlus_Health_Topics_0000307 (Dystonia)",
+        "NINDS_0000112 (Dystonias)"
+      ],
+      "held_pairs": [
+        "GARD_0001754-1",
+        "GARD_0001986-1",
+        "GARD_0001996-1",
+        "GARD_0003008-1",
+        "GARD_0003196-1",
+        "GARD_0003571-1",
+        "GHR_0000496-1",
+        "GHR_0000496-2",
+        "GHR_0000496-3",
+        "GHR_0000496-4",
+        "GHR_0000496-5",
+        "GHR_0000859-1",
+        "GHR_0000859-2",
+        "GHR_0000859-3",
+        "GHR_0000859-4",
+        "GHR_0000859-5",
+        "GHR_0001051-1",
+        "GHR_0001051-2",
+        "GHR_0001051-3",
+        "GHR_0001051-4",
+        "GHR_0001051-5",
+        "MPlus_Health_Topics_0000307-1",
+        "NINDS_0000112-1",
+        "NINDS_0000112-2",
+        "NINDS_0000112-3",
+        "NINDS_0000112-4"
+      ],
+      "held_chunks": 40,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000247-3",
+      "scenario": "C",
+      "focus": "Rett Syndrome",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000247 (Rett Syndrome)"
+      ],
+      "held_pairs": [
+        "NINDS_0000247-3"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.042
+    },
+    {
+      "question_id": "MQ_B_CDC_0000305-1",
+      "scenario": "B",
+      "focus": "Nocardiosis",
+      "qtype": "susceptibility",
+      "held_pages": [
+        "CDC_0000305 (Nocardiosis)",
+        "GARD_0004425 (Nocardiosis)"
+      ],
+      "held_pairs": [
+        "CDC_0000305-1",
+        "CDC_0000305-2",
+        "CDC_0000305-3",
+        "CDC_0000305-4",
+        "GARD_0004425-1"
+      ],
+      "held_chunks": 5,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000232-2",
+      "scenario": "C",
+      "focus": "Pinched Nerve",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000232 (Pinched Nerve)"
+      ],
+      "held_pairs": [
+        "NINDS_0000232-2"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.02
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000147-3",
+      "scenario": "C",
+      "focus": "Refsum Disease",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000147 (Refsum Disease)",
+        "NINDS_0000161 (Infantile Refsum Disease)"
+      ],
+      "held_pairs": [
+        "NINDS_0000147-3",
+        "NINDS_0000161-3"
+      ],
+      "held_chunks": 2,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000078-2",
+      "scenario": "B",
+      "focus": "Postural Tachycardia Syndrome",
+      "qtype": "treatment",
+      "held_pages": [
+        "GARD_0002892 (His bundle tachycardia)",
+        "GARD_0005004 (Postural orthostatic tachycardia syndrome)",
+        "NINDS_0000078 (Postural Tachycardia Syndrome)"
+      ],
+      "held_pairs": [
+        "GARD_0002892-1",
+        "GARD_0005004-1",
+        "GARD_0005004-2",
+        "GARD_0005004-3",
+        "GARD_0005004-4",
+        "GARD_0005004-5",
+        "GARD_0005004-6",
+        "NINDS_0000078-1",
+        "NINDS_0000078-2",
+        "NINDS_0000078-3",
+        "NINDS_0000078-4"
+      ],
+      "held_chunks": 15,
+      "leak_overlap": 0.008
+    },
+    {
+      "question_id": "MQ_B_NHLBI_0000010-3",
+      "scenario": "B",
+      "focus": "Asthma",
+      "qtype": "susceptibility",
+      "held_pages": [
+        "GARD_0000491 (Asthma)",
+        "GHR_0000037 (allergic asthma)",
+        "MPlus_Health_Topics_0000065 (Asthma)",
+        "MPlus_Health_Topics_0000066 (Asthma in Children)",
+        "NHLBI_0000010 (Asthma)"
+      ],
+      "held_pairs": [
+        "GARD_0000491-1",
+        "GARD_0000491-2",
+        "GHR_0000037-1",
+        "GHR_0000037-2",
+        "GHR_0000037-3",
+        "GHR_0000037-4",
+        "GHR_0000037-5",
+        "MPlus_Health_Topics_0000065-1",
+        "MPlus_Health_Topics_0000066-1",
+        "NHLBI_0000010-1",
+        "NHLBI_0000010-2",
+        "NHLBI_0000010-3",
+        "NHLBI_0000010-4",
+        "NHLBI_0000010-5",
+        "NHLBI_0000010-6",
+        "NHLBI_0000010-7"
+      ],
+      "held_chunks": 53,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000257-3",
+      "scenario": "B",
+      "focus": "Spinal Cord Infarction",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000257 (Spinal Cord Infarction)"
+      ],
+      "held_pairs": [
+        "NINDS_0000257-1",
+        "NINDS_0000257-2",
+        "NINDS_0000257-3",
+        "NINDS_0000257-4"
+      ],
+      "held_chunks": 4,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000215-3",
+      "scenario": "B",
+      "focus": "Neurosarcoidosis",
+      "qtype": "outlook",
+      "held_pages": [
+        "NINDS_0000215 (Neurosarcoidosis)"
+      ],
+      "held_pairs": [
+        "NINDS_0000215-1",
+        "NINDS_0000215-2",
+        "NINDS_0000215-3",
+        "NINDS_0000215-4"
+      ],
+      "held_chunks": 5,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000127-2",
+      "scenario": "C",
+      "focus": "Hereditary Spastic Paraplegia",
+      "qtype": "treatment",
+      "held_pages": [
+        "GHR_0000926 (spastic paraplegia type 15)",
+        "GHR_0000928 (spastic paraplegia type 31)",
+        "NINDS_0000127 (Hereditary Spastic Paraplegia)"
+      ],
+      "held_pairs": [
+        "GHR_0000926-5",
+        "GHR_0000928-5",
+        "NINDS_0000127-2"
+      ],
+      "held_chunks": 3,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NINDS_0000165-2",
+      "scenario": "B",
+      "focus": "Whipple's Disease",
+      "qtype": "treatment",
+      "held_pages": [
+        "NIDDK_0000132 (Whipple Disease)",
+        "NINDS_0000165 (Whipple's Disease)"
+      ],
+      "held_pairs": [
+        "NIDDK_0000132-1",
+        "NIDDK_0000132-10",
+        "NIDDK_0000132-11",
+        "NIDDK_0000132-2",
+        "NIDDK_0000132-3",
+        "NIDDK_0000132-5",
+        "NIDDK_0000132-6",
+        "NIDDK_0000132-7",
+        "NIDDK_0000132-8",
+        "NIDDK_0000132-9",
+        "NINDS_0000165-1",
+        "NINDS_0000165-2",
+        "NINDS_0000165-3",
+        "NINDS_0000165-4"
+      ],
+      "held_chunks": 23,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NHLBI_0000007-4",
       "scenario": "B",
       "focus": "ARDS",
-      "qtype": "symptoms",
+      "qtype": "susceptibility",
       "held_pages": [
         "GARD_0000137 (Acute respiratory distress syndrome)",
         "NHLBI_0000007 (ARDS)",
@@ -2619,51 +2331,249 @@
         "NHLBI_0000112-8"
       ],
       "held_chunks": 36,
-      "leak_overlap": 0.024
+      "leak_overlap": 0.018
     },
     {
-      "question_id": "MQ_C_NINDS_0000174-3",
+      "question_id": "MQ_C_NINDS_0000169-2",
       "scenario": "C",
-      "focus": "Kuru",
-      "qtype": "outlook",
+      "focus": "Kleine-Levin Syndrome",
+      "qtype": "treatment",
       "held_pages": [
-        "NINDS_0000174 (Kuru)"
+        "NINDS_0000169 (Kleine-Levin Syndrome)"
       ],
       "held_pairs": [
-        "NINDS_0000174-3"
+        "NINDS_0000169-2"
       ],
       "held_chunks": 1,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_B_NINDS_0000216-2",
-      "scenario": "B",
-      "focus": "Neurosyphilis",
-      "qtype": "treatment",
+      "question_id": "MQ_C_NINDS_0000151-3",
+      "scenario": "C",
+      "focus": "Tropical Spastic Paraparesis",
+      "qtype": "outlook",
       "held_pages": [
-        "NINDS_0000216 (Neurosyphilis)"
+        "NINDS_0000151 (Tropical Spastic Paraparesis)"
       ],
       "held_pairs": [
-        "NINDS_0000216-1",
-        "NINDS_0000216-2",
-        "NINDS_0000216-3",
-        "NINDS_0000216-4"
+        "NINDS_0000151-3"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000237-2",
+      "scenario": "C",
+      "focus": "Post-Polio Syndrome",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000237 (Post-Polio Syndrome)"
+      ],
+      "held_pairs": [
+        "NINDS_0000237-2"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_NHLBI_0000031-5",
+      "scenario": "B",
+      "focus": "Carotid Artery Disease",
+      "qtype": "exams and tests",
+      "held_pages": [
+        "MPlus_Health_Topics_0000154 (Carotid Artery Disease)",
+        "NHLBI_0000031 (Carotid Artery Disease)"
+      ],
+      "held_pairs": [
+        "MPlus_Health_Topics_0000154-1",
+        "NHLBI_0000031-1",
+        "NHLBI_0000031-2",
+        "NHLBI_0000031-3",
+        "NHLBI_0000031-4",
+        "NHLBI_0000031-5",
+        "NHLBI_0000031-6",
+        "NHLBI_0000031-7"
+      ],
+      "held_chunks": 32,
+      "leak_overlap": 0.044
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000062-2",
+      "scenario": "C",
+      "focus": "Central Pain Syndrome",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000062 (Central Pain Syndrome)"
+      ],
+      "held_pairs": [
+        "NINDS_0000062-2"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_CDC_0000258-6",
+      "scenario": "C",
+      "focus": "Lymphocytic Choriomeningitis (LCM)",
+      "qtype": "prevention",
+      "held_pages": [
+        "CDC_0000258 (Lymphocytic Choriomeningitis (LCM))"
+      ],
+      "held_pairs": [
+        "CDC_0000258-6"
+      ],
+      "held_chunks": 3,
+      "leak_overlap": 0.003
+    },
+    {
+      "question_id": "MQ_C_NINDS_0000248-2",
+      "scenario": "C",
+      "focus": "Reye's Syndrome",
+      "qtype": "treatment",
+      "held_pages": [
+        "NINDS_0000248 (Reye's Syndrome)"
+      ],
+      "held_pairs": [
+        "NINDS_0000248-2"
+      ],
+      "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_SeniorHealth_0000001-14",
+      "scenario": "B",
+      "focus": "Age-related Macular Degeneration",
+      "qtype": "causes",
+      "held_pages": [
+        "GARD_0000245 (Alopecia macular degeneration growth retardation)",
+        "GARD_0003737 (Macular degeneration)",
+        "GHR_0000027 (age-related macular degeneration)",
+        "MPlus_Health_Topics_0000574 (Macular Degeneration)",
+        "SeniorHealth_0000001 (Age-related Macular Degeneration)"
+      ],
+      "held_pairs": [
+        "GARD_0000245-1",
+        "GARD_0003737-1",
+        "GHR_0000027-1",
+        "GHR_0000027-2",
+        "GHR_0000027-3",
+        "GHR_0000027-4",
+        "GHR_0000027-5",
+        "MPlus_Health_Topics_0000574-1",
+        "SeniorHealth_0000001-1",
+        "SeniorHealth_0000001-10",
+        "SeniorHealth_0000001-11",
+        "SeniorHealth_0000001-12",
+        "SeniorHealth_0000001-13",
+        "SeniorHealth_0000001-14",
+        "SeniorHealth_0000001-18",
+        "SeniorHealth_0000001-19",
+        "SeniorHealth_0000001-20",
+        "SeniorHealth_0000001-22",
+        "SeniorHealth_0000001-23",
+        "SeniorHealth_0000001-24",
+        "SeniorHealth_0000001-26",
+        "SeniorHealth_0000001-27",
+        "SeniorHealth_0000001-29",
+        "SeniorHealth_0000001-32",
+        "SeniorHealth_0000001-4",
+        "SeniorHealth_0000001-5",
+        "SeniorHealth_0000001-6",
+        "SeniorHealth_0000001-8"
+      ],
+      "held_chunks": 43,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_SeniorHealth_0000018-12",
+      "scenario": "C",
+      "focus": "Dry Mouth",
+      "qtype": "causes",
+      "held_pages": [
+        "SeniorHealth_0000018 (Dry Mouth)"
+      ],
+      "held_pairs": [
+        "SeniorHealth_0000018-10",
+        "SeniorHealth_0000018-12",
+        "SeniorHealth_0000018-2",
+        "SeniorHealth_0000018-8"
       ],
       "held_chunks": 5,
       "leak_overlap": 0.0
     },
     {
-      "question_id": "MQ_C_SeniorHealth_0000001-26",
-      "scenario": "C",
-      "focus": "Age-related Macular Degeneration",
-      "qtype": "prevention",
+      "question_id": "MQ_B_NINDS_0000172-3",
+      "scenario": "B",
+      "focus": "Klver-Bucy Syndrome",
+      "qtype": "outlook",
       "held_pages": [
-        "SeniorHealth_0000001 (Age-related Macular Degeneration)"
+        "NINDS_0000172 (Klver-Bucy Syndrome)"
       ],
       "held_pairs": [
-        "SeniorHealth_0000001-26"
+        "NINDS_0000172-1",
+        "NINDS_0000172-2",
+        "NINDS_0000172-3",
+        "NINDS_0000172-4"
+      ],
+      "held_chunks": 4,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_C_CDC_0000364-5",
+      "scenario": "C",
+      "focus": "Parasites - Scabies",
+      "qtype": "exams and tests",
+      "held_pages": [
+        "CDC_0000364 (Parasites - Scabies)"
+      ],
+      "held_pairs": [
+        "CDC_0000364-5"
       ],
       "held_chunks": 1,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_CDC_0000344-6",
+      "scenario": "B",
+      "focus": "Parasites - Baylisascaris infection",
+      "qtype": "treatment",
+      "held_pages": [
+        "CDC_0000344 (Parasites - Baylisascaris infection)",
+        "GARD_0000660 (Baylisascaris infection)",
+        "MPlus_Health_Topics_0000510 (Infections and Pregnancy)",
+        "MPlus_Health_Topics_0000949 (Viral Infections)"
+      ],
+      "held_pairs": [
+        "CDC_0000344-1",
+        "CDC_0000344-2",
+        "CDC_0000344-5",
+        "CDC_0000344-6",
+        "CDC_0000344-7",
+        "GARD_0000660-1",
+        "GARD_0000660-2",
+        "MPlus_Health_Topics_0000510-1",
+        "MPlus_Health_Topics_0000949-1"
+      ],
+      "held_chunks": 18,
+      "leak_overlap": 0.0
+    },
+    {
+      "question_id": "MQ_B_CDC_0000228-2",
+      "scenario": "B",
+      "focus": "Hendra Virus Disease (HeV)",
+      "qtype": "symptoms",
+      "held_pages": [
+        "CDC_0000228 (Hendra Virus Disease (HeV))"
+      ],
+      "held_pairs": [
+        "CDC_0000228-1",
+        "CDC_0000228-2",
+        "CDC_0000228-3",
+        "CDC_0000228-4",
+        "CDC_0000228-5",
+        "CDC_0000228-6"
+      ],
+      "held_chunks": 6,
       "leak_overlap": 0.0
     }
   ]
