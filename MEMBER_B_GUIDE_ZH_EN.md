@@ -1,3 +1,5 @@
+> 更新 / Update: MiniLM and live OpenAI validation are now recorded in `MEMBER_B_VALIDATION_ZH_EN.md`. Earlier no-API results below describe the initial delivery.
+
 # Member B — RAG 实现与运行说明 / Implementation & Run Guide
 
 ## 0. 本次完成状态 / Delivery status
@@ -194,9 +196,9 @@ Tests establish exact cosine math, FAISS behavior, index-input isolation, cache 
 
 ## 9. 如何提交和说明贡献 / Applying and explaining the contribution
 
-由于当前 GitHub 接口返回 404、本地网络无法解析 GitHub，本次未创建远端提交或 PR。交付包内有完整源码和 `member_b_changes.patch`。
+初始交付后，已通过网页上传创建草稿 PR #17（B 分支到 A 的数据分支）。本轮真实验证先保留在本地，尚未上传；旧交付 ZIP 不包含本轮更新。
 
-No remote commit or PR was created: the connector returned 404 and local Git could not resolve GitHub. The delivery contains full source plus `member_b_changes.patch`.
+Draft PR #17 was subsequently created through GitHub web upload. This round of live validation remains local and is not included in the original delivery ZIP.
 
 在可访问仓库的正常 clone 中，基于含 A 数据的分支创建 B 分支，然后先检查再应用：
 In a proper clone containing A's branch/data, create your B branch, then check and apply:
@@ -213,6 +215,6 @@ python -m pytest -q
 
 Resolve overlapping teammate changes manually. Do not overwrite remote history. Retain the shareable chat link for the team's AI disclosure and commit through your own account after reviewing and understanding the implementation.
 
-**可以准确表述的贡献：**我实现了共享的检索/生成接口和 Standard RAG，完成了数据格式适配、自动化测试及离线集成检查。MiniLM 下载验证和真实 LLM 实验仍待完成。
+**可以准确表述的贡献：**我实现了共享的检索/生成接口和 Standard RAG，完成了数据格式适配、自动化测试及离线集成检查。最新 MiniLM 与真实 LLM 验证结果见 MEMBER_B_VALIDATION_ZH_EN.md；正式评测仍依赖经审核的数据。
 
-**Accurate contribution statement:** I implemented the shared retrieval/generation APIs and Standard RAG baseline, adapted the data format, and completed automated tests plus an offline integration check. MiniLM weight validation and live LLM experiments remain pending.
+**Accurate contribution statement:** I implemented the shared retrieval/generation APIs and Standard RAG baseline, adapted the data format, and completed automated tests plus an offline integration check. See MEMBER_B_VALIDATION_ZH_EN.md for current MiniLM and live LLM results; formal evaluation still requires audited evidence data.

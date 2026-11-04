@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import importlib.util
 import json
+import sys
 from io import BytesIO
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -104,6 +105,8 @@ def test_baseline_errors_are_not_abstentions():
 
 @pytest.fixture
 def llm_config(monkeypatch):
+    # Offline tests must never load a developer's real credential from .env.
+    monkeypatch.setitem(sys.modules, 'dotenv', None)
     monkeypatch.setenv('LLM_API_KEY','test-key-not-a-secret')
     monkeypatch.setenv('LLM_BASE_URL','https://example.invalid/v1')
     monkeypatch.setenv('LLM_MODEL','test-model')
