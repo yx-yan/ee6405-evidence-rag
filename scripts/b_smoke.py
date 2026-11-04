@@ -3,8 +3,11 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+from io import BytesIO
 from pathlib import Path
+from urllib.request import urlopen
 from evrag.config import ROOT, load_config
+from evrag.llm import generate
 from evrag.methods.baseline import BaselineMethod
 from evrag.retriever import Retriever
 
@@ -35,13 +38,23 @@ def main():
         encoder=TfidfEncoder()
         config['retrieval']['embedding_model']='diagnostic:tfidf_word_1_2'
     searcher=Retriever(config=config,backend=args.backend,encoder=encoder)
-    generator=(lambda _: '[MOCK LLM: generation not evaluated]') if args.mock_llm else None
+    calls=[]
+    def tracked_transport(request, timeout):
+        with urlopen(request, timeout=timeout) as response:
+            raw=response.read()
+        response=json.loads(raw)
+        calls.append({'model':response.get('model'), 'usage':response.get('usage',{}),
+                      'finish_reason':response.get('choices',[{}])[0].get('finish_reason')})
+        return BytesIO(raw)
+    generator=((lambda _: '[MOCK LLM: generation not evaluated]') if args.mock_llm
+               else lambda prompt: generate(prompt,config=config,transport=tracked_transport))
     method=BaselineMethod(search_fn=searcher.search,generate_fn=generator,config=config)
     with (ROOT/config['data']['dataset']).open(encoding='utf-8',newline='') as f:
         questions=[q for q in csv.DictReader(f) if q['split']=='dev'][:args.limit]
     if not questions: raise ValueError('No dev questions found')
     # A separate name keeps mock results out of E's formal baseline runs.
-    name=f'b_integration_mock_dev{len(questions)}.jsonl' if args.mock_llm else f'baseline_dev{len(questions)}.jsonl'
+    mode='tfidf' if args.offline_tfidf else 'minilm'
+    name=f'b_integration_{mode}_mock_dev{len(questions)}.jsonl' if args.mock_llm else f'baseline_dev{len(questions)}.jsonl'
     directory=ROOT/'results'/('b_validation' if args.mock_llm else 'runs')
     directory.mkdir(parents=True,exist_ok=True)
     results=[]
@@ -50,9 +63,12 @@ def main():
         out.meta.update({'generation_mode':'mock' if args.mock_llm else 'live',
                          'retrieval_backend':searcher.backend,
                          'embedding_model':config['retrieval']['embedding_model'],
-                         'evaluation_eligible':not args.mock_llm,
+                         'evaluation_eligible':False,
                          'evidence_labels_ready':False})
+        if calls: out.meta['llm_call']=calls[-1]
         results.append(out.to_dict())
+        # Preserve completed cases if a later request fails; no automatic paid retries.
+        (directory/name).write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in results),encoding='utf-8')
     target=directory/name
     target.write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in results),encoding='utf-8')
     summary={'cases':len(results),'generation_mode':'mock' if args.mock_llm else 'live',
@@ -60,9 +76,12 @@ def main():
              'documents':len(searcher.documents),'backend':searcher.backend,
              'embedding_model':config['retrieval']['embedding_model'],
              'embedding_cache_hit':searcher.cache_hit,
+             'llm_calls':calls,
+             'total_tokens':sum(c.get('usage',{}).get('total_tokens',0) for c in calls),
              'note':'Integration check only; no answer accuracy or abstention metrics reported.'}
     (directory/'b_smoke_summary.json').write_text(json.dumps(summary,indent=2)+'\n',encoding='utf-8')
-    print(json.dumps(summary,indent=2)); print(f'Wrote {target.relative_to(ROOT)}')
+    print(json.dumps({k:v for k,v in summary.items() if k!='llm_calls'},indent=2))
+    print(f'Wrote {target.relative_to(ROOT)}')
 
 
 if __name__=='__main__': main()
