@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
+from pathlib import Path
 from string import Template
 
 from evrag import llm, retriever
@@ -79,15 +80,19 @@ class EvidenceMethod(Method):
     """
     name = "evidence"
 
-    def __init__(self, *, search_fn=None, generate_fn=None, config=None, judge_template=None):
+    def __init__(self, *, search_fn=None, generate_fn=None, config=None, judge_template=None,
+                 judge_prompt=None):
+        """judge_prompt: path of another prompt file (its stem becomes prompt_version);
+        judge_template: an inline template string (prompt_version "custom")."""
         self.config = load_config() if config is None else config
         self.search_fn = retriever.search if search_fn is None else search_fn
         self.generate_fn = llm.generate if generate_fn is None else generate_fn
-        if judge_template is None:
-            self.judge_template = JUDGE_PROMPT.read_text(encoding="utf-8")
-            self.prompt_version = JUDGE_PROMPT.stem
-        else:
+        if judge_template is not None:
             self.judge_template, self.prompt_version = judge_template, "custom"
+        else:
+            prompt_path = JUDGE_PROMPT if judge_prompt is None else Path(judge_prompt)
+            self.judge_template = prompt_path.read_text(encoding="utf-8")
+            self.prompt_version = prompt_path.stem
 
     def _answer(self, question):
         if not isinstance(question, str) or not question.strip():
