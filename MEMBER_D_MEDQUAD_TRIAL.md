@@ -137,8 +137,16 @@ Three independent code reviews (label validity, integration with B's retriever/c
 sampling and determinism) found: umbrella CUIs ("Syndrome") merging unrelated pages, cross-concept
 duplicate chunks surviving hold-outs under the held page's name, A questions being the
 leak-rejected complement of B/C, subtype/parent pages escaping hold-outs, summary sections
-restating held-out answers, and malformed questions from NIDDK booklet titles. All are fixed in
-the current build and covered by `tests/test_member_d_medquad.py` (54 tests pass).
+restating held-out answers, and malformed questions from NIDDK booklet titles. All were
+addressed and are covered by `tests/test_member_d_medquad.py` (54 tests pass). A second,
+independent pass then re-checked each finding against the final build
+(`results/d_medquad_trial/review_verification.json`): 3 fixed outright (cross-concept
+duplicates, A sampling bias, summary sections as question type), 4 fixed in mechanism with a
+residual (umbrella CUIs, the leak gate's bullet lists, the title blocklist, name-based
+neighbourhoods missing plural/compound forms such as Leukodystrophy/Adrenoleukodystrophy), and
+2 still reproducible on a few items: C sections restating the answer in other words and B family
+pages under another name. These two are the reason the label audit above is required before the
+labels are frozen.
 
 ## Known limits and next steps
 
