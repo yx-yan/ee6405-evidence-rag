@@ -104,8 +104,10 @@ def clean_text(text: str) -> str:
 
 
 def clean_question(text: str) -> str:
-    """MedQuAD writes 'What is (are) X ?' and sometimes 'X? ?'; drop the space and repeats."""
-    return re.sub(r"\?{2,}", "?", re.sub(r"\s+([?.!,])", r"\1", " ".join(text.split())))
+    """MedQuAD writes 'What is (are) X ?', sometimes 'X? ?' and some CDC questions in lower case;
+    drop the space and repeats and capitalise the first letter."""
+    text = re.sub(r"\?{2,}", "?", re.sub(r"\s+([?.!,])", r"\1", " ".join(text.split())))
+    return text[:1].upper() + text[1:]
 
 
 def ensure_source(source: Path) -> str | None:
@@ -185,22 +187,60 @@ def concept_groups(docs: list[Doc], max_cui_docs: int = HOLDOUT_CUI_DOCS) -> dic
     return {d.key: find(d.key) for d in docs}
 
 
+def _name_tokens(focus: str) -> tuple:
+    return tuple(_WORD.findall(re.sub(r"\(.*?\)", " ", focus.lower())))
+
+
 def neighbourhoods(docs: list[Doc], groups: dict, max_cui_docs: int = HOLDOUT_CUI_DOCS) -> dict:
-    """Groups held out together with each group: itself plus every group sharing a CUI that is
-    listed on at most max_cui_docs pages (one hop, no chaining). A CUI on more pages is an
-    umbrella term such as Syndrome or Disease and does not make pages neighbours."""
+    """Groups held out together with each group (one hop, no chaining): itself, every group
+    sharing a CUI listed on at most max_cui_docs pages, every group whose page name contains
+    this name (subtypes: "Autosomal recessive polycystic kidney disease" for "Polycystic Kidney
+    Disease") unless more than max_cui_docs pages do (a generic word such as "Cancer"), and
+    every group whose name is contained in this name (parents: "Anemia" for "Aplastic Anemia").
+    A CUI on more than max_cui_docs pages is an umbrella term and does not make neighbours."""
     cui_docs = Counter(c for d in docs for c in set(d.cuis))
-    by_cui = defaultdict(set)
+    by_cui, full_names, containing = defaultdict(set), defaultdict(set), defaultdict(set)
     for doc in docs:
         for cui in doc.cuis:
             if cui_docs[cui] <= max_cui_docs:
                 by_cui[cui].add(groups[doc.key])
+        tokens = _name_tokens(doc.focus)
+        if tokens:
+            full_names[tokens].add(groups[doc.key])
+            for a in range(len(tokens)):
+                for b in range(a + 1, min(len(tokens), a + 8) + 1):
+                    containing[tokens[a:b]].add(groups[doc.key])
     hood = {g: {g} for g in set(groups.values())}
     for doc in docs:
+        group = groups[doc.key]
         for cui in doc.cuis:
             if cui_docs[cui] <= max_cui_docs:
-                hood[groups[doc.key]] |= by_cui[cui]
+                hood[group] |= by_cui[cui]
+        tokens = _name_tokens(doc.focus)
+        if tokens:
+            if len(containing[tokens]) <= max_cui_docs:
+                hood[group] |= containing[tokens]
+            for a in range(len(tokens)):
+                for b in range(a + 1, len(tokens) + 1):
+                    if (a, b) != (0, len(tokens)):
+                        hood[group] |= full_names.get(tokens[a:b], set())
+    for group, members in list(hood.items()):
+        for other in members:
+            hood[other].add(group)
     return hood
+
+
+_BAD_FOCUS = re.compile(
+    r"[?:]|\b(for|about|your?|steps?|tips|guide|living|eating|diet|nutrition|methods|what|how|when|why|i"
+    r"|creating|surviving|older|adults|smoking|pregnancy)\b", re.IGNORECASE)
+
+
+def well_formed(pair: Pair) -> bool:
+    """MedQuAD applies question templates to page titles, so booklet titles such as "What I need to
+    know about Lactose Intolerance", "Nutrition for Early CKD" or "Am I at Risk for Type 2
+    Diabetes?" make garbled questions; condition names do not contain these words."""
+    return (not _BAD_FOCUS.search(pair.doc.focus) and len(pair.doc.focus.split()) <= 8
+            and pair.question.count("?") <= 1)
 
 
 def chunk_answer(answer: str, max_words: int = CHUNK_WORDS) -> list[str]:
@@ -264,7 +304,8 @@ class Item:
     group: str
     held: set                       # qids whose chunks leave the corpus because of this item
     gold_doc_ids: list
-    leak: float = 0.0
+    unit: set = field(default_factory=set)   # qids of the asked section across the neighbourhood
+    leak: float = 0.0               # largest share of the gold's 8-grams in a chunk outside the unit
     split: str = ""
 
 
@@ -287,12 +328,14 @@ def _overlap_counts(pool, corpus):
 def select_items(docs, groups, corpus, *, per_scenario, rng, question_sources=QUESTION_SOURCES,
                  question_types=QUESTION_TYPES, answer_words=ANSWER_WORDS, leak_max=LEAK_MAX,
                  holdout_cui_docs=HOLDOUT_CUI_DOCS):
-    """Pick one question per concept group and label it B, C or A (in that order, so hold-outs
-    never delete an A item's gold chunks); return (items, held qids, stats).
+    """Pick one question per concept group and label it A, B or C; return (items, held qids, stats).
 
-    B holds out the whole neighbourhood of the group; C holds out the asked section across the
-    neighbourhood and keeps the group's other sections; a group touched by any hold-out is not
-    used again.
+    Every scenario uses the same eligibility filter, and a group that fails it is dropped, never
+    recycled into another scenario: otherwise A would be exactly the boilerplate-heavy questions
+    that B and C rejected. Accepted groups are dealt round-robin to the scenario with the most
+    open quota. B holds out the whole neighbourhood of the group; C holds out the asked section
+    across the neighbourhood and keeps the group's other sections; A holds out nothing. A group
+    whose neighbourhood touches an earlier item is skipped, so hold-outs never delete gold chunks.
     """
     group_pairs = defaultdict(list)
     for doc in docs:
@@ -302,14 +345,15 @@ def select_items(docs, groups, corpus, *, per_scenario, rng, question_sources=QU
 
     def eligible(pair):
         return (pair.qtype in question_types and pair.doc.source in question_sources
-                and answer_words[0] <= len(pair.answer.split()) <= answer_words[1])
+                and answer_words[0] <= len(pair.answer.split()) <= answer_words[1] and well_formed(pair))
 
+    malformed = sum(1 for pairs in group_pairs.values() for p in pairs
+                    if p.qtype in question_types and p.doc.source in question_sources and not well_formed(p))
     order = sorted(group_pairs)
     rng.shuffle(order)
     pool = []
     for group in order:
-        pairs = group_pairs[group]
-        candidates = [p for p in pairs if eligible(p)]
+        candidates = [p for p in group_pairs[group] if eligible(p)]
         if candidates:
             pool.append((group, rng.choice(candidates)))
     counts, sizes = _overlap_counts(pool, corpus)
@@ -320,58 +364,59 @@ def select_items(docs, groups, corpus, *, per_scenario, rng, question_sources=QU
 
     quotas = {"B": per_scenario, "C": per_scenario, "A": per_scenario}
     items, used, skipped = [], set(), Counter()
-    for scenario in ("B", "C", "A"):
-        for i, (group, pair) in enumerate(pool):
-            if not quotas[scenario]:
-                break
-            if group in used:
-                continue
-            own = group_pairs[group]
-            if scenario == "A":
-                # Gold = the asked pair plus the identical question on the concept's other pages
-                # (another site); not a page's other questions of the same type (CDC pages have
-                # several "prevention" questions) and not a sibling page that shares the CUI set.
-                asked = _norm_question(pair.question)
-                gold = []
-                for p in sorted(own, key=lambda p: p.qid):
-                    if p.qtype == pair.qtype and _norm_question(p.question) == asked:
-                        gold.extend(c for c in corpus.pair_chunks[p.qid] if c not in gold)
-                items.append(Item("A", pair, group, set(), gold))
-                used.add(group)
-            else:
-                if scenario == "C" and not any(p.qtype != pair.qtype for p in own):
-                    skipped["C_no_other_section"] += 1
-                    continue
-                if hood[group] & used:
-                    skipped[f"{scenario}_neighbour_used"] += 1
-                    continue
-                held = {p.qid for g in hood[group] for p in group_pairs[g]
-                        if scenario == "B" or p.qtype == pair.qtype}
-                leak = leak_after(i, held)
-                if leak >= leak_max:
-                    skipped[f"{scenario}_leak"] += 1
-                    continue
-                items.append(Item(scenario, pair, group, held, [], leak))
-                used |= hood[group]
-            quotas[scenario] -= 1
+    for i, (group, pair) in enumerate(pool):
+        if not any(quotas.values()):
+            break
+        if hood[group] & used:
+            skipped["neighbour_used"] += 1
+            continue
+        own = group_pairs[group]
+        unit = {p.qid for g in hood[group] for p in group_pairs[g] if p.qtype == pair.qtype}
+        # One filter for all scenarios: the gold text must not survive outside the asked section.
+        leak = leak_after(i, unit)
+        if leak >= leak_max:
+            skipped["leak"] += 1
+            continue
+        has_other = any(p.qtype != pair.qtype for p in own)
+        choices = [s for s in ("B", "C", "A") if quotas[s] and (s != "C" or has_other)]
+        if not choices:
+            skipped["C_no_other_section"] += 1
+            continue
+        scenario = max(choices, key=lambda s: quotas[s])        # ties keep the B, C, A order
+        if scenario == "A":
+            # Gold = the asked pair plus the identical question on the concept's other pages
+            # (another site); not a page's other questions of the same type (CDC pages have
+            # several "prevention" questions) and not a sibling page that shares the CUI set.
+            asked = _norm_question(pair.question)
+            gold = []
+            for p in sorted(own, key=lambda p: p.qid):
+                if p.qtype == pair.qtype and _norm_question(p.question) == asked:
+                    gold.extend(c for c in corpus.pair_chunks[p.qid] if c not in gold)
+            items.append(Item("A", pair, group, set(), gold, unit, leak))
+        else:
+            held = unit if scenario == "C" else {p.qid for g in hood[group] for p in group_pairs[g]}
+            items.append(Item(scenario, pair, group, held, [], unit, leak))
+        used |= hood[group]
+        quotas[scenario] -= 1
     held = set().union(*(item.held for item in items)) if items else set()
+    position = {entry[1].qid: k for k, entry in enumerate(pool)}
     for item in items:                              # final leak against the corpus everybody searches
-        if item.scenario != "A":
-            i = next(k for k, entry in enumerate(pool) if entry[1] is item.pair)
-            item.leak = leak_after(i, held)
-    stats = {"pool_groups": len(pool), "unfilled": {s: q for s, q in quotas.items() if q},
-             "skipped": dict(skipped),
+        item.leak = leak_after(position[item.pair.qid], held | item.unit)
+    stats = {"pool_groups": len(pool), "malformed_questions_excluded": malformed,
+             "unfilled": {s: q for s, q in quotas.items() if q}, "skipped": dict(skipped),
              "neighbourhood_groups": {"median": sorted(len(h) for h in hood.values())[len(hood) // 2],
                                       "max": max(len(h) for h in hood.values())}}
     return items, held, stats
 
 
 def assign_splits(items, rng, test_fraction):
-    """Stratified dev/test split inside each scenario."""
+    """Stratified dev/test split inside each scenario (at least one test item when possible)."""
     for scenario in ("A", "B", "C"):
         group = [item for item in items if item.scenario == scenario]
         rng.shuffle(group)
-        n_test = round(len(group) * test_fraction)
+        n_test = int(len(group) * test_fraction + 0.5)
+        if test_fraction > 0 and len(group) >= 2:
+            n_test = min(max(n_test, 1), len(group) - 1)
         for k, item in enumerate(group):
             item.split = "test" if k < n_test else "dev"
     rng.shuffle(items)
@@ -382,8 +427,13 @@ def build(source: Path, out: Path, *, per_scenario=60, test_fraction=0.25, seed=
           chunk_words=CHUNK_WORDS, leak_max=LEAK_MAX, question_sources=QUESTION_SOURCES) -> dict:
     commit = ensure_source(source)
     seed = load_config()["seed"] if seed is None else seed
+    if chunk_words < 20 or not 0 < leak_max <= 1:
+        raise ValueError("chunk_words must be at least 20 and leak_max in (0, 1]")
     rng = random.Random(seed)
     docs = parse_medquad(source)
+    unknown = set(question_sources) - {d.source for d in docs}
+    if unknown:
+        raise ValueError(f"Unknown question sources {sorted(unknown)}; known: {sorted({d.source for d in docs})}")
     groups = concept_groups(docs)
     corpus = build_chunks(docs, groups, chunk_words)
     items, held, stats = select_items(docs, groups, corpus, per_scenario=per_scenario, rng=rng,
@@ -404,6 +454,10 @@ def build(source: Path, out: Path, *, per_scenario=60, test_fraction=0.25, seed=
     with (out / "corpus.jsonl").open("w", encoding="utf-8") as f:
         for cid in kept:
             f.write(json.dumps({"doc_id": cid, "text": corpus.texts[cid]}, ensure_ascii=False) + "\n")
+    # Every chunk before hold-outs, so the trial runner can embed all of them once and reuse.
+    with (out / "corpus_all.jsonl").open("w", encoding="utf-8") as f:
+        for cid in corpus.chunk_ids:
+            f.write(json.dumps({"doc_id": cid, "text": corpus.texts[cid]}, ensure_ascii=False) + "\n")
     with (out / "dataset.csv").open("w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(COLUMNS)
@@ -415,6 +469,8 @@ def build(source: Path, out: Path, *, per_scenario=60, test_fraction=0.25, seed=
                              pair.doc.source, f"{item.leak:.3f}"])
     manifest = {
         "medquad_commit": commit,
+        "note": "Automatic labels (evidence_scenario_status=auto). leak_overlap is the largest share "
+                "of the gold answer's word 8-grams found in one chunk outside the asked section.",
         "parameters": {"seed": seed, "per_scenario": per_scenario, "test_fraction": test_fraction,
                        "chunk_words": chunk_words, "shingle_words": SHINGLE_WORDS, "leak_max": leak_max,
                        "holdout_cui_docs": HOLDOUT_CUI_DOCS,
@@ -456,6 +512,8 @@ def main(argv=None) -> None:
     args = parser.parse_args(argv)
     if args.per_scenario < 1 or not 0 <= args.test_fraction < 1:
         parser.error("--per-scenario must be positive and --test-fraction in [0, 1)")
+    if args.chunk_words < 20 or not 0 < args.leak_max <= 1:
+        parser.error("--chunk-words must be at least 20 and --leak-max in (0, 1]")
     manifest = build(args.source, args.out, per_scenario=args.per_scenario, test_fraction=args.test_fraction,
                      seed=args.seed, chunk_words=args.chunk_words, leak_max=args.leak_max,
                      question_sources=args.question_sources)

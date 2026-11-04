@@ -2,6 +2,9 @@
 from __future__ import annotations
 import csv
 import json
+import os
+import subprocess
+import sys
 import pytest
 from evrag.data import medquad
 from evrag.methods import get_method
@@ -46,7 +49,7 @@ def source(tmp_path):
         '</Answer></QAPair><QAPair pid="2"><Question qid="0000013-2" qtype="information">What is (are) Familial '
         f'hemiplegic migraine ?</Question><Answer>{PAIRS["information"]("FHM")}</Answer></QAPair></QAPairs></Document>',
         encoding='utf-8')
-    # Two unrelated concepts with an identical symptoms answer: neither may become a B/C item for symptoms.
+    # Two unrelated concepts with an identical symptoms answer: neither may become an item for symptoms.
     write_doc(src, '6_NINDS_QA', '0000010', 'Lupus', 'C10', {'information': PAIRS['information']('Lupus'), 'symptoms': SHARED})
     write_doc(src, '9_CDC_QA', '0000011', 'Measles', 'C11', {'information': PAIRS['information']('Measles'), 'symptoms': SHARED})
     # Answers were removed from this MedlinePlus set: must be ignored, not crash.
@@ -57,6 +60,13 @@ def source(tmp_path):
         (src / '1_CancerGov_QA' / '0000014_2.xml').read_text(encoding='utf-8')
         .replace(PAIRS['information']('BC'), PAIRS['treatment']('BC')).replace('qtype="information"', 'qtype="treatment"'),
         encoding='utf-8')
+    # A subtype page with its own CUI: a neighbour of Anemia by name containment, never the same concept.
+    write_doc(src, '8_NHLBI_QA_XML', '0000021', 'Aplastic Anemia', 'C21', {q: fn('Aplastic Anemia') for q, fn in PAIRS.items()})
+    # A NIDDK page whose title is itself a question: its templated questions are malformed.
+    write_doc(src, '5_NIDDK_QA', '0000030', 'What I need to know about Gout?', 'C30',
+              {q: fn('Gout booklet') for q, fn in PAIRS.items()})
+    write_doc(src, '5_NIDDK_QA', '0000031', 'Nutrition for Early Gout', 'C31',
+              {q: fn('Gout nutrition') for q, fn in PAIRS.items()})
     return src
 
 
@@ -76,6 +86,27 @@ def test_helpers():
     chunks = medquad.chunk_answer(' '.join(sentences), max_words=12)
     assert all(len(c.split()) <= 12 for c in chunks) and ' '.join(chunks) == ' '.join(sentences)
     assert medquad.chunk_answer('one two three four five', max_words=2) == ['one two', 'three four', 'five']
+    umbrella = [medquad.Doc('X_1', 'X', '', 'Alpha', ('C0039082',)), medquad.Doc('X_2', 'X', '', 'Beta', ('C0039082',))]
+    assert medquad.concept_groups(umbrella, max_cui_docs=1)['X_1'] != medquad.concept_groups(umbrella, max_cui_docs=1)['X_2']
+    assert medquad.concept_groups(umbrella, max_cui_docs=2)['X_1'] == medquad.concept_groups(umbrella, max_cui_docs=2)['X_2']
+
+
+def test_grouping_and_neighbourhoods(source):
+    docs = medquad.parse_medquad(source)
+    groups = medquad.concept_groups(docs)
+    g = lambda key: groups[key]
+    assert {d.key for d in docs if d.source == 'CancerGov'} == {'CancerGov_0000014_2', 'CancerGov_0000014_2_1'}
+    assert g('CancerGov_0000014_2') == g('CancerGov_0000014_2_1')          # same page name
+    assert g('NIDDK_0000001') == g('GARD_0000009') != g('NIDDK_0000002')   # same name and CUI set
+    assert g('GHR_0000013') != g('NIDDK_0000002') and g('NHLBI_0000021') != g('NIDDK_0000005')
+    hood = medquad.neighbourhoods(docs, groups)
+    assert hood[g('NIDDK_0000002')] == {g('NIDDK_0000002'), g('GHR_0000013')}      # shared specific CUI
+    assert g('NHLBI_0000021') in hood[g('NIDDK_0000005')] and g('NIDDK_0000005') in hood[g('NHLBI_0000021')]  # name
+    assert g('NIDDK_0000030') in hood[g('NIDDK_0000003')]                          # "... about Gout?" contains Gout
+    assert hood[g('NIDDK_0000001')] == {g('NIDDK_0000001')}
+    full = medquad.build_chunks(docs, groups)
+    assert full.duplicates == 1 and full.pair_chunks['NIDDK_0000001-2'] == full.pair_chunks['GARD_0000009-1']
+    assert full.pair_chunks['NINDS_0000010-2'] != full.pair_chunks['CDC_0000011-2']   # unrelated pages: two chunks
 
 
 def test_build_holds_out_and_labels(source, tmp_path):
@@ -83,32 +114,20 @@ def test_build_holds_out_and_labels(source, tmp_path):
     manifest = medquad.build(source, out, per_scenario=2, test_fraction=0.5, seed=1,
                              question_sources=('NIDDK', 'NINDS', 'CDC'))
     corpus, rows, manifest2 = read(out)
-    assert manifest2['counts'] == manifest['counts']
+    assert manifest2['counts'] == manifest['counts'] and manifest['counts']['unfilled'] == {}
+    assert manifest['counts']['malformed_questions_excluded'] >= 1
     ids = [d['doc_id'] for d in corpus]
     assert len(ids) == len(set(ids)) and all(d['text'].strip() for d in corpus)
-    assert list(rows[0]) == list(medquad.COLUMNS)
-    assert manifest['counts']['unfilled'] == {} and len(rows) == 6
-    assert {r['scenario'] for r in rows} == {'A', 'B', 'C'}
-    assert {r['split'] for r in rows} == {'dev', 'test'}
+    assert list(rows[0]) == list(medquad.COLUMNS) and len(rows) == 6
+    for s in 'ABC':
+        assert [r['split'] for r in rows if r['scenario'] == s].count('test') == 1
+    assert not any(r['focus'] in ('What I need to know about Gout?', 'Nutrition for Early Gout') for r in rows)
+    assert manifest['counts']['malformed_questions_excluded'] >= 2   # booklet titles never become questions
+    assert not any(r['focus'] in ('Lupus', 'Measles') for r in rows)   # leaky pages are dropped, not recycled
     docs = medquad.parse_medquad(source)
     groups = medquad.concept_groups(docs)
-    assert {d.key for d in docs if d.source == 'CancerGov'} == {'CancerGov_0000014_2', 'CancerGov_0000014_2_1'}
-    assert groups['CancerGov_0000014_2'] == groups['CancerGov_0000014_2_1']
-    assert groups['NIDDK_0000001'] == groups['GARD_0000009'] != groups['NIDDK_0000002']
-    assert groups['GHR_0000013'] != groups['NIDDK_0000002']
     hood = medquad.neighbourhoods(docs, groups)
-    assert hood[groups['NIDDK_0000002']] == {groups['NIDDK_0000002'], groups['GHR_0000013']}
-    assert hood[groups['NIDDK_0000001']] == {groups['NIDDK_0000001']}
     full = medquad.build_chunks(docs, groups)
-    assert full.duplicates == 1 and full.pair_chunks['NIDDK_0000001-2'] == full.pair_chunks['GARD_0000009-1']
-    # identical text under two unrelated conditions stays two chunks, each with its own header
-    assert full.pair_chunks['NINDS_0000010-2'] != full.pair_chunks['CDC_0000011-2']
-    # a CUI set made only of umbrella CUIs (on more pages than the threshold) is not an identity
-    assert medquad.concept_groups(docs, max_cui_docs=1)['NIDDK_0000001'] != \
-        medquad.concept_groups(docs, max_cui_docs=1)['GARD_0000009'] or True  # same focus still merges
-    umbrella = [medquad.Doc('X_1', 'X', '', 'Alpha', ('C0039082',)), medquad.Doc('X_2', 'X', '', 'Beta', ('C0039082',))]
-    assert medquad.concept_groups(umbrella, max_cui_docs=1)['X_1'] != medquad.concept_groups(umbrella, max_cui_docs=1)['X_2']
-    assert medquad.concept_groups(umbrella, max_cui_docs=2)['X_1'] == medquad.concept_groups(umbrella, max_cui_docs=2)['X_2']
     by_qid = {p.qid: p for d in docs for p in d.pairs}
     for row in rows:
         pair = by_qid[row['source_doc_id']]
@@ -120,6 +139,7 @@ def test_build_holds_out_and_labels(source, tmp_path):
         near_same = {c for qid in neighbours if by_qid[qid].qtype == pair.qtype for c in full.pair_chunks[qid]}
         near_all = {c for qid in neighbours for c in full.pair_chunks[qid]}
         assert row['evidence_scenario_status'] == 'auto' and json.loads(row['gold_answers']) == [pair.answer]
+        assert float(row['leak_overlap']) < medquad.LEAK_MAX
         if row['scenario'] == 'A':
             assert gold and set(gold) <= set(ids) and set(gold) == own_chunks
         elif row['scenario'] == 'B':
@@ -129,8 +149,6 @@ def test_build_holds_out_and_labels(source, tmp_path):
         if row['scenario'] != 'A':  # the gold text must not survive anywhere in the corpus
             norm = ' '.join(medquad._WORD.findall(pair.answer.lower()))
             assert all(norm not in ' '.join(medquad._WORD.findall(d['text'].lower())) for d in corpus)
-            assert float(row['leak_overlap']) < medquad.LEAK_MAX
-    assert not any(r['focus'] in ('Lupus', 'Measles') and r['scenario'] != 'A' for r in rows)
 
 
 def test_build_is_deterministic(source, tmp_path):
@@ -139,6 +157,17 @@ def test_build_is_deterministic(source, tmp_path):
         medquad.build(source, out, per_scenario=2, seed=7, question_sources=('NIDDK',))
     for name in ('corpus.jsonl', 'dataset.csv'):
         assert (a / name).read_bytes() == (b / name).read_bytes()
+
+
+def test_build_is_hash_seed_independent(source, tmp_path):
+    outputs = []
+    for hash_seed in ('0', '12345'):
+        out = tmp_path / f'h{hash_seed}'
+        code = (f'from pathlib import Path; from evrag.data import medquad; medquad.build(Path({str(source)!r}), '
+                f'Path({str(out)!r}), per_scenario=2, seed=7, question_sources=("NIDDK",))')
+        subprocess.run([sys.executable, '-c', code], check=True, env={**os.environ, 'PYTHONHASHSEED': hash_seed})
+        outputs.append((out / 'dataset.csv').read_bytes() + (out / 'corpus.jsonl').read_bytes())
+    assert outputs[0] == outputs[1]
 
 
 def test_evidence_method_accepts_prompt_path(tmp_path):

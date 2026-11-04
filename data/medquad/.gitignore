@@ -1,2 +1,3 @@
 # 20 MB and deterministic: rebuild with `python -m evrag.data.medquad` (see README.md)
 corpus.jsonl
+corpus_all.jsonl
