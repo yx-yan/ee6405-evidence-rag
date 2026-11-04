@@ -146,7 +146,8 @@ the current build and covered by `tests/test_member_d_medquad.py` (54 tests pass
   parent/subtype hold-out widened by name (e.g. "Epilepsy" for a seizure-disorder subtype).
   Independent re-verification of the review findings on the final build confirms both residual
   risks: the restatement gate has no stemming or synonyms, so paraphrases below 70% content-word
-  overlap pass, and family pages under another name are not reached. A should audit every B/C
+  overlap pass, it splits only on sentence punctuation (period-free " - " bullet lists are one
+  long unit), and family pages under another name are not reached. A should audit every B/C
   item by reading the top-5 (ideally top-10) chunks whose page is not in `manifest.json`
   `held_pages`.
 - Page titles that are procedures or topics ("Knee Replacement") still slip through the title
