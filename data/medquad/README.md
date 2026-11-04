@@ -11,7 +11,7 @@ Rebuild (deterministic, about 20 s; clones MedQuAD into `data/raw/MedQuAD` on fi
 
 | File | Content |
 |------|---------|
-| `corpus.jsonl` | **not committed** (20 MB); rebuild it. One chunk per line: `doc_id` = `<site>_<file>-<pid>#<chunk>`, `text` = `"<Focus> — <Section>\n\n<chunk body>"`, chunks of at most 150 words. 26,966 chunks after de-duplication, boilerplate removal and hold-outs. |
+| `corpus.jsonl` | the frozen knowledge base (20 MB, committed). One chunk per line: `doc_id` = `<site>_<file>-<pid>#<chunk>`, `text` = `"<Focus> — <Section>\n\n<chunk body>"`, chunks of at most 150 words. 26,966 chunks after de-duplication, boilerplate removal and hold-outs. |
 | `corpus_all.jsonl` | not committed; every chunk before hold-outs, so `scripts/d_run_medquad_trial.py` can embed them once and derive the retriever cache for any rebuild. |
 | `dataset.csv` | 180 questions (A/B/C × 60; dev 45 / test 15 each) in the project schema plus audit columns. |
 | `manifest.json` | MedQuAD commit, parameters, counts, and for every B/C question which pages and QA pairs were held out, with its final overlap values. |

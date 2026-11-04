@@ -1,3 +1,2 @@
-# 20 MB and deterministic: rebuild with `python -m evrag.data.medquad` (see README.md)
-corpus.jsonl
+# every chunk before hold-outs (embedding helper only); deterministic, rebuild with `python -m evrag.data.medquad`
 corpus_all.jsonl
