@@ -1,0 +1,1122 @@
+{
+ "note": "Preliminary grading of results/runs/{baseline,evidence}_medquad_dev60.jsonl by Claude agents (one grader per 15 answers), not a team metric. outcome: abstained | prose_refusal | correct | partially_correct | incorrect; grounded: whether the answer's claims appear in the retrieved chunks; wrong_condition: answer drawn from a chunk about another condition.",
+ "table": {
+  "baseline/A": {
+   "correct": 19,
+   "partially_correct": 1
+  },
+  "baseline/B": {
+   "incorrect": 4,
+   "prose_refusal": 13,
+   "not_fully_grounded": 2,
+   "wrong_condition": 4,
+   "correct": 1,
+   "partially_correct": 2
+  },
+  "baseline/C": {
+   "prose_refusal": 7,
+   "partially_correct": 5,
+   "incorrect": 5,
+   "correct": 3,
+   "wrong_condition": 2,
+   "not_fully_grounded": 1
+  },
+  "evidence/A": {
+   "correct": 17,
+   "abstained": 3
+  },
+  "evidence/B": {
+   "abstained": 18,
+   "correct": 1,
+   "incorrect": 1,
+   "wrong_condition": 1
+  },
+  "evidence/C": {
+   "abstained": 18,
+   "incorrect": 1,
+   "correct": 1
+  }
+ },
+ "items": [
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_CDC_0000418-6",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold: \"Safe and effective prescription drugs are available to treat both Trichinella infection\"; treatment timing and decision basis also copied from CDC_0000418-6#0."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NHLBI_0000070-4",
+   "scenario": "C",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Answer says \"The retrieved evidence does not provide specific symptoms of high blood cholesterol\"; no substantive claim about the condition."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000109-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Restates gold: \"treatment for motor disorders to help control writing movements\", memory/neurological problems, and computers to avoid handwriting; all from NINDS_0000109-2#0."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NHLBI_0000100-4",
+   "scenario": "B",
+   "outcome": "incorrect",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Rewrites causes from the Pericardial Disorders overview (\"can be from a virus or other infection, a heart attack, heart surgery\") as risk groups; gold's \"men aged 20 to 50\" and recurrence are absent."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000076-3",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Answer says \"The retrieved evidence does not provide information on the outlook for Neuroacanthocytosis\"; no claim made."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000056-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold: no treatment to halt, supportive care, migraine drugs, \"daily aspirin may reduce stroke and heart attack risk\", quit smoking, treat risk factors, depression therapy; all in the two CADASIL treatment chunks."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000035-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Covers gold's \"educational/bahavioral interventions, medications\", individualized plan and \"the earlier the intervention, the better\"; omits \"no cure\" but states nothing wrong; communication/skills training comes from the ASD overview chunk."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000118-3",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Answer says \"The retrieved evidence does not provide specific information on the outlook for encephalopathy\"; no substantive claim."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000034-2",
+   "scenario": "C",
+   "outcome": "partially_correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Anticoagulants/aspirin, \"beta blockers, calcium channel blockers\" and antiarrhythmics match gold; omits clot-dissolving drugs, warfarin and cardioversion; \"lifestyle changes... procedures or surgery\" is lifted from a heart-failure sentence."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NIDDK_0000207-6",
+   "scenario": "C",
+   "outcome": "incorrect",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Copies the Complications chunk (\"inability to have sexual intercourse - ED - anxiety... problems fathering a child\") as symptoms; gold's hard lumps, pain, curvature and shortening are absent."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000237-3",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold \"very slowly progressing condition marked by long periods of stability\" and severity tied to residual weakness; added \"rarely life-threatening\" comes from the PPS overview chunk."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000179-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold: \"clobazam and anti-epileptic medications such as valproate, lamotrigine, felbamate, or topiramate\", no single drug controls seizures, later tolerance; from NINDS_0000179-2#0."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000036-2",
+   "scenario": "C",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Answer says \"The evidence does not provide specific treatments for dysautonomia\"; no substantive claim."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000021-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold \"There is no specific therapy for Angelman syndrome\", seizure therapy, physical/occupational/behavioral therapies; speech therapy and special education come from the Angelman overview chunk."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_CDC_0000090-3",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Answer says \"The retrieved evidence does not provide information on how to diagnose Chronic Fatigue Syndrome (CFS)\"; no claim made."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000214-3",
+   "scenario": "C",
+   "outcome": "incorrect",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer copies the Treatment chunk ('Treatment is symptomatic, and may include anti-seizure medication') as the outlook; gold's 'prognosis... varies depending on the specific disorder' is absent."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_CDC_0000440-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Risk groups match gold: 'returning travelers to tropical regions who have had soil and/or sand exposures', less developed areas with free-ranging dogs and cats, children under 5 (Brazil survey); all from Susceptibility/Prevention chunks."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000229-3",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Near-verbatim restatement of the gold Outlook chunk: 'symptoms appear suddenly, progress rapidly, and resolve slowly', chronic relief/relapse/plateau, 'very few forms prove fatal'."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000038-3",
+   "scenario": "C",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "'The retrieved evidence does not provide information about the outlook' — no substantive claim; chunks are Barth frequency and Bartter/Bart-Pumphrey syndrome, none on prognosis."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000107-3",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold Outlook chunk: 'course and prognosis... are unpredictable', progressive for some, 'significant improvement and even remission' for others, 'in some cases... fatal'."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000132-3",
+   "scenario": "C",
+   "outcome": "partially_correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Opening 'depends on the specific cause' matches gold but is lifted from 'Treatment depends on the specific cause'; the rest (braces, surgery, research) is Treatment/Research content, omitting recovery vs lifelong disability."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000257-3",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "'The retrieved evidence does not provide information on the outlook' — no substantive claim; chunks are Spinal Cord Injury, Central Cord and Tethered Cord syndromes."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000044-3",
+   "scenario": "C",
+   "outcome": "incorrect",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer copies the Treatment chunk ('There is no cure for MMA. Treatment consists of muscle strengthening exercises') as the outlook; gold's 'progress slowly... reaching a plateau... Disability is generally slight' is absent."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000012-3",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold: 'prognosis depends upon the severity', 'early-onset AGS have the highest risk of death', impairment and poor head control; 'may survive into adulthood' comes from the same-condition GHR chunk."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000203-2",
+   "scenario": "C",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": true,
+   "reason": "'No cure' matches gold and the MSA Outlook chunk; 'managing symptoms... no specific treatments' matches gold but is drawn from the Olivopontocerebellar Atrophy chunk ('no specific treatment for OPCA... directed at specific symptoms')."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000172-3",
+   "scenario": "C",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "'The retrieved evidence does not provide specific information about the outlook' — no substantive claim; chunks are Kluver-Bucy Treatment/Research/Overview and Klippel-Trenaunay, none on prognosis."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NIDDK_0000120-11",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "'The retrieved evidence does not provide information on how to prevent' — no substantive claim; chunks concern IBS in children, perineal injury and fecal incontinence."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_CDC_0000269-5",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "'The retrieved evidence does not provide information on how to diagnose' — no substantive claim; chunks are Loiasis and Fascioliasis, not lymphatic filariasis."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000095-2",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "'The retrieved evidence does not provide information on treatments' — no substantive claim; chunks are anencephaly, schizencephaly, colpocephaly, holoprosencephaly and meningitis/encephalitis treatment."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000219-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold: 'symptomatic and includes massage and rest', antidepressants for severe pain, 'local nerve blocks and injections of steroids'; added heat/anti-inflammatories/muscle relaxants come from the same page's Outlook chunk."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NIDDK_0000098-5",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Answer states 'The retrieved evidence does not provide information on the symptoms of Dumping Syndrome'; no substantive claim; chunks cover Orofaciodigital, Eisenmenger, diarrhea, depression."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000058-3",
+   "scenario": "B",
+   "outcome": "incorrect",
+   "grounded": "partly",
+   "wrong_condition": true,
+   "reason": "Gives symptoms, not outlook; 'does not affect life expectancy' and 'prolonged disability' are lifted from the HNPP chunk and attributed to CTS; chunk says 'some people', answer says 'many'."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000134-3",
+   "scenario": "C",
+   "outcome": "partially_correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "ERT 'effective for most people with types 1 and 3' matches gold, but answer is built from the Treatment chunk, omits gold's bone-marrow-transplant point; C scenario should abstain."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_SeniorHealth_0000052-24",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Levodopa/carbidopa, anticholinergics, 'bromocriptine, pramipexole, and ropinirole', amantadine and DBS all appear in chunks and agree with gold; omits MAO-B and COMT inhibitors but main point covered."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000216-2",
+   "scenario": "B",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "'Penicillin is used to treat neurosyphilis' matches gold's main point; source is the 'Neurological Complications of AIDS' chunk, which explicitly names neurosyphilis; omits dosing, probenecid, ceftriaxone."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_CDC_0000273-20",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "'notify public health departments about even one person' and 'freeze any uneaten portions' match gold doc CDC_0000273-20#0; shellfish-testing claims come from CDC_0000273-19#0; omits Hawaii ciguatoxin test."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000170-3",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "'The retrieved evidence does not provide information on the outlook for Klippel Feil Syndrome'; no substantive claim; chunks are Klippel-Trenaunay and other unrelated syndromes."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000100-2",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "'The retrieved evidence does not provide information on treatments for Frontotemporal Dementia'; no substantive claim; chunks cover multi-infarct dementia, DLB, Alzheimer's, corticobasal degeneration."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000128-3",
+   "scenario": "B",
+   "outcome": "partially_correct",
+   "grounded": "partly",
+   "wrong_condition": false,
+   "reason": "Only 'single febrile seizure...does not necessarily mean...epilepsy' is in chunks (Epilepsy overview); 'outlook is generally good' and 'typically isolated' are extrapolated; omits gold's prolonged/multiple-seizure epilepsy risk."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000196-2",
+   "scenario": "B",
+   "outcome": "partially_correct",
+   "grounded": "yes",
+   "wrong_condition": true,
+   "reason": "Lifts 'medications to treat diabetes mellitus, surgery for cataracts, and cochlear implantation' from the Mitochondrial genetic disorders chunk; 'vitamins and supplements' and supportive care match gold, but physical therapy and named vitamins omitted."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_SeniorHealth_0000055-32",
+   "scenario": "B",
+   "outcome": "incorrect",
+   "grounded": "yes",
+   "wrong_condition": true,
+   "reason": "'behavioral therapy, medicines, and support groups' is copied from the Dual Diagnosis chunk; gold's outpatient/inpatient settings and family support are absent, so the answer presents another page as the asked information."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000160-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer restates gold chunk NINDS_0000160-2#0: 'no cure for INAD', 'symptomatic and supportive', pain relief and sedation, physiotherapy for positioning, seating and limb exercise."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000243-2",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "'The retrieved evidence does not provide information on treatments for Prosopagnosia'; no substantive claim; chunks are progeria, Pelizaeus-Merzbacher, prolactinoma, prurigo nodularis, Cushing's."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_CDC_0000342-6",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "'The retrieved evidence does not provide specific information on how rabies is diagnosed'; no substantive claim; chunks are Schnitzler, rheumatic fever, Binswanger's, zoonoses overview, CJD."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000262-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold chunk NINDS_0000262-2#0: corticosteroids, 'gabapentin, lamotrigine, and carbamazepine', glycerol injections with recurrence 'in about 40 percent'; omits only the non-responsiveness preamble."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_CDC_0000144-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer's 'people involved in raising sheep' and 'ingest food or water contaminated with tapeworm eggs' match the gold's two susceptibility points; all taken from the Echinococcosis susceptibility chunks."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_SeniorHealth_0000039-11",
+   "scenario": "B",
+   "outcome": "incorrect",
+   "grounded": "yes",
+   "wrong_condition": true,
+   "reason": "Gold lists pre-surgery care ('exercises', 'weight loss', 'walking aids', 'shoe inserts', 'medicines'); answer instead describes 'surgery to replace the damaged joint' and prosthesis choice, copied from the Osteoarthritis treatment and Joint Disorders chunks."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_SeniorHealth_0000001-14",
+   "scenario": "A",
+   "outcome": "partially_correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Gold is about drusen ('increase in the size or number of drusen raises a person's risk'); answer gives 'gradual deterioration of light-sensing cells' from the GHR overview chunk, true but omits drusen. Gold chunk not retrieved."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000161-2",
+   "scenario": "C",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Answer is 'The retrieved evidence does not provide specific treatments for Infantile Refsum Disease' with abstained=false; no substantive claim, so prose refusal."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_B_NINDS_0000054-2",
+   "scenario": "B",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Answer is 'The retrieved evidence does not provide information on treatments for Brown-Sequard Syndrome' with abstained=false; it did not adopt the Brown syndrome chunks."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NIDDK_0000001-8",
+   "scenario": "C",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Answer is 'The retrieved evidence does not provide specific treatments for acromegaly' with abstained=false; no substantive claim."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000247-2",
+   "scenario": "C",
+   "outcome": "prose_refusal",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Answer is 'The retrieved evidence does not provide specific treatments for Rett Syndrome' with abstained=false; no substantive claim."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_CDC_0000228-1",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer's 'exposed to body fluids, tissues, or excretions of horses infected with Hendra virus' matches the gold's main point verbatim from the susceptibility chunk; omits flying-fox and no-human-transmission details."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000251-3",
+   "scenario": "C",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Gold: prognosis 'varies depending on the size of the clefts'; answer's 'depends on the severity... extent of brain clefting' matches, taken from the GARD symptoms chunk ('Severity of symptoms depends on... extent of the clefting')."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000181-2",
+   "scenario": "C",
+   "outcome": "partially_correct",
+   "grounded": "yes",
+   "wrong_condition": true,
+   "reason": "Answer copies the LBSL chunk ('no cure and treatment is supportive... antiepileptic drugs, special education and speech therapy') and generalizes it to all leukodystrophies; overlaps gold's 'symptomatic and supportive' but omits bone marrow transplantation."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000106-3",
+   "scenario": "C",
+   "outcome": "incorrect",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer relabels the Treatment chunk ('goal of treating... prevent further tissue damage and relieve discomfort') and Research chunk as outlook; gold's prognosis ('depends largely on how well... diabetes is handled', 'recovery is slow') is absent."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NIDDK_0000088-9",
+   "scenario": "C",
+   "outcome": "partially_correct",
+   "grounded": "partly",
+   "wrong_condition": false,
+   "reason": "Gold's main point is HLA genetic testing ('test a patient for HLA gene variants'); answer gives antibody blood tests (not in any chunk) and 'biopsy obtained during endoscopy' from the pseudo-obstruction chunk; right but omits genetics."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_A_NINDS_0000043-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer lists 'botulinum toxin injections, medications (drug therapy), local surgery of the eye muscles, and deep brain stimulation surgery', exactly the gold's treatments, copied from the BEB treatment chunk."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000272-3",
+   "scenario": "C",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer's 'normal life expectancy' and 'slow, progressive decline' match gold's 'does not shorten the normal life span' and 'disease is progressive'; wheelchair detail comes from the GARD Troyer symptoms chunk."
+  },
+  {
+   "method": "baseline",
+   "question_id": "MQ_C_NINDS_0000031-3",
+   "scenario": "C",
+   "outcome": "incorrect",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer stitches Treatment ('coordinates therapies that address the three core symptoms'), Research and Inheritance chunks as outlook; gold's prognosis ('learn to cope', 'work successfully in mainstream jobs') is absent."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000214-3",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Judge INSUFFICIENT, missing 'explicit information on the outlook or prognosis'; retrieved chunks are NMD Treatment/Research plus other conditions, no Outlook section. Correct abstention for scenario C."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_CDC_0000440-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer synthesizes gold chunks: 'returning travelers to tropical regions', 'less developed areas... free-ranging', children <5 from Brazil survey (14.9%); skin-contact point from Prevention chunk, same condition. All claims right."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000229-3",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Near-verbatim paraphrase of gold chunk NINDS_0000229-3#0: 'symptoms appear suddenly, progress rapidly, and resolve slowly'; omits only the Guillain-Barre example. Every fact matches."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000038-3",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Judge INSUFFICIENT, missing 'information on the outlook or prognosis for Barth Syndrome'; chunks are Barth frequency plus Bartter/Bart-Pumphrey syndromes. Correct abstention."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000107-3",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold chunk NINDS_0000107-3#0: 'course and prognosis of Schilder's disease are unpredictable', progressive vs remission, 'in some cases... fatal'. Fully correct and grounded."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000132-3",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Judge INSUFFICIENT, missing 'information on prognosis or outlook for Foot Drop'; chunks are Foot Drop Treatment/Research and unrelated foot deformities. Correct abstention."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000257-3",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Judge INSUFFICIENT, missing 'information on outlook for Spinal Cord Infarction'; chunks cover Spinal Cord Injury, Central Cord and Tethered Spinal Cord syndromes. Correct abstention."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000044-3",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Judge INSUFFICIENT, missing 'prognosis or long-term outlook for Monomelic Amyotrophy'; chunks are MMA Research/Treatment/Symptoms, ALS, ALD. Correct abstention."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000012-3",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold chunk: 'prognosis depends upon the severity', 'early-onset AGS have the highest risk of death', impairments, poor head control; 'live into adulthood' comes from same-condition GHR chunk. All right."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000203-2",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Judge INSUFFICIENT, missing 'specific treatments or therapies for Multiple System Atrophy'; chunks are MSA Outlook/Inheritance/Frequency and OPCA treatment. Correct abstention."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000172-3",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Judge INSUFFICIENT, missing 'information on outlook or prognosis for Klver-Bucy Syndrome'; chunks are KBS Treatment/Research/overview and Klippel-Trenaunay. Correct abstention."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NIDDK_0000120-11",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Judge INSUFFICIENT, missing 'information on prevention of Short Bowel Syndrome'; chunks are IBS in children, perineal injury, fecal incontinence. Correct abstention."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_CDC_0000269-5",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Judge INSUFFICIENT, missing 'diagnosis methods for Lymphatic Filariasis'; chunks are Fascioliasis and Loiasis pages only. Correct abstention."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000095-2",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Judge INSUFFICIENT, missing 'treatment information for Subacute Sclerosing Panencephalitis'; chunks are anencephaly, schizencephaly, colpocephaly, holoprosencephaly, meningitis treatments. Correct abstention."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000219-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Reproduces gold chunk: 'massage and rest', antidepressants, 'local nerve blocks and injections of steroids'; adds heat/anti-inflammatories/muscle relaxants from same page's Outlook chunk. All facts right."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_CDC_0000418-6",
+   "scenario": "A",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained despite gold chunk CDC_0000418-6#0 retrieved at rank 1; judge missing: \"specific treatment drugs for Trichinellosis\" — over-strict abstain on a scenario-A question."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NHLBI_0000070-4",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained; judge missing \"explicit symptoms of High Blood Cholesterol\". Chunks are High Blood Pressure symptoms and cholesterol exams/tests; the asked symptoms section is absent — correct abstain for C."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000109-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer restates gold: \"treatment for motor disorders to help control writing movements\", impaired memory, computers; all from Dysgraphia — Treatment chunk NINDS_0000109-2#0."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NHLBI_0000100-4",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained; judge missing \"explicit risk factors for pericarditis\". Chunks are Endocarditis susceptibility/causes and a Pericardial Disorders overview, none on pericarditis risk — correct abstain for B."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000076-3",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained; judge missing \"outlook information for Neuroacanthocytosis\". Chunks cover PKAN treatment, NBIA research, Neurosarcoidosis outlook — nothing on the asked condition; correct abstain for B."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000056-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Every claim (no proven treatment, supportive care, migraine drugs, daily aspirin, treat stroke risk factors, quit smoking, depression therapy) matches gold and the two CADASIL treatment chunks."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000035-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Lists \"educational and behavioral interventions ... medications\" and early intervention per gold; \"communication therapies, skills training\" come from the ASD overview chunk (same condition). Omits only \"no cure\"."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000118-3",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained; judge missing \"information on outlook or prognosis for Encephalopathy\". Chunks are Encephalitis Lethargica and Rasmussen's Encephalitis outlooks, Encephaloceles overview — correct abstain for B."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000034-2",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained; judge missing \"explicit treatments for stroke and combined treatment details\". Chunks are AF symptoms/prevention, TIA treatment, Arrhythmia treatment — the asked section is absent; correct abstain for C."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NIDDK_0000207-6",
+   "scenario": "C",
+   "outcome": "incorrect",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Presents the Complications chunk as symptoms: \"inability to have sexual intercourse ... problems fathering a child\"; gold's hard lumps, pain, curvature, narrowing are absent. Only ED overlaps."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000237-3",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold: \"very slowly progressing condition with long periods of stability\", severity tied to residual weakness; extra \"rarely life-threatening\" sentence comes from PPS Overview chunk."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000179-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Lists \"valproate, lamotrigine, felbamate, topiramate, and clobazam\", no single medication controls seizures, tolerance may develop — matches gold and NINDS_0000179-2#0."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000036-2",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained; judge missing \"specific treatments for Dysautonomia\". Chunks are Dysautonomia research/outlook plus Lafora, DMC and Partington treatments — the asked section is absent; correct abstain for C."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000021-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Matches gold: \"no specific therapy\", seizure therapy, physical/occupational, communication and behavioral therapies; added speech therapy and special education come from the GARD Angelman overview chunk."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_CDC_0000090-3",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained; judge missing \"diagnostic methods or criteria for Chronic Fatigue Syndrome\". Chunks are CBG deficiency, cramp-fasciculation syndrome, cystic fibrosis, pulmonary fibrosis — correct abstain for B."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NIDDK_0000098-5",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "abstained: judge INSUFFICIENT, missing 'symptoms of Dumping Syndrome'; retrieved chunks cover Orofaciodigital/Eisenmenger syndromes, diarrhea and depression, none about dumping syndrome."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000058-3",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "abstained: judge INSUFFICIENT, missing 'information on prognosis or long-term outlook for Carpal Tunnel Syndrome'; chunks only mention carpal tunnel as a feature of HNPP, MPS I, hand disorders."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000134-3",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "abstained: judge INSUFFICIENT, missing 'explicit information on prognosis or outlook for Gaucher Disease'; Gaucher treatment chunk retrieved but outlook section held out, correctly not inferred."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_SeniorHealth_0000052-24",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Lists levodopa/carbidopa, anticholinergics for 'tremor and rigidity', bromocriptine/pramipexole/ropinirole that 'mimic dopamine', amantadine, DBS; all in Parkinson's chunks and consistent with gold; omits MAO-B and COMT inhibitors."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000216-2",
+   "scenario": "B",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Not abstained in B; 'Penicillin is used to treat neurosyphilis' matches gold's main claim and is copied from AIDS-complications chunk stating 'penicillin to treat neurosyphilis'; sentence names neurosyphilis itself, so not misattributed."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_CDC_0000273-20",
+   "scenario": "A",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "False abstention: gold chunk CDC_0000273-20#0 ('notify public health departments... commercial test... in Hawaii') was retrieved verbatim, yet judge said INSUFFICIENT, missing 'additional specific prevention measures'."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000170-3",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "abstained: judge INSUFFICIENT, missing 'information on outlook for Klippel Feil Syndrome'; chunks are about Klippel-Trenaunay (sibling name) and other syndromes, correctly not conflated."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000100-2",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "abstained: judge INSUFFICIENT, missing 'treatments for Frontotemporal Dementia'; chunks cover Multi-Infarct Dementia, Lewy body, Alzheimer's, Corticobasal Degeneration only."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000128-3",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "abstained: judge INSUFFICIENT, missing 'prognosis or outlook for febrile seizures specifically'; chunks cover FIRES, Dravet, MMPSI, epilepsy overview only."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000196-2",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "abstained: judge INSUFFICIENT, missing 'specific treatments for Mitochondrial Myopathy explicitly stated'; chunks on mitochondrial genetic disorders and complex II/IV deficiency, not the asked page."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_SeniorHealth_0000055-32",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "abstained: judge INSUFFICIENT, missing 'specific treatments for prescription and illicit drug abuse'; chunks only say 'There are different types of treatment' plus narcolepsy, dual diagnosis, club drugs."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000160-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "'no cure for Neuroaxonal dystrophy (INAD)... symptomatic and supportive... pain relief and sedation... physiotherapy' restates gold chunk NINDS_0000160-2#0 faithfully."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000243-2",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "abstained: judge INSUFFICIENT, missing 'treatment information for Prosopagnosia'; chunks cover progeria, prolactinoma, prurigo nodularis, Cushing's (lexical near-matches only)."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_CDC_0000342-6",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "abstained: judge INSUFFICIENT, missing 'diagnostic methods for rabies'; chunks are diagnosis sections of Schnitzler, rheumatic fever, Binswanger's, CJD plus zoonoses overview."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000262-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "'corticosteroids and the anti-epileptic drugs gabapentin, lamotrigine, and carbamazepine... glycerol... recurred in about 40 percent' reproduces gold chunk NINDS_0000262-2#0 verbatim."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_CDC_0000144-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer copies 'most commonly found in people involved in raising sheep' and 'ingestion of food or water contaminated with tapeworm eggs' from gold chunks CDC_0000144-2#0/#1; main risk groups covered."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_SeniorHealth_0000039-11",
+   "scenario": "B",
+   "outcome": "incorrect",
+   "grounded": "yes",
+   "wrong_condition": true,
+   "reason": "Knee Replacement page held out; answer stitches Osteoarthritis/Joint Disorders chunks ('replace only the damaged part of the knee joint'; 'smaller incisions' was about hip) into a surgery description; gold lists pre-surgery treatments: exercises, weight loss, canes, inserts, medicines."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_SeniorHealth_0000001-14",
+   "scenario": "A",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained: judge INSUFFICIENT, missing 'explicit cause or causes of Age-related Macular Degeneration'; gold drusen chunk SeniorHealth_0000001-14#0 was not among retrieved docs (overview/susceptibility/frequency chunks only), so scenario-A answer was missed."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000161-2",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained: judge INSUFFICIENT, missing 'information on treatments for Infantile Refsum Disease'; retrieved only IRD Outlook/Research and adult Refsum chunks, no phytanic-acid diet guidance. Ideal for C."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_B_NINDS_0000054-2",
+   "scenario": "B",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained: judge INSUFFICIENT, missing 'treatment information for Brown-Sequard Syndrome'; retrieved chunks are about the unrelated 'Brown syndrome' eye disorder plus A-T and congenital myopathy. Ideal for B."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NIDDK_0000001-8",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained: judge INSUFFICIENT, missing 'information on treatments for Acromegaly'; retrieved Acromegaly Symptoms/Causes/Exams chunks and unrelated Pseudopelade/Acanthoma treatment chunks. Ideal for C."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000247-2",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained: judge INSUFFICIENT, missing 'information on treatments for Rett Syndrome'; retrieved Rett Frequency/Research/Outlook/Inheritance chunks and an unrelated Reticulohistiocytoma treatment chunk. Ideal for C."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_CDC_0000228-1",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer copies 'exposure to body fluids and tissues or excretions of horses infected with Hendra virus' from gold chunk CDC_0000228-1#0; omits flying-fox and no-human-to-human details but main point covered."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000251-3",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained: judge INSUFFICIENT, missing 'information on prognosis or outlook for Schizencephaly'; retrieved Schizencephaly Research/Symptoms/Treatment chunks plus a Holoprosencephaly Outlook chunk. Ideal for C."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000181-2",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained: judge INSUFFICIENT, missing 'specific treatments for leukodystrophy'; retrieved Leukodystrophy Outlook/Research chunks, an LBSL overview with supportive-treatment text, and unrelated myopathy/bulbar palsy treatments. Ideal for C."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000106-3",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained: judge INSUFFICIENT, missing 'explicit information on prognosis or long-term outlook for diabetic neuropathy'; retrieved Research/Prevention/Symptoms/Treatment chunks only. Ideal for C."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NIDDK_0000088-9",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained: judge INSUFFICIENT, missing 'specific diagnostic methods or tests for celiac disease'; retrieved celiac Symptoms/Treatment chunks, a GHR resource list, and an Intestinal Pseudo-obstruction exams chunk. Ideal for C."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_A_NINDS_0000043-2",
+   "scenario": "A",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "Answer copies gold chunk NINDS_0000043-2#0 verbatim: 'botulinum toxin injections', 'medications (drug therapy)', 'local surgery of the eye muscles or deep brain stimulation surgery'; all gold treatments listed."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000272-3",
+   "scenario": "C",
+   "outcome": "correct",
+   "grounded": "yes",
+   "wrong_condition": false,
+   "reason": "NINDS Outlook held out, but GARD Troyer Symptoms chunks supplied 'Affected people typically have a normal life expectancy' and 'Most people need a wheelchair by their 50s or 60s'; matches gold's progressive-but-normal-lifespan point, omits 'Prognosis varies'."
+  },
+  {
+   "method": "evidence",
+   "question_id": "MQ_C_NINDS_0000031-3",
+   "scenario": "C",
+   "outcome": "abstained",
+   "grounded": "n/a",
+   "wrong_condition": false,
+   "reason": "Abstained: judge INSUFFICIENT, missing 'information on prognosis or long-term outlook for Asperger Syndrome'; retrieved Treatment/Genetic changes/Frequency/Research/Inheritance chunks only. Ideal for C."
+  }
+ ]
+}
