@@ -2,7 +2,9 @@
 seed: 42
 
 retrieval:
-  embedding_model: sentence-transformers/all-MiniLM-L6-v2   # TODO(B): confirm
+  # Team decision 2026-11-04: bge-base replaces MiniLM (gold chunk in top 5 on MedQuAD dev A:
+  # 44/45 vs 41/45, at rank 1: 36 vs 28; results/d_medquad_trial/embedding_comparison.json).
+  embedding_model: BAAI/bge-base-en-v1.5
   top_k: 5
   cache_dir: models/retrieval
   backend: faiss
@@ -17,6 +19,8 @@ llm:
   timeout_seconds: 30
 
 data:
-  dataset: data/processed/dataset.csv
-  corpus: data/processed/corpus.jsonl
+  # Team decision 2026-11-04: MedQuAD knowledge base and A/B/C questions (data/medquad/README.md);
+  # the MTS-Dialog export stays under data/processed for reference.
+  dataset: data/medquad/dataset.csv
+  corpus: data/medquad/corpus.jsonl
   splits: [dev, test]         # tune thresholds / prompts on dev ONLY
