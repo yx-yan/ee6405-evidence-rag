@@ -104,6 +104,9 @@ def test_baseline_errors_are_not_abstentions():
 
 @pytest.fixture
 def llm_config(monkeypatch):
+    # Offline tests must never load a developer's real credential from .env.
+    import dotenv
+    monkeypatch.setattr(dotenv, 'load_dotenv', lambda *a, **k: False)
     monkeypatch.setenv('LLM_API_KEY','test-key-not-a-secret')
     monkeypatch.setenv('LLM_BASE_URL','https://example.invalid/v1')
     monkeypatch.setenv('LLM_MODEL','test-model')
