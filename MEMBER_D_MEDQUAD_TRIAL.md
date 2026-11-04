@@ -79,6 +79,34 @@ So of the four answered B/C questions, two are label errors the audit must catch
 genuine judge failure, one is a bad question; of the three A abstentions, two are prompt-tuning
 targets and one is a retrieval miss.
 
+### Answer grading (preliminary, `results/d_medquad_trial/grading_dev60.json`)
+
+Every answer was graded against the gold answer and the five retrieved chunks by Claude agents
+(one grader per 15 answers; strict rules in the file's note). This is a first pass to show what
+the comparison looks like, not E's metric.
+
+| Method / scenario | correct | partially correct | incorrect | prose refusal | formal abstention |
+|---|---|---|---|---|---|
+| baseline / A (ideal: answer) | 19 | 1 | 0 | 0 | 0 |
+| evidence / A | 17 | 0 | 0 | 0 | 3 |
+| baseline / B (ideal: abstain) | 1* | 2 | 4 | 13 | 0 |
+| evidence / B | 1* | 0 | 1 | 0 | 18 |
+| baseline / C (ideal: abstain) | 3* | 5 | 5 | 7 | 0 |
+| evidence / C | 1* | 0 | 1 | 0 | 18 |
+
+\* "correct" on B/C means the label leaked: the corpus did contain the answer somewhere (see the
+label audit), so these count against the data, not the method.
+
+Reading: on the 40 questions whose answer is not in the corpus, the baseline produced 16
+incorrect or misleading answers (9 incorrect, 7 partially correct, 6 of them drawn from a
+chunk about a different condition) and refused in prose on 20; the evidence method produced 2
+incorrect answers and abstained formally on 36. On the 20 answerable questions the baseline
+answered all 20 (19 correct) and the evidence method answered 17, all correct. Two consequences
+for the team: (1) gpt-4.1-mini with B's prompt refuses in prose half the time when the evidence
+is missing, so E's scorer must detect prose refusals or the baseline is scored as if it had
+hallucinated; (2) the evidence judge's cost is coverage (3/20 over-refusals), which is where
+prompt tuning on dev should go.
+
 ## Label audit (first pass)
 
 _To be filled: per-scenario verdicts for the 60 trial questions._
