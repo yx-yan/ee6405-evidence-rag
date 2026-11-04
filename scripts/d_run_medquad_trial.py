@@ -165,6 +165,9 @@ def main():
     parser.add_argument("--retries", type=int, default=3)
     parser.add_argument("--retrieval-only", action="store_true",
                         help="no LLM calls: write retrieval statistics for the selected questions")
+    parser.add_argument("--backend", choices=["faiss", "numpy"], default=None,
+                        help="override retrieval.backend; numpy is the exact-cosine fallback when "
+                             "faiss-cpu crashes (SIGILL) on this host at this index size")
     args = parser.parse_args()
     if args.per_scenario < 1:
         parser.error("--per-scenario must be positive")
@@ -175,13 +178,13 @@ def main():
         raise ValueError(f"No {args.split} questions in {DATA_DIR / 'dataset.csv'}")
     cache_dir = ROOT / "models" / "retrieval_medquad"
     prime_cache(config, DATA_DIR, cache_dir)
-    searcher = Retriever(DATA_DIR / "corpus.jsonl", config=config, cache_dir=cache_dir)
-    print(f"corpus: {len(searcher.documents)} chunks, cache_hit={searcher.cache_hit}; "
+    searcher = Retriever(DATA_DIR / "corpus.jsonl", config=config, cache_dir=cache_dir, backend=args.backend)
+    print(f"corpus: {len(searcher.documents)} chunks, cache_hit={searcher.cache_hit}, backend={searcher.backend}; "
           f"{len(questions)} {args.split} questions")
     RUNS_DIR.mkdir(parents=True, exist_ok=True)
     if args.retrieval_only:
         report = {"split": args.split, "n": len(questions), "embedding_model": searcher.model_name,
-                  "top_k": config["retrieval"]["top_k"],
+                  "backend": searcher.backend, "top_k": config["retrieval"]["top_k"],
                   "scenarios": retrieval_report(searcher, questions, config["retrieval"]["top_k"])}
         target = RUNS_DIR / f"retrieval_medquad_{args.split}{len(questions)}.json"
         target.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
@@ -208,7 +211,7 @@ def main():
                 time.sleep(2 ** attempt)
 
     summary = {"split": args.split, "per_scenario": args.per_scenario, "embedding_model": searcher.model_name,
-               "top_k": config["retrieval"]["top_k"], "methods": {}}
+               "backend": searcher.backend, "top_k": config["retrieval"]["top_k"], "methods": {}}
     for name in args.methods:
         kwargs = {"search_fn": searcher.search, "generate_fn": generator, "config": config}
         if name == "evidence":
