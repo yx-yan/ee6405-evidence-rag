@@ -1,0 +1,201 @@
+{
+ "note": "Symptom2Disease descriptions over the MedQuAD corpus. gold_answers is the disease label; focus lists the MedQuAD pages for it; gold_doc_ids are those pages' Symptoms chunks (or all chunks).",
+ "parameters": {
+  "seed": 42,
+  "per_label": 10,
+  "test_fraction": 0.5,
+  "corpus": "/home/luming003/ee6405_teamwork/ee6405-evidence-rag/data/medquad/corpus.jsonl"
+ },
+ "counts": {
+  "source_rows": 1200,
+  "distinct_texts": 1153,
+  "items": 240,
+  "labels": 24,
+  "status": {
+   "mapped": 230,
+   "no_page": 10
+  },
+  "split": {
+   "dev": 120,
+   "test": 120
+  }
+ },
+ "pages": {
+  "Acne": {
+   "pages_present": [
+    "Acne"
+   ],
+   "gold_chunks": 2,
+   "descriptions": 46
+  },
+  "Arthritis": {
+   "pages_present": [
+    "Arthritis",
+    "Osteoarthritis",
+    "Rheumatoid Arthritis"
+   ],
+   "gold_chunks": 17,
+   "descriptions": 46
+  },
+  "Bronchial Asthma": {
+   "pages_present": [
+    "Asthma"
+   ],
+   "gold_chunks": 4,
+   "descriptions": 49
+  },
+  "Cervical spondylosis": {
+   "pages_present": [],
+   "gold_chunks": 0,
+   "descriptions": 49
+  },
+  "Chicken pox": {
+   "pages_present": [
+    "Chickenpox"
+   ],
+   "gold_chunks": 2,
+   "descriptions": 49
+  },
+  "Common Cold": {
+   "pages_present": [
+    "Common Cold"
+   ],
+   "gold_chunks": 2,
+   "descriptions": 49
+  },
+  "Dengue": {
+   "pages_present": [
+    "Dengue",
+    "Dengue fever"
+   ],
+   "gold_chunks": 3,
+   "descriptions": 50
+  },
+  "Dimorphic Hemorrhoids": {
+   "pages_present": [
+    "Hemorrhoids"
+   ],
+   "gold_chunks": 1,
+   "descriptions": 41
+  },
+  "Fungal infection": {
+   "pages_present": [
+    "Fungal Infections",
+    "Tinea Infections"
+   ],
+   "gold_chunks": 2,
+   "descriptions": 50
+  },
+  "Hypertension": {
+   "pages_present": [
+    "High Blood Pressure"
+   ],
+   "gold_chunks": 13,
+   "descriptions": 50
+  },
+  "Impetigo": {
+   "pages_present": [
+    "Impetigo"
+   ],
+   "gold_chunks": 1,
+   "descriptions": 50
+  },
+  "Jaundice": {
+   "pages_present": [
+    "Jaundice"
+   ],
+   "gold_chunks": 1,
+   "descriptions": 38
+  },
+  "Malaria": {
+   "pages_present": [
+    "Malaria"
+   ],
+   "gold_chunks": 1,
+   "descriptions": 44
+  },
+  "Migraine": {
+   "pages_present": [
+    "Migraine"
+   ],
+   "gold_chunks": 9,
+   "descriptions": 47
+  },
+  "Pneumonia": {
+   "pages_present": [
+    "Pneumonia"
+   ],
+   "gold_chunks": 3,
+   "descriptions": 47
+  },
+  "Psoriasis": {
+   "pages_present": [
+    "Psoriasis"
+   ],
+   "gold_chunks": 2,
+   "descriptions": 50
+  },
+  "Typhoid": {
+   "pages_present": [
+    "Typhoid Fever"
+   ],
+   "gold_chunks": 2,
+   "descriptions": 50
+  },
+  "Varicose Veins": {
+   "pages_present": [
+    "Varicose Veins"
+   ],
+   "gold_chunks": 2,
+   "descriptions": 50
+  },
+  "allergy": {
+   "pages_present": [
+    "Allergy",
+    "Food Allergy"
+   ],
+   "gold_chunks": 4,
+   "descriptions": 50
+  },
+  "diabetes": {
+   "pages_present": [
+    "Diabetes",
+    "Type 1 Diabetes",
+    "Diabetes Type 1",
+    "Diabetes Type 2"
+   ],
+   "gold_chunks": 21,
+   "descriptions": 50
+  },
+  "drug reaction": {
+   "pages_present": [
+    "Drug Reactions"
+   ],
+   "gold_chunks": 2,
+   "descriptions": 50
+  },
+  "gastroesophageal reflux disease": {
+   "pages_present": [
+    "GERD",
+    "Heartburn"
+   ],
+   "gold_chunks": 3,
+   "descriptions": 48
+  },
+  "peptic ulcer disease": {
+   "pages_present": [
+    "Peptic Ulcer"
+   ],
+   "gold_chunks": 2,
+   "descriptions": 50
+  },
+  "urinary tract infection": {
+   "pages_present": [
+    "Urinary Tract Infections",
+    "Urinary Tract Infection In Adults"
+   ],
+   "gold_chunks": 7,
+   "descriptions": 50
+  }
+ }
+}

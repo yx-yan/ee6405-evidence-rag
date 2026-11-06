@@ -1,0 +1,1312 @@
+{
+ "note": "TREC 2017 LiveQA-Med test questions over the MedQuAD corpus. gold_doc_ids are corpus chunks of MedQuAD answers NLM judged 3-Incomplete or 4-Excellent for the question; reference_only rows have NLM reference answers but no judged answer inside the corpus.",
+ "parameters": {
+  "seed": 42,
+  "test_fraction": 0.5,
+  "good_codes": [
+   "3",
+   "4"
+  ],
+  "corpus": "/home/luming003/ee6405_teamwork/ee6405-evidence-rag/data/medquad/corpus.jsonl"
+ },
+ "counts": {
+  "questions": 104,
+  "good_answers_outside_corpus": 241,
+  "good_answers_in_corpus": 91,
+  "good_answers_missing_pair": 16,
+  "good_answers_text_mismatch": 17,
+  "status": {
+   "judged": 36,
+   "reference_only": 68
+  },
+  "split": {
+   "judged": {
+    "dev": 18,
+    "test": 18
+   },
+   "reference_only": {
+    "dev": 34,
+    "test": 34
+   }
+  }
+ },
+ "judged": [
+  {
+   "question_id": "LQ_TQ1",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0002818_Sec1.txt",
+    "ADAM_0002818_Sec2.txt",
+    "GARD_0004450_Sec1.txt",
+    "GARD_0004450_Sec2.txt",
+    "GARD_0004450_Sec3.txt",
+    "GHR_0000804_Sec1.txt",
+    "GHR_0000804_Sec3.txt",
+    "GHR_0000804_Sec4.txt"
+   ],
+   "gold_doc_ids": [
+    "GARD_0004450-1#0",
+    "GARD_0004450-2#0",
+    "GARD_0004450-2#1",
+    "GARD_0004450-2#2",
+    "GARD_0004450-3#0",
+    "GHR_0000804-1#0",
+    "GHR_0000804-1#1",
+    "GHR_0000804-3#0",
+    "GHR_0000804-3#1",
+    "GHR_0000804-4#0",
+    "GHR_0000804-4#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ4",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0003820_Sec2.txt",
+    "ADAM_0003820_Sec3.txt",
+    "ADAM_0003820_Sec8.txt",
+    "MPlusHealthTopics_0000866_Sec1.txt",
+    "ADAM_0003820_Sec4.txt",
+    "ADAM_0003820_Sec5.txt",
+    "ADAM_0003820_Sec9.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000866-1#0",
+    "MPlus_Health_Topics_0000866-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ5",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000555_Sec2.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ7",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0000455_Sec1.txt",
+    "NHLBI_0000051_Sec2.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ8",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ9",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0003164_Sec2.txt",
+    "GHR_0000435_Sec1.txt",
+    "MPlusHealthTopics_0000855_Sec1.txt",
+    "ADAM_0001766_Sec2.txt",
+    "MPlusHealthTopics_0000855_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "GHR_0000435-1#0",
+    "GHR_0000435-1#1",
+    "GHR_0000435-1#2",
+    "MPlus_Health_Topics_0000855-1#0",
+    "MPlus_Health_Topics_0000855-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ10",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ11",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0002492_Sec2.txt",
+    "ADAM_0002492_Sec9.txt",
+    "MPlusHealthTopics_0000802_Sec1.txt",
+    "NIHSeniorHealth_0000001_Sec10.txt",
+    "ADAM_0002492_Sec2.txt",
+    "GHR_0000027_Sec3.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000802-1#0",
+    "GHR_0000027-3#0",
+    "GHR_0000027-3#1",
+    "GHR_0000027-3#2"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ12",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0002054_Sec1.txt",
+    "ADAM_0002054_Sec2.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ14",
+   "status": "judged",
+   "judged_good_files": [
+    "MPlusHealthTopics_0000404_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000404-1#0",
+    "MPlus_Health_Topics_0000404-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ19",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ21",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0000409_Sec1.txt",
+    "ADAM_0000409_Sec2.txt",
+    "ADAM_0000409_Sec3.txt",
+    "ADAM_0000409_Sec7.txt",
+    "ADAM_0000409_Sec8.txt",
+    "ADAM_0000409_Sec9.txt",
+    "GHR_0000113_Sec1.txt",
+    "GHR_0000113_Sec2.txt",
+    "GHR_0000113_Sec3.txt",
+    "GHR_0000113_Sec4.txt",
+    "GHR_0000113_Sec5.txt"
+   ],
+   "gold_doc_ids": [
+    "GHR_0000113-1#0",
+    "GHR_0000113-1#1",
+    "GHR_0000113-2#0",
+    "GHR_0000113-3#0",
+    "GHR_0000113-3#1",
+    "GHR_0000113-3#2",
+    "GHR_0000113-3#3",
+    "GHR_0000113-4#0",
+    "GHR_0000113-4#1",
+    "GHR_0000113-5#0"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ22",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000254_Sec3.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ24",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0001320_Sec1.txt",
+    "ADAM_0001320_Sec5.txt",
+    "MPlusHealthTopics_0000311_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000311-1#0",
+    "MPlus_Health_Topics_0000311-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ25",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000203_Sec2.txt",
+    "MPlusDrugs_0000203_Sec3.txt",
+    "MPlusDrugs_0000203_Sec6.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ28",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0004167_Sec1.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ29",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0001207_Sec3.txt",
+    "ADAM_0001207_Sec4.txt",
+    "ADAM_0004300_Sec2.txt",
+    "MPlusDrugs_0000719_Sec2.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ33",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ34",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ35",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ41",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0001116_Sec1.txt",
+    "MPlusDrugs_0001116_Sec2.txt",
+    "MPlusDrugs_0001116_Sec3.txt",
+    "MPlusDrugs_0001116_Sec4.txt",
+    "MPlusDrugs_0001116_Sec9.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ43",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0001359_Sec2.txt",
+    "ADAM_0003800_Sec2.txt",
+    "ADAM_0001359_Sec4.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ48",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ49",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0001858_Sec3.txt",
+    "ADAM_0001858_Sec5.txt",
+    "ADAM_0001988_Sec1.txt",
+    "NHLBI_0000059_Sec4.txt",
+    "GHR_0000828_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "GHR_0000828-1#0",
+    "GHR_0000828-1#1",
+    "GHR_0000828-1#2"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ50",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000226_Sec2.txt",
+    "MPlusDrugs_0000226_Sec3.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ51",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0000312_Sec2.txt",
+    "ADAM_0000312_Sec4.txt",
+    "NHLBI_0000008_Sec5.txt",
+    "ADAM_0000682_Sec1.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ53",
+   "status": "judged",
+   "judged_good_files": [
+    "NINDS_0000155_Sec1.txt",
+    "NINDS_0000155_Sec4.txt"
+   ],
+   "gold_doc_ids": [
+    "NINDS_0000155-1#0",
+    "NINDS_0000155-1#1",
+    "NINDS_0000155-4#0"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ54",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0002497_Sec5.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ55",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0001941_Sec9.txt",
+    "ADAM_0001935_Sec2.txt",
+    "ADAM_0001935_Sec8.txt",
+    "ADAM_0001941_Sec2.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ56",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0002261_Sec1.txt",
+    "ADAM_0002261_Sec3.txt",
+    "ADAM_0003614_Sec3.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ59",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0000301_Sec1.txt",
+    "ADAM_0001579_Sec3.txt",
+    "ADAM_0000301_Sec3.txt",
+    "MPlusHealthTopics_0000052_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000052-1#0",
+    "MPlus_Health_Topics_0000052-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ60",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000921_Sec1.txt",
+    "MPlusDrugs_0000921_Sec2.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ61",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000541_Sec1.txt",
+    "MPlusDrugs_0000541_Sec2.txt",
+    "MPlusDrugs_0000541_Sec3.txt",
+    "MPlusDrugs_0000541_Sec6.txt",
+    "MPlusDrugs_0000583_Sec1.txt",
+    "MPlusDrugs_0000583_Sec4.txt",
+    "MPlusDrugs_0000584_Sec9.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ64",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0002369_Sec3.txt",
+    "MPlusDrugs_0001043_Sec3.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ69",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0001259_Sec3.txt",
+    "MPlusHealthTopics_0000293_Sec1.txt",
+    "ADAM_0001259_Sec4.txt",
+    "MPlusHealthTopics_0000293_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000293-1#0",
+    "MPlus_Health_Topics_0000293-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ70",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0000920_Sec2.txt",
+    "ADAM_0000920_Sec8.txt",
+    "ADAM_0000921_Sec2.txt",
+    "ADAM_0004246_Sec1.txt",
+    "MPlusHealthTopics_0000223_Sec1.txt",
+    "ADAM_0000920_Sec2.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000223-1#0",
+    "MPlus_Health_Topics_0000223-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ71",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ72",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000814_Sec5.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ74",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0002239_Sec1.txt",
+    "ADAM_0002239_Sec2.txt",
+    "ADAM_0002239_Sec3.txt",
+    "ADAM_0002239_Sec4.txt",
+    "MPlusDrugs_0000492_Sec9.txt",
+    "MPlusDrugs_0000641_Sec8.txt",
+    "MPlusDrugs_0000642_Sec7.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ76",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ79",
+   "status": "judged",
+   "judged_good_files": [
+    "NIHSeniorHealth_0000062_Sec11.txt",
+    "NIHSeniorHealth_0000062_Sec13.txt",
+    "NIHSeniorHealth_0000062_Sec2.txt",
+    "NIHSeniorHealth_0000062_Sec6.txt",
+    "NINDS_0000148_Sec1.txt",
+    "ADAM_0003556_Sec9.txt",
+    "NIHSeniorHealth_0000062_Sec15.txt",
+    "NIHSeniorHealth_0000062_Sec1.txt",
+    "NIHSeniorHealth_0000062_Sec3.txt"
+   ],
+   "gold_doc_ids": [
+    "SeniorHealth_0000062-2#0",
+    "SeniorHealth_0000062-2#1",
+    "SeniorHealth_0000062-2#2",
+    "NINDS_0000148-1#0",
+    "NINDS_0000148-1#1",
+    "SeniorHealth_0000062-1#0",
+    "SeniorHealth_0000062-1#1",
+    "SeniorHealth_0000062-1#2",
+    "SeniorHealth_0000062-1#3",
+    "SeniorHealth_0000062-1#4",
+    "SeniorHealth_0000062-1#5",
+    "SeniorHealth_0000062-1#6",
+    "SeniorHealth_0000062-1#7",
+    "SeniorHealth_0000062-3#0",
+    "SeniorHealth_0000062-3#1",
+    "SeniorHealth_0000062-3#2",
+    "SeniorHealth_0000062-3#3",
+    "SeniorHealth_0000062-3#4",
+    "SeniorHealth_0000062-3#5"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ81",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0003925_Sec2.txt",
+    "ADAM_0003925_Sec9.txt",
+    "MPlusHealthTopics_0000891_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000891-1#0",
+    "MPlus_Health_Topics_0000891-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ82",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0001177_Sec3.txt",
+    "ADAM_0001177_Sec4.txt",
+    "ADAM_0001177_Sec6.txt",
+    "ADAM_0001177_Sec7.txt",
+    "ADAM_0001177_Sec8.txt",
+    "ADAM_0001177_Sec9.txt",
+    "ADAM_0001191_Sec1.txt",
+    "ADAM_0001177_Sec1.txt",
+    "ADAM_0001177_Sec2.txt",
+    "MPlusHealthTopics_0000266_Sec1.txt",
+    "MPlusHealthTopics_0000272_Sec1.txt",
+    "NIHSeniorHealth_0000015_Sec16.txt",
+    "NIHSeniorHealth_0000015_Sec18.txt",
+    "NIHSeniorHealth_0000015_Sec1.txt",
+    "NIHSeniorHealth_0000015_Sec6.txt",
+    "NIHSeniorHealth_0000015_Sec7.txt",
+    "NIHSeniorHealth_0000015_Sec8.txt",
+    "NIHSeniorHealth_0000015_Sec9.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000266-1#0",
+    "MPlus_Health_Topics_0000266-1#1",
+    "MPlus_Health_Topics_0000272-1#0",
+    "MPlus_Health_Topics_0000272-1#1",
+    "SeniorHealth_0000015-1#0",
+    "SeniorHealth_0000015-1#1",
+    "SeniorHealth_0000015-1#2",
+    "SeniorHealth_0000015-1#3",
+    "SeniorHealth_0000015-1#4",
+    "SeniorHealth_0000015-1#5",
+    "SeniorHealth_0000015-1#6"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ84",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ89",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ90",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ92",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0001637_Sec1.txt",
+    "ADAM_0001637_Sec3.txt",
+    "ADAM_0001637_Sec1.txt",
+    "ADAM_0001637_Sec2.txt",
+    "ADAM_0001637_Sec3.txt",
+    "ADAM_0001637_Sec4.txt",
+    "ADAM_0001637_Sec6.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ95",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0001349_Sec1.txt",
+    "ADAM_0004097_Sec1.txt",
+    "CancerGov_0000007_3_Sec4.txt",
+    "ADAM_0002409_Sec4.txt",
+    "ADAM_0002413_Sec4.txt",
+    "ADAM_0004097_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "CancerGov_0000007_3-4#0",
+    "CancerGov_0000007_3-4#1",
+    "CancerGov_0000007_3-4#2",
+    "CancerGov_0000007_3-4#3",
+    "CancerGov_0000007_3-4#4",
+    "CancerGov_0000007_3-4#5"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ100",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ101",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0001437_Sec1.txt",
+    "MPlusHealthTopics_0000334_Sec1.txt",
+    "ADAM_0001293_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000334-1#0"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ102",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0000288_Sec7.txt",
+    "GHR_0000962_Sec1.txt",
+    "GHR_0000962_Sec2.txt",
+    "GHR_0000962_Sec4.txt",
+    "ADAM_0000288_Sec1.txt",
+    "ADAM_0000288_Sec2.txt",
+    "ADAM_0000288_Sec3.txt",
+    "ADAM_0000288_Sec4.txt",
+    "ADAM_0000288_Sec5.txt",
+    "ADAM_0000288_Sec6.txt",
+    "ADAM_0000288_Sec7.txt",
+    "GHR_0000962_Sec1.txt",
+    "GHR_0000962_Sec3.txt",
+    "GHR_0000962_Sec4.txt"
+   ],
+   "gold_doc_ids": [
+    "GHR_0000962-1#0",
+    "GHR_0000962-1#1",
+    "GHR_0000962-2#0",
+    "GHR_0000962-4#0",
+    "GHR_0000962-3#0",
+    "GHR_0000962-3#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ104",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000553_Sec7.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ2",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0001309_Sec2.txt",
+    "MPlusDrugs_0001309_Sec5.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ3",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ6",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0002332_Sec2.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ13",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ15",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0001588_Sec2.txt",
+    "ADAM_0001588_Sec4.txt",
+    "MPlusHealthTopics_0000360_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000360-1#0"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ16",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ17",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000453_Sec3.txt",
+    "MPlusDrugs_0000453_Sec4.txt",
+    "MPlusDrugs_0000453_Sec1.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ18",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0001324_Sec1.txt",
+    "ADAM_0001315_Sec1.txt",
+    "ADAM_0001315_Sec2.txt",
+    "ADAM_0001315_Sec3.txt",
+    "ADAM_0001324_Sec1.txt",
+    "ADAM_0003812_Sec1.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ20",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ23",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0002428_Sec4.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ26",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000363_Sec6.txt",
+    "MPlusDrugs_0000978_Sec2.txt",
+    "MPlusDrugs_0000978_Sec6.txt",
+    "MPlusDrugs_0000979_Sec2.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ27",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0004200_Sec2.txt",
+    "GHR_0000048_Sec4.txt",
+    "GHR_0000178_Sec4.txt",
+    "GHR_0000391_Sec4.txt",
+    "NINDS_0000098_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "GHR_0000048-4#0"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ30",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0004165_Sec1.txt",
+    "ADAM_0004165_Sec2.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ31",
+   "status": "judged",
+   "judged_good_files": [
+    "MPlusHealthTopics_0000933_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000933-1#0",
+    "MPlus_Health_Topics_0000933-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ32",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000062_Sec2.txt",
+    "MPlusDrugs_0000063_Sec3.txt",
+    "MPlusDrugs_0000097_Sec3.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ36",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0001205_Sec1.txt",
+    "ADAM_0001205_Sec2.txt",
+    "ADAM_0001205_Sec6.txt",
+    "GHR_0000222_Sec1.txt",
+    "GHR_0000222_Sec3.txt",
+    "ADAM_0001205_Sec2.txt",
+    "ADAM_0001205_Sec6.txt",
+    "GHR_0000222_Sec3.txt",
+    "GHR_0000222_Sec4.txt"
+   ],
+   "gold_doc_ids": [
+    "GHR_0000222-1#0",
+    "GHR_0000222-1#1",
+    "GHR_0000222-3#0",
+    "GHR_0000222-3#1",
+    "GHR_0000222-4#0"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ37",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0003556_Sec1.txt",
+    "NIHSeniorHealth_0000062_Sec11.txt",
+    "NIHSeniorHealth_0000062_Sec12.txt",
+    "NIHSeniorHealth_0000062_Sec13.txt",
+    "NIHSeniorHealth_0000062_Sec6.txt",
+    "NIHSeniorHealth_0000062_Sec7.txt",
+    "NINDS_0000148_Sec1.txt",
+    "NIHSeniorHealth_0000062_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "NINDS_0000148-1#0",
+    "NINDS_0000148-1#1",
+    "SeniorHealth_0000062-1#0",
+    "SeniorHealth_0000062-1#1",
+    "SeniorHealth_0000062-1#2",
+    "SeniorHealth_0000062-1#3",
+    "SeniorHealth_0000062-1#4",
+    "SeniorHealth_0000062-1#5",
+    "SeniorHealth_0000062-1#6",
+    "SeniorHealth_0000062-1#7"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ38",
+   "status": "judged",
+   "judged_good_files": [
+    "GHR_0000063_Sec1.txt",
+    "GHR_0000063_Sec2.txt",
+    "GHR_0000063_Sec3.txt",
+    "GHR_0000063_Sec4.txt",
+    "GHR_0000063_Sec5.txt",
+    "NHLBI_0000005_Sec1.txt",
+    "NHLBI_0000005_Sec2.txt",
+    "NINDS_0000024_Sec1.txt",
+    "NINDS_0000024_Sec2.txt",
+    "GHR_0000063_Sec1.txt",
+    "GHR_0000063_Sec3.txt",
+    "GHR_0000063_Sec4.txt",
+    "GHR_0000063_Sec5.txt",
+    "NHLBI_0000005_Sec1.txt",
+    "NHLBI_0000005_Sec2.txt",
+    "NINDS_0000024_Sec1.txt",
+    "NINDS_0000024_Sec2.txt",
+    "NINDS_0000024_Sec4.txt"
+   ],
+   "gold_doc_ids": [
+    "GHR_0000063-1#0",
+    "GHR_0000063-1#1",
+    "GHR_0000063-1#2",
+    "GHR_0000063-2#0",
+    "GHR_0000063-3#0",
+    "GHR_0000063-3#1",
+    "GHR_0000063-3#2",
+    "GHR_0000063-4#0",
+    "GHR_0000063-5#0",
+    "NHLBI_0000005-1#0",
+    "NHLBI_0000005-1#1",
+    "NHLBI_0000005-1#2",
+    "NHLBI_0000005-1#3",
+    "NINDS_0000024-1#0",
+    "NINDS_0000024-1#1",
+    "NINDS_0000024-2#0",
+    "NINDS_0000024-4#0"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ39",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000769_Sec3.txt",
+    "MPlusDrugs_0000769_Sec7.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ40",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000785_Sec10.txt",
+    "MPlusDrugs_0000785_Sec1.txt",
+    "MPlusDrugs_0000785_Sec2.txt",
+    "MPlusDrugs_0000785_Sec3.txt",
+    "MPlusDrugs_0000785_Sec4.txt",
+    "MPlusDrugs_0000785_Sec5.txt",
+    "MPlusDrugs_0000785_Sec6.txt",
+    "MPlusDrugs_0000785_Sec8.txt",
+    "MPlusDrugs_0000785_Sec9.txt",
+    "MPlusDrugs_0000786_Sec1.txt",
+    "MPlusDrugs_0000786_Sec6.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ42",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0001016_Sec2.txt",
+    "MPlusDrugs_0001016_Sec6.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ44",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000186_Sec7.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ45",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ46",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0002245_Sec3.txt",
+    "ADAM_0002245_Sec4.txt",
+    "ADAM_0002245_Sec1.txt",
+    "ADAM_0002245_Sec2.txt",
+    "ADAM_0002245_Sec3.txt",
+    "ADAM_0002245_Sec4.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ47",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ52",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ57",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0003418_Sec3.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ58",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0001812_Sec2.txt",
+    "ADAM_0001812_Sec3.txt",
+    "CDC_0000212_Sec2.txt",
+    "ADAM_0001812_Sec1.txt",
+    "ADAM_0001812_Sec6.txt",
+    "ADAM_0001812_Sec7.txt",
+    "CDC_0000212_Sec2.txt",
+    "CDC_0000212_Sec4.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ62",
+   "status": "reference_only",
+   "judged_good_files": [
+    "MPlusDrugs_0000356_Sec4.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ63",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0004040_Sec10.txt",
+    "ADAM_0004040_Sec1.txt",
+    "ADAM_0004040_Sec3.txt",
+    "ADAM_0004040_Sec5.txt",
+    "ADAM_0004040_Sec8.txt",
+    "GHR_0000996_Sec1.txt",
+    "GHR_0000996_Sec3.txt",
+    "GHR_0000996_Sec4.txt",
+    "GHR_0000996_Sec5.txt",
+    "ADAM_0004040_Sec7.txt",
+    "ADAM_0004040_Sec8.txt",
+    "GHR_0000996_Sec1.txt",
+    "GHR_0000996_Sec5.txt"
+   ],
+   "gold_doc_ids": [
+    "GHR_0000996-1#0",
+    "GHR_0000996-3#0",
+    "GHR_0000996-3#1",
+    "GHR_0000996-4#0",
+    "GHR_0000996-5#0"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ65",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0000783_Sec5.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ66",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0000140_Sec1.txt",
+    "ADAM_0000140_Sec2.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ67",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ68",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0002437_Sec1.txt",
+    "ADAM_0002437_Sec3.txt",
+    "ADAM_0002437_Sec4.txt",
+    "ADAM_0002437_Sec6.txt",
+    "ADAM_0002437_Sec7.txt",
+    "ADAM_0002437_Sec2.txt",
+    "ADAM_0002437_Sec7.txt",
+    "ADAM_0002437_Sec8.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ73",
+   "status": "judged",
+   "judged_good_files": [
+    "GHR_0000563_Sec5.txt",
+    "NINDS_0000171_Sec4.txt"
+   ],
+   "gold_doc_ids": [
+    "GHR_0000563-5#0",
+    "NINDS_0000171-4#0"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ75",
+   "status": "judged",
+   "judged_good_files": [
+    "GHR_0000464_Sec1.txt",
+    "GHR_0000464_Sec2.txt",
+    "GHR_0000464_Sec3.txt",
+    "GHR_0000464_Sec4.txt"
+   ],
+   "gold_doc_ids": [
+    "GHR_0000464-1#0",
+    "GHR_0000464-1#1",
+    "GHR_0000464-2#0",
+    "GHR_0000464-3#0",
+    "GHR_0000464-3#1",
+    "GHR_0000464-4#0",
+    "GHR_0000464-4#1",
+    "GHR_0000464-4#2"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ77",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ78",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0002095_Sec2.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ80",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0000175_Sec1.txt",
+    "ADAM_0002369_Sec4.txt",
+    "ADAM_0002369_Sec5.txt",
+    "MPlusHealthTopics_0000681_Sec1.txt",
+    "ADAM_0002369_Sec3.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000681-1#0",
+    "MPlus_Health_Topics_0000681-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ83",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ85",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0000637_Sec1.txt",
+    "ADAM_0000640_Sec1.txt",
+    "ADAM_0000643_Sec1.txt",
+    "ADAM_0002495_Sec1.txt",
+    "MPlusDrugs_0000189_Sec2.txt",
+    "MPlusDrugs_0000733_Sec1.txt",
+    "MPlusHealthTopics_0000139_Sec1.txt",
+    "ADAM_0000640_Sec1.txt",
+    "ADAM_0000642_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000139-1#0",
+    "MPlus_Health_Topics_0000139-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ86",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0002883_Sec4.txt",
+    "GHR_0000757_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "GHR_0000757-1#0",
+    "GHR_0000757-1#1",
+    "GHR_0000757-1#2"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ87",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0000752_Sec1.txt",
+    "ADAM_0000752_Sec2.txt",
+    "ADAM_0000752_Sec3.txt",
+    "ADAM_0000752_Sec6.txt",
+    "ADAM_0000752_Sec9.txt",
+    "ADAM_0002182_Sec2.txt",
+    "ADAM_0002183_Sec1.txt",
+    "MPlusHealthTopics_0000356_Sec1.txt",
+    "MPlusHealthTopics_0000514_Sec1.txt",
+    "ADAM_0000752_Sec7.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000356-1#0",
+    "MPlus_Health_Topics_0000356-1#1",
+    "MPlus_Health_Topics_0000514-1#0"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ88",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ91",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0000421_Sec1.txt",
+    "ADAM_0002800_Sec1.txt",
+    "MPlusDrugs_0000861_Sec5.txt",
+    "MPlusHealthTopics_0000828_Sec1.txt",
+    "ADAM_0002800_Sec1.txt",
+    "MPlusDrugs_0000860_Sec6.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000828-1#0"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ93",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ94",
+   "status": "reference_only",
+   "judged_good_files": [
+    "ADAM_0003107_Sec6.txt",
+    "ADAM_0003107_Sec2.txt",
+    "ADAM_0003107_Sec8.txt"
+   ],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ96",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0003967_Sec5.txt",
+    "NHLBI_0000058_Sec2.txt",
+    "NIHSeniorHealth_0000033_Sec8.txt",
+    "NHLBI_0000058_Sec1.txt",
+    "NHLBI_0000058_Sec2.txt",
+    "NIHSeniorHealth_0000033_Sec3.txt",
+    "NIHSeniorHealth_0000033_Sec8.txt"
+   ],
+   "gold_doc_ids": [
+    "NHLBI_0000058-1#0",
+    "NHLBI_0000058-1#1",
+    "NHLBI_0000058-1#2",
+    "NHLBI_0000058-1#3",
+    "NHLBI_0000058-1#4",
+    "NHLBI_0000058-1#5",
+    "SeniorHealth_0000033-3#0",
+    "SeniorHealth_0000033-3#1",
+    "SeniorHealth_0000033-3#2",
+    "SeniorHealth_0000033-3#3",
+    "SeniorHealth_0000033-3#4"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ97",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0003751_Sec2.txt",
+    "ADAM_0003751_Sec3.txt",
+    "MPlusHealthTopics_0000527_Sec1.txt",
+    "MPlusHealthTopics_0000909_Sec1.txt",
+    "ADAM_0003751_Sec4.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000527-1#0",
+    "MPlus_Health_Topics_0000527-1#1",
+    "MPlus_Health_Topics_0000909-1#0",
+    "MPlus_Health_Topics_0000909-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ98",
+   "status": "reference_only",
+   "judged_good_files": [],
+   "gold_doc_ids": []
+  },
+  {
+   "question_id": "LQ_TQ99",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0000365_Sec1.txt",
+    "ADAM_0000365_Sec4.txt",
+    "ADAM_0000365_Sec5.txt",
+    "MPlusHealthTopics_0000073_Sec1.txt",
+    "NIDDK_0000182_Sec6.txt",
+    "NIDDK_0000182_Sec8.txt",
+    "ADAM_0000365_Sec4.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000073-1#0",
+    "MPlus_Health_Topics_0000073-1#1"
+   ]
+  },
+  {
+   "question_id": "LQ_TQ103",
+   "status": "judged",
+   "judged_good_files": [
+    "ADAM_0001052_Sec1.txt",
+    "ADAM_0003826_Sec1.txt",
+    "MPlusHealthTopics_0000105_Sec1.txt",
+    "ADAM_0004273_Sec1.txt"
+   ],
+   "gold_doc_ids": [
+    "MPlus_Health_Topics_0000105-1#0",
+    "MPlus_Health_Topics_0000105-1#1"
+   ]
+  }
+ ]
+}
