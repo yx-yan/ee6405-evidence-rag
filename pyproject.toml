@@ -7,7 +7,7 @@ name = "evrag"
 version = "0.1.0"
 description = "Evidence-aware RAG: when should a RAG agent answer, retrieve again, or abstain? — EE6405 NLP group project"
 requires-python = ">=3.10"
-dependencies = ["pyyaml"]
+dependencies = ["pyyaml", "numpy"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

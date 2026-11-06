@@ -1,0 +1,47 @@
+{
+  "split": "dev",
+  "n": 135,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "backend": "numpy",
+  "top_k": 5,
+  "scenarios": {
+    "A": {
+      "n": 45,
+      "same_page_chunks_in_top_k_mean": 4,
+      "questions_with_same_page_chunk": 45,
+      "top1_score_quartiles": [
+        0.495,
+        0.718,
+        0.753,
+        0.79,
+        0.871
+      ],
+      "gold_chunk_in_top_k": 41,
+      "gold_rank_1": 28
+    },
+    "B": {
+      "n": 45,
+      "same_page_chunks_in_top_k_mean": 0,
+      "questions_with_same_page_chunk": 0,
+      "top1_score_quartiles": [
+        0.388,
+        0.56,
+        0.603,
+        0.631,
+        0.746
+      ]
+    },
+    "C": {
+      "n": 45,
+      "same_page_chunks_in_top_k_mean": 2.58,
+      "questions_with_same_page_chunk": 44,
+      "top1_score_quartiles": [
+        0.559,
+        0.644,
+        0.693,
+        0.739,
+        0.879
+      ]
+    }
+  }
+}
