@@ -16,7 +16,7 @@ llm:
   # Provider-neutral adapter for an OpenAI-compatible chat/completions endpoint.
   # Set LLM_BASE_URL and LLM_MODEL in .env after the team chooses a provider.
   base_url: null
-  timeout_seconds: 30
+  timeout_seconds: 120        # a local model can take about 20 s to load on its first call
 
 data:
   # Team decision 2026-11-04: MedQuAD knowledge base and A/B/C questions (data/medquad/README.md);
