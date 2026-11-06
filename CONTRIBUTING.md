@@ -30,10 +30,11 @@
 - Reusable logic lives in `src/evrag/`. Notebooks only run experiments and plot.
 - Notebook names: `<role>_<topic>.ipynb`, e.g. `C_threshold_tuning.ipynb`. Clear large outputs before committing.
 - Docstrings on public functions; no absolute paths (use `evrag.config`).
+- Reports go in `docs/reports/` and their raw outputs in `results/<experiment>/` (see [results/README.md](results/README.md)). Keep the repo root for project-wide files.
 
 ## Data & secrets
 
-- `data/processed/` (the frozen eval set) is committed. `data/raw/`, model weights and `.env` are not.
+- `data/medquad/` (the current eval set) and `data/processed/` (the MTS-Dialog export) are committed. `data/raw/`, model weights and `.env` are not.
 - Never commit API keys.
 
 ## AI tools
