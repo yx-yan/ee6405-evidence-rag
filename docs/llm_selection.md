@@ -2,7 +2,7 @@
 
 **Recommendation: `qwen3:4b-instruct-2507-q4_K_M`, run locally through Ollama.** It passes every gate, gives the best judge and near-best answers, and works with `llm.py` as it is. The team still needs to approve this before `configs/default.yaml` changes.
 
-**Scope:** the model comparison below ran on MTS-Dialog, which the project no longer uses as an evaluation dataset. Qwen was then checked on MedQuAD ([MedQuAD check](#medquad-check)) and all three current datasets were probed for prior knowledge ([Prior knowledge](#prior-knowledge-of-the-three-datasets)). Only Qwen ran on the MedQuAD trial, so the ranking of models is still an MTS-Dialog result.
+**Scope:** the model comparison below ran on MTS-Dialog, which the project no longer uses as an evaluation dataset. Qwen was then checked on MedQuAD ([MedQuAD check](#medquad-check)) and all three current datasets were probed for prior knowledge ([Prior knowledge](#prior-knowledge-of-the-three-datasets)). Only Qwen ran on the MedQuAD trial, so the ranking of models is still an MTS-Dialog result. MTS-Dialog files and `evidence_judge_v1` stay in the repo so this screen can be reproduced.
 
 **We found no evidence that the local models memorised MTS-Dialog.** This does not cover large API models, because `gpt-4.1-mini` was not tested. Picking a small model is therefore not a fix for memorisation, and the report should not claim it is. The reasons to use it are that it is free, pinned to one version and reproducible.
 
