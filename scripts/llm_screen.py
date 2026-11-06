@@ -33,13 +33,14 @@ from evrag import llm
 from evrag.config import PROCESSED_DIR, RESULTS_DIR, ROOT, SEED, load_config
 from evrag.methods.baseline import build_prompt
 from evrag.methods.evidence_rag import (
-    INSUFFICIENT, JUDGE_PROMPT, SUFFICIENT, build_judge_prompt, parse_judgement,
+    INSUFFICIENT, SUFFICIENT, build_judge_prompt, parse_judgement,
 )
 from evrag.retriever import Retriever
 from evrag.schema import RetrievedDoc
 
 OUT_DIR = RESULTS_DIR / "llm_screen"
 SAMPLES = OUT_DIR / "samples.json"
+MTS_JUDGE_PROMPT = ROOT / "configs" / "prompts" / "evidence_judge_v1.txt"   # the screen ran on MTS-Dialog
 OLLAMA_URL = "http://localhost:11434"
 TIMEOUT_SECONDS = 120          # the shared 30 s does not cover loading a model into memory
 PROBES = ["p1", "p2", "p3", "p4a", "p4b"]
@@ -349,7 +350,7 @@ def run(model: str, probes: list[str], limit: int | None, no_think: bool = False
     config = copy.deepcopy(load_config())
     config["llm"]["timeout_seconds"] = TIMEOUT_SECONDS
     samples = json.loads(SAMPLES.read_text(encoding="utf-8"))
-    judge_template = JUDGE_PROMPT.read_text(encoding="utf-8")
+    judge_template = MTS_JUDGE_PROMPT.read_text(encoding="utf-8")
 
     label = f"{model}-no-think" if no_think else model
     chat = ((lambda prompt: chat_no_think(model, prompt, config)) if no_think
