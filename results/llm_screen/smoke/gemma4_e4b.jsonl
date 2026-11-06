@@ -1,0 +1,25 @@
+{"model": "gemma4:e4b", "probe": "p1", "question_id": "QA_MED_D40535AC09AAC0EF", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 4831.787666997116}
+{"model": "gemma4:e4b", "probe": "p1", "question_id": "QA_MED_802B906A18591EAD", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 4464.833250000083}
+{"model": "gemma4:e4b", "probe": "p1", "question_id": "QA_MED_B7A56873CD771F2C", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 4920.995540996955}
+{"model": "gemma4:e4b", "probe": "p1", "question_id": "QA_MED_51D089CDAF0C968C", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 3811.610958997335}
+{"model": "gemma4:e4b", "probe": "p1", "question_id": "QA_MED_5092C37BCBC9F0FB", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 3784.6347500017146}
+{"model": "gemma4:e4b", "probe": "p2", "question_id": "QA_MED_209EB5F20AB018FF", "reply": "5-year-4-month-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-", "error": null, "latency_ms": 1137.9712920024758}
+{"model": "gemma4:e4b", "probe": "p2", "question_id": "QA_MED_20CA98162BA78088", "reply": "\n", "error": null, "latency_ms": 347.5435829968774}
+{"model": "gemma4:e4b", "probe": "p2", "question_id": "QA_MED_A42E815C58F3977F", "reply": "28-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year-year", "error": null, "latency_ms": 918.9643750069081}
+{"model": "gemma4:e4b", "probe": "p2", "question_id": "QA_MED_182DC6B90F1C9CD9", "reply": "\n\nThe patient is a 61-year-old man.", "error": null, "latency_ms": 615.217250000569}
+{"model": "gemma4:e4b", "probe": "p2", "question_id": "QA_MED_B6B1B469EA43C90A", "reply": "11/5/92, 71 y/o RHM. Over the following day his 11/5/92.\n\nOver the following day his 11/5/92.\n\nOver the following day his 11/5/92.\n\nOver the", "error": null, "latency_ms": 1344.8446660040645}
+{"model": "gemma4:e4b", "probe": "p3", "question_id": "QA_MED_00037F39CF870A1F", "reply": "Coronary artery disease, asthma, and congestive heart failure.", "error": null, "latency_ms": 4529.192082998634}
+{"model": "gemma4:e4b", "probe": "p3", "question_id": "QA_MED_5B60F221D4A1852A", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 3957.126374996733}
+{"model": "gemma4:e4b", "probe": "p3", "question_id": "QA_MED_0F8EF3377B30FC47", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 4068.077916999755}
+{"model": "gemma4:e4b", "probe": "p3", "question_id": "QA_MED_87ACB1E183A2B0F7", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 3947.6424160020542}
+{"model": "gemma4:e4b", "probe": "p3", "question_id": "QA_MED_B280279A0EF279D0", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 4053.8212500032387}
+{"model": "gemma4:e4b", "probe": "p4a", "question_id": "QA_MED_D40535AC09AAC0EF", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 5926.138166003511}
+{"model": "gemma4:e4b", "probe": "p4a", "question_id": "QA_MED_802B906A18591EAD", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 5281.078082996828}
+{"model": "gemma4:e4b", "probe": "p4a", "question_id": "QA_MED_B7A56873CD771F2C", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 5493.546915997285}
+{"model": "gemma4:e4b", "probe": "p4a", "question_id": "QA_MED_51D089CDAF0C968C", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 4260.503541998332}
+{"model": "gemma4:e4b", "probe": "p4a", "question_id": "QA_MED_5092C37BCBC9F0FB", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 4648.345167006482}
+{"model": "gemma4:e4b", "probe": "p4b", "question_id": "QA_MED_C2356069E9D1E79C", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 7388.602750004793}
+{"model": "gemma4:e4b", "probe": "p4b", "question_id": "QA_MED_1C49F22F6DE9BD15", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 7479.22275000019}
+{"model": "gemma4:e4b", "probe": "p4b", "question_id": "QA_MED_D8D1790737D57AC4", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 6820.0425839968375}
+{"model": "gemma4:e4b", "probe": "p4b", "question_id": "QA_MED_9F6CB78C09B22A1A", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 5772.277249998297}
+{"model": "gemma4:e4b", "probe": "p4b", "question_id": "QA_MED_B027FEEB60B70F0D", "reply": null, "error": "LLM endpoint returned a malformed or empty completion", "latency_ms": 7702.384459000314}
