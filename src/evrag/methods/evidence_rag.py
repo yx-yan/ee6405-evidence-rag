@@ -18,7 +18,7 @@ from evrag.methods.base import Method, register
 from evrag.methods.baseline import build_prompt
 from evrag.schema import RetrievedDoc
 
-JUDGE_PROMPT = ROOT / "configs" / "prompts" / "evidence_judge_v1.txt"
+JUDGE_PROMPT = ROOT / "configs" / "prompts" / "evidence_judge_v2.txt"   # knowledge-base judge (MedQuAD)
 SUFFICIENT, INSUFFICIENT = "SUFFICIENT", "INSUFFICIENT"
 # Matches the verdict field even when the rest of the reply was cut off by max_tokens.
 _VERDICT_FIELD = re.compile(r'"verdict"\s*:\s*"(SUFFICIENT|INSUFFICIENT)"', re.IGNORECASE)
