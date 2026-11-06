@@ -1,0 +1,29 @@
+{
+  "question_count": 1201,
+  "document_count": 1201,
+  "splits": {
+    "dev": 953,
+    "test": 248
+  },
+  "evidence_field": "context (preserved from A export)",
+  "embedded_fields": [
+    "text"
+  ],
+  "excluded_from_index": [
+    "question",
+    "gold_answer",
+    "dialogue"
+  ],
+  "evidence_labels_ready": false,
+  "limitations": [
+    "scenario contains encounter descriptions, not A/B/C evidence labels",
+    "gold answers were annotated using dialogue and context; context alone may omit facts",
+    "source_doc_id is a provenance link, not a verified gold passage",
+    "global retrieval mixes encounters; patient identity is not resolved",
+    "test questions are not used for prompt or threshold tuning"
+  ],
+  "source_sha256": {
+    "corpus.jsonl": "c478d611d6e0b19894cd700f118831084fb3bc39015d4ebe9e875ef2523db71a",
+    "final_annotated_dataset.csv": "334bbc2b2e4f3a1e5c1e3547b6b88db5eb3722e50a389bcab3f8796de6e81ef8"
+  }
+}

@@ -1,0 +1,428 @@
+[
+ {
+  "question": "I have been dizzy and had diarrhea for two days. What could this be and what can I take for it?",
+  "baseline": {
+   "answer": "Dizziness can be caused by a sudden drop in blood pressure, dehydration, medicines, ear problems, or motion sickness. Diarrhea involves frequent, loose, watery stools and can be caused by infections, medicines, food intolerances, or other diseases. Both symptoms may be related to dehydration. You should replace lost fluids, salts, and minerals by drinking small amounts of clear liquids to avoid dehydration. If diarrhea lasts more than two days, or if you have severe symptoms like strong abdominal pain, fever, blood in stools, or signs of dehydration, see your health care provider.",
+   "abstained": false,
+   "top5": [
+    [
+     "MPlus_Health_Topics_0000295-1#0",
+     0.54,
+     "Dizziness and Vertigo — Overview"
+    ],
+    [
+     "SeniorHealth_0000006-9#0",
+     0.53,
+     "Balance Problems — Symptoms"
+    ],
+    [
+     "MPlus_Health_Topics_0000640-1#0",
+     0.53,
+     "Nausea and Vomiting — Overview"
+    ],
+    [
+     "NIDDK_0000127-10#0",
+     0.52,
+     "What I need to know about Diarrhea — Considerations"
+    ],
+    [
+     "MPlus_Health_Topics_0000282-1#0",
+     0.52,
+     "Diarrhea — Overview"
+    ]
+   ],
+   "judge": null
+  },
+  "evidence": {
+   "answer": null,
+   "abstained": true,
+   "top5": [
+    [
+     "MPlus_Health_Topics_0000295-1#0",
+     0.54,
+     "Dizziness and Vertigo — Overview"
+    ],
+    [
+     "SeniorHealth_0000006-9#0",
+     0.53,
+     "Balance Problems — Symptoms"
+    ],
+    [
+     "MPlus_Health_Topics_0000640-1#0",
+     0.53,
+     "Nausea and Vomiting — Overview"
+    ],
+    [
+     "NIDDK_0000127-10#0",
+     0.52,
+     "What I need to know about Diarrhea — Considerations"
+    ],
+    [
+     "MPlus_Health_Topics_0000282-1#0",
+     0.52,
+     "Diarrhea — Overview"
+    ]
+   ],
+   "judge": {
+    "verdict": "INSUFFICIENT",
+    "snippet": "",
+    "missing": "cause of dizziness with diarrhea and treatment options"
+   }
+  }
+ },
+ {
+  "question": "My right hand shakes when I hold a cup. Could this be Parkinson's disease?",
+  "baseline": {
+   "answer": "Shaking or tremor, especially when at rest, is a common early symptom of Parkinson's disease. Parkinson's typically begins with a tremor in one hand and may also include stiffness, slow movement, and impaired balance. However, not all tremors are due to Parkinson's disease, so a medical evaluation is needed for an accurate diagnosis.",
+   "abstained": false,
+   "top5": [
+    [
+     "GHR_0000773-1#0",
+     0.6,
+     "Parkinson disease — Overview"
+    ],
+    [
+     "NINDS_0000223-1#0",
+     0.6,
+     "Parkinson's Disease — Overview"
+    ],
+    [
+     "GARD_0004740-1#0",
+     0.6,
+     "Parkinson disease — Overview"
+    ],
+    [
+     "SeniorHealth_0000052-3#3",
+     0.6,
+     "Parkinson's Disease — Symptoms"
+    ],
+    [
+     "SeniorHealth_0000052-9#0",
+     0.59,
+     "Parkinson's Disease — Symptoms"
+    ]
+   ],
+   "judge": null
+  },
+  "evidence": {
+   "answer": null,
+   "abstained": true,
+   "top5": [
+    [
+     "GHR_0000773-1#0",
+     0.6,
+     "Parkinson disease — Overview"
+    ],
+    [
+     "NINDS_0000223-1#0",
+     0.6,
+     "Parkinson's Disease — Overview"
+    ],
+    [
+     "GARD_0004740-1#0",
+     0.6,
+     "Parkinson disease — Overview"
+    ],
+    [
+     "SeniorHealth_0000052-3#3",
+     0.6,
+     "Parkinson's Disease — Symptoms"
+    ],
+    [
+     "SeniorHealth_0000052-9#0",
+     0.59,
+     "Parkinson's Disease — Symptoms"
+    ]
+   ],
+   "judge": {
+    "verdict": "INSUFFICIENT",
+    "snippet": "",
+    "missing": "explicit link between hand shaking when holding objects and Parkinson's disease symptoms"
+   }
+  }
+ },
+ {
+  "question": "What are the warning signs of a stroke?",
+  "baseline": {
+   "answer": "The warning signs of a stroke include sudden numbness or weakness of the face, arm, or leg, especially on one side of the body; sudden confusion, trouble speaking or understanding; sudden trouble seeing in one or both eyes; sudden trouble walking, dizziness, loss of balance or coordination; and sudden severe headache with no known cause. Other danger signs may include double vision, drowsiness, and nausea or vomiting.",
+   "abstained": false,
+   "top5": [
+    [
+     "SeniorHealth_0000066-3#1",
+     0.79,
+     "Stroke — Symptoms"
+    ],
+    [
+     "SeniorHealth_0000066-15#0",
+     0.75,
+     "Stroke — Symptoms"
+    ],
+    [
+     "SeniorHealth_0000066-19#2",
+     0.74,
+     "Stroke — Susceptibility"
+    ],
+    [
+     "SeniorHealth_0000066-3#0",
+     0.68,
+     "Stroke — Symptoms"
+    ],
+    [
+     "NHLBI_0000124-7#0",
+     0.65,
+     "Stroke — Exams and tests"
+    ]
+   ],
+   "judge": null
+  },
+  "evidence": {
+   "answer": "The warning signs of a stroke include sudden numbness or weakness of the face, arm, or leg, especially on one side of the body; sudden confusion, trouble speaking or understanding; sudden trouble seeing in one or both eyes; sudden trouble walking, dizziness, loss of balance or coordination; and sudden severe headache with no known cause. Other danger signs may include double vision, drowsiness, and nausea or vomiting.",
+   "abstained": false,
+   "top5": [
+    [
+     "SeniorHealth_0000066-3#1",
+     0.79,
+     "Stroke — Symptoms"
+    ],
+    [
+     "SeniorHealth_0000066-15#0",
+     0.75,
+     "Stroke — Symptoms"
+    ],
+    [
+     "SeniorHealth_0000066-19#2",
+     0.74,
+     "Stroke — Susceptibility"
+    ],
+    [
+     "SeniorHealth_0000066-3#0",
+     0.68,
+     "Stroke — Symptoms"
+    ],
+    [
+     "NHLBI_0000124-7#0",
+     0.65,
+     "Stroke — Exams and tests"
+    ]
+   ],
+   "judge": {
+    "verdict": "SUFFICIENT",
+    "snippet": "sudden numbness or weakness of the face, arm, or leg, especially on one side of the body - sudden confusion, trouble speaking or understanding - sudden trouble seeing in one or both eyes - sudden trouble walking, dizziness, loss of balance or coordination - sudden severe headache with no known cause",
+    "missing": ""
+   }
+  }
+ },
+ {
+  "question": "I get a very bad headache with flashing lights before it starts. What is it and how is it treated?",
+  "baseline": {
+   "answer": "You likely have a migraine, which is characterized by intense pulsing or throbbing pain in one area of the head and may be preceded by an aura such as flashing lights. Migraines often include symptoms like nausea, vomiting, and sensitivity to light and sound. Treatment typically involves managing triggers and may include medications prescribed by a healthcare provider.",
+   "abstained": false,
+   "top5": [
+    [
+     "NINDS_0000194-1#0",
+     0.6,
+     "Migraine — Overview"
+    ],
+    [
+     "NINDS_0000143-3#0",
+     0.57,
+     "Headache — Outlook"
+    ],
+    [
+     "MPlus_Health_Topics_0000426-1#1",
+     0.55,
+     "Headache — Overview"
+    ],
+    [
+     "NINDS_0000262-1#0",
+     0.52,
+     "SUNCT Headache — Overview"
+    ],
+    [
+     "GHR_0000351-1#0",
+     0.52,
+     "familial hemiplegic migraine — Overview"
+    ]
+   ],
+   "judge": null
+  },
+  "evidence": {
+   "answer": null,
+   "abstained": true,
+   "top5": [
+    [
+     "NINDS_0000194-1#0",
+     0.6,
+     "Migraine — Overview"
+    ],
+    [
+     "NINDS_0000143-3#0",
+     0.57,
+     "Headache — Outlook"
+    ],
+    [
+     "MPlus_Health_Topics_0000426-1#1",
+     0.55,
+     "Headache — Overview"
+    ],
+    [
+     "NINDS_0000262-1#0",
+     0.52,
+     "SUNCT Headache — Overview"
+    ],
+    [
+     "GHR_0000351-1#0",
+     0.52,
+     "familial hemiplegic migraine — Overview"
+    ]
+   ],
+   "judge": {
+    "verdict": "INSUFFICIENT",
+    "snippet": "",
+    "missing": "identification of the headache type and treatment information"
+   }
+  }
+ },
+ {
+  "question": "I'm 60 and my knees hurt when I climb stairs. What should I do?",
+  "baseline": {
+   "answer": "You should try exercises such as brisk walking or low-impact aerobics to keep your joints limber and maintain mobility. Weight control is important if you are overweight, as losing weight can reduce stress on your knee joints. Rest and relief from stress on the joints are also part of treatment. A healthy diet and regular exercise can help reduce weight and improve symptoms.",
+   "abstained": false,
+   "top5": [
+    [
+     "SeniorHealth_0000049-4#2",
+     0.52,
+     "Osteoarthritis — Treatment"
+    ],
+    [
+     "MPlus_Health_Topics_0000473-1#0",
+     0.5,
+     "Hip Injuries and Disorders — Overview"
+    ],
+    [
+     "MPlus_Health_Topics_0000845-1#0",
+     0.5,
+     "Sports Injuries — Overview"
+    ],
+    [
+     "MPlus_Health_Topics_0000543-1#0",
+     0.5,
+     "Knee Injuries and Disorders — Overview"
+    ],
+    [
+     "SeniorHealth_0000049-1#2",
+     0.48,
+     "Osteoarthritis — Overview"
+    ]
+   ],
+   "judge": null
+  },
+  "evidence": {
+   "answer": null,
+   "abstained": true,
+   "top5": [
+    [
+     "SeniorHealth_0000049-4#2",
+     0.52,
+     "Osteoarthritis — Treatment"
+    ],
+    [
+     "MPlus_Health_Topics_0000473-1#0",
+     0.5,
+     "Hip Injuries and Disorders — Overview"
+    ],
+    [
+     "MPlus_Health_Topics_0000845-1#0",
+     0.5,
+     "Sports Injuries — Overview"
+    ],
+    [
+     "MPlus_Health_Topics_0000543-1#0",
+     0.5,
+     "Knee Injuries and Disorders — Overview"
+    ],
+    [
+     "SeniorHealth_0000049-1#2",
+     0.48,
+     "Osteoarthritis — Overview"
+    ]
+   ],
+   "judge": {
+    "verdict": "INSUFFICIENT",
+    "snippet": "",
+    "missing": "specific treatment or management advice for knee pain when climbing stairs"
+   }
+  }
+ },
+ {
+  "question": "My child has a fever and a rash on the face that is spreading down. What could it be?",
+  "baseline": {
+   "answer": "The fever and spreading rash on the face could be impetigo, a bacterial skin infection common in children that starts with red or pimple-like sores on the face and can spread. Another possibility is atopic dermatitis (eczema), which causes red, itchy rashes that can occur on the face and other parts of the body. If the rash is accompanied by other symptoms like sore throat or joint pain, rheumatic fever could also be considered.",
+   "abstained": false,
+   "top5": [
+    [
+     "GHR_0000084-1#0",
+     0.6,
+     "atopic dermatitis — Overview"
+    ],
+    [
+     "GARD_0005360-2#0",
+     0.58,
+     "Rheumatic Fever — Symptoms"
+    ],
+    [
+     "MPlus_Health_Topics_0000316-1#0",
+     0.57,
+     "Eczema — Overview"
+    ],
+    [
+     "GARD_0006403-2#0",
+     0.57,
+     "WaterhouseFriderichsen syndrome — Symptoms"
+    ],
+    [
+     "MPlus_Health_Topics_0000503-1#0",
+     0.56,
+     "Impetigo — Overview"
+    ]
+   ],
+   "judge": null
+  },
+  "evidence": {
+   "answer": null,
+   "abstained": true,
+   "top5": [
+    [
+     "GHR_0000084-1#0",
+     0.6,
+     "atopic dermatitis — Overview"
+    ],
+    [
+     "GARD_0005360-2#0",
+     0.58,
+     "Rheumatic Fever — Symptoms"
+    ],
+    [
+     "MPlus_Health_Topics_0000316-1#0",
+     0.57,
+     "Eczema — Overview"
+    ],
+    [
+     "GARD_0006403-2#0",
+     0.57,
+     "WaterhouseFriderichsen syndrome — Symptoms"
+    ],
+    [
+     "MPlus_Health_Topics_0000503-1#0",
+     0.56,
+     "Impetigo — Overview"
+    ]
+   ],
+   "judge": {
+    "verdict": "INSUFFICIENT",
+    "snippet": "",
+    "missing": "explicit link between fever, spreading facial rash, and specific diagnosis"
+   }
+  }
+ }
+]

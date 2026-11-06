@@ -10,12 +10,13 @@ import argparse
 import csv
 import json
 
-from evrag.config import PROCESSED_DIR, RUNS_DIR
+from evrag.config import ROOT, RUNS_DIR, load_config
 from evrag.methods import get_method
 
 
 def load_questions(split: str, limit: int | None = None) -> list[dict]:
-    with open(PROCESSED_DIR / "dataset.csv") as f:
+    # The question set comes from configs/default.yaml (data.dataset), like the corpus does.
+    with open(ROOT / load_config()["data"]["dataset"], encoding="utf-8", newline="") as f:
         rows = [r for r in csv.DictReader(f) if r["split"] == split]
     return rows[:limit] if limit else rows
 
