@@ -1,7 +1,7 @@
 # MedQuAD trial for the evidence-aware RAG project (draft by D, 2026-11-04)
 
-**Status: proposal for the team, not a decision.** Data is A's area; this branch (`d-medquad-trial`)
-changes nothing under `data/processed/` and is not merged. Everything here can be rebuilt with two
+**Status: trial report. The team adopted MedQuAD on 2026-11-04 (see `configs/default.yaml`).** Data is
+A's area; this work changes nothing under `data/processed/`. Everything here can be rebuilt with two
 commands (see `data/medquad/README.md`).
 
 ## Why

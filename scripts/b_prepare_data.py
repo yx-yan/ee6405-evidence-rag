@@ -67,7 +67,7 @@ def prepare(source_dir: Path, output_dir: Path) -> dict:
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--source-dir',type=Path,default=ROOT/'data')
+    p.add_argument('--source-dir',type=Path,default=ROOT/'data/mts_dialog')
     p.add_argument('--output-dir',type=Path,default=ROOT/'data/processed')
     args=p.parse_args()
     print(json.dumps(prepare(args.source_dir,args.output_dir),indent=2,ensure_ascii=False))
