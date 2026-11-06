@@ -1,4 +1,4 @@
-> 更新 / Update: MiniLM and live OpenAI validation are now recorded in `MEMBER_B_VALIDATION_ZH_EN.md`. Earlier no-API results below describe the initial delivery.
+> 更新 / Update: MiniLM and live OpenAI validation are now recorded in `docs/reports/b_live_validation.md`. Earlier no-API results below describe the initial delivery.
 
 # Member B — RAG 实现与运行说明 / Implementation & Run Guide
 
@@ -73,7 +73,7 @@ Cosine similarity is a ranking score, not a correctness probability. C should tu
 
 ## 4. 数据适配与限制 / Data adaptation and limitations
 
-- `data/corpus.jsonl` 的 `id/context` 映射成 `doc_id/text`；只索引 context。
+- `data/mts_dialog/corpus.jsonl` 的 `id/context` 映射成 `doc_id/text`；只索引 context。
 - 从 `final_annotated_dataset.csv` 补回精简表中缺失的 `question`；`gold_answer` 转为 JSON 数组 `gold_answers`。
 - 不将问题、标准答案、dialogue 或 scenario 放进向量索引。
 - 保留临床描述 `scenario`，另加 `evidence_scenario_status=unlabelled`。
@@ -215,6 +215,6 @@ python -m pytest -q
 
 Resolve overlapping teammate changes manually. Do not overwrite remote history. Retain the shareable chat link for the team's AI disclosure and commit through your own account after reviewing and understanding the implementation.
 
-**可以准确表述的贡献：**我实现了共享的检索/生成接口和 Standard RAG，完成了数据格式适配、自动化测试及离线集成检查。最新 MiniLM 与真实 LLM 验证结果见 MEMBER_B_VALIDATION_ZH_EN.md；正式评测仍依赖经审核的数据。
+**可以准确表述的贡献：**我实现了共享的检索/生成接口和 Standard RAG，完成了数据格式适配、自动化测试及离线集成检查。最新 MiniLM 与真实 LLM 验证结果见 docs/reports/b_live_validation.md；正式评测仍依赖经审核的数据。
 
-**Accurate contribution statement:** I implemented the shared retrieval/generation APIs and Standard RAG baseline, adapted the data format, and completed automated tests plus an offline integration check. See MEMBER_B_VALIDATION_ZH_EN.md for current MiniLM and live LLM results; formal evaluation still requires audited evidence data.
+**Accurate contribution statement:** I implemented the shared retrieval/generation APIs and Standard RAG baseline, adapted the data format, and completed automated tests plus an offline integration check. See docs/reports/b_live_validation.md for current MiniLM and live LLM results; formal evaluation still requires audited evidence data.

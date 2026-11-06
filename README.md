@@ -16,7 +16,7 @@ We compare three response policies on one shared retriever and one LLM:
 | 2 | Threshold RAG | abstain if relevance score < threshold (tuned on dev) | C |
 | 3 | Evidence-aware RAG | LLM judges evidence sufficiency → answer / abstain (optional one retry) | D |
 
-Data (A): SQuAD 2.0-based fixed corpus, three evidence scenarios — A sufficient, B missing, C distracting.
+Data (A): MedQuAD (knowledge base and questions in three evidence scenarios — A sufficient, B missing, C distracting), plus TREC 2017 LiveQA-Med and Symptom2Disease. See [data/README.md](data/README.md).
 Evaluation & demo (E): answer correctness, selective accuracy, coverage, abstention recall, over-refusal, unsupported-answer rate, latency.
 
 ## Setup
@@ -40,11 +40,15 @@ streamlit run app/app.py
 
 ```
 configs/default.yaml          frozen shared settings (embeddings, top_k, LLM, seed)
-data/processed/               dataset.csv + corpus.jsonl (committed, frozen after Week 1)
+data/                         datasets; see data/README.md
 src/evrag/schema.py           RAGOutput — the interface every method returns
 src/evrag/methods/            base.py (protocol + registry), baseline / threshold_rag / evidence_rag
 src/evrag/retriever.py, llm.py  shared backend
 src/evrag/evaluation/         run_experiment → results/runs/*.jsonl → metrics → plots
+scripts/                      one-off validation and screening runs (b_*, d_*, llm_screen, dataset_knowledge)
+notebooks/                    <role>_<topic>.ipynb
+results/                      raw outputs per experiment; see results/README.md
+docs/                         roles, timeline, proposal, LLM selection; member reports in docs/reports/
 app/app.py                    Streamlit demo
 ```
 
