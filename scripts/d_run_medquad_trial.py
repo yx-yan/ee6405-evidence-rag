@@ -1,13 +1,15 @@
-"""Trial of baseline and evidence on the MedQuAD A/B/C draft, leaving data/processed untouched. Owner: D.
+"""Trial of baseline and evidence on a question set over the shared corpus (configs/default.yaml). Owner: D.
 
     python scripts/d_run_medquad_trial.py --split dev --per-scenario 20 --methods baseline evidence
+    python scripts/d_run_medquad_trial.py --dataset data/liveqa/dataset.csv --split dev --per-scenario 60
     python scripts/d_run_medquad_trial.py --split dev --per-scenario 60 --retrieval-only   # no LLM calls
 
-Reads data/medquad/{corpus.jsonl,dataset.csv} (built by `python -m evrag.data.medquad`), injects a
-retriever over that corpus into each method, and writes
-results/runs/<method>_medquad_<split><n>.jsonl in the run_experiment record format plus
-results/runs/medquad_trial_<split><n>_summary.json (counts by scenario, token usage, cost estimate).
-LLM errors are retried a few times and otherwise abort the run; they are never written as abstentions.
+The corpus comes from the config (data.corpus); --dataset picks the question file (default: the
+configured data.dataset). Any dataset in the project schema works: MedQuAD A/B/C, LiveQA-Med (scenario
+R) or Symptom2Disease (scenario S). Writes results/runs/<method>_<tag>_<split><n>.jsonl in the
+run_experiment record format plus results/runs/<tag>_trial_<split><n>_summary.json (counts by scenario,
+token usage, cost estimate); <tag> is the dataset's folder name. LLM errors are retried a few times and
+otherwise abort the run; they are never written as abstentions.
 """
 import argparse
 import csv
@@ -23,30 +25,29 @@ from evrag.llm import LLMCallError, generate
 from evrag.methods import get_method
 from evrag.retriever import Retriever
 
-DATA_DIR = ROOT / "data" / "medquad"
 # USD per million input / output tokens, OpenAI list price (2025); only for a rough estimate.
 PRICE_PER_M = {"gpt-4.1-mini": (0.40, 1.60), "gpt-4.1": (2.00, 8.00), "gpt-4o-mini": (0.15, 0.60)}
 
 
-def load_questions(split, per_scenario):
-    with (DATA_DIR / "dataset.csv").open(encoding="utf-8", newline="") as f:
+def load_questions(dataset, split, per_scenario):
+    with Path(dataset).open(encoding="utf-8", newline="") as f:
         rows = [r for r in csv.DictReader(f) if r["split"] == split]
-    picked, taken = [], {"A": 0, "B": 0, "C": 0}
+    picked, taken = [], {}
     for row in rows:
-        if taken[row["scenario"]] < per_scenario:
+        if taken.get(row["scenario"], 0) < per_scenario:
             picked.append(row)
-            taken[row["scenario"]] += 1
+            taken[row["scenario"]] = taken.get(row["scenario"], 0) + 1
     return picked
 
 
-def prime_cache(config, data_dir, cache_dir):
-    """Embed every MedQuAD chunk once (corpus_all.jsonl, keyed by text) and write B's cache file
-    for the current corpus.jsonl from it, so rebuilding the hold-outs never re-embeds 30k chunks."""
+def prime_cache(config, corpus_path, cache_dir):
+    """Embed every chunk once (corpus_all.jsonl next to the corpus, keyed by text) and write B's cache
+    file for the current corpus from it, so rebuilding the hold-outs never re-embeds 30k chunks."""
     import hashlib
     import numpy as np
     from evrag.retriever import load_corpus
 
-    everything = data_dir / "corpus_all.jsonl"
+    everything = corpus_path.parent / "corpus_all.jsonl"
     if not everything.exists():
         return
     model_name = config["retrieval"]["embedding_model"]
@@ -75,7 +76,7 @@ def prime_cache(config, data_dir, cache_dir):
             keys.append(digest(text))
         vectors = new if vectors is None else np.vstack([vectors, new])
         np.savez(master, model=np.array(model_name), keys=np.array(keys), vectors=vectors)
-    documents = load_corpus(data_dir / "corpus.jsonl")
+    documents = load_corpus(corpus_path)
     fingerprint = hashlib.sha256(json.dumps({"format": 1, "model": model_name, "documents": documents},
                                             sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     target = cache_dir / f"{fingerprint}.npy"
@@ -89,30 +90,35 @@ def chunk_focus(text):
     return text.split("\n", 1)[0].rsplit(" — ", 1)[0].strip().lower()
 
 
+def focus_names(row):
+    """A question's page name(s): 'focus' may hold several names separated by ';'."""
+    return [f.strip().lower() for f in (row.get("focus") or "").split(";") if f.strip()]
+
+
 def retrieval_report(searcher, questions, top_k):
-    """Retrieval-only statistics per scenario, no LLM calls: gold rank for A, what B/C retrieve,
-    and top-1 score quartiles (useful for tuning C's threshold)."""
+    """Retrieval-only statistics per scenario, no LLM calls: gold rank where gold chunks exist, whether
+    chunks of the question's page(s) are retrieved, and top-1 score quartiles (for C's threshold)."""
     report = {}
-    for scenario in ("A", "B", "C"):
+    for scenario in sorted({q["scenario"] for q in questions}):
         rows = [q for q in questions if q["scenario"] == scenario]
-        if not rows:
-            continue
-        ranks, same_focus, top1 = [], [], []
+        ranks, same_focus, top1, with_gold = [], [], [], 0
         for q in rows:
             docs = searcher.search(q["question"], top_k)
-            gold = set(json.loads(q["gold_doc_ids"]))
-            ranks.append(next((i for i, d in enumerate(docs, 1) if d.doc_id in gold), None))
-            same_focus.append(sum(chunk_focus(d.text) == q["focus"].lower() for d in docs))
+            gold = set(json.loads(q["gold_doc_ids"] or "[]"))
+            if gold:
+                with_gold += 1
+                ranks.append(next((i for i, d in enumerate(docs, 1) if d.doc_id in gold), None))
+            same_focus.append(sum(chunk_focus(d.text) in focus_names(q) for d in docs))
             top1.append(docs[0].score if docs else 0.0)
         scores = sorted(top1)
         entry = {"n": len(rows),
                  "same_page_chunks_in_top_k_mean": round(statistics.mean(same_focus), 2),
                  "questions_with_same_page_chunk": sum(s > 0 for s in same_focus),
                  "top1_score_quartiles": [round(scores[int(p * (len(scores) - 1))], 3) for p in (0, .25, .5, .75, 1)]}
-        if scenario == "A":
+        if with_gold:
             found = [r for r in ranks if r]
-            entry["gold_chunk_in_top_k"] = len(found)
-            entry["gold_rank_1"] = sum(r == 1 for r in found)
+            entry.update({"questions_with_gold": with_gold, "gold_chunk_in_top_k": len(found),
+                          "gold_rank_1": sum(r == 1 for r in found)})
         report[scenario] = entry
     return report
 
@@ -130,7 +136,7 @@ def estimate_cost(calls):
 def summarise(records, questions, calls):
     by_id = {q["question_id"]: q for q in questions}
     out = {}
-    for scenario in ("A", "B", "C"):
+    for scenario in sorted({q["scenario"] for q in questions}):
         rows = [r for r in records if by_id[r["question_id"]]["scenario"] == scenario]
         if not rows:
             continue
@@ -139,12 +145,11 @@ def summarise(records, questions, calls):
                  "abstained": sum(r["abstained"] for r in rows),
                  "latency_ms_mean": round(statistics.mean(latency), 1),
                  "latency_ms_p95": round(latency[min(len(latency) - 1, int(0.95 * len(latency)))], 1)}
-        if scenario == "A":
-            hits = 0
-            for r in rows:
-                gold = set(json.loads(by_id[r["question_id"]]["gold_doc_ids"]))
-                hits += any(d["doc_id"] in gold for d in r["retrieved_docs"])
-            entry["gold_chunk_in_top_k"] = hits
+        with_gold = [r for r in rows if json.loads(by_id[r["question_id"]]["gold_doc_ids"] or "[]")]
+        if with_gold:
+            hits = sum(any(d["doc_id"] in set(json.loads(by_id[r["question_id"]]["gold_doc_ids"]))
+                           for d in r["retrieved_docs"]) for r in with_gold)
+            entry.update({"questions_with_gold": len(with_gold), "gold_chunk_in_top_k": hits})
         if rows and "verdict" in rows[0]["meta"]:
             entry["verdicts"] = dict(sorted(
                 ((v, sum(r["meta"]["verdict"] == v for r in rows)) for v in {r["meta"]["verdict"] for r in rows})))
@@ -158,6 +163,7 @@ def summarise(records, questions, calls):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--dataset", type=Path, default=None, help="question CSV; default: the configured data.dataset")
     parser.add_argument("--split", default="dev", choices=["dev", "test"])
     parser.add_argument("--per-scenario", type=int, default=20)
     parser.add_argument("--methods", nargs="+", default=["baseline", "evidence"])
@@ -173,20 +179,24 @@ def main():
         parser.error("--per-scenario must be positive")
 
     config = load_config()
-    questions = load_questions(args.split, args.per_scenario)
+    dataset = (ROOT / config["data"]["dataset"]) if args.dataset is None else args.dataset.resolve()
+    corpus_path = ROOT / config["data"]["corpus"]
+    tag = dataset.parent.name
+    questions = load_questions(dataset, args.split, args.per_scenario)
     if not questions:
-        raise ValueError(f"No {args.split} questions in {DATA_DIR / 'dataset.csv'}")
-    cache_dir = ROOT / "models" / "retrieval_medquad"
-    prime_cache(config, DATA_DIR, cache_dir)
-    searcher = Retriever(DATA_DIR / "corpus.jsonl", config=config, cache_dir=cache_dir, backend=args.backend)
+        raise ValueError(f"No {args.split} questions in {dataset}")
+    cache_dir = ROOT / "models" / f"retrieval_{corpus_path.parent.name}"
+    prime_cache(config, corpus_path, cache_dir)
+    searcher = Retriever(corpus_path, config=config, cache_dir=cache_dir, backend=args.backend)
     print(f"corpus: {len(searcher.documents)} chunks, cache_hit={searcher.cache_hit}, backend={searcher.backend}; "
-          f"{len(questions)} {args.split} questions")
+          f"{len(questions)} {args.split} questions from {dataset.relative_to(ROOT) if dataset.is_relative_to(ROOT) else dataset}")
     RUNS_DIR.mkdir(parents=True, exist_ok=True)
     if args.retrieval_only:
-        report = {"split": args.split, "n": len(questions), "embedding_model": searcher.model_name,
+        report = {"dataset": str(dataset.relative_to(ROOT) if dataset.is_relative_to(ROOT) else dataset),
+                  "split": args.split, "n": len(questions), "embedding_model": searcher.model_name,
                   "backend": searcher.backend, "top_k": config["retrieval"]["top_k"],
                   "scenarios": retrieval_report(searcher, questions, config["retrieval"]["top_k"])}
-        target = RUNS_DIR / f"retrieval_medquad_{args.split}{len(questions)}.json"
+        target = RUNS_DIR / f"retrieval_{tag}_{args.split}{len(questions)}.json"
         target.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         print(json.dumps(report, indent=2))
         return
@@ -210,7 +220,8 @@ def main():
                     raise
                 time.sleep(2 ** attempt)
 
-    summary = {"split": args.split, "per_scenario": args.per_scenario, "embedding_model": searcher.model_name,
+    summary = {"dataset": str(dataset.relative_to(ROOT) if dataset.is_relative_to(ROOT) else dataset),
+               "split": args.split, "per_scenario": args.per_scenario, "embedding_model": searcher.model_name,
                "backend": searcher.backend, "top_k": config["retrieval"]["top_k"], "methods": {}}
     for name in args.methods:
         kwargs = {"search_fn": searcher.search, "generate_fn": generator, "config": config}
@@ -219,7 +230,7 @@ def main():
         method = get_method(name, **kwargs)
         first_call = len(calls)
         records = []
-        target = RUNS_DIR / f"{name}_medquad_{args.split}{len(questions)}.jsonl"
+        target = RUNS_DIR / f"{name}_{tag}_{args.split}{len(questions)}.jsonl"
         with target.open("w", encoding="utf-8") as f:
             for k, q in enumerate(questions, 1):
                 record = method.run(q["question"], q["question_id"]).to_dict()
@@ -232,7 +243,7 @@ def main():
             summary["methods"][name]["prompt_version"] = method.prompt_version
         print(f"Wrote {len(records)} outputs to {target}")
     summary["usage_total"] = estimate_cost(calls)
-    target = RUNS_DIR / f"medquad_trial_{args.split}{len(questions)}_summary.json"
+    target = RUNS_DIR / f"{tag}_trial_{args.split}{len(questions)}_summary.json"
     target.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))
 
