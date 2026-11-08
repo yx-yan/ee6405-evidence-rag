@@ -1,2 +1,0 @@
-# every chunk before hold-outs (embedding helper only); deterministic, rebuild with `python -m evrag.data.medquad`
-corpus_all.jsonl

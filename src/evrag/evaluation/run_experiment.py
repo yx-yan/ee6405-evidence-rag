@@ -3,7 +3,7 @@
     python -m evrag.evaluation.run_experiment --method dummy --split dev --limit 20
 
 Writes results/runs/<method>_<split>[<limit>].jsonl. Metrics are computed from these
-files only, so nobody needs to re-call the LLM to recompute a table.
+files only, so nobody needs to rerun a method to recompute a table.
 """
 
 import argparse

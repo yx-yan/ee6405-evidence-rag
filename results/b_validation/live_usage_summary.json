@@ -1,9 +1,0 @@
-{
-  "calls": 20,
-  "prompt_tokens": 9721,
-  "completion_tokens": 854,
-  "total_tokens": 10575,
-  "all_finish_reason_stop": true,
-  "generation_model": "gpt-4.1-mini-2025-04-14",
-  "purpose": "dev integration only, not formal accuracy evaluation"
-}
