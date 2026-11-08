@@ -1,0 +1,11 @@
+# Training / running the shared generator (src/evrag/generator.py, scripts/train_generator.py).
+# Install a CUDA build of torch first, matching the cluster's driver, e.g.
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+# then:  pip install -r requirements-generator.txt && pip install -e .
+transformers>=4.44
+safetensors
+huggingface_hub
+gdown            # MASH-QA download from Google Drive (or place mashqa.zip manually, see docs/generator.md)
+pyyaml
+numpy
+pytest

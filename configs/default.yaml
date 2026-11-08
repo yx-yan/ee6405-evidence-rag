@@ -9,6 +9,15 @@ retrieval:
   cache_dir: models/retrieval
   backend: faiss
 
+generator:
+  # Shared answer generator (src/evrag/generator.py): BART-base fine-tuned on medical QA by D
+  # (docs/generator.md). Every route calls it; only the evidence passed in differs.
+  model_dir: TODO             # fine-tuned checkpoint directory (not in git); or set EVRAG_GENERATOR_DIR
+  max_source_tokens: 1024
+  max_new_tokens: 200
+  num_beams: 4
+  no_repeat_ngram_size: 3
+
 data:
   # TODO(team): the new medical dataset (e.g. heart disease) is being prepared; the general
   # datasets (MedQuAD, LiveQA-Med, Symptom2Disease, MTS-Dialog) were removed on 2026-11-08.
