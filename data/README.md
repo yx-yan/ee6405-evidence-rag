@@ -1,11 +1,14 @@
 # Data (owner: A)
 
+The team is preparing a new, more specific medical dataset (for example heart disease). The general
+datasets used earlier (MedQuAD, LiveQA-Med, Symptom2Disease, MTS-Dialog) were removed on 2026-11-08;
+they are in git history before that date. Point `data.dataset` and `data.corpus` in
+`configs/default.yaml` at the new files once they exist.
+
 | Folder | Content |
 |--------|---------|
-| `medquad/` | Current knowledge base and A/B/C questions, used by `configs/default.yaml`. See [medquad/README.md](medquad/README.md). |
-| `processed/` | MTS-Dialog in the project schema, kept to reproduce the LLM screen. Built from `mts_dialog/` by `scripts/b_prepare_data.py`. |
-| `mts_dialog/` | A's MTS-Dialog source and annotated files. The preprocessing notebooks are `notebooks/A_mts_dialog_preprocess*.ipynb`. |
-| `raw/` | Local downloads, not committed: MedQuAD clone, `liveqa_med/`, `symptom2disease/`. |
+| `processed/` | The frozen evaluation set (committed). |
+| `raw/` | Local downloads, not committed. |
 
 Every evaluation set uses this schema:
 

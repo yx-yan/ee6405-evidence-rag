@@ -17,7 +17,7 @@
 
 - Read model names, `top_k` and the seed from `configs/default.yaml`. Never hard-code them.
 - Tune thresholds and prompts on the **dev** split only. The **test** split is for final numbers.
-- The LLM is called only through `evrag.llm`; retrieval only through `evrag.retriever`.
+- Retrieval goes only through `evrag.retriever`.
 - A method PR includes a 20-question smoke run: `results/runs/<method>_dev20.jsonl`.
 
 ## Commits
@@ -34,7 +34,7 @@
 
 ## Data & secrets
 
-- `data/medquad/` (the current eval set) and `data/processed/` (the MTS-Dialog export) are committed. `data/raw/`, model weights and `.env` are not.
+- The frozen evaluation set under `data/` is committed. `data/raw/`, model weights and `.env` are not.
 - Never commit API keys.
 
 ## AI tools
