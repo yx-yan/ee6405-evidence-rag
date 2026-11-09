@@ -178,7 +178,9 @@ def main():
 
     start_from = args.out / "last" if args.resume and (args.out / "last" / "trainer_state.json").exists() else None
     tokenizer = AutoTokenizer.from_pretrained(start_from or args.model)
-    model = AutoModelForSeq2SeqLM.from_pretrained(start_from or args.model).to(device)
+    # float32 master weights: transformers 5 otherwise loads a checkpoint in its stored dtype, and
+    # facebook/bart-large is stored in fp16, where AdamW turns every weight into NaN on step 1.
+    model = AutoModelForSeq2SeqLM.from_pretrained(start_from or args.model, dtype=torch.float32).to(device)
     model.train()
 
     train_rows = read_jsonl(args.data / "train.jsonl", args.limit)
