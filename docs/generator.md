@@ -51,7 +51,7 @@ The question comes first, so truncation at 1,024 tokens only cuts evidence.
 pip install -r requirements-generator.txt && pip install -e .   # after a CUDA build of torch
 python -m evrag.data.generator_data          # ~15 s after downloads; writes data/generator/ (not committed)
 python scripts/train_generator.py --out models/generator/bart-base --bf16      # interactive GPU
-sbatch scripts/train_generator.sbatch        # SLURM: fill in partition/account first
+sbatch scripts/train_generator.sbatch        # SLURM (written for cluster02; other clusters add partition/account)
 ```
 
 - Compute nodes without internet: run the data step once on a login node, and pre-download the
@@ -67,6 +67,29 @@ sbatch scripts/train_generator.sbatch        # SLURM: fill in partition/account 
 - Outputs: `<out>/best` (lowest validation loss; point `generator.model_dir` here), `<out>/last`,
   `<out>/test_eval.json` (ROUGE-L on 1,000 test examples with the shared beam-search settings) and
   `<out>/test_samples.jsonl` (predictions to read).
+
+## Results (bart-base, first version)
+
+Trained on one RTX PRO 6000 (bf16, 3 epochs, 14 minutes). Validation loss 1.697 → 1.561.
+Test ROUGE-L (1,000 test examples, shared beam settings): **closed 0.136 / context 0.528**.
+
+| Source | Closed | Context |
+|---|---|---|
+| mashqa | 0.131 (n=423) | 0.531 (n=491) |
+| mediqa | – | 0.373 (n=9) |
+| wikidoc_patient | 0.173 (n=38) | – |
+| wikidoc_textbook | 0.151 (n=39) | – |
+
+What to expect when using it:
+
+- **Closed (route 1)** answers are fluent and on topic but short (median 24 words vs 54 in the
+  references) and sometimes medically wrong or repetitive; the model only knows what fits in 140M
+  parameters.
+- **With evidence (routes 2 and 3)** it mostly copies the relevant sentences from the chunks and
+  ignores distractors (80 MASH-QA test questions: gold + distractors 0.56, gold only 0.57).
+- It **never says "I don't know"**: training always included the answer in the evidence, so with
+  evidence that lacks the answer it still copies from it (ROUGE-L 0.11, below closed 0.13).
+  Retrieval quality therefore matters a lot for routes 2 and 3.
 
 ROUGE-L here is only a sanity check that the model learned to answer and to use evidence; the
 route comparison is evaluated on the RAG questions.
