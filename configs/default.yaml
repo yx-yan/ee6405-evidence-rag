@@ -12,7 +12,12 @@ retrieval:
 generator:
   # Shared answer generator (src/evrag/generator.py): BART-base fine-tuned on medical QA by D
   # (docs/generator.md). Every route calls it; only the evidence passed in differs.
-  model_dir: models/generator/bart-base/best   # trained checkpoint (not in git, ask D); or set EVRAG_GENERATOR_DIR
+  model_dir: models/generator/bart-base/best   # trained checkpoint (not in git); or set EVRAG_GENERATOR_DIR
+  release:                    # where model_dir is downloaded from on first use (needs `gh auth login`)
+    repo: yx-yan/ee6405-evidence-rag
+    tag: generator-v1
+    asset: bart-base-best.zip
+    sha256: 42246b294b5f1f8649a2577c06b0805ce24112e902a9308856e8e7baf9fd8009
   max_source_tokens: 1024
   max_new_tokens: 200
   num_beams: 4

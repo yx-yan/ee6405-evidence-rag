@@ -9,12 +9,19 @@ Every route calls the same model and differs only in the evidence it passes:
 `contexts` may hold strings or RetrievedDoc objects. The input format is defined once here
 (`format_input`) and used by training (scripts/train_generator.py) and inference alike.
 The model directory comes from configs/default.yaml (generator.model_dir) or the
-EVRAG_GENERATOR_DIR environment variable; transformers/torch are imported only when a model
-is loaded, so the rest of the package and the tests do not need them.
+EVRAG_GENERATOR_DIR environment variable. If it is missing, the trained weights are downloaded
+once from the repo's GitHub Release (generator.release in the config) with the GitHub CLI.
+transformers/torch are imported only when a model is loaded, so the rest of the package and the
+tests do not need them.
 """
 from __future__ import annotations
 
+import hashlib
 import os
+import shutil
+import subprocess
+import tempfile
+import zipfile
 from functools import lru_cache
 from pathlib import Path
 
@@ -54,16 +61,52 @@ def settings(config: dict | None = None) -> dict:
     return section
 
 
+def download(model_dir: str, release: dict) -> None:
+    """Fetch the zipped checkpoint from the repo's GitHub Release and unzip it into model_dir."""
+    target = Path(model_dir)
+    page = f"https://github.com/{release['repo']}/releases/tag/{release['tag']}"
+    manual = (f"or download {release['asset']} from {page} and unzip it into {target}")
+    if not shutil.which("gh"):
+        raise RuntimeError(f"Generator model not found at {target}. Install the GitHub CLI and run "
+                           f"`gh auth login` so it downloads automatically, {manual}")
+    print(f"Downloading the generator model from {page} (about 0.5 GB, once) ...", flush=True)
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            subprocess.run(["gh", "release", "download", release["tag"], "-R", release["repo"],
+                            "-p", release["asset"], "-D", tmp], check=True)
+        except subprocess.CalledProcessError as e:
+            raise RuntimeError(f"Downloading the generator model failed (is `gh auth login` done?); {manual}") from e
+        archive = Path(tmp) / release["asset"]
+        if release.get("sha256"):
+            digest = hashlib.sha256()
+            with archive.open("rb") as f:
+                for block in iter(lambda: f.read(1 << 20), b""):
+                    digest.update(block)
+            if digest.hexdigest() != release["sha256"]:
+                raise RuntimeError(f"Downloaded {release['asset']} is corrupt (SHA-256 mismatch); try again")
+        partial = target.with_name(target.name + ".partial")
+        shutil.rmtree(partial, ignore_errors=True)
+        with zipfile.ZipFile(archive) as z:
+            z.extractall(partial)
+        partial.rename(target)           # only a complete download ever appears at model_dir
+
+
 @lru_cache(maxsize=2)
 def load(model_dir: str | None = None):
-    """Return (tokenizer, model, device) for a fine-tuned checkpoint directory."""
+    """Return (tokenizer, model, device) for a fine-tuned checkpoint directory. The configured
+    directory is downloaded from the GitHub Release on first use if it is missing."""
     import torch
     from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
-    model_dir = model_dir or settings()["model_dir"]
+    cfg = settings()
+    model_dir = model_dir or cfg["model_dir"]
     if not model_dir:
         raise RuntimeError("No generator model: set generator.model_dir in configs/default.yaml "
                            "or EVRAG_GENERATOR_DIR to a fine-tuned checkpoint directory")
+    if not Path(model_dir).exists():
+        if model_dir != cfg["model_dir"] or not cfg.get("release"):
+            raise RuntimeError(f"Generator model not found at {model_dir}")
+        download(model_dir, cfg["release"])
     device = "cuda" if torch.cuda.is_available() else "cpu"
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_dir).to(device).eval()

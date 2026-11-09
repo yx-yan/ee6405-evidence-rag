@@ -26,6 +26,31 @@ def test_settings_and_decoding(monkeypatch, tmp_path):
     assert generator.decoding({"num_beams": 4})["early_stopping"] is True
 
 
+def test_download_from_release(monkeypatch, tmp_path):
+    import hashlib
+    import shutil
+    import zipfile
+    archive = tmp_path / "w.zip"
+    with zipfile.ZipFile(archive, "w") as z:
+        z.writestr("config.json", "{}")
+    release = {"repo": "o/r", "tag": "t", "asset": "w.zip",
+               "sha256": hashlib.sha256(archive.read_bytes()).hexdigest()}
+
+    def fake_gh(cmd, check):   # stands in for `gh release download … -D <dir>`
+        shutil.copy(archive, cmd[cmd.index("-D") + 1])
+
+    monkeypatch.setattr(generator.shutil, "which", lambda _: None)
+    with pytest.raises(RuntimeError, match="releases/tag/t"):
+        generator.download(str(tmp_path / "m1"), release)
+    monkeypatch.setattr(generator.shutil, "which", lambda _: "gh")
+    monkeypatch.setattr(generator.subprocess, "run", fake_gh)
+    generator.download(str(tmp_path / "m1"), release)
+    assert (tmp_path / "m1" / "config.json").read_text() == "{}"
+    with pytest.raises(RuntimeError, match="SHA-256"):
+        generator.download(str(tmp_path / "m2"), {**release, "sha256": "0" * 64})
+    assert not (tmp_path / "m2").exists()
+
+
 def test_rouge_l():
     assert generator.rouge_l("dry itchy skin", "Dry itchy skin") == 1.0
     assert generator.rouge_l("", "x") == 0.0

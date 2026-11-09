@@ -11,8 +11,13 @@ generator.generate("What are the symptoms of eczema?")                 # route 1
 generator.generate("What are the symptoms of eczema?", contexts=docs)  # routes 2 and 3: retrieved text or RetrievedDoc objects
 ```
 
-Set `generator.model_dir` in `configs/default.yaml` (or `EVRAG_GENERATOR_DIR`) to the trained
-checkpoint directory (`.../best`). Checkpoints are not committed.
+**Getting the model.** The trained weights are not in git. They are attached to the GitHub Release
+[generator-v1](https://github.com/yx-yan/ee6405-evidence-rag/releases/tag/generator-v1)
+(`bart-base-best.zip`, 0.5 GB). The first `generate()` call downloads and unzips them into
+`models/generator/bart-base/best` (`generator.model_dir`) if that folder is missing. This needs the
+GitHub CLI logged in once (`gh auth login`). Without `gh`, download the zip from the link and unzip
+it into that folder yourself. To use another checkpoint, point `generator.model_dir` (or
+`EVRAG_GENERATOR_DIR`) at its directory.
 
 ## Why BART-base
 
