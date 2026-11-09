@@ -168,22 +168,28 @@ def load_mashqa(folder: Path, rng: random.Random) -> list[dict]:
         for article in data["data"]:
             for para in article["paragraphs"]:
                 context = strip_webmd_script(para["context"])
+                shift = len(para["context"]) - len(context)     # the stripped prefix moves the offsets
                 spans = chunk_spans(context)
-                articles.append((context, spans, para["qas"]))
-        pool = [(i, context[a:b]) for i, (context, spans, _) in enumerate(articles) for a, b in spans]
-        for i, (context, spans, qas) in enumerate(articles):
+                articles.append((context, shift, spans, para["qas"]))
+        pool = [(i, context[a:b]) for i, (context, _, spans, _) in enumerate(articles) for a, b in spans]
+        for i, (context, shift, spans, qas) in enumerate(articles):
             for qa in qas:
                 if qa.get("is_impossible") or not qa["answers"]:
                     continue
                 answer = clean(" ".join(a["text"] for a in qa["answers"]))
                 question = clean(qa["question"])
                 out.append(example("mashqa", "closed", split, question, answer))
-                start = context.find(qa["answers"][0]["text"].strip()[:80])
-                if start < 0:
+                # Most answers join several sentences from different places in the article
+                # (answer_starts lists them); the evidence must hold every one of them.
+                parts = [(s - shift, s - shift + n) for a in qa["answers"]
+                         for s, n in a.get("answer_starts") or [(a["answer_start"], len(a["text"]))]]
+                if not parts or any(s < 0 or e > len(context) for s, e in parts):
                     continue
-                end = start + len(qa["answers"][0]["text"].strip())
-                gold = [context[a:b] for a, b in spans if a < end and b > start][:CONTEXT_CHUNKS - 1]
-                same = [context[a:b] for a, b in spans if not (a < end and b > start)]
+                hit = {k for k, (a, b) in enumerate(spans) for s, e in parts if a < e and b > s}
+                if not hit or len(hit) > CONTEXT_CHUNKS:
+                    continue                    # answer spread over more chunks than we show: closed only
+                gold = [context[a:b] for k, (a, b) in enumerate(spans) if k in hit]
+                same = [context[a:b] for k, (a, b) in enumerate(spans) if k not in hit]
                 rng.shuffle(same)
                 chunks = gold + same[:max(0, CONTEXT_CHUNKS - 1 - len(gold))]
                 while len(chunks) < CONTEXT_CHUNKS:
