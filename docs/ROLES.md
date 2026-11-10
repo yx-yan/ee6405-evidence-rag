@@ -136,7 +136,7 @@ Find your letter, read your section, then take your issue for the current week (
 
 **Goal:** Own the shared interface and turn every method's outputs into metrics, figures and a Streamlit demo.
 
-**You own:** `src/evrag/schema.py`, `src/evrag/methods/base.py`, `src/evrag/evaluation/`, `app/app.py`, `tests/`
+**You own:** `src/evrag/schema.py`, `src/evrag/methods/base.py`, `src/evrag/evaluation/`, `src/evrag/explain.py`, `app/app.py`, `tests/`
 
 **You need:** Every method's `results/runs/*.jsonl`; A's `dataset.csv`.  
 **Others need from you:** The interface contract, `results/metrics.csv`, Figures 1–3, the demo; integration review of PRs.
@@ -158,6 +158,7 @@ Find your letter, read your section, then take your issue for the current week (
 
 - [ ] Figure 1 (stacked outcomes), Figure 2 (accuracy vs coverage), Figure 3 (latency vs reliability)
 - [ ] Streamlit demo: method switch, answer/abstain, evidence
+- [x] Demo shows each input token's contribution to the answer (occlusion, LIME, SHAP; Week 9 requirement)
 - [ ] Assemble slides; coordinate video recording; code freeze + README reproduction steps
 
 **Done when:** One command reproduces `metrics.csv` and all figures from the committed runs.

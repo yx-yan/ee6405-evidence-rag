@@ -42,6 +42,11 @@ python -m evrag.evaluation.run_experiment --method dummy --split dev --limit 20
 streamlit run app/app.py
 ```
 
+The demo answers with the shared generator (no evidence, pasted evidence, or retrieval once the
+corpus is set) and shows how much each input word or evidence sentence contributed to the answer,
+with occlusion, LIME and SHAP side by side (`src/evrag/explain.py`). It needs torch and
+`transformers` as well (`requirements-generator.txt`).
+
 ## Layout
 
 ```
@@ -50,12 +55,14 @@ data/                         datasets; see data/README.md
 src/evrag/schema.py           RAGOutput — the interface every method returns
 src/evrag/methods/            base.py (protocol + registry), dummy, threshold_rag (stub)
 src/evrag/retriever.py        shared retriever (sentence-transformers + FAISS/numpy)
+src/evrag/generator.py        shared answer generator (BART-base, docs/generator.md)
+src/evrag/explain.py          input-token attributions for the demo (occlusion, LIME, SHAP)
 src/evrag/evaluation/         run_experiment → results/runs/*.jsonl → metrics → plots
 scripts/                      one-off helpers (b_download_model)
 notebooks/                    <role>_<topic>.ipynb
 results/                      raw outputs per experiment; see results/README.md
 docs/                         roles, timeline, proposal
-app/app.py                    Streamlit demo
+app/app.py                    Streamlit demo with token attributions
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow.
