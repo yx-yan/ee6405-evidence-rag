@@ -10,8 +10,10 @@ jupyter
 sentence-transformers
 faiss-cpu
 
-# Front-end
-streamlit
+# Front-end and token attributions (the demo also needs torch + transformers, see requirements-generator.txt)
+streamlit>=1.67   # st.pills, st.segmented_control, st.iframe, st.context.theme, persist_state
+lime
+shap
 
 # Dev
 pytest
