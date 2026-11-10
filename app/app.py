@@ -105,7 +105,9 @@ st.pills("Try an example", list(EXAMPLES), key="example",
 st.text_input("Question", key="question", placeholder="What are the symptoms of eczema?")
 route = st.segmented_control("Evidence", routes, key="route") or PASTED
 if route == PASTED:
-    st.text_area("Evidence passages (separate with a blank line)", key="evidence", height=150)
+    # persist_state keeps the pasted text while another evidence route hides this box.
+    st.text_area("Evidence passages (separate with a blank line)", key="evidence", height=150,
+                 persist_state="page")
 st.button("Generate", type="primary", on_click=submit)
 
 if "submitted" not in st.session_state:
