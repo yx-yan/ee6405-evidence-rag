@@ -1,0 +1,31 @@
+# Local v1 comparison settings. Both routes use the same BART configuration.
+seed: 42
+
+retrieval:
+  # MiniLM is used for this run because its weights are available locally.
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  top_k: 5
+  cache_dir: models/retrieval
+  backend: faiss
+
+generator:
+  # Shared answer generator (src/evrag/generator.py): BART-base fine-tuned on medical QA by D
+  # (docs/generator.md). Every route calls it; only the evidence passed in differs.
+  model_dir: models/generator/bart-base/best   # trained checkpoint (not in git); or set EVRAG_GENERATOR_DIR
+  release:                    # where model_dir is downloaded from on first use (needs `gh auth login`)
+    repo: yx-yan/ee6405-evidence-rag
+    tag: generator-v1
+    asset: bart-base-best.zip
+    sha256: 42246b294b5f1f8649a2577c06b0805ce24112e902a9308856e8e7baf9fd8009
+  max_source_tokens: 1024
+  max_new_tokens: 200
+  num_beams: 4
+  no_repeat_ngram_size: 3
+
+data:
+  # TODO(team): the new medical dataset (e.g. heart disease) is being prepared; the general
+  # datasets (MedQuAD, LiveQA-Med, Symptom2Disease, MTS-Dialog) were removed on 2026-11-08.
+  # Link to your newly generated 150-word chunked health files
+  dataset: data/basic_v1/dataset.csv
+  corpus: data/basic_v1/corpus.jsonl
+  splits: [dev, test]         # tune thresholds / prompts on dev ONLY

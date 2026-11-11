@@ -2,6 +2,7 @@
 
 import pytest
 
+from evrag import generator, retriever
 from evrag.methods import REGISTRY, get_method
 from evrag.schema import RAGOutput, RetrievedDoc
 
@@ -13,7 +14,10 @@ QUESTIONS = [
 
 
 @pytest.mark.parametrize("name", sorted(REGISTRY))
-def test_run_returns_valid_output(name):
+def test_run_returns_valid_output(name, monkeypatch):
+    monkeypatch.setattr(retriever, "search", lambda q: [RetrievedDoc("d0", 0.8, "evidence")])
+    monkeypatch.setattr(generator, "generate", lambda q, contexts=None: "test answer")
+    monkeypatch.setattr(generator, "load", lambda: (lambda text: {"input_ids": text.split()}, None, "cpu"))
     method = get_method(name)
     for i, q in enumerate(QUESTIONS):
         out = method.run(q, question_id=f"q{i}")

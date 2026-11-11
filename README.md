@@ -66,3 +66,9 @@ app/app.py                    Streamlit demo with token attributions
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow.
+
+## Basic RAG v1 comparison
+
+See [the bilingual guide](BASIC_RAG_GUIDE_ZH_EN.md) and [the results](results/basic_v1/RESULTS_ZH_EN.md).
+Run `./run_local.sh` after installing dependencies and obtaining generator weights.
+The experiment uses configs/basic_rag_v1.yaml and data/basic_v1; its metrics entry point is evrag.evaluation.basic_metrics.
