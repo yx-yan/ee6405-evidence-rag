@@ -9,9 +9,6 @@ files only, so nobody needs to rerun a method to recompute a table.
 import argparse
 import csv
 import json
-import os
-import time
-from pathlib import Path
 
 from evrag.config import ROOT, RUNS_DIR, load_config
 from evrag.methods import get_method
@@ -19,17 +16,9 @@ from evrag.methods import get_method
 
 def load_questions(split: str, limit: int | None = None) -> list[dict]:
     # The question set comes from configs/default.yaml (data.dataset), like the corpus does.
-    config = load_config()
-    dataset_relative_path = config["data"]["dataset"]
-    dataset_full_path = ROOT / dataset_relative_path
-    
-    if not os.path.exists(dataset_full_path):
-        raise FileNotFoundError(f"❌ Target evaluation matrix data missing at tracked directory configuration layout path: {dataset_full_path}")
-        
-    with open(dataset_full_path, encoding="utf-8", newline="") as f:
+    with open(ROOT / load_config()["data"]["dataset"], encoding="utf-8", newline="") as f:
         rows = [r for r in csv.DictReader(f) if r["split"] == split]
     return rows[:limit] if limit else rows
-
 
 def main() -> None:
     parser = argparse.ArgumentParser()
