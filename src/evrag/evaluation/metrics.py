@@ -93,10 +93,20 @@ def parse_gold_answers(gold_val):
     return [val_str]
 
 def load_data(split_name):
-    """Loads dataset.csv and maps execution log results/runs/*.jsonl records dynamically."""
-    dataset_path = "dataset.csv"
+    """Loads dataset path configuration dynamically from configs/default.yaml."""
+    from evrag.config import ROOT, load_config
+    
+    # Extract path dynamically from the team configuration
+    try:
+        config = load_config()
+        dataset_relative_path = config["data"]["dataset"]
+        dataset_path = ROOT / dataset_relative_path
+    except Exception as e:
+        print(f"❌ Error reading configurations profile setup: {str(e)}")
+        sys.exit(1)
+        
     if not os.path.exists(dataset_path):
-        print(f"❌ Error: {dataset_path} missing.")
+        print(f"❌ Error: Dataset file missing at configuration layout path: {dataset_path}")
         sys.exit(1)
         
     df_eval = pd.read_csv(dataset_path)
@@ -127,7 +137,6 @@ def load_data(split_name):
                     g_ans_list = parse_gold_answers(row['gold_answers'])
                     gold_doc_ids = json.loads(row['gold_doc_ids']) if pd.notna(row['gold_doc_ids']) else []
                     
-                    # Stratification logic for scenario parsing based on explicit prefix types
                     if "DIR" in q_id:
                         scenario = "A"
                     elif "PAR" in q_id:
@@ -135,7 +144,6 @@ def load_data(split_name):
                     elif "HOP" in q_id:
                         scenario = "C"
                     else:
-                        # Fallback calculation based on count pattern extraction
                         try:
                             num_id = int(re.findall(r'\d+', q_id)[0])
                             scenario = "A" if num_id % 3 == 0 else "B" if num_id % 3 == 1 else "C"
