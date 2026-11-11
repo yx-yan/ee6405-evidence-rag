@@ -36,11 +36,11 @@ jobs:
     - name: Run Sample Evaluation Experiment
       run: |
         export PYTHONPATH=$PYTHONPATH:$(pwd)/src
-        # Run a quick 20-sample dummy trial to verify experiment stability in the cloud
-        python -m src.evrag.evaluation.run_experiment --method dummy --split dev --limit 20
+        # Run the experiment over the TEST split (removes --limit to avoid suffix renaming)
+        python -m src.evrag.evaluation.run_experiment --method dummy --split test
 
     - name: Run Global Evaluation Matrix Verification
       run: |
         export PYTHONPATH=$PYTHONPATH:$(pwd)/src
-        # Generates summary matrices dynamically inside the virtual environment
+        # Evaluates the matrix scorecard over the matching TEST split files
         python -m src.evrag.evaluation.metrics --split test
