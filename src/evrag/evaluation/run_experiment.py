@@ -16,7 +16,14 @@ from evrag.methods import get_method
 
 def load_questions(split: str, limit: int | None = None) -> list[dict]:
     # The question set comes from configs/default.yaml (data.dataset), like the corpus does.
-    with open(ROOT / load_config()["data"]["dataset"], encoding="utf-8", newline="") as f:
+    config = load_config()
+    dataset_relative_path = config["data"]["dataset"]
+    dataset_full_path = ROOT / dataset_relative_path
+    
+    if not os.path.exists(dataset_full_path):
+        raise FileNotFoundError(f"❌ Target evaluation matrix data missing at tracked directory configuration layout path: {dataset_full_path}")
+        
+    with open(dataset_full_path, encoding="utf-8", newline="") as f:
         rows = [r for r in csv.DictReader(f) if r["split"] == split]
     return rows[:limit] if limit else rows
 
