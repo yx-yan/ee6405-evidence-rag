@@ -26,6 +26,7 @@ generator:
 data:
   # TODO(team): the new medical dataset (e.g. heart disease) is being prepared; the general
   # datasets (MedQuAD, LiveQA-Med, Symptom2Disease, MTS-Dialog) were removed on 2026-11-08.
-  dataset: TODO
-  corpus: TODO
+  # Link to your newly generated 150-word chunked health files
+  dataset: dataset.csv
+  corpus: corpus.jsonl
   splits: [dev, test]         # tune thresholds / prompts on dev ONLY
