@@ -2,7 +2,6 @@ name: EVRAG Metrics Evaluation Suite CI
 
 on:
   push:
-    # Explicitly including your active feature patch branch
     branches: [ main, master, Illgetgood-patch-2 ]
   pull_request:
     branches: [ main, master, Illgetgood-patch-2 ]
@@ -24,14 +23,21 @@ jobs:
     - name: Install System Dependencies
       run: |
         python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        pip install pytest numpy pandas pyyaml
+        # Installs packages needed for the experiment pipeline matrix
+        pip install pytest numpy pandas pyyaml sentence-transformers rank_bm25
+        # Install the local src directory as an editable package so 'import evrag' works perfectly
+        pip install -e .
 
     - name: Run Hand-Checked Unit Tests
       run: |
-        # Informs the runner how to locate your local source modules
         export PYTHONPATH=$PYTHONPATH:$(pwd)/src
         python -m pytest tests/
+
+    - name: Run Sample Evaluation Experiment
+      run: |
+        export PYTHONPATH=$PYTHONPATH:$(pwd)/src
+        # Run a quick 20-sample dummy trial to verify experiment stability in the cloud
+        python -m src.evrag.evaluation.run_experiment --method dummy --split dev --limit 20
 
     - name: Run Global Evaluation Matrix Verification
       run: |
