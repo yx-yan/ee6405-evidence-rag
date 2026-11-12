@@ -1,7 +1,7 @@
 # Basic RAG v1 results / 结果
 
-Fixed-configuration comparison on the current patch-2 draft data.
-现有 patch-2 草稿数据上的固定配置对比。两种方法共生成 700 条输出，配对覆盖 350 道题。
+Fixed-configuration comparison on A's WikiDoc data (data/processed).
+A 的 WikiDoc 数据（data/processed）上的固定配置对比。两种方法共生成 700 条输出，配对覆盖 350 道题。
 
 | Split | Method | Questions | Token F1 | ROUGE-L | Automatic correctness | Retrieval hit | Mean latency ms |
 |---|---|---:|---:|---:|---:|---:|---:|
@@ -22,5 +22,5 @@ All questions have gold answers, so abstention recall is N/A. Evidence-support h
 Latency includes first-call model/index loading and reflects CPU runs on this machine.
 延迟包含各次运行首题的模型/索引加载，反映当前电脑 CPU 运行情况。
 
-Read BASIC_RAG_GUIDE_ZH_EN.md for setup, source provenance and archive-checksum limitations.
-环境设置、来源追溯及权重压缩包校验差异见 BASIC_RAG_GUIDE_ZH_EN.md。
+Read docs/reports/basic_rag_v1.md for setup and source provenance.
+环境设置及来源追溯见 docs/reports/basic_rag_v1.md。

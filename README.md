@@ -69,6 +69,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow.
 
 ## Basic RAG v1 comparison
 
-See [the bilingual guide](BASIC_RAG_GUIDE_ZH_EN.md) and [the results](results/basic_v1/RESULTS_ZH_EN.md).
-Run `./run_local.sh` after installing dependencies and obtaining generator weights.
-The experiment uses configs/basic_rag_v1.yaml and data/basic_v1; its metrics entry point is evrag.evaluation.basic_metrics.
+See [the bilingual report](docs/reports/basic_rag_v1.md) and [the results](results/basic_v1/RESULTS_ZH_EN.md).
+Run `scripts/run_basic_v1.sh` after installing dependencies; it reads `configs/default.yaml` and
+writes to `results/basic_v1` with the shared metrics (`evrag.evaluation.metrics`).

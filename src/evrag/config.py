@@ -15,9 +15,9 @@ FIGURES_DIR = RESULTS_DIR / "figures"
 CONFIG_PATH = ROOT / "configs" / "default.yaml"
 
 
-def load_config(path: Path | None = None) -> dict:
+def load_config(path: Path = CONFIG_PATH) -> dict:
     """Load the shared experiment config (configs/default.yaml)."""
-    with open(path or os.environ.get("EVRAG_CONFIG", CONFIG_PATH)) as f:
+    with open(path) as f:
         return yaml.safe_load(f)
 
 

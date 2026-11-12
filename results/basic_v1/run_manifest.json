@@ -1,5 +1,5 @@
 {
-  "purpose": "Fixed-configuration integration and exploratory comparison on draft patch-2 data",
+  "purpose": "Fixed-configuration integration and exploratory comparison on A's WikiDoc data",
   "corpus_documents": 512,
   "questions": 350,
   "splits": {
@@ -61,17 +61,14 @@
   "max_contexts": 4,
   "limitations": [
     "Draft data and current BART may overlap in training",
-    "Local archive SHA differs from release archive",
     "No unanswerable questions",
     "Three normalized questions occur in both dev and test",
     "Automatic token F1 threshold is lexical, no human adjudication",
     "Evidence support is a lexical heuristic; NLP-only support is N/A"
   ],
-  "data/corpus.jsonl_sha256": "9e0149480119f7c632edd112be19c98faabedbcb8cf28f7e8fe2ac44801670be",
-  "data/dataset.csv_sha256": "67112a77326a41cdf657f48ed49876eeb746c88a27a12faf46726807c2593be2",
   "tests": {
-    "passed": 33,
-    "skipped": 3
+    "passed": 37,
+    "skipped": 0
   },
   "bart_model_safetensors_sha256": "79d61c7d48be04e0ac7a44ca0f1ec321163bbacbde84339d75fa861cc0a32865",
   "environment": {
@@ -93,13 +90,17 @@
   "actual_context_links": 1400,
   "max_actual_input_tokens": 914,
   "repository_snapshot_paths": {
-    "corpus": "data/basic_v1/corpus.jsonl",
-    "dataset": "data/basic_v1/dataset.csv"
+    "corpus": "data/processed/corpus.jsonl",
+    "dataset": "data/processed/dataset.csv"
   },
   "code_integration_base": "336b4bf",
   "credits": {
-    "data": "Nam / Illgetgood, local patch-2 snapshot",
-    "evaluation_adapter": "Yuxuan / yx-yan, e-metrics PR #29 snapshot",
+    "data": "Nam / Illgetgood (A)",
+    "evaluation": "Yuxuan / yx-yan, shared metrics.py (PR #29), with fixes proposed by Yiwen Xu",
     "generator": "Jojo082099, shared generator and BART checkpoint"
-  }
+  },
+  "data/processed/corpus.jsonl_sha256": "9e0149480119f7c632edd112be19c98faabedbcb8cf28f7e8fe2ac44801670be",
+  "data/processed/dataset.csv_sha256": "67112a77326a41cdf657f48ed49876eeb746c88a27a12faf46726807c2593be2",
+  "release_model_safetensors_sha256": "79d61c7d48be04e0ac7a44ca0f1ec321163bbacbde84339d75fa861cc0a32865",
+  "checkpoint_note": "The local archive differs from the Release archive, but model.safetensors is identical (checked 2026-11-12)"
 }

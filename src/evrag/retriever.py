@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import hashlib
-import os
 import json
 from functools import lru_cache
 from pathlib import Path
@@ -49,7 +48,7 @@ class Retriever:
 
         self.config = load_config() if config is None else config
         settings = self.config["retrieval"]
-        self.model_name = os.environ.get("EVRAG_EMBEDDING_MODEL") or settings["embedding_model"]
+        self.model_name = settings["embedding_model"]
         self.top_k = settings["top_k"]
         self.backend = backend or settings.get("backend", "faiss")
         if self.backend not in {"faiss", "numpy"}:
