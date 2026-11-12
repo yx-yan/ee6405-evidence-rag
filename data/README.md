@@ -5,7 +5,7 @@ The knowledge base and evaluation questions come from WikiDoc patient informatio
 keeping every question/answer pair that mentions asthma, diabetes or hypertension. Each answer is
 split into 150-word passages with a 30-word overlap; its question becomes an evaluation question
 whose gold answer is the full answer and whose gold documents are its passages. Questions alternate
-between dev and test. Built by `notebooks/A_data_preprocess.ipynb`. The general datasets used earlier (MedQuAD,
+between dev and test. Built by `python -m evrag.data.wikidoc` ([src/evrag/data/wikidoc.py](../src/evrag/data/wikidoc.py)). The general datasets used earlier (MedQuAD,
 LiveQA-Med, Symptom2Disease, MTS-Dialog) were removed on 2026-11-08 and are in git history.
 
 | Path | Content |
