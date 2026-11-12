@@ -3,13 +3,11 @@ and see how much each input word or evidence sentence contributed to it. Owner: 
 
     streamlit run app/app.py
 
-Nothing runs until Generate is pressed. The attribution view is app/attribution_view.html, filled
-with this page's data; clicking an answer token there switches the heatmap without re-running.
+Nothing runs until Generate is pressed. The attribution view is a fragment, so picking a method or
+an answer token there only redraws the heatmap. Native Streamlit widgets only: no HTML or JavaScript.
 """
 
-import html
-import json
-from pathlib import Path
+import re
 
 import numpy as np
 import pandas as pd
@@ -20,7 +18,6 @@ from evrag.config import ROOT, load_config
 from evrag.methods import REGISTRY, get_method
 
 NO_EVIDENCE, PASTED, RETRIEVED = "No evidence", "Paste evidence", "Retrieval"
-VIEW = (Path(__file__).parent / "attribution_view.html").read_text(encoding="utf-8")
 
 ECZEMA = ("Eczema is a condition that makes your skin red and itchy. It is common in children but can occur "
           "at any age. Symptoms include dry skin, itching which may be severe especially at night, and red "
@@ -35,16 +32,6 @@ EXAMPLES = {
 
 st.set_page_config(page_title="Evidence-aware RAG", page_icon="🩺", layout="centered",
                    initial_sidebar_state="collapsed")
-st.html("""<style>
-  .block-container { padding-top: 4rem; max-width: 860px; }
-  footer { visibility: hidden; }
-  .hero h1 { font-size: 2rem; font-weight: 700; margin: 0; padding: 0; }
-  .hero p { color: #6b7088; margin: .2rem 0 0; }
-  .answer-card { border-left: 4px solid #4F46E5; background: rgba(79, 70, 229, .06); border-radius: 10px;
-                 padding: 14px 18px; font-size: 1.1rem; line-height: 1.6; }
-  .abstain-card { border-left: 4px solid #D97706; background: rgba(217, 119, 6, .08); border-radius: 10px;
-                  padding: 14px 18px; font-size: 1.05rem; }
-</style>""")
 
 
 def corpus_ready() -> bool:
@@ -80,6 +67,34 @@ def ranks(x):
     return np.argsort(np.argsort(x))
 
 
+def shade(word: str, x: float, scale: float) -> str:
+    """A word as Markdown: red if it raises the answer, blue if it lowers it, bold when strong."""
+    word = re.sub(r"([\\`*_{}\[\]()#+\-.!|$~<>:])", r"\\\1", word)      # show it literally
+    level = abs(x) / scale
+    if level < 0.15:
+        return word
+    return f":{'red' if x > 0 else 'blue'}-background[{f'**{word}**' if level > 0.5 else word}]"
+
+
+@st.fragment
+def attribution_view(feats, segments: dict[int, str], tokens: list[str], values: dict[str, np.ndarray]) -> None:
+    """Heatmap of the input for one method and one answer token (or the whole answer)."""
+    first = next(iter(values))
+    method = st.segmented_control("Method", list(values), default=first) or first
+    token = st.pills("Answer token (none selected: the whole answer)", range(len(tokens)),
+                     format_func=lambda i: tokens[i].strip() or "␣")
+    s = values[method].mean(1) if token is None else values[method][:, token]
+    st.caption((f"Contributions to the token “{tokens[token].strip()}”" if token is not None
+                else "Contributions to the whole answer (mean over tokens)")
+               + " · :red-background[raises] / :blue-background[lowers] it, bold = strongest")
+    scale = np.abs(s).max() or 1.0
+    for seg, name in segments.items():
+        idx = [i for i, f in enumerate(feats) if f.segment == seg]
+        with st.container(border=True):
+            st.markdown(f"**{name}** · total {s[idx].sum():+.3f}")
+            st.markdown(" ".join(shade(feats[i].text, s[i], scale) for i in idx))
+
+
 # --- Settings (sidebar, collapsed by default) ------------------------------------------------
 with st.sidebar:
     st.subheader("Explanation settings")
@@ -92,8 +107,8 @@ with st.sidebar:
         st.caption("Retrieval appears once `data.corpus` in configs/default.yaml points to a corpus.")
 
 # --- Input -----------------------------------------------------------------------------------
-st.html('<div class="hero"><h1>Evidence-aware RAG</h1>'
-        '<p>Ask a medical question and see which input words the answer relied on.</p></div>')
+st.title("Evidence-aware RAG")
+st.caption("Ask a medical question and see which input words the answer relied on.")
 
 routes = [NO_EVIDENCE, PASTED] + ([RETRIEVED] if corpus_ready() else [])
 routes += [f"Method · {name}" for name in sorted(REGISTRY) if name != "dummy"]
@@ -130,10 +145,9 @@ with st.spinner("Answering ..."):
 
 st.divider()
 if ans is None:
-    st.html('<div class="abstain-card">The available documents do not contain enough evidence to answer.</div>')
+    st.warning("The available documents do not contain enough evidence to answer.", icon="⚠️")
     st.stop()
-answer_slot = st.empty()     # the plain answer, replaced by the clickable one once it is explained
-answer_slot.html(f'<div class="answer-card">{html.escape(ans)}</div>')
+st.info(ans, icon="💬")
 if not methods:
     st.stop()
 
@@ -145,14 +159,10 @@ with st.spinner(f"Explaining over {len(feats)} features ..."):
     for m in methods:
         values[m] = attribute(question, contexts, ans, unit, m, {"LIME": n_samples, "SHAP": permutations}.get(m, 0))
 
-doc_labels = [f"Evidence [{i}]" + (f" · {d.doc_id}" if hasattr(d, "doc_id") else "") for i, d in enumerate(docs, 1)]
-data = {"feats": [{"seg": f.segment + 1, "text": f.text} for f in feats],      # QUESTION (-1) becomes 0
-        "segments": ["Question"] + doc_labels,
-        "tokens": explain.answer_tokens(ans),
-        "methods": {m: np.round(v, 5).tolist() for m, v in values.items()},
-        "dark": st.context.theme.type == "dark"}
-answer_slot.empty()
-st.iframe(VIEW.replace("__DATA__", json.dumps(data).replace("</", "<\\/")))     # sizes itself to its content
+segments = {explain.QUESTION: "Question"}
+segments.update({i: f"Evidence [{i + 1}]" + (f" · {d.doc_id}" if hasattr(d, "doc_id") else "")
+                 for i, d in enumerate(docs)})
+attribution_view(feats, segments, explain.answer_tokens(ans), values)
 
 if len(methods) > 1:
     with st.expander("Do the methods agree?"):
