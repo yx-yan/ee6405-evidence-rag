@@ -16,13 +16,12 @@ We compare three response policies on one shared retriever:
 | 2 | Threshold RAG | abstain if relevance score < threshold (tuned on dev) | C |
 | 3 | Evidence-aware RAG | judge evidence sufficiency → answer / abstain | D |
 
-> **Rebuilding (2026-11-08).** The team dropped pretrained LLMs in favour of more basic NLP methods
-> (possibly with a decoder), and is preparing a more specific medical dataset. The LLM wrapper, the
-> LLM-based methods and the general datasets were removed; they are in git history (last at commit
-> `96ad2ba`). Only the interface, the retriever and the `dummy` method remain.
+The repository includes an asthma, diabetes, and hypertension passage corpus in `data/corpus.jsonl`.
+The interactive demo defaults to a lightweight graph RAG method: it links passages through disease
+labels and shared terms, expands retrieval through those links, and returns matching source sentences
+instead of generating unsupported medical claims.
 
-Data (A): new medical dataset in preparation, in three evidence scenarios — A sufficient, B missing, C distracting. See [data/README.md](data/README.md).
-Evaluation & demo (E): answer correctness, selective accuracy, coverage, abstention recall, over-refusal, unsupported-answer rate, latency.
+The question dataset and graph corpus paths are set in `configs/default.yaml`. See [data/README.md](data/README.md).
 
 ## Setup
 
@@ -35,12 +34,13 @@ pytest                 # contract + retriever tests
 
 ## Run
 
-`run_experiment` needs the new dataset set in `configs/default.yaml`.
-
 ```bash
-python -m evrag.evaluation.run_experiment --method dummy --split dev --limit 20
 streamlit run app/app.py
 ```
+
+Enter a question in the app and select **Ask**. The result includes an extractive answer, graph
+connections, and the supporting passages. The `dummy` method remains available for the interface
+contract test only.
 
 ## Layout
 
@@ -48,7 +48,7 @@ streamlit run app/app.py
 configs/default.yaml          frozen shared settings (embeddings, top_k, data paths, seed)
 data/                         datasets; see data/README.md
 src/evrag/schema.py           RAGOutput — the interface every method returns
-src/evrag/methods/            base.py (protocol + registry), dummy, threshold_rag (stub)
+src/evrag/methods/            base.py (protocol + registry), graph_rag, dummy, threshold_rag (stub)
 src/evrag/retriever.py        shared retriever (sentence-transformers + FAISS/numpy)
 src/evrag/evaluation/         run_experiment → results/runs/*.jsonl → metrics → plots
 scripts/                      one-off helpers (b_download_model)
