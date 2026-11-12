@@ -20,6 +20,7 @@ def load_questions(split: str, limit: int | None = None) -> list[dict]:
         rows = [r for r in csv.DictReader(f) if r["split"] == split]
     return rows[:limit] if limit else rows
 
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--method", required=True)
