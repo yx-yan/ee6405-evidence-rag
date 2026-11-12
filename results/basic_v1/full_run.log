@@ -1,0 +1,79 @@
+nlp_only dev: 10/175
+nlp_only dev: 20/175
+nlp_only dev: 30/175
+nlp_only dev: 40/175
+nlp_only dev: 50/175
+nlp_only dev: 60/175
+nlp_only dev: 70/175
+nlp_only dev: 80/175
+nlp_only dev: 90/175
+nlp_only dev: 100/175
+nlp_only dev: 110/175
+nlp_only dev: 120/175
+nlp_only dev: 130/175
+nlp_only dev: 140/175
+nlp_only dev: 150/175
+nlp_only dev: 160/175
+nlp_only dev: 170/175
+nlp_only dev: 175/175
+Wrote 175 outputs to /Users/yiwen/Desktop/test-claude/ee6405-basic-rag-v1/results/runs/nlp_only_dev.jsonl
+basic_rag dev: 10/175
+basic_rag dev: 20/175
+basic_rag dev: 30/175
+basic_rag dev: 40/175
+basic_rag dev: 50/175
+basic_rag dev: 60/175
+basic_rag dev: 70/175
+basic_rag dev: 80/175
+basic_rag dev: 90/175
+basic_rag dev: 100/175
+basic_rag dev: 110/175
+basic_rag dev: 120/175
+basic_rag dev: 130/175
+basic_rag dev: 140/175
+basic_rag dev: 150/175
+basic_rag dev: 160/175
+basic_rag dev: 170/175
+basic_rag dev: 175/175
+Wrote 175 outputs to /Users/yiwen/Desktop/test-claude/ee6405-basic-rag-v1/results/runs/basic_rag_dev.jsonl
+Wrote 2 rows (350 outputs) to results/metrics_dev.csv
+nlp_only test: 10/175
+nlp_only test: 20/175
+nlp_only test: 30/175
+nlp_only test: 40/175
+nlp_only test: 50/175
+nlp_only test: 60/175
+nlp_only test: 70/175
+nlp_only test: 80/175
+nlp_only test: 90/175
+nlp_only test: 100/175
+nlp_only test: 110/175
+nlp_only test: 120/175
+nlp_only test: 130/175
+nlp_only test: 140/175
+nlp_only test: 150/175
+nlp_only test: 160/175
+nlp_only test: 170/175
+nlp_only test: 175/175
+Wrote 175 outputs to /Users/yiwen/Desktop/test-claude/ee6405-basic-rag-v1/results/runs/nlp_only_test.jsonl
+basic_rag test: 10/175
+basic_rag test: 20/175
+basic_rag test: 30/175
+basic_rag test: 40/175
+basic_rag test: 50/175
+basic_rag test: 60/175
+basic_rag test: 70/175
+basic_rag test: 80/175
+basic_rag test: 90/175
+basic_rag test: 100/175
+basic_rag test: 110/175
+basic_rag test: 120/175
+basic_rag test: 130/175
+basic_rag test: 140/175
+basic_rag test: 150/175
+basic_rag test: 160/175
+basic_rag test: 170/175
+basic_rag test: 175/175
+Wrote 175 outputs to /Users/yiwen/Desktop/test-claude/ee6405-basic-rag-v1/results/runs/basic_rag_test.jsonl
+Wrote 2 rows (350 outputs) to results/metrics_test.csv
+Verified 350 paired questions and 1400 evidence links.

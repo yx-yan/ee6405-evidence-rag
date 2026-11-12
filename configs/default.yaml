@@ -2,10 +2,11 @@
 seed: 42
 
 retrieval:
-  # Team decision 2026-11-04: bge-base replaces MiniLM (better gold-chunk recall in a MedQuAD trial,
-  # since removed); re-check once the new dataset exists.
-  embedding_model: BAAI/bge-base-en-v1.5
+  # MiniLM, as in the basic_rag v1 results; owner B to confirm (bge-base was chosen on 2026-11-04 for
+  # MedQuAD, since removed). Changing it means re-running every retrieval route.
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
   top_k: 5
+  context_k: 4                # passages passed to the generator, within generator.max_source_tokens
   cache_dir: models/retrieval
   backend: faiss
 

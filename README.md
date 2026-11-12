@@ -66,3 +66,9 @@ app/app.py                    Streamlit demo with token attributions
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow.
+
+## Basic RAG v1 comparison
+
+See [the bilingual report](docs/reports/basic_rag_v1.md) and [the results](results/basic_v1/RESULTS_ZH_EN.md).
+Run `scripts/run_basic_v1.sh` after installing dependencies; it reads `configs/default.yaml` and
+writes to `results/basic_v1` with the shared metrics (`evrag.evaluation.metrics`).
