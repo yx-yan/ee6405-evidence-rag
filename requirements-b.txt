@@ -1,6 +1,0 @@
-# Minimal dependencies for Member B; the full project remains requirements.txt.
--e .
-numpy
-sentence-transformers
-faiss-cpu
-pytest

@@ -28,7 +28,7 @@ NLP-only 只将问题送给 BART。Basic RAG 用 all-MiniLM-L6-v2 编码问题�
     python3.11 -m venv .venv
     source .venv/bin/activate
     pip install torch
-    pip install -r requirements-b.txt -r requirements-generator.txt
+    pip install -r requirements.txt -r requirements-generator.txt
     scripts/run_basic_v1.sh
 
 脚本使用 models/generator/bart-base/best 内的 BART 权重（首次调用会从 GitHub Release 下载）；需要使用其他 BART 时，可通过 EVRAG_GENERATOR_DIR 指定其目录。MiniLM 由 sentence-transformers 自动下载。所有设置读自 configs/default.yaml。脚本会重新生成同名 run 和指标文件，重跑前可备份 results。
