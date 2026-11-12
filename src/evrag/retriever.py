@@ -63,7 +63,7 @@ class Retriever:
             try:
                 from sentence_transformers import SentenceTransformer
             except ImportError as exc:
-                raise RuntimeError("Install requirements-b.txt for dense retrieval") from exc
+                raise RuntimeError("Install requirements.txt for dense retrieval") from exc
             encoder = SentenceTransformer(self.model_name)
         self.encoder = encoder
         cache = cache_dir if cache_dir is not None else settings.get("cache_dir")

@@ -3,10 +3,9 @@
 **When should a RAG agent answer, retrieve again, or abstain?** — EE6405 NLP group project.
 
 > **New to the team? Start here**
-> 1. Read [docs/ROLES.md](docs/ROLES.md) and find your letter (A–E).
-> 2. Follow **Setup** below and check that `pytest` passes.
-> 3. Open the [issues](../../issues), filter by your `role:` label, and assign this week's issue to yourself.
-> 4. Work on a branch and open a PR, following [CONTRIBUTING.md](CONTRIBUTING.md). Key dates are in [docs/timeline.md](docs/timeline.md).
+> 1. Follow **Setup** below and check that `pytest` passes.
+> 2. Open the [issues](../../issues), filter by your `role:` label, and assign this week's issue to yourself.
+> 3. Work on a branch and open a PR, following [CONTRIBUTING.md](CONTRIBUTING.md).
 
 We compare three response policies on one shared retriever:
 
@@ -53,15 +52,15 @@ with occlusion, LIME and SHAP side by side (`src/evrag/explain.py`). It needs to
 configs/default.yaml          frozen shared settings (embeddings, top_k, data paths, seed)
 data/                         datasets; see data/README.md
 src/evrag/schema.py           RAGOutput — the interface every method returns
-src/evrag/methods/            base.py (protocol + registry), dummy, threshold_rag (stub)
+src/evrag/methods/            base.py (protocol + registry), dummy
 src/evrag/retriever.py        shared retriever (sentence-transformers + FAISS/numpy)
 src/evrag/generator.py        shared answer generator (BART-base, docs/generator.md)
 src/evrag/explain.py          input-token attributions for the demo (occlusion, LIME, SHAP)
-src/evrag/evaluation/         run_experiment → results/runs/*.jsonl → metrics → plots
+src/evrag/evaluation/         run_experiment → results/runs/*.jsonl → metrics
 scripts/                      one-off helpers (b_download_model)
 notebooks/                    <role>_<topic>.ipynb
 results/                      raw outputs per experiment; see results/README.md
-docs/                         roles, timeline
+docs/                         generator notes
 app/app.py                    Streamlit demo with token attributions
 ```
 
