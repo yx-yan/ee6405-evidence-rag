@@ -54,7 +54,17 @@ def test_table():
     assert m["latency_mean_ms"] == pytest.approx(50 / 3)
     assert table[("m", "B")]["abstention_recall"] == 1.0 and table[("m", "B")]["over_refusal_rate"] is None
     closed = table[("closed", "all")]
-    assert closed["unsupported_answer_rate"] == 1.0 and closed["recall_at_k"] is None
+    assert closed["unsupported_answer_rate"] is None and closed["recall_at_k"] is None
+
+
+def test_no_scenario_and_generator_context():
+    dataset = {"q1": {**DATASET["q1"], "scenario": ""}}
+    run = out("q1", "Dry skin and itching.", [("d1", "Eczema causes dry skin and itching."), ("d2", "Unrelated.")])
+    run["meta"] = {"context_doc_ids": ["d2"]}             # the generator only saw d2
+    table = M.metrics_table(M.score_rows([run], dataset))
+    assert [r["scenario"] for r in table] == ["all"]
+    assert table[0]["unsupported_answer_rate"] == 1.0
+    assert table[0]["recall_at_k"] == 1.0                # recall still counts every retrieved document
 
 
 def test_manual_labels_override_f1(tmp_path):

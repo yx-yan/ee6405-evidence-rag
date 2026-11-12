@@ -8,13 +8,13 @@ A question is answerable when its `gold_answers` are non-empty (JSON list, or an
 by '|'). An answer counts as correct when a manual label in results/adjudication_<split>.csv says
 so, otherwise when its best token F1 against the gold answers reaches CORRECT_F1.
 
-Per method and scenario (A/B/C and all):
+Per method, per scenario (when dataset.csv has a `scenario` column) and for all questions:
   coverage                answered / all
   answer_correctness      correct answers / all questions
   selective_accuracy      correct answers / answered questions
   abstention_recall       abstained unanswerable questions / all unanswerable questions
   over_refusal_rate       abstained answerable questions / all answerable questions
-  unsupported_answer_rate answers whose content words are mostly absent from the retrieved evidence / answers
+  unsupported_answer_rate answers whose content words are mostly absent from the evidence / answers with evidence
   token_f1, rouge_l       mean over answered answerable questions (best gold answer)
   recall_at_k             a gold document is among the retrieved ones (questions with gold_doc_ids)
   latency_mean_ms, latency_p95_ms
@@ -23,6 +23,8 @@ Per method and scenario (A/B/C and all):
 answer_correctness also gets a 95% bootstrap interval; `paired_bootstrap` compares two methods.
 Support is reported on its own (unsupported_answer_rate) rather than folded into correctness, so
 a closed-book route, which has no evidence to be supported by, can still be compared on correctness.
+The evidence is what the generator was given: the retrieved documents listed in
+meta["context_doc_ids"] when a method records it, otherwise all retrieved documents.
 """
 from __future__ import annotations
 
@@ -125,6 +127,13 @@ def load_labels(path: Path) -> dict[tuple[str, str], bool]:
                 for r in csv.DictReader(f) if r.get("label", "").strip()}
 
 
+def evidence_docs(out: dict) -> list[dict]:
+    """The retrieved documents the generator was given (meta["context_doc_ids"], else all)."""
+    docs = out.get("retrieved_docs") or []
+    ids = (out.get("meta") or {}).get("context_doc_ids")
+    return docs if ids is None else [d for d in docs if d["doc_id"] in ids]
+
+
 # --- Scoring -----------------------------------------------------------------------------------
 def score_rows(runs: list[dict], dataset: dict[str, dict], labels=None) -> list[dict]:
     """One scored row per run output whose question is in `dataset`."""
@@ -143,7 +152,8 @@ def score_rows(runs: list[dict], dataset: dict[str, dict], labels=None) -> list[
         if q["gold_doc_ids"] and docs:
             row["recall"] = float(any(d["doc_id"] in q["gold_doc_ids"] for d in docs))
         if answered:
-            row["support"] = support(out["answer"], [d["text"] for d in docs])
+            evidence = evidence_docs(out)
+            row["support"] = support(out["answer"], [d["text"] for d in evidence]) if evidence else None
             if answerable:
                 row["f1"] = best(token_f1, out["answer"], q["gold_answers"])
                 row["rouge_l"] = best(rouge_l, out["answer"], q["gold_answers"])
@@ -181,6 +191,7 @@ def paired_bootstrap(a, b, n: int = 2000, seed: int = SEED) -> dict:
 
 def summarize(rows: list[dict]) -> dict:
     answered = [r for r in rows if r["answered"]]
+    with_evidence = [r for r in answered if r["support"] is not None]
     answerable = [r for r in rows if r["answerable"]]
     unanswerable = [r for r in rows if not r["answerable"]]
     good = [float(r["correct"]) for r in rows]
@@ -195,7 +206,7 @@ def summarize(rows: list[dict]) -> dict:
         "selective_accuracy": _rate(sum(r["correct"] for r in answered), len(answered)),
         "abstention_recall": _rate(sum(not r["answered"] for r in unanswerable), len(unanswerable)),
         "over_refusal_rate": _rate(sum(not r["answered"] for r in answerable), len(answerable)),
-        "unsupported_answer_rate": _rate(sum(r["support"] < SUPPORT_MIN for r in answered), len(answered)),
+        "unsupported_answer_rate": _rate(sum(r["support"] < SUPPORT_MIN for r in with_evidence), len(with_evidence)),
         "token_f1": _mean(r["f1"] for r in answered),
         "rouge_l": _mean(r["rouge_l"] for r in answered),
         "recall_at_k": _mean(r["recall"] for r in rows),
@@ -207,11 +218,12 @@ def summarize(rows: list[dict]) -> dict:
 
 
 def metrics_table(rows: list[dict]) -> list[dict]:
-    """One summary row per (method, scenario), plus scenario 'all' per method."""
+    """One summary row per (method, scenario), plus scenario 'all' per method. Questions without a
+    scenario only count towards 'all'."""
     table = []
     for method in sorted({r["method"] for r in rows}):
         mine = [r for r in rows if r["method"] == method]
-        for scenario in sorted({r["scenario"] for r in mine}) + ["all"]:
+        for scenario in sorted({r["scenario"] for r in mine if r["scenario"]}) + ["all"]:
             subset = mine if scenario == "all" else [r for r in mine if r["scenario"] == scenario]
             table.append({"method": method, "scenario": scenario, **summarize(subset)})
     return table
@@ -228,14 +240,15 @@ def add_attribution(rows: list[dict], runs: list[dict], dataset: dict[str, dict]
     done = Counter()
     for row in rows:
         out = by_key[(row["question_id"], row["method"])]
-        if not row["answered"] or not out["retrieved_docs"] or done[row["method"]] >= limit:
+        docs = evidence_docs(out)
+        if not row["answered"] or not docs or done[row["method"]] >= limit:
             continue
         q = dataset[row["question_id"]]
-        contexts = [d["text"] for d in out["retrieved_docs"]]
+        contexts = [d["text"] for d in docs]
         feats = explain.features(q["question"], contexts, unit)
         f = explain.make_scorer(q["question"], contexts, out["answer"], feats)
         values = explain.shap_values(f, len(feats), permutations)
-        gold = {i for i, d in enumerate(out["retrieved_docs"]) if d["doc_id"] in q["gold_doc_ids"]}
+        gold = {i for i, d in enumerate(docs) if d["doc_id"] in q["gold_doc_ids"]}
         row.update(evidence_reliance(values, [ft.segment for ft in feats], gold))
         done[row["method"]] += 1
 
