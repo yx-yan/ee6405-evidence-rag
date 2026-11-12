@@ -24,8 +24,7 @@ generator:
   no_repeat_ngram_size: 3
 
 data:
-  # TODO(team): the new medical dataset (e.g. heart disease) is being prepared; the general
-  # datasets (MedQuAD, LiveQA-Med, Symptom2Disease, MTS-Dialog) were removed on 2026-11-08.
-  dataset: TODO
-  corpus: TODO
+  # A's WikiDoc patient-information set (asthma, diabetes, hypertension); see data/README.md
+  dataset: data/processed/dataset.csv
+  corpus: data/processed/corpus.jsonl
   splits: [dev, test]         # tune thresholds / prompts on dev ONLY
