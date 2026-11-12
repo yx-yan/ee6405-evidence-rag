@@ -20,7 +20,6 @@ def load_questions(split: str, limit: int | None = None) -> list[dict]:
         rows = [r for r in csv.DictReader(f) if r["split"] == split]
     return rows[:limit] if limit else rows
 
-
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--method", required=True)
@@ -33,8 +32,11 @@ def main() -> None:
     out = RUNS_DIR / f"{args.method}_{args.split}{args.limit or ''}.jsonl"
     out.parent.mkdir(parents=True, exist_ok=True)
     with open(out, "w") as f:
-        for q in questions:
+        for index, q in enumerate(questions, 1):
             f.write(json.dumps(method.run(q["question"], q["question_id"]).to_dict()) + "\n")
+            f.flush()
+            if index % 10 == 0 or index == len(questions):
+                print(f"{args.method} {args.split}: {index}/{len(questions)}", flush=True)
     print(f"Wrote {len(questions)} outputs to {out}")
 
 
