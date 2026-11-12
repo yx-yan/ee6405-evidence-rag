@@ -1,6 +1,6 @@
 # Roles & tasks
 
-Find your letter, read your section, then take your issue for the current week (label `role:<letter>`). Based on the team proposal ([proposal.md](proposal.md)).
+Find your letter, read your section, then take your issue for the current week (label `role:<letter>`).
 
 | Role | Goal | Key output | Depends on |
 |------|-----------|------------|------------|

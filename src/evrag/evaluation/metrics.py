@@ -1,6 +1,6 @@
 """Metrics computed from results/runs/*.jsonl joined with dataset.csv. Owner: E.
 
-Definitions (from the proposal):
+Definitions:
   answer_correctness      correct supported answers / all questions
   selective_accuracy      correct answers / answered questions
   coverage                answered / all

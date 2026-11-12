@@ -3,7 +3,7 @@
 **When should a RAG agent answer, retrieve again, or abstain?** — EE6405 NLP group project.
 
 > **New to the team? Start here**
-> 1. Read [docs/ROLES.md](docs/ROLES.md) and find your letter (A–E). The project idea is summarised in [docs/proposal.md](docs/proposal.md).
+> 1. Read [docs/ROLES.md](docs/ROLES.md) and find your letter (A–E).
 > 2. Follow **Setup** below and check that `pytest` passes.
 > 3. Open the [issues](../../issues), filter by your `role:` label, and assign this week's issue to yourself.
 > 4. Work on a branch and open a PR, following [CONTRIBUTING.md](CONTRIBUTING.md). Key dates are in [docs/timeline.md](docs/timeline.md).
@@ -61,7 +61,7 @@ src/evrag/evaluation/         run_experiment → results/runs/*.jsonl → metric
 scripts/                      one-off helpers (b_download_model)
 notebooks/                    <role>_<topic>.ipynb
 results/                      raw outputs per experiment; see results/README.md
-docs/                         roles, timeline, proposal
+docs/                         roles, timeline
 app/app.py                    Streamlit demo with token attributions
 ```
 
