@@ -6,7 +6,7 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
-from evrag.config import ROOT, load_config
+from evrag.config import ROOT, dataset_paths, load_config
 from evrag.schema import RetrievedDoc
 
 
@@ -53,7 +53,7 @@ class Retriever:
         self.backend = backend or settings.get("backend", "faiss")
         if self.backend not in {"faiss", "numpy"}:
             raise ValueError("retrieval.backend must be faiss or numpy")
-        path = Path(corpus_path or self.config["data"]["corpus"])
+        path = Path(corpus_path or dataset_paths()["corpus"])
         self.corpus_path = path if path.is_absolute() else ROOT / path
         self.documents = load_corpus(self.corpus_path)
         # A custom encoder may have different weights under the same name:
@@ -137,12 +137,16 @@ class Retriever:
                 for i, score in pairs]
 
 
-@lru_cache(maxsize=1)
-def get_retriever() -> Retriever:
-    """Reuse one corpus/model/index in this process; clear cache after config changes."""
-    return Retriever()
+@lru_cache(maxsize=4)
+def _cached(corpus_path: str) -> Retriever:
+    return Retriever(corpus_path)
 
 
-def search(query: str, top_k: int | None = None) -> list[RetrievedDoc]:
-    """Shared entry point for B/C/D: search(query, top_k)."""
-    return get_retriever().search(query, top_k)
+def get_retriever(dataset: str | None = None) -> Retriever:
+    """One corpus/model/index per evaluation set in this process (see config.dataset_name)."""
+    return _cached(str(dataset_paths(dataset)["corpus"]))
+
+
+def search(query: str, top_k: int | None = None, dataset: str | None = None) -> list[RetrievedDoc]:
+    """Shared entry point for every method: search(query, top_k, dataset)."""
+    return get_retriever(dataset).search(query, top_k)

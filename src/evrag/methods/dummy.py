@@ -11,7 +11,8 @@ from evrag.schema import RetrievedDoc
 class DummyMethod(Method):
     name = "dummy"
 
-    def __init__(self, abstain_rate: float = 0.3, seed: int = SEED):
+    def __init__(self, abstain_rate: float = 0.3, seed: int = SEED, dataset: str | None = None):
+        super().__init__(dataset)
         self.abstain_rate = abstain_rate
         self.rng = random.Random(seed)
 

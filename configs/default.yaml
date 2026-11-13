@@ -25,7 +25,22 @@ generator:
   no_repeat_ngram_size: 3
 
 data:
-  # A's WikiDoc patient-information set (asthma, diabetes, hypertension); see data/README.md
-  dataset: data/processed/dataset.csv
-  corpus: data/processed/corpus.jsonl
+  default: coronavirus        # dataset used when neither --dataset nor EVRAG_DATASET is given
   splits: [dev, test]         # tune thresholds / prompts on dev ONLY
+
+# Evaluation sets by name (data/README.md). The three disease sets are evaluated on their eval/
+# versions, which add unanswerable questions (python -m evrag.data.unanswerable). WikiDoc was seen
+# in generator training, so it is kept only for the appendix (results/basic_v1).
+datasets:
+  coronavirus:
+    corpus: data/processed/coronavirus/eval/corpus.jsonl
+    dataset: data/processed/coronavirus/eval/dataset.csv
+  cancer:
+    corpus: data/processed/cancer/eval/corpus.jsonl
+    dataset: data/processed/cancer/eval/dataset.csv
+  neuro:
+    corpus: data/processed/neuro/eval/corpus.jsonl
+    dataset: data/processed/neuro/eval/dataset.csv
+  wikidoc:
+    corpus: data/processed/corpus.jsonl
+    dataset: data/processed/dataset.csv

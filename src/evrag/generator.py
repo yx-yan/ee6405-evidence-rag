@@ -107,7 +107,7 @@ def load(model_dir: str | None = None):
         if model_dir != cfg["model_dir"] or not cfg.get("release"):
             raise RuntimeError(f"Generator model not found at {model_dir}")
         download(model_dir, cfg["release"])
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_dir).to(device).eval()
     return tokenizer, model, device

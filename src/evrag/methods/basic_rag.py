@@ -10,7 +10,7 @@ class BasicRAG(Method):
     name = "basic_rag"
 
     def _answer(self, question):
-        docs = retriever.search(question)
+        docs = retriever.search(question, dataset=self.dataset)
         if not docs:
             return None, [], {"context_doc_ids": [], "sources": []}
         tokenizer, _, _ = generator.load()

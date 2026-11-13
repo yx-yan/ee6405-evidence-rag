@@ -1,6 +1,6 @@
 """Metrics computed from results/runs/*.jsonl joined with dataset.csv. Owner: E.
 
-    python -m evrag.evaluation.metrics --split test                  # -> results/metrics.csv
+    python -m evrag.evaluation.metrics --dataset cancer --split test  # -> results/metrics_cancer_test.csv
     python -m evrag.evaluation.metrics --split test --adjudication   # -> results/adjudication_test.csv to label
     python -m evrag.evaluation.metrics --split test --attribution 50 # + SHAP evidence reliance on 50 answers per run
 
@@ -38,7 +38,7 @@ from pathlib import Path
 
 import numpy as np
 
-from evrag.config import RESULTS_DIR, ROOT, RUNS_DIR, SEED, load_config
+from evrag.config import DATASETS, RESULTS_DIR, RUNS_DIR, SEED, dataset_name, dataset_paths
 from evrag.generator import rouge_l
 
 CORRECT_F1 = 0.5        # automatic correctness threshold, until a manual label overrides it
@@ -282,17 +282,20 @@ def write_csv(table: list[dict], path: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--dataset", choices=DATASETS, help="default: EVRAG_DATASET or data.default")
     parser.add_argument("--split", default="test", choices=["dev", "test"])
-    parser.add_argument("--runs", nargs="*", help="run files (default: results/runs/*_<split>.jsonl)")
+    parser.add_argument("--runs", nargs="*", help="run files (default: results/runs/<dataset>/*_<split>.jsonl)")
     parser.add_argument("--adjudication", action="store_true", help="write a sample to label by hand and stop")
     parser.add_argument("--attribution", type=int, default=0, metavar="N",
                         help="add SHAP evidence reliance for N answered questions per method")
-    parser.add_argument("--out", default=str(RESULTS_DIR / "metrics.csv"))
+    parser.add_argument("--out", help="default: results/metrics_<dataset>_<split>.csv")
     args = parser.parse_args()
 
-    dataset = load_dataset(ROOT / load_config()["data"]["dataset"], args.split)
-    runs = load_runs(args.runs or sorted(RUNS_DIR.glob(f"*_{args.split}.jsonl")))
-    labels_path = RESULTS_DIR / f"adjudication_{args.split}.csv"
+    name = dataset_name(args.dataset)
+    dataset = load_dataset(dataset_paths(name)["dataset"], args.split)
+    runs = load_runs(args.runs or sorted((RUNS_DIR / name).glob(f"*_{args.split}.jsonl")))
+    labels_path = RESULTS_DIR / f"adjudication_{name}_{args.split}.csv"
+    args.out = args.out or str(RESULTS_DIR / f"metrics_{name}_{args.split}.csv")
     rows = score_rows(runs, dataset, load_labels(labels_path))
     if not rows:
         raise SystemExit(f"No run outputs match the {args.split} questions")

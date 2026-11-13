@@ -44,6 +44,31 @@ Recall@5 counts questions with at least one gold passage in the top 5 (all 300 q
 - The shared generator was not trained on COVID-QA or MedQuAD, but its MEDIQA-AnS training data
   comes from NIH pages and may overlap the MedQuAD sets.
 
+## Evaluation sets with unanswerable questions
+
+The three disease sets are the main evaluation sets (`datasets:` in `configs/default.yaml`). WikiDoc
+was seen in generator training, so it is only used in the appendix (`results/basic_v1/`).
+`python -m evrag.data.unanswerable` ([src/evrag/data/unanswerable.py](../src/evrag/data/unanswerable.py))
+writes `processed/<set>/eval/{corpus.jsonl,dataset.csv}` without touching the original files. The
+eval dataset adds a `scenario` column (and `source_set`, the set a question comes from):
+
+- `answerable`: the set's own questions, unchanged.
+- `missing_evidence`: 25 questions per split whose gold passages are removed from the eval corpus;
+  their gold answers are emptied. Other passages of the same paper or page stay, so retrieval still
+  finds related text that does not hold the answer. Answerable questions whose gold passages were
+  all removed (shared COVID-QA chunks) are dropped.
+- `out_of_domain`: 25 questions per split from each of the other two sets (same split), gold emptied.
+
+Questions are drawn with the config seed within each split, so dev and test never share one.
+
+| Set | Eval passages (removed) | Answerable dropped | dev: answerable / missing / out-of-domain | test: answerable / missing / out-of-domain |
+|-----|------------------------:|-------------------:|------------------------------------------:|-------------------------------------------:|
+| coronavirus | 922 (60) | 37 | 107 / 25 / 50 | 106 / 25 / 50 |
+| cancer | 3,844 (74) | 0 | 125 / 25 / 50 | 125 / 25 / 50 |
+| neuro | 1,333 (61) | 0 | 125 / 25 / 50 | 125 / 25 / 50 |
+
+MiniLM recall@5 on the eval answerable questions: coronavirus 0.41, cancer 0.91, neuro 0.99.
+
 `gold_answers` and `gold_doc_ids` are JSON lists. A dataset may add a `scenario` column; metrics
 are then also reported per scenario.
 
