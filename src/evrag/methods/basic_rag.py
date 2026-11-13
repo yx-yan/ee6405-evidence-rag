@@ -1,7 +1,6 @@
-"""Basic dense retrieval with evidence bounded by the shared BART input budget."""
+"""Basic dense retrieval with evidence bounded by the shared BART input budget. Owner: B."""
 
 from evrag import generator, retriever
-from evrag.config import load_config
 from evrag.methods.base import Method, register
 
 
@@ -12,23 +11,7 @@ class BasicRAG(Method):
     def _answer(self, question):
         docs = retriever.search(question, dataset=self.dataset)
         if not docs:
-            return None, [], {"context_doc_ids": [], "sources": []}
-        tokenizer, _, _ = generator.load()
-        budget = int(generator.settings().get("max_source_tokens", 1024))
-        context_k = load_config()["retrieval"]["context_k"]
-        contexts = []
-        for doc in docs:
-            candidate = contexts + [doc]
-            size = len(tokenizer(generator.format_input(question, candidate))["input_ids"])
-            if size <= budget:
-                contexts.append(doc)
-            if len(contexts) == context_k:
-                break
-        if not contexts:
-            raise ValueError("No retrieved passage fits the generator input budget")
+            return None, [], {"context_doc_ids": []}
+        contexts, tokens = generator.fit_contexts(question, docs)
         answer = generator.generate(question, contexts=contexts).strip()
-        return answer or None, docs, {
-            "context_doc_ids": [doc.doc_id for doc in contexts],
-            "input_tokens": len(tokenizer(generator.format_input(question, contexts))["input_ids"]),
-            "max_source_tokens": budget,
-        }
+        return answer or None, docs, {"context_doc_ids": [doc.doc_id for doc in contexts], "input_tokens": tokens}
