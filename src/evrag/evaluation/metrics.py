@@ -12,10 +12,13 @@ Per method, per scenario (when dataset.csv has a `scenario` column) and for all 
   coverage                answered / all
   answer_correctness      correct answers / all questions
   selective_accuracy      correct answers / answered questions
+  reliability             (correct answers + abstained unanswerable questions) / all questions
   abstention_recall       abstained unanswerable questions / all unanswerable questions
   over_refusal_rate       abstained answerable questions / all answerable questions
   unsupported_answer_rate answers whose content words are mostly absent from the evidence / answers with evidence
   token_f1, rouge_l       mean over answered answerable questions (best gold answer)
+  gold_token_recall       share of the gold answer's tokens found in the answer (best gold), the
+                          containment check used for long answers to short-span questions (COVID-QA)
   recall_at_k             a gold document is among the retrieved ones (questions with gold_doc_ids)
   latency_mean_ms, latency_p95_ms
   evidence_reliance       share of SHAP attribution on the evidence rather than the question (--attribution)
@@ -64,6 +67,12 @@ def token_f1(prediction: str, reference: str) -> float:
         return 0.0
     precision, recall = common / len(p), common / len(r)
     return 2 * precision * recall / (precision + recall)
+
+
+def token_recall(prediction: str, reference: str) -> float:
+    """Share of the reference tokens that the prediction contains (with multiplicity)."""
+    p, r = normalize(prediction), normalize(reference)
+    return sum((Counter(p) & Counter(r)).values()) / len(r) if r else 0.0
 
 
 def best(metric, prediction: str, references: list[str]) -> float:
@@ -148,7 +157,7 @@ def score_rows(runs: list[dict], dataset: dict[str, dict], labels=None) -> list[
         answerable = bool(q["gold_answers"])
         row = {"question_id": q["question_id"], "method": out["method"], "scenario": q.get("scenario", ""),
                "answered": answered, "answerable": answerable, "latency_ms": float(out["latency_ms"]),
-               "f1": None, "rouge_l": None, "support": None, "recall": None}
+               "f1": None, "rouge_l": None, "gold_recall": None, "support": None, "recall": None}
         if q["gold_doc_ids"] and docs:
             row["recall"] = float(any(d["doc_id"] in q["gold_doc_ids"] for d in docs))
         if answered:
@@ -157,8 +166,10 @@ def score_rows(runs: list[dict], dataset: dict[str, dict], labels=None) -> list[
             if answerable:
                 row["f1"] = best(token_f1, out["answer"], q["gold_answers"])
                 row["rouge_l"] = best(rouge_l, out["answer"], q["gold_answers"])
+                row["gold_recall"] = best(token_recall, out["answer"], q["gold_answers"])
         label = labels.get((row["question_id"], row["method"]))
         row["correct"] = answered and answerable and (label if label is not None else row["f1"] >= CORRECT_F1)
+        row["reliable"] = row["correct"] or (not answered and not answerable)
         rows.append(row)
     return rows
 
@@ -204,11 +215,13 @@ def summarize(rows: list[dict]) -> dict:
         "answer_correctness_ci_low": low if good else None,
         "answer_correctness_ci_high": high if good else None,
         "selective_accuracy": _rate(sum(r["correct"] for r in answered), len(answered)),
+        "reliability": _mean(float(r["reliable"]) for r in rows),
         "abstention_recall": _rate(sum(not r["answered"] for r in unanswerable), len(unanswerable)),
         "over_refusal_rate": _rate(sum(not r["answered"] for r in answerable), len(answerable)),
         "unsupported_answer_rate": _rate(sum(r["support"] < SUPPORT_MIN for r in with_evidence), len(with_evidence)),
         "token_f1": _mean(r["f1"] for r in answered),
         "rouge_l": _mean(r["rouge_l"] for r in answered),
+        "gold_token_recall": _mean(r["gold_recall"] for r in answered),
         "recall_at_k": _mean(r["recall"] for r in rows),
         "latency_mean_ms": float(np.mean(latency)) if latency else None,
         "latency_p95_ms": float(np.percentile(latency, 95)) if latency else None,
