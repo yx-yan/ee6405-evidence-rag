@@ -1,0 +1,301 @@
+question_id,question,gold_answers,gold_doc_ids,split
+cov_Q0,What is the size of bovine coronavirus?,"[""31 kb""]","[""cov_0""]",dev
+cov_Q1,What is the molecular structure of bovine coronavirus?,"[""single-stranded, linear, and nonsegmented RNA""]","[""cov_0""]",test
+cov_Q2,What is the size of the orf1ab gene in bovine coronavirus?,"[""20kb""]","[""cov_2""]",dev
+cov_Q3,What is the most common species of Human Coronavirus among adults?,"[""HCoV-OC43""]","[""cov_9""]",test
+cov_Q4,Which Human Coronavirus showed species specific clinical characteristics of its infection?,"[""HCoV‐HKU1""]","[""cov_5""]",dev
+cov_Q5,What is the case fatality rate of SARS and MERS?,"[""ranged from 14% to 45%""]","[""cov_6""]",test
+cov_Q6,What were the common HCOV strains in the 5 year USA study?,"[""HCoV-OC43 and HCoV-229E""]","[""cov_9""]",dev
+cov_Q7,Which species are more prevalent but less severe?,"[""HCoV-HKU1, HCoV-OC43, HCoV-NL63, and HCoV-229E""]","[""cov_6""]",test
+cov_Q8,What influenza virus was identified in China in 2013?,"[""H7N9""]","[""cov_18""]",dev
+cov_Q9,Which is the source animal for the MERS-COV?,"[""Dromedary camels are the major animal source of MERS-CoV transmission to humans.""]","[""cov_41""]",test
+cov_Q10,What is the incubation period for MERS-COV?,"[""incubation period of 16 days with a mean of 5-6 days [""]","[""cov_41""]",dev
+cov_Q11,What age group had the most MERS-COV infections?,"[""majority of confirmed cases of MERS-CoV were reported among people aged 40 and above""]","[""cov_52""]",test
+cov_Q12,What health regulations were changes due to the outbreak of C. burnetti?,"[""forbid the display of sheep in the latter third of their pregnancy and require regular testing of animals for C. burnetii in petting zoos""]","[""cov_102""]",dev
+cov_Q13,What was the median seropresence of C. burnetti in sheep flocks not linked to human outbreaks?,"[""1%""]","[""cov_100""]",test
+cov_Q14,What important risk factors to infection were found during the second case-controlled study?,"[""close proximity to the ewe and duration of exposure""]","[""cov_94""]",dev
+cov_Q15,How many controls were used in the second case study?,"[""36""]","[""cov_85"", ""cov_86""]",test
+cov_Q16,What public event was linked with the outbreak?,"[""farmers' market""]","[""cov_81""]",dev
+cov_Q17,What causes Q fever?,"[""Coxiella burnetii (C. burnetii)""]","[""cov_64""]",test
+cov_Q18,What is the primary reservoir for Coxiella burnetii?,"[""sheep, goat and cattle""]","[""cov_65""]",dev
+cov_Q19,What is the distance between the p4.7 and p12.7 genes in the Irish versus Japanese equine coronavirus variants?,"[""544 base pairs""]","[""cov_114""]",test
+cov_Q20,Where have most outbreaks of equine coronavirus occurred in the United States?,"[""adult riding, racing and show horses""]","[""cov_118""]",dev
+cov_Q21,Who performed the sampling procedures?,"[""veterinarians""]","[""cov_127""]",test
+cov_Q22,What reference genome was used in the study?,"[""BatCoV HKU10""]","[""cov_130""]",dev
+cov_Q23,What is the length of the replicase gene ORF1ab?,"[""20.4 kb""]","[""cov_140""]",test
+cov_Q24,What type of coronavirus was detected in R. affinis and R. sinicus species?,"[""BtCoV/Rh/YN2012""]","[""cov_139""]",dev
+cov_Q25,What is a natural reservoir of coronavirus?,"[""Bats""]","[""cov_125""]",test
+cov_Q26,What is the genome size of the coronavirus?,"[""26-32 kb""]","[""cov_126"", ""cov_127""]",dev
+cov_Q27,What plays a role in regulating the immune response to a viral infection?,"[""NF-κB""]","[""cov_151""]",test
+cov_Q28,What is the conclusion of the coronavirus long-term surveillance studies?,"[""Rhinolophus bats seem to harbor a wide diversity of CoVs""]","[""cov_160""]",dev
+cov_Q29,What will be the drug of choice for treating COVID-19 between Chloroquine and Remdesivir?,"[""two potential drugs, CQ appears to be the drug of choice for large-scale use due to its availability, proven safety record, and a relatively low cost.""]","[""cov_164""]",test
+cov_Q30,What proportion of healthcare workers reported symptoms  of depression?,"[""50.4%""]","[""cov_182""]",dev
+cov_Q31,What proportion reported distress?,"[""[71.5%""]","[""cov_182""]",test
+cov_Q32,What were the Generalized Anxiety Disorder scale scores?,"[""among men vs women: 2.0 [0-6.0] vs 4.0 [1.0-7.0]; P < .001""]","[""cov_182""]",dev
+cov_Q33,What were the  Impact of Event Scale–Revised scores?,"[""21.0 [8.5-34.5] vs 18.0 [6.0-28.0] in Hubei outside Wuhan and 15.0 [4.0-26.0] outside Hubei; P < .001).""]","[""cov_183""]",test
+cov_Q34,What is the number of confirmed cases reached on 8 February 2020?,"[""34,598""]","[""cov_186""]",dev
+cov_Q35,What is the proposed model?,"[""an improved adaptive neuro-fuzzy inference system (ANFIS) using an enhanced flower pollination algorithm (FPA) by using the salp swarm algorithm (SSA)""]","[""cov_186""]",test
+cov_Q36,"What did the comparison of  the FPASSA-ANFIS model with several existing models, show?","[""it showed better performance in terms of Mean Absolute Percentage Error (MAPE), Root Mean Squared Relative Error (RMSRE), Root Mean Squared Relative Error (RMSRE), coefficient of determination ( R 2 ), and computing time.""]","[""cov_187""]",dev
+cov_Q37,How was the proposed model tested?,"[""using two different datasets of weekly influenza confirmed cases in two countries, namely the USA and China""]","[""cov_188""]",test
+cov_Q38,What were the outcomes of the test?,"[""showed good performances""]","[""cov_188""]",dev
+cov_Q39,"What are the large family of viruses, called coronaviruses?","[""pathogens for human beings, which infect respiratory, hepatic, gastrointestinal, and neurologic diseases.""]","[""cov_188""]",test
+cov_Q40,Among whom are the coronaviruses distributed?,"[""among humans, birds, livestock, mice, bats, and other wild animals""]","[""cov_188""]",dev
+cov_Q41,What does ANFIS offer?,"[""flexibility in determining nonlinearity in the time series data, as well as combining the properties of both artificial neural networks (ANN) and fuzzy logic systems.""]","[""cov_190""]",test
+cov_Q42,In which applications has it been applied?,"[""in various forecasting applications, for example, in [23] , a stock price forecasting model was proposed using ANFIS and empirical mode decomposition""]","[""cov_190""]",dev
+cov_Q43,What is MVO?,"[""multi-verse optimizer""]","[""cov_191"", ""cov_192""]",test
+cov_Q44,What may be a problem with individual SI algorithm?,"[""may stock at local optima""]","[""cov_192""]",dev
+cov_Q45,What is proposed in the current study?,"[""an improved ANFIS model based on a modified flower pollination algorithm (FPA) using the salp swarm algorithm (SSA).""]","[""cov_193""]",test
+cov_Q46,What  is the FPA optimization algorithm inspired by?,"[""inspired by the flow pollination process of the flowering plants.""]","[""cov_193"", ""cov_194""]",dev
+cov_Q47,What is the SSA optimization algorithm inspired by?,"[""inspired by the behavior of salp chains""]","[""cov_194""]",test
+cov_Q48,How does the proposed FPASSA start?,"[""by receiving the historical COVID-19 dataset.""]","[""cov_195""]",dev
+cov_Q49,What do the authors propose?,"[""an efficient forecasting model to forecast the confirmed cases of the COVID-19 in China for the upcoming ten days based on previously confirmed cases.""]","[""cov_196""]",test
+cov_Q50,What can be the main challenges in managing a hospital outbreak of COVID-19?,"[""(1) early identification of outbreak, (2) rapid expansion of patients, (3) high risk of nosocomial transmission, (4) unpredictability of size impacted, and (5) lack of backup resource.""]","[""cov_215""]",dev
+cov_Q51,What are the steps that a hospital should take after COVID-19 outbreak?,"[""2019-nCoV patients should be admitted""]","[""cov_218""]",test
+cov_Q52,Why exposure risk of COVID-19 is very high for ICU staff and what precautions should be taken?,"[""substantial exposure risk for ICU staff because of the following reasons""]","[""cov_219""]",dev
+cov_Q53,Use of SIR/SEIR model in Statistics-Based Predictions of Coronavirus Epidemic Spreading?,"[""susceptible persons is S, infected (persons who are sick and spread the infection) -I, removed (persons who do not spread the infection anymore, this number is the sum of isolated, recovered and dead people) -R; the infection and immunization rates""]","[""cov_228""]",test
+cov_Q54,What  is it most similar to?,"[""bat beta-coronaviruses, with the highest being >96% identity""]","[""cov_235"", ""cov_236""]",dev
+cov_Q55,what similarity human SARS-COV and palm civet SARSlike COV share?,"[""99.8% homology, with a total of 202 single-nucleotide (nt) variations (SNVs) identified across the genome""]","[""cov_236""]",test
+cov_Q56,How much is the difference between the human SARS-CoV-2 and the bat RaTG13-CoV?,"[""greater than 1,100 nt""]","[""cov_236""]",dev
+cov_Q57,What are the most revealing signs that SARS-CoV-2 evolved by natural evolution.,"[""The absence of a logical targeted pattern in the new viral sequences and a close relative in a wildlife species (bat""]","[""cov_237""]",test
+cov_Q58,What did the Nature Medicine paper report?,"[""the construction of a chimeric CoV with a bat CoV S gene (SHC014) in the backbone of a SARS CoV that has adapted to infect mice (MA15) and is capable of infecting human cells""]","[""cov_238""]",dev
+cov_Q59,How was the mouse-adapted SARS virus (MA15) generated?,"[""by serial passage of an infectious wildtype SARS CoV clone in the respiratory tract of BALB/c mice.""]","[""cov_238""]",test
+cov_Q60,How did  the SARS-CoV gain elevated replication and lung pathogenesis in aged mice ?,"[""due to six coding genetic mutations associated with mouse adaptation.""]","[""cov_238"", ""cov_239""]",dev
+cov_Q61,"Why were civets proposed to be an intermediate host of the bat-CoVs, capable of spreading SARS CoV to humans?","[""t was proposed that the S gene from bat-derived CoV, unlike that from human patients-or civetsderived viruses, was unable to use human ACE2 as a receptor for entry into human cells""]","[""cov_239""]",test
+cov_Q62,What were the results of this test?,"[""The resultant SL-SHC014-MA15 virus could indeed efficiently use human ACE2 and replicate in primary human airway cells to similar titres as epidemic strains of SARS-CoV. While SL-SHC014-MA15 can replicate efficiently in young and aged mouse lungs, infection was attenuated, and less virus antigen was present in the airway epithelium as compared to SARS MA15, which causes lethal outcomes in aged mice""]","[""cov_240""]",dev
+cov_Q63,Why were experiments with SL-SHC014-MA15 chimeric virus were later restricted?,"[""as gain of function (GOF) studies under the US government-mandated pause policy""]","[""cov_241""]",test
+cov_Q64,Why is there  no credible evidence to support the claim that the SARS-CoV-2 is derived from the chimeric SL-SHC014-MA15 virus?,"[""upon careful phylogenetic analyses by multiple international groups [5, 14] , the SARS-CoV-2 is undoubtedly distinct from SL-SHC014-MA15, with >6,000 nucleotide differences across the whole genome.""]","[""cov_241""]",dev
+cov_Q65,"What did the rumour that the virus was made by humans in the lab, claim?","[""that SARS-CoV-2 has HIV sequence in it and was thus likely generated in the laboratory. I""]","[""cov_242""]",test
+cov_Q66,What happened to the report with initial claims?,"[""Because of the many concerns raised by the international community, the authors who made the initial claim have already withdrawn this report.""]","[""cov_242"", ""cov_243""]",dev
+cov_Q67,What is the difference between evolution and synthetic constructs?,"[""Evolution is stepwise and accrues mutations gradually over time, whereas synthetic constructs would typically use a known backbone and introduce logical or targeted changes instead of the randomly occurring mutations that are present in naturally isolated viruses such as bat CoV RaTG13.""]","[""cov_243""]",test
+cov_Q68,"When did we discover that SARS-CoV-2, which causes COVID-19, was a novel coronavirus?","[""26 January 2020""]","[""cov_246""]",dev
+cov_Q69,How long did it take to identify the cause of COVID-19?,"[""4 weeks""]","[""cov_246""]",test
+cov_Q70,How long did it take to publish the full genomic sequence of SARS-CoV-2 after it was identified?,"[""2 weeks""]","[""cov_252""]",dev
+cov_Q71,What was the fatality rate for SARS-CoV?,"[""10%""]","[""cov_254""]",test
+cov_Q72,Who is at risk when health workers fail to wash their hands?,"[""the health worker, but also for their families and the communities in which they live""]","[""cov_256""]",dev
+cov_Q73,What is disease resilience?,"[""the ability of a given host to tolerate an infection, and to return to a state of health""]","[""cov_277""]",test
+cov_Q74,What family of virus does SARS reside in?,"[""coronavirus""]","[""cov_277"", ""cov_278""]",dev
+cov_Q75,What percentage of people infected with MERS-CoV died?,"[""35-50%""]","[""cov_278"", ""cov_279""]",test
+cov_Q76,What percentage of people infected with SARS-CoV died?,"[""10%""]","[""cov_278""]",dev
+cov_Q77,What was the primary threatening clinical finding in patients infected with SARS-CoV and MERS-CoV?,"[""severe lung pathology""]","[""cov_279""]",test
+cov_Q78,How does cell-entry differ between SARS-CoV and MERS-CoV?,"[""SARS-CoV uses the ACE2 receptor to gain entry to cells, while MERS-CoV uses the ectopeptidase DPP4""]","[""cov_282""]",dev
+cov_Q79,How does transmission differ between SARS-CoV and MERS-CoV?,"[""SARS-CoV also spreads more rapidly between hosts, while MERS-CoV has been more easily contained, but it is unclear if this is due to the affected patient populations and regions""]","[""cov_283""]",test
+cov_Q80,How do SARS-CoV and MERS-CoV evade the immune system sensing it's genome?,"[""SARS-CoV and MERS-CoV are contained in double membrane vesicles""]","[""cov_284""]",dev
+cov_Q81,What role does initial viral titer play in the prognosis of SARS-CoV and MERS-CoV?,"[""In patients with high initial viral titers there is a poor prognosis""]","[""cov_284""]",test
+cov_Q82,How do SARS-CoV viral proteins interact with the immune response?,"[""several viral proteins suppress the type I IFN response, and other aspects of innate antiviral immunity""]","[""cov_284""]",dev
+cov_Q83,What is the role of topoisomerase I in improving host resilience in viral lung infections?,"[""A recent paper demonstrates that topoisomerase I can protect against inflammation-induced death from a variety of viral infections including IAV""]","[""cov_291""]",test
+cov_Q84,What is the role of statins in increasing host resilience to viral lung infections?,"[""They act to stabilize the activation of aspects of the innate immune response and prevent excessive inflammation""]","[""cov_291""]",dev
+cov_Q85,What work has been carried out this study?,"[""A systematic search was carried out in three major electronic databases (PubMed, Embase and Cochrane Library) to identify published studies in accordance with the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA) guidelines. Supplementary strategies through Google Search and personal communications were used.""]","[""cov_299""]",test
+cov_Q86,What are the symptoms at the onset?,"[""fever, cough, and myalgia or fatigue.""]","[""cov_301""]",dev
+cov_Q87,Which electronic databases were used for this study?,"[""PubMed, Embase and Cochrane Library""]","[""cov_303""]",test
+cov_Q88,What studies  were excluded?,"[""Studies that examined the mechanisms of diagnostic tests, drug therapy or vaccine efficacy against SARS, MERS and 2019-nCoV""]","[""cov_305""]",dev
+cov_Q89,What is the the primary means for diagnosing the new virus strain?,"[""real time RT-PCR""]","[""cov_306""]",test
+cov_Q90,How does RT-LAMP compare with other methods?,"[""RT-LAMP has similar sensitivity as real time RT-PCR. It is also highly specific and is used to detect MERS-CoV. It is comparable to the usual diagnostic tests and is rapid, simple and convenient.""]","[""cov_307""]",dev
+cov_Q91,What enhancements to the molecular tests were looked at?,"[""Studies looked at using nested PCR to include a pre-amplification step or incorporating N gene as an additional sensitive molecular marker to improve on the sensitivity""]","[""cov_309""]",test
+cov_Q92,What is the threshold sensitivity of  Real time PCR?,"[""10 genome equivalents per reaction""]","[""cov_310""]",dev
+cov_Q93,How is the reproducibility of real time PCR?,"[""has a good reproducibility with the inter-assay coefficients of variation of 1.73 to 2.72%.""]","[""cov_310""]",test
+cov_Q94,What are potential vaccines based on?,"[""messenger RNA, DNA-based, nanoparticle, synthetic and modified virus-like particle)""]","[""cov_311""]",dev
+cov_Q95,Why were only four studies included?,"[""Most studies on SARS and MERS vaccines were excluded as they were performed in cell or animal models""]","[""cov_312""]",test
+cov_Q96,What is te safety of the vaccines?,"[""All vaccine candidates for SARS and MERS were reported to be safe,""]","[""cov_312"", ""cov_313""]",dev
+cov_Q97,What are the results on seroconversion?,"[""Seroconversion measured by S1-ELISA occurred in 86% and 94% participants after 2 and 3 doses, respectively, and was maintained in 79% participants up to study end at week 60.""]","[""cov_314""]",test
+cov_Q98,What were  the T-cell responses?,"[""detected in 71% and 76% participants after 2 and 3 doses, respectively.""]","[""cov_315""]",dev
+cov_Q99,What were the differences in immune responses?,"[""no differences in immune responses between dose groups after 6 weeks and vaccine-induced humoral and cellular responses were respectively detected in 77% and 64% participants at week 60""]","[""cov_315""]",test
+cov_Q100,What are the many prospective and restrospective studies  conducted on?,"[""usage of ribavirin with lopinavir/ritonavir/ribavirin, interferon, and convalescent plasma usage.""]","[""cov_317"", ""cov_318""]",dev
+cov_Q101,What other measures rapid diagnostics facilitates?,"[""specific public health interventions such as closure of high-risk facilities and areas associated with the confirmed cases for prompt infection control and environmental decontamination""]","[""cov_319""]",test
+cov_Q102,What  are ways to perform laboratory diagnostics?,"[""(a) detecting the genetic material of the virus, (b) detecting the antibodies that neutralize the viral particles of interest, (c) detecting the viral epitopes of interest with antibodies (serological testing), or (d) culture and isolation of viable virus particles.""]","[""cov_319""]",dev
+cov_Q103,What are key limtations of genetic detection?,"[""lack of knowledge of the presence of viable virus, the potential cross-reactivity with non-specific genetic regions and the short timeframe for accurate detection during the acute infection phase.""]","[""cov_319""]",test
+cov_Q104,What is a key limitation of serological  testing?,"[""the need to collect paired serum samples (in the acute and convalescent phases) from cases under investigation for confirmation to eliminate potential cross-reactivity from non-specific antibodies from past exposure and/or infection by other coronaviruses.""]","[""cov_320""]",dev
+cov_Q105,What was the result of the treatment?,"[""Significantly shorted time from the disease onset to the symptom improvement in treatment (5.10 ± 2.83 days) compared to control group (7.62 ± 2.27 days) (p < 0.05) No significant difference in blood routine improvement, pulmonary chest shadow in chest film improvement and corticosteroid usgae between the 2 groups.""]","[""cov_320""]",test
+cov_Q106,What  superiority did the treatment with integrative chinese and western medicine treatment have compared with using control treatment alone?,"[""in the respect of improving clinical symptoms, elevating quality of life, promoting immune function recovery, promoting absorption of pulmonary inflammation, reducing the dosage of cortisteroid and shortening the therapeutic course""]","[""cov_321""]",dev
+cov_Q107,How do severe cases compare with mild cases?,"[""viral loads are also higher for severe cases and have longer viral shedding compared to mild cases""]","[""cov_322""]",test
+cov_Q108,What is the disadvantage of upper respiratory tract specimens?,"[""hey have potentially lower viral loads and may have higher risk of false-negatives among the mild MERS and SARS cases [102, 103] , and likely among the 2019-nCoV cases.""]","[""cov_322""]",dev
+cov_Q109,What  are the existing practices in detecting  genetic material of viruses?,"[""(a) reverse transcription-polymerase chain reaction (RT-PCR), (b) real-time RT-PCR (rRT-PCR), (c) reverse transcription loop-mediated isothermal amplification (RT-LAMP) and (d) real-time RT-LAMP [104] .""]","[""cov_322""]",test
+cov_Q110,Why are Nucleic amplification tests (NAAT) usually preferred as in the case of MERS-CoV diagnosis?,"[""it has the highest sensitivity at the earliest time point in the acute phase of infection""]","[""cov_322"", ""cov_323""]",dev
+cov_Q111,How were the assays selected ?,"[""based on the match against 2019-nCoV upon inspection of the sequence alignment.""]","[""cov_324""]",test
+cov_Q112,What were the results?,"[""All assays were highly sensitive and specific in that they did not cross-react with other coronavirus and also human clinical samples that contained respiratory viruses""]","[""cov_324""]",dev
+cov_Q113,What did the trial on SAB-301 demonstrate?,"[""to be safe and well-tolerated at single doses.""]","[""cov_318""]",test
+cov_Q114,What ion channel is essential for 3a-mediated IL-1Beta secretion?,"[""ion channel activity of the 3a protein""]","[""cov_344""]",dev
+cov_Q115,What are viroporins?,"[""transmembrane pore-forming viral proteins""]","[""cov_345""]",test
+cov_Q116,Is the SARS coronavirus enveloped?,"[""enveloped""]","[""cov_345""]",dev
+cov_Q117,How many laboratory-confirmed cases of SARS coronavirus infections were reported between November 2002 and July 2003?,"[""At least 8,098""]","[""cov_346""]",test
+cov_Q118,What was the fatality rate of the SARS coronavirus outbreak between November 2002 and July 2003?,"[""9.6%""]","[""cov_346""]",dev
+cov_Q119,What are examples of proinflammatory cytokines?,"[""tumor necrosis factor (TNF)-α, interleukin (IL)-1β, and IL-6""]","[""cov_346"", ""cov_347""]",test
+cov_Q120,How many amino acids are in the SARS-CoV E protein?,"[""76 amino acids""]","[""cov_350""]",dev
+cov_Q121,When was SARS-CoV-2 first identified?,"[""December 2019""]","[""cov_375""]",test
+cov_Q122,Where was SARS-CoV-2 first identified?,"[""Wuhan, capital of Hubei Province, China""]","[""cov_375""]",dev
+cov_Q123,What is the doubling time of the COVID-19 pandemic?,"[""≈6 days""]","[""cov_375""]",test
+cov_Q124,In what animals MERS-CoV sequences have been found ?,"[""in a bat and in many dromedary camels (DC).""]","[""cov_396""]",dev
+cov_Q125,Where is MERS-CoV is enzootic in DC?,"[""across the Arabian Peninsula and in parts of Africa""]","[""cov_396""]",test
+cov_Q126,What is MERS mostly known as?,"[""lower respiratory tract (LRT) disease""]","[""cov_397""]",dev
+cov_Q127,What does the MERS LRT disease involve?,"[""fever, cough, breathing difficulties and pneumonia that may progress to acute respiratory distress syndrome, multiorgan failure and death in 20 % to 40 % of those infected.""]","[""cov_397""]",test
+cov_Q128,Where else MERS-COV has also been detected?,"[""in mild and influenza-like illnesses and in those with no signs or symptoms.""]","[""cov_397""]",dev
+cov_Q129,Who suffers severe diseases from MERS?,"[""Older males""]","[""cov_397""]",test
+cov_Q130,"Compared to severe acute respiratory syndrome (SARS)  and another sometimes- fatal zoonotic coronavirus disease, how does MERS affect the patients?","[""MERS progresses more rapidly to respiratory failure and acute kidney injury (it also has an affinity for growth in kidney cells under laboratory conditions), is more frequently reported in patients with underlying disease and is more often fatal.""]","[""cov_397"", ""cov_398""]",dev
+cov_Q131,To what have most human cases of MERS  been linked?,"[""to lapses in infection prevention and control (IPC) in healthcare settings""]","[""cov_398""]",test
+cov_Q132,What have sero-surveys of MERS virus found?,"[""widespread evidence of past infection in adult camels and limited past exposure among humans.""]","[""cov_398""]",dev
+cov_Q133,How many  viral RNA or virus-specific antibodies been detected?,"[""1,493""]","[""cov_400""]",test
+cov_Q134,What did the discovery process over two to three years reveal?,"[""a virus that had infected over 90 % of adult dromedary camels (DC; Camelus dromedarius) in the KSA [4] , also DCs across the Arabian Peninsula and parts of Africa that are a source of DC imports for the KSA""]","[""cov_400"", ""cov_401""]",dev
+cov_Q135,What does subsequent transmission of MERS-CoV to other humans require?,"[""relatively close and prolonged exposure""]","[""cov_401""]",test
+cov_Q136,Who gets more severe disease from MERS?,"[""among older adults, especially males, with pre-existing diseases.""]","[""cov_402"", ""cov_403""]",dev
+cov_Q137,What do the DCs suffer with MERS-CoV infection?,"[""the equivalent of a 'common cold' from MERS-CoV infection,""]","[""cov_403""]",test
+cov_Q138,What is the duration between when illness begins in one person and subsequently spreads to another?,"[""13 to 14 days""]","[""cov_403"", ""cov_404""]",dev
+cov_Q139,What is the median time to death in case of progressive illness?,"[""11 to 13 days""]","[""cov_404""]",test
+cov_Q140,What is severe MARS noted for?,"[""its impact among older men with comorbid diseases including diabetes mellitus, cirrhosis and various lung, renal and cardiac conditions""]","[""cov_406""]",dev
+cov_Q141,What symptoms appear among the  confirmed cases of MERS?,"[""fever, cough and upper respiratory tract (URT) signs and symptoms usually occur first, followed within a week by progressive LRT distress and lymphopaenia""]","[""cov_407""]",test
+cov_Q142,What was mortality in  South Korea from MERS disease?,"[""ranged from 7 % among younger age groups to 40 % among those aged 60 years and above""]","[""cov_407""]",dev
+cov_Q143,What  indicates the likely presence of infectious virus?,"[""Detection of viral proteins rather than viral RNA""]","[""cov_413""]",test
+cov_Q144,What is the sensitivity with which immunochromatographic tool could detect recombinant MERS-CoV nucleocapsid protein?,"[""94 %""]","[""cov_413"", ""cov_414""]",dev
+cov_Q145,What do the recommended samples include?,"[""are recommended when URT sampling is to be conducted""]","[""cov_425""]",test
+cov_Q146,What paired sera are preferable?,"[""collected two to three weeks apart""]","[""cov_425"", ""cov_426""]",dev
+cov_Q147,When is a single sample  suggested to be sufficient?,"[""Human urine and stool have been found to contain MERS-CoV RNA""]","[""cov_426""]",test
+cov_Q148,How long MERS cases shed viral RNA in their LRT specimens (tracheal aspirates and sputum)?,"[""at least 30 days""]","[""cov_429""]",dev
+cov_Q149,What is NPA?,"[""nasopharyngeal aspirates"", ""URT sample""]","[""cov_429"", ""cov_430""]",test
+cov_Q150,What is the the proportion of deaths among those infected with MERS-CoV?,"[""is much higher than that known for the HCoVs NL63, HKU1, 229E or OC43"", ""above that for SARS-CoV""]","[""cov_435""]",dev
+cov_Q151,What   has prevented worldwide spread of MERS-COV?,"[""the low transmission rate""]","[""cov_435""]",test
+cov_Q152,What must be reported to the world organization for animal health as an emerging disease ?,"[""animal MERS-CoV infections""]","[""cov_436""]",dev
+cov_Q153,When does the camel calving season?,"[""t""]","[""cov_452""]",test
+cov_Q154,What ablated MERS-COV infection completely?,"[""pasteurization""]","[""cov_454""]",dev
+cov_Q155,How long MERS-CoV remained viable at high ambient temperature (30°C) and low RH (30 %) ?,"[""for 24 h""]","[""cov_454"", ""cov_455""]",test
+cov_Q156,How long can pathogenic bacteria remain viable and airborne in a coughed aerosol?,"[""for 45 min""]","[""cov_455""]",dev
+cov_Q157,"What is the  the rate of general transmission, even in outbreaks?","[""readily transmit to more than one other human""]","[""cov_458""]",test
+cov_Q158,Why has MERS had a constant presence in the Arabian Peninsula?,"[""due to ongoing, sporadic spill-over events from DCs amplified by poorly controlled hospital outbreaks.""]","[""cov_459""]",dev
+cov_Q159,What was the first known MERS human-to-human transmission event was one characterized by?,"[""acute LRT disease""]","[""cov_459""]",test
+cov_Q160,Which city has had has had more MERS cases than any other region of the KSA ?,"[""Riyadh""]","[""cov_473""]",dev
+cov_Q161,Which city harbours a wide range of MERS-CoV variants,"[""Riyadh""]","[""cov_473""]",test
+cov_Q162,How were the transmission circumstances created?,"[""by poor infection control in health care settings""]","[""cov_484""]",dev
+cov_Q163,What percentage of humans have died  among all humans reported to be infected?,"[""nearly 40 %""]","[""cov_485"", ""cov_486""]",test
+cov_Q164,What would  aid accurate calculation of a case fatality ratio?,"[""Global alignment of case definitions""]","[""cov_486""]",dev
+cov_Q165,How does MARS-COV differ from SARS-COV?,"[""MERS-CoV has a broader tropism, grows more rapidly in vitro, more rapidly induces cytopathogenic change, triggers distinct transcriptional responses, makes use of a different receptor, induces a more proinflammatory state and has a delayed innate antiviral response compared to SARS-CoV.""]","[""cov_487""]",test
+cov_Q166,Is there any evidence that MERS-CoV is a virus of pandemic concern?,"[""There is no evidence that MERS-CoV is a virus of pandemic concern""]","[""cov_488""]",dev
+cov_Q167,How did the first WHO case definition  define probable cases of MERS?,"[""based on the presence of febrile illness, cough and requirement for hospitalization with suspicion of lower respiratory tract (LRT) involvement.""]","[""cov_404""]",test
+cov_Q168,How is PHEIC defined?,"[""an extraordinary event which is determined to constitute a public health risk to other States through the international spread of disease and to potentially require a coordinated international response""]","[""cov_494""]",dev
+cov_Q169,What platform was instrumental in rapid sharing of COVID-19 information?,"[""Global Initiative on Sharing All Influenza Data (GISAID)""]","[""cov_494""]",test
+cov_Q170,What's the recommended procedure to disinfect at CT scanner after a COVID-19 exposure?,"[""The equipment in the contaminated area are wiped with\n2000mg/L chlorine-containing disinfectant. The DR and CT gantry in the contaminated\narea are wiped with 75% ethanol. The equipment in the buffer area is wiped with\n500-1000mg/L chlorine-containing disinfectant or alcohol-containing disposable\ndisinfectant wipes twice a day.""]","[""cov_549"", ""cov_550""]",dev
+cov_Q171,What's the recommended method to disinfect floors for COVID-19?,"[""The ground is wiped with 1000mg/L chlorine-containing\ndisinfectant, once /4 hours.""]","[""cov_550"", ""cov_551""]",test
+cov_Q172,What thickness of layers is recommended for CT image reconstruction in COVID-19 assessment?,"[""1 mm-thick layers""]","[""cov_546""]",dev
+cov_Q173,What must the data gathering include?,"[""up-to-date case definitions and information about\nconfirmatory tests to all staff with direct patient contact to allow appropriate barrier precautions\nto be taken.""]","[""cov_554""]",test
+cov_Q174,What does the clean area include?,"[""he clean area\nincludes the administrative office and the diagnostic room.""]","[""cov_541""]",dev
+cov_Q175,What does the semicontaminated area include?,"[""the fever-CT control room,\nfever-DR control room, and other patient examination access areas.""]","[""cov_540"", ""cov_541""]",test
+cov_Q176,What does the buffer area include?,"[""access areas for medical personnel and a dressing area for technologists.""]","[""cov_541""]",dev
+cov_Q177,How was the wearing and removing of the equipment performed?,"[""under the supervision of\nthe infection control nurse.""]","[""cov_541"", ""cov_542""]",test
+cov_Q178,What can lower the physical and mental stress levels of staff members?,"[""periodically taking time off""]","[""cov_542""]",dev
+cov_Q179,What responses must EMICT consider once a disease has been identified?,"[""data gathering, collaboration, needs assessment, and expert advice""]","[""cov_554""]",test
+cov_Q180,What is the conclusion of the report?,"[""Strategic planning and adequate protections can help protect patients and staff\nagainst a highly infectious disease while maintaining function at a high volume capacity.\nKeywords: Coronavirus, COVID-19, novel coronavirus pneumonia, infection control""]","[""cov_531""]",dev
+cov_Q181,What were the number of cases in mainland china as of March 11th?,"[""80,793""]","[""cov_532""]",test
+cov_Q182,How many people have come in contact and how many of these are in observation?,"[""677,243 people have been identified as having had close contact with\ninfected patients of whom13,701""]","[""cov_532"", ""cov_533""]",dev
+cov_Q183,What illness is caused by the 2019-nCOV Coronavirus?,"[""The novel coronavirus (2019-nCoV) infection caused pneumonia.""]","[""cov_573""]",test
+cov_Q184,"In addition to oral swabs, which tests detected the presence of 2019-nCOV virus?","[""the 2109-nCoV RNA was readily detected in the blood (6 of 57 patients) and the anal swabs (11 of 28 patients).""]","[""cov_573""]",dev
+cov_Q185,Which patients were classified as severe in Chinese guidelines?,"[""Patients who were with at least one of the following symptom should be diagnosed to be severe case, 1) distress of respiratory with respiratory rate > = 30/min; 2) Oxygen saturation < = 93% in the rest state, and 3) arterial oxygen tension (PaO₂) over inspiratory oxygen fraction (FIO₂) of less than 300 mm Hg. In the blood detection cohort (Figure 1 (A)), patients who had at less one serum sample measurement with the PCR method were included.""]","[""cov_578"", ""cov_579""]",test
+cov_Q186,What is the relationship between the presence of virus in blood sample and disease severity?,"[""In the 57, 6 cases were detected to be blood positive, all of them (100%) were severe in symptom requiring special care attention, and the blood of the rest 51 cases was without detectable virus in the blood, only 12 of them (23.5%) were severe cases.""]","[""cov_579""]",dev
+cov_Q187,What test could give an indication for special care for 2019-nCOV patients?,"[""presence of viral RNA outside of the respiratory tract might herald the severity of the disease and alarm the requirement of special care""]","[""cov_585""]",test
+cov_Q188,What could be the implication of 2019-nCOV virus in anal swabs?,"[""digestive tract might be one extrapulmonary site for virus replication""]","[""cov_587""]",dev
+cov_Q189,What  could account for the high transmission rate of the 2019-nCOV virus?,"[""Intensive structural analysis of the S protein of 2019-nCoV with the SARS-Coronavirus suggested that several critical residues in the viral spike protein might confer favourable interaction with human ACE2 [7] . Of note, ACE2 is also abundantly present in humans in the epithelia of the small intestine besides the respiratory tract and is ubiquitously present in endothelial cells [8] , which might provide possible routes of transmission, and might account for the high transmission capacity of the new virus.""]","[""cov_588"", ""cov_589""]",test
+cov_Q190,What is the structure of a coronavirus?,"[""large, non-segmented, positive sense and single stranded RNA animal viruses""]","[""cov_592"", ""cov_593""]",dev
+cov_Q191,What is the model simplified to?,"[""Reservoir-People (RP) transmission network model""]","[""cov_659""]",test
+cov_Q192,What was the focus of the study?,"[""Huanan Seafood Wholesale Market (reservoir) to people,""]","[""cov_662""]",dev
+cov_Q193,What compartments were the host animals divided into?,"[""The hosts were also divided into four compartments: susceptible hosts (S H ), exposed hosts (E H ), infected hosts (I H ), and removed hosts (R H )""]","[""cov_665""]",test
+cov_Q194,What was the SARS-COV-2 reservoir?,"[""the seafood market""]","[""cov_666""]",dev
+cov_Q195,What was the mean delay from symptom onset to detection/hospitalization of a case?,"[""5-day""]","[""cov_672""]",test
+cov_Q196,What was the duration from illness onset to first medical visit ?,"[""a mean of 5.8 days (95% CI: 4.3-7.5)""]","[""cov_673""]",dev
+cov_Q197,"As of January 17, how many people were tested for body temperature?","[""0.3 million people""]","[""cov_674""]",test
+cov_Q198,What is mobile  population in Wuhan?,"[""about 2.87 million""]","[""cov_674""]",dev
+cov_Q199,What was  R0 for  the high transmissibility in  South Korea?,"[""2.5-7.2""]","[""cov_680"", ""cov_681""]",test
+cov_Q200,What is important for containing the transmission?,"[""to decrease R 0""]","[""cov_681""]",dev
+cov_Q201,What was the objective of the study?,"[""provide a mathematical model for calculating the transmissibility of SARS-CoV-2""]","[""cov_684""]",test
+cov_Q202,Who was the first COVID-19 identified case patient on the Diamond Princess cruise ship?,"[""case was diagnosed on 1 February, the ship was requested to remain in the ocean near Yokohama from 3 February onwards.""]","[""cov_749""]",dev
+cov_Q203,What is the estimated mean incubation period for COVID-19 infection on the Diamond Princess cruise ship?,"[""about 5.0 days""]","[""cov_750""]",test
+cov_Q204,What was the effect of movement restriction policy on the Diamond Princess cruise ship started on 5th February 2020.,"[""highly successful in greatly reducing the number of secondary transmissions on board.""]","[""cov_756""]",dev
+cov_Q205,"What would  have the number of confirmed cases on the Diamond Princess cruise ship,  without a movement restriction starting on the 5th February 2020?","[""the cumulative incidence with and without close contact would have been as large as 1373 (95% CI: 570, 2176) and 766 (95% CI: 587, 946) cases,""]","[""cov_748""]",test
+cov_Q206,What is the number of inbound passengers from China?,"[""63.1 million per year in 2017""]","[""cov_762""]",dev
+cov_Q207,What percent of inbound passengers from China were from Wuhan?,"[""2.1%""]","[""cov_762""]",test
+cov_Q208,"Why is the determination of asymptomatic or pre-symptomatic transmission, an urgent priority?","[""it has direct implications for public health and hospital infection control""]","[""cov_773"", ""cov_774""]",dev
+cov_Q209,When does the infectivity of SARS-COV peak?,"[""10 days after illness onset [7] , consistent with the peak in viral load at around that time""]","[""cov_774""]",test
+cov_Q210,How can the 2019-nCov spread?,"[""from person to person,""]","[""cov_768""]",dev
+cov_Q211,What is assumed for the mean serial interval?,"[""7.5 days""]","[""cov_768""]",test
+cov_Q212,What  are the delays between infection to illness and illness to laboratory confirmatiion?,"[""around 5–6 days, with an upper limit of around 11-14 days [2,5], and delays from illness onset to laboratory confirmation added a further 10 days on average""]","[""cov_769""]",dev
+cov_Q213,What can also play  a role?,"[""indirect transmission via fomites""]","[""cov_775""]",test
+cov_Q214,Why is important to  determine the spectrum of clinical manifestations of 2019-nCoV infections?,"[""because it determines the strength of public health response required.""]","[""cov_777""]",dev
+cov_Q215,How is 2019-nCOV transmitted?,"[""2019-nCoV was transmitted through respiratory tract and then induced pneumonia,""]","[""cov_787""]",test
+cov_Q216,"Is oral swab for detecting 2019-nCOV infection, sufficient?","[""the current strategy for the detection of viral RNA in oral swabs used for 2019-nCoV diagnosis is not perfect. The virus may be present in anal swabs or blood of patients when oral swabs detection negative."", ""patients infected with 2019-nCoV may harbour the virus in the intestine at the early or late stage of disease. It is also worth to note none of the patients with viremia blood had positive swabs. These patients would likely be considered as 2019-nCoV negative through routine surveillance, and thus pose a threat to other people.""]","[""cov_799"", ""cov_800""]",dev
+cov_Q217,What other tests should be considered for 2019-nCOV epidemiology?,"[""serology should be considered for 2019-nCoV epidemiology.""]","[""cov_800""]",test
+cov_Q218,What tests should  be done before a 2019-nCOV infected patient is discharged?,"[""we cannot discharge a patient purely based on oral swabs negative, who may still shed the virus by oral-fecal route. Above all, we strongly suggest using viral IgM and IgG serological test to confirm an infection, considering the unreliable results from oral swabs detection""]","[""cov_801""]",dev
+cov_Q219,What symptoms were reported?,"[""Of the remaining 29, 20 reported fever, 14 reported cough and eight reported weakness. Additional symptoms reported included headaches (6 cases), sore throat (2), rhinorrhoea (2), shortness of breath (2), myalgia (1), diarrhoea (1) and nausea (1)""]","[""cov_811""]",test
+cov_Q220,What did the collected data include?,"[""demographics, history of recent travel to affected areas, close contact with a probable or confirmed COVID-19 case, underlying conditions, signs and symptoms of disease at onset, type of specimens from which the virus was detected, and clinical outcome.""]","[""cov_806""]",dev
+cov_Q221,How many cases were there on 5 March?,"[""4,250""]","[""cov_804""]",test
+cov_Q222,What does the study include?,"[""a comparison between cases detected among travellers from China and cases whose infection was acquired due to subsequent local transmission.""]","[""cov_805""]",dev
+cov_Q223,What were the surveillance objectives?,"[""to: describe the key epidemiological and clinical characteristics of COVID-19 cases detected in Europe; inform country preparedness; and improve further case detection and management.""]","[""cov_806""]",test
+cov_Q224,When was the first reported death in France?,"[""15 February""]","[""cov_808""]",dev
+cov_Q225,How many cases reported symptoms at this point?,"[""31 cases""]","[""cov_810"", ""cov_811""]",test
+cov_Q226,How many cases were asymptomatic?,"[""Two cases""]","[""cov_810"", ""cov_811""]",dev
+cov_Q227,For how many cases Fever reported as the sole symptom?,"[""nine cases""]","[""cov_811""]",test
+cov_Q228,How many reported viral pneumonia?,"[""two reported in Italy and two reported in France""]","[""cov_812""]",dev
+cov_Q229,What happened to the case who died?,"[""was hospitalised for 21 days and required intensive care and mechanical ventilation for 19 days""]","[""cov_812""]",test
+cov_Q230,What was the duration of hospitalisation reported for 16 cases ?,"[""a median of 13 days (range: 8-23 days)""]","[""cov_812"", ""cov_813""]",dev
+cov_Q231,What were the specimen types for 21 cases?,"[""15 had positive nasopharyngeal swabs, nine had positive throat swabs, three cases had positive sputum, two had a positive nasal swab, one case had a positive nasopharyngeal aspirate and one a positive endotracheal aspirate.""]","[""cov_813""]",test
+cov_Q232,What was common to all imported cases?,"[""had a history of travel to China""]","[""cov_816""]",dev
+cov_Q233,What testing and detection are needed?,"[""Testing of suspected cases based on geographical risk of importation needs to be complemented with additional approaches to ensure early detection of local circulation of COVID-19, including through testing of severe acute respiratory infections in hospitals irrespectively of travel history as recommended in the WHO case definition updated on 27 February 2020""]","[""cov_817""]",test
+cov_Q234,Why are serological tests vital?,"[""to understand the proportion of cases who are asymptomatic.""]","[""cov_819"", ""cov_820""]",dev
+cov_Q235,How can hospital based surveillance help?,"[""help estimate the incidence of severe cases and identify risk factors for severity and death""]","[""cov_819"", ""cov_820""]",test
+cov_Q236,How can present systems of surveillance be used?,"[""Established hospital surveillance systems that are in place for influenza and other diseases in Europe may be expanded for this purpose. In addition, a number of countries in Europe are adapting and, in some cases, already using existing sentinel primary care based surveillance systems for influenza to detect community transmission of SARS-CoV-2""]","[""cov_820""]",dev
+cov_Q237,What was the result of under-reporting?,"[""469 (95% CI: 403&minus;540) unreported cases from 1 to 15 Januar""]","[""cov_823""]",test
+cov_Q238,What is R0?,"[""basic reproduction number,""]","[""cov_822"", ""cov_823""]",dev
+cov_Q239,What  is likely increase of the reporting rate after the 17th January 2020?,"[""reased 21-fold (95% CI: 18""]","[""cov_823"", ""cov_824""]",test
+cov_Q240,What is the estimated value of R0?,"[""019-nCoV at 2.56 (95% CI""]","[""cov_824""]",dev
+cov_Q241,What  are some of the symptoms caused by the virus?,"[""ymptoms including fever, cough, and sh""]","[""cov_824""]",test
+cov_Q242,What was the cumulative number of reported cases by 1 January 2020?,"[""sed""]","[""cov_824""]",dev
+cov_Q243,Who released the time series data from after 21st January 2020?,"["", and later by the National Health C""]","[""cov_827""]",test
+cov_Q244,How was the epidemic curve modelled?,"["", the C i series, as an exponential growi""]","[""cov_828"", ""cov_829""]",dev
+cov_Q245,How was the epidemic curve modeled?,"["", the C i series, as an exponential growin""]","[""cov_828"", ""cov_829""]",test
+cov_Q246,What study  is reported in this report?,"[""bioinformatics analysis on a virus genome from a patient with 2019-nCoV infection and compared it with other related coronavirus genomes.""]","[""cov_844""]",dev
+cov_Q247,How does the genome of 2019-vCOV compare with   SARS like viruses and SARS-COV?,"[""Overall, the genome of 2019-nCoV has 89% nucleotide identity with bat SARS-like-CoVZXC21 and 82% with that of human SARS-CoV. The phylogenetic trees of their orf1a/b, Spike, Envelope, Membrane and Nucleoprotein also clustered closely with those of the bat, civet and human SARS coronaviruses.""]","[""cov_844"", ""cov_845""]",test
+cov_Q248,How different is it from SARS-related viruses?,"[""the external subdomain of Spike’s receptor binding domain of 2019-nCoV shares only 40% amino acid identity with other SARS-related coronaviruses.""]","[""cov_845""]",dev
+cov_Q249,What are four generas?,"[""Alphacoronavirus (αCoV), Betacoronavirus (βCoV), Deltacoronavirus (δCoV), and Gammacoronavirus (γCoV)""]","[""cov_846""]",test
+cov_Q250,What do  evolutionary analyses show?,"[""that bats and rodents are the gene sources of most αCoVs and βCoVs, while avian species are the gene sources of most δCoVs and γCoVs.""]","[""cov_846""]",dev
+cov_Q251,What are the examples that have emerged as human pathogens?,"[""severe acute respiratory syndrome CoV (SARS-CoV) which emerged in China in 2002-2003 to cause a large-scale epidemic with about 8000 infections and 800 deaths, and Middle East respiratory syndrome CoV (MERS-CoV) which has caused a persistent epidemic in the Arabian Peninsula since 2012""]","[""cov_846"", ""cov_847""]",test
+cov_Q252,Where did these viruses originate before crossing the barrier to infect humans?,"[""these viruses have likely originated from bats and then jumped into another amplification mammalian host [the Himalayan palm civet (Paguma larvata) for SARS-CoV and the dromedary camel (Camelus dromedarius) for MERS-CoV]""]","[""cov_847""]",dev
+cov_Q253,What COVs were known to infect humans before December 2019?,"[""6 CoVs were known to infect human, including 2 αCoV (HCoV-229E and HKU-NL63) and 4 βCoV (HCoV-OC43 [""]","[""cov_847""]",test
+cov_Q254,What do HCoV-OC43 and HCoV-HKU1 cause?,"[""self-limiting upper respiratory infections in immunocompetent hosts and occasionally lower respiratory tract infections in immunocompromised hosts and elderly""]","[""cov_847""]",dev
+cov_Q255,What was the authors' recent report on?,"[""a familial cluster of 2019-nCoV infection in a Shenzhen family with travel history to Wuhan""]","[""cov_849""]",test
+cov_Q256,What is analyzed in this study?,"[""a 2019-nCoV complete genome from a patient in this familial cluster and compared it with the genomes of related βCoVs to provide insights into the potential source and control strategies.""]","[""cov_849""]",dev
+cov_Q257,What genome sequence was available for this study?,"[""2019-nCoV HKU-SZ-005b was available at GenBank (accession no. MN975262)""]","[""cov_849"", ""cov_850""]",test
+cov_Q258,What strains were included in  this study?,"[""strains collected from human, bats, and Himalayan palm civet between 2003 and 2018, with one 229E coronavirus strain as the outgroup.""]","[""cov_850""]",dev
+cov_Q259,How were the evolutionary distances computed?,"[""using the Poisson correction method and were in the units of the number of amino acid substitutions per site [""]","[""cov_851""]",test
+cov_Q260,What was done for the prediction of protein secondary structures?,"[""initial amino acid sequences were input and analysed using neural networking and its own algorithm.""]","[""cov_851""]",dev
+cov_Q261,What is  the RNA of the 2019-nCOV?,"[""29891 nucleotides in size, encoding 9860 amino acids""]","[""cov_852"", ""cov_853""]",test
+cov_Q262,Where is the major distinction?,"[""in orf3b, Spike and orf8 but especially variable in Spike S1 and orf8 which were previously shown to be recombination hot spots.""]","[""cov_853""]",dev
+cov_Q263,What do the S1 and S2 subunits of spike glycoprotein contain?,"[""The S1 subunit contains a signal peptide, followed by an N-terminal domain (NTD) and receptor-binding domain (RBD), while the S2 subunit contains conserved fusion peptide (FP), heptad repeat (HR) 1 and 2, transmembrane domain (TM), and cytoplasmic domain (CP).""]","[""cov_853""]",test
+cov_Q264,Where are the amino acid differences?,"[""Most of the amino acid differences of RBD are located in the external subdomain,""]","[""cov_854""]",dev
+cov_Q265,What is responsible for the interaction with  host receptor?,"[""the external subdomain,""]","[""cov_854"", ""cov_855""]",test
+cov_Q266,what will the investigation of external subdomain reveal?,"[""its receptor usage, interspecies transmission and pathogenesis.""]","[""cov_855""]",dev
+cov_Q267,How do most bat SARSr-COV differ from 2019-nCOV and  human SARS-COV?,"[""bat SARSr-CoVs have two stretches of deletions in the spike receptor binding domain (RBD) when compared with that of human SARS-CoV""]","[""cov_855""]",test
+cov_Q268,What is the consequence of  lack of deletions in Yunnan strains?,"[""can use human ACE2 as a cellular entry receptor.""]","[""cov_855""]",dev
+cov_Q269,"What orf8 length do Human SARS-CoVs isolated from early-phase patients, all civet SARS-CoVs, and other bat SARS-related CoVs contain?","[""fulllength orf8""]","[""cov_858""]",test
+cov_Q270,What does the orf8 derived from 2019-nCOV belong to?,"[""the group that includes the closest genome sequences of bat SARS-related-CoV ZXC21 and ZC45.""]","[""cov_859""]",dev
+cov_Q271,What is the  relation between the new2019-nCOV and the conserved orf8?,"[""the new 2019-nCoV orf8 is distant from the conserved orf8""]","[""cov_859""]",test
+cov_Q272,What high possibility does the novel  orf8 have?,"[""to form a protein with an alpha-helix, following with a betasheet(s) containing six strands""]","[""cov_860""]",dev
+cov_Q273,Where was COVID19 first discovered?,"[""Wuhan, Hubei Province, China""]","[""cov_866"", ""cov_867""]",test
+cov_Q274,What genes have been targeted for the diagnostic RT-PCR tests in 2019-nCoV?,"[""E and RdRp genes""]","[""cov_934""]",dev
+cov_Q275,Are smokers more likely to contract influenza?,"[""Previous studies have shown that smokers are twice more likely than non-smokers to contract influenza and have more severe symptoms, while smokers were also noted to have higher mortality in the previous MERS-CoV outbreak""]","[""cov_938""]",test
+cov_Q276,When was the second COVID19 case reported in the US?,"[""January 24, 2020""]","[""cov_955""]",dev
+cov_Q277,When did the WHO declare COVID to be a Public Health Emergency of International Concern?,"[""January 30, 2020""]","[""cov_955""]",test
+cov_Q278,When did the United States declare COVID19 a public health emergency?,"[""January 31, 2020,""]","[""cov_956""]",dev
+cov_Q279,What are the most common symptoms of COVID19?,"[""Fever and cough""]","[""cov_957"", ""cov_958""]",test
+cov_Q280,What symptoms might people experience with COVID19?,"[""patients with underlying medical conditions and the elderly""]","[""cov_958""]",dev
+cov_Q281,Who is at greater risk of dying from COVID19?,"[""patients with underlying medical conditions and the elderly""]","[""cov_958""]",test
+cov_Q282,How long is the incubation time for COVID19?,"[""between 2 and 14 days""]","[""cov_958""]",dev
+cov_Q283,How does COVID19 get spread?,"[""close contact with an infected person""]","[""cov_963"", ""cov_964""]",test
+cov_Q284,Is it possible to get infected with COVID and another virus?,"[""Although the likelihood of coinfection of 2019-nCoV and another respiratory virus is thought to be low, a positive finding of another respiratory pathogen does not exclude the diagnosis of 2019-nCoV""]","[""cov_967""]",dev
+cov_Q285,How many people  are estimated to need humanitarian assistance in 2020?,"[""168 million people across 50 countries""]","[""cov_975""]",test
+cov_Q286,For whom does the  SARS-COV-2 pose a great threat?,"[""those in complex humanitarian crises, which lack the infrastructure, support, and health systems to mount a comprehensive response.""]","[""cov_975"", ""cov_976""]",dev
+cov_Q287,What can undermine interventions?,"[""Poor governance, public distrust, and political violence""]","[""cov_975"", ""cov_976""]",test
+cov_Q288,What can prevent contact tracing?,"[""Frequent displacement and limited contact information""]","[""cov_977""]",dev
+cov_Q289,What should be the priority of the national and international bodies trying to prevent the pandemic?,"[""increased vulnerabilities, humanitarian crises""]","[""cov_977"", ""cov_978""]",test
+cov_Q290,What has been demonstrated to  be  effective for prevention?,"[""hand hygiene, safe cough practice, and social distancing [""]","[""cov_978""]",dev
+cov_Q291,What has increased hand washing?,"[""the distribution of soap to households in humanitarian settings has been shown to increase handwashing by over 30%""]","[""cov_978"", ""cov_979""]",test
+cov_Q292,What is hand washing to protect one's own health  consistent with?,"[""the rights to dignity and to fully participate in decisions related to assistance in humanitarian crises.""]","[""cov_979""]",dev
+cov_Q293,For what  there is evidence for  the efficacy of hand washing?,"[""reducing both bacterial and viral pathogen transmission,""]","[""cov_979""]",test
+cov_Q294,What are humanitarian WASH standards  based on?,"[""evidence pertaining to the prevention of illnesses transmitted by the faecal-oral route, with the focus on hand hygiene proximate to latrines""]","[""cov_979"", ""cov_980""]",dev
+cov_Q295,What confers a high risk of  gender  based violence?,"[""latrines in crisis settings are often shared and distant from residential shelters,""]","[""cov_980""]",test
+cov_Q296,What  will maximize the effectiveness of interventions?,"[""Crisis-affected community engagement is integral in pandemic planning,""]","[""cov_980""]",dev
+cov_Q297,What will happen without the adaptation of existing standards?,"[""mitigation plans will fall short of health and human rights obligations in outbreak response""]","[""cov_980""]",test
+cov_Q298,What is essential when pandemics threaten vulnerable populations?,"[""Transparent and credible information-sharing mechanisms""]","[""cov_980"", ""cov_981""]",dev
+cov_Q299,What is a necessary component of effective health  governance?,"[""Diplomacy bridging long-standing mistrust of public health and biomedical interventions and facilitating engagement with contentious actors""]","[""cov_981""]",test
