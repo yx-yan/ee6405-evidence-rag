@@ -1,4 +1,9 @@
-"""Lightweight graph RAG over the project's medical passage corpus."""
+"""Lightweight graph RAG over the project's medical passage corpus. Owner: C.
+
+Passages and their terms form a bipartite graph: a question's terms select passages directly, and
+one hop through shared rare terms adds related passages. The selected passages go to the shared
+generator, like every other route.
+"""
 from __future__ import annotations
 
 import json
@@ -8,7 +13,8 @@ from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
 
-from evrag.config import ROOT, load_config
+from evrag import generator
+from evrag.config import ROOT, dataset_paths, load_config
 from evrag.methods.base import Method, register
 from evrag.schema import RetrievedDoc
 
@@ -151,61 +157,26 @@ def _load_graph(corpus_path: str) -> MedicalKnowledgeGraph:
     return MedicalKnowledgeGraph(corpus_path)
 
 
-def _extractive_answer(question: str, docs: list[RetrievedDoc]) -> str | None:
-    """Return up to three source sentences that overlap the question's content terms."""
-    query_terms = _tokens(question)
-    candidates: list[tuple[int, int, str]] = []
-    for doc_index, doc in enumerate(docs):
-        fragments = re.split(r"(?<=[.!?])\s+|\n+", doc.text)
-        sentences: list[str] = []
-        index = 0
-        while index < len(fragments):
-            sentence = fragments[index].strip()
-            if sentence.endswith(":") and index + 1 < len(fragments):
-                index += 1
-                sentence = f"{sentence} {fragments[index].strip()}"
-            if sentence:
-                sentences.append(sentence)
-            index += 1
-        minimum_overlap = min(2, len(query_terms))
-        for sentence_index, sentence in enumerate(sentences):
-            clean_sentence = " ".join(sentence.split())
-            overlap = len(query_terms & _tokens(clean_sentence))
-            if overlap >= minimum_overlap:
-                candidates.append((overlap, -doc_index * 1000 - sentence_index, clean_sentence))
-    if not candidates:
-        return None
-    candidates.sort(reverse=True)
-    selected: list[str] = []
-    for _, _, sentence in candidates:
-        if sentence not in selected:
-            selected.append(sentence)
-        if len(selected) == 3:
-            break
-    return " ".join(selected)
-
-
 @register
 class GraphRAG(Method):
-    """Retrieve linked passages and answer only with sentences found in those passages."""
+    """Retrieve linked passages through the entity graph and answer with the shared generator."""
 
     name = "graph_rag"
 
-    def __init__(self, corpus_path: str | Path | None = None, top_k: int | None = None):
-        config = load_config()
-        configured_path = corpus_path or config["data"]["corpus"]
-        if configured_path == "TODO":
-            configured_path = "data/corpus.jsonl"
-        path = Path(configured_path)
+    def __init__(self, dataset: str | None = None, corpus_path: str | Path | None = None, top_k: int | None = None):
+        super().__init__(dataset)
+        path = Path(corpus_path or dataset_paths(dataset)["corpus"])
         if not path.is_absolute():
             path = ROOT / path
         self.graph = _load_graph(str(path.resolve()))
-        self.top_k = config["retrieval"]["top_k"] if top_k is None else top_k
+        self.top_k = load_config()["retrieval"]["top_k"] if top_k is None else top_k
 
     def _answer(self, question: str) -> tuple[str | None, list[RetrievedDoc], dict]:
         docs, meta = self.graph.search(question, self.top_k)
-        answer = _extractive_answer(question, docs)
-        meta["answer_mode"] = "extractive"
-        if answer is None:
+        if not docs:            # no question term is in the graph: nothing to answer from
+            meta["context_doc_ids"] = []
             return None, [], meta
-        return answer, docs, meta
+        contexts, meta["input_tokens"] = generator.fit_contexts(question, docs)
+        meta["context_doc_ids"] = [doc.doc_id for doc in contexts]
+        answer = generator.generate(question, contexts=contexts).strip()
+        return answer or None, docs, meta
