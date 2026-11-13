@@ -69,6 +69,12 @@ Questions are drawn with the config seed within each split, so dev and test neve
 
 MiniLM recall@5 on the eval answerable questions: coronavirus 0.41, cancer 0.91, neuro 0.99.
 
+**Overlap with generator training.** `python -m evrag.data.train_overlap` writes
+`eval/train_overlap.csv`: an answerable question is `seen` when at least half of the word 8-grams
+of a gold answer occur in the generator's training sources (all splits, an upper bound). MEDIQA-AnS
+takes its sections from NIH pages, including cancer.gov and NINDS. Seen: coronavirus 0 / 213,
+cancer 24 / 250, neuro 14 / 250. The results notebook reports the main table without them too.
+
 `gold_answers` and `gold_doc_ids` are JSON lists. A dataset may add a `scenario` column; metrics
 are then also reported per scenario.
 

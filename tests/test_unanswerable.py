@@ -31,3 +31,11 @@ def test_build_eval(monkeypatch):
     for split in ("dev", "test"):                   # out-of-domain questions come from the same split
         assert all(r["split"] == split for r in by["out_of_domain"] if r["question_id"].endswith(("1", "3", "5")) == (split == "dev"))
     assert {r["source_set"] for r in by["out_of_domain"]} == {"cancer", "neuro"}
+
+
+def test_train_overlap():
+    from evrag.data.train_overlap import ngrams, overlap
+    seen = ngrams("one two three four five six seven eight nine ten")
+    assert overlap(["two three four five six seven eight nine"], seen) == 1.0
+    assert overlap(["two three four five six seven eight nine eleven"], seen) == 0.5
+    assert overlap(["too short"], seen) == 0.0
