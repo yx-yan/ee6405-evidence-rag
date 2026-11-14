@@ -233,3 +233,36 @@ Selective Question Answering under Domain Shift (ACL 2020); Geifman & El-Yaniv, 
 > don't know" makes it far more reliable. Telling "no answer here" apart from "a similar answer
 > here" is still open. Everything is in our GitHub repo, with a notebook to reproduce every
 > number. Thanks for watching!
+
+---
+
+## How to swap in footage
+
+The video is rendered from a template: [`configs/video_timeline.yaml`](../configs/video_timeline.yaml)
+has one entry per block above (same times, speaker, narration and references), and
+[`scripts/build_video.py`](../scripts/build_video.py) turns it into `build/video/draft.mp4`. Until
+real material is added, each block shows a figure, a code shot or an automatic demo recording, with a
+scratch voice from macOS `say`.
+
+1. **Put the files** in `video_assets/` (any folder works; paths are relative to the repo root).
+   Suggested names: `video_assets/<block id>_screen.mp4`, `_camera.mp4`, `_voice.m4a`.
+2. **Edit the block** in `configs/video_timeline.yaml` (find it by `id`, e.g. `p2_c_graph`):
+   - screen recording: set `main: {type: footage, path: video_assets/p1_retry_screen.mp4}`
+     (in a block with several items, change just that item and keep its `at`);
+   - presenter camera: `camera: video_assets/p2_c_graph_camera.mp4` (shown in the top-right corner,
+     right 26% x top 40%; it is scaled to fill that box and cropped);
+   - voice-over: `audio: video_assets/p2_c_graph_voice.m4a` (replaces the scratch voice; the
+     subtitles are then spread over the block by length).
+   Anything longer than its slot is cut; anything shorter holds its last frame (audio: silence).
+   Keep `narration` matching what is said, since the subtitles come from it.
+3. **Render again:**
+   ```bash
+   python scripts/build_video.py              # demo recordings are cached in build/video/demo/
+   python scripts/build_video.py --record     # re-record the automatic demo clips
+   ```
+   Output in `build/video/`: `draft.mp4` (1080p), `draft.srt` (subtitles), `contact_sheet.png` (one
+   frame per block, camera box outlined in red). The script prints which blocks are placeholders and
+   which scratch voices run past their slot.
+
+Needs `ffmpeg` (`brew install ffmpeg`); the demo recording needs `playwright install chromium`. The
+`build/` folder and `video_assets/` stay out of git.

@@ -1,0 +1,361 @@
+# Video timeline (9:55), one entry per block of docs/video_script.md. Owner: E.
+#
+#     python scripts/build_video.py            # -> build/video/draft.mp4, draft.srt, contact_sheet.png
+#
+# Per entry:
+#   id, start, end        "m:ss"; blocks follow each other with no gaps
+#   speaker               key of `speakers`; their first block gets a lower-third
+#   main                  one item or a list; in a list, `at` ("m:ss") is when the item comes on
+#                         (the first one starts with the block). Types:
+#                           figure  {path}                 1920x1080 PNG
+#                           code    {file, lines: "a-b"}   rendered with Pygments
+#                           demo    {label, steps}         recorded from the Streamlit app with Playwright
+#                           title   {text, subtitle}       a plain title card
+#                           footage {path}                 your own video (screen recording, etc.)
+#   camera                optional presenter video, shown in the top-right corner
+#   audio                 optional real voice-over; empty -> scratch voice from macOS `say`
+#   narration             what is said (subtitles and scratch voice come from it)
+#   references            shown small in the bottom-left corner for the whole block
+#
+# Footage, camera and audio longer than their slot are cut; shorter ones hold their last frame
+# (audio: silence). Demo steps: `at` is seconds from the item's start; targets are
+# "radio:<name>", "button:<name>", "label:<widget label>", "text:<visible text>" or "sidebar".
+
+speakers:
+  E: {name: Yan Yuxuan, role: "threshold_rag & evidence_rag · evaluation · demo"}
+  A: {name: Nguyen Khanh Nam, role: "Data: three disease sets"}
+  B: {name: Xu Yiwen, role: "Shared retriever & basic RAG"}
+  C: {name: Nur Hapinder, role: "Graph RAG & retriever comparison"}
+  D: {name: Zhan Luming, role: "Generator: fine-tuned BART"}
+
+segments:
+  # --- Part 1: demo (E) ---------------------------------------------------------------------
+  - id: p1_problem
+    start: "0:00"
+    end: "0:30"
+    speaker: E
+    main:
+      type: demo
+      label: "start page; hover Dataset, Method and the sidebar"
+      steps:
+        - {at: 4, do: hover, target: "radio:coronavirus"}
+        - {at: 6, do: hover, target: "radio:cancer"}
+        - {at: 8, do: hover, target: "radio:neuro"}
+        - {at: 11, do: hover, target: "radio:nlp_only"}
+        - {at: 13, do: hover, target: "radio:basic_rag"}
+        - {at: 15, do: hover, target: "radio:graph_rag"}
+        - {at: 17, do: hover, target: "radio:threshold_rag"}
+        - {at: 19, do: hover, target: "radio:evidence_rag"}
+        - {at: 23, do: hover, target: "sidebar"}
+        - {at: 27, do: hover, target: "text:Evidence-aware RAG"}
+    camera:
+    audio:
+    narration: >-
+      Hi, we're Group X, and I'm Yan Yuxuan. Imagine asking a medical chatbot a question it has no
+      information about. Most chatbots built on retrieval will still answer, and they'll sound
+      confident. In medicine that's dangerous. So our project asks a simple question: when should the
+      system answer, when should it go and look again, and when should it just say "I don't know"?
+      Let me show you.
+    references: []
+
+  - id: p1_methods
+    start: "0:30"
+    end: "1:10"
+    speaker: E
+    main: {type: figure, path: results/figures/video/pipeline.png}
+    camera:
+    audio:
+    narration: >-
+      We compare five methods, and they all share the same parts: the same retriever, and the same
+      small generator, a BART model we fine-tuned ourselves. No ChatGPT anywhere. The first three
+      always answer. nlp_only uses no documents at all. basic_rag looks up the top five passages.
+      graph_rag finds passages through a graph of shared words. The last two are allowed to say no.
+      threshold_rag abstains when even the best passage scores too low. evidence_rag checks two
+      things, how well the passage matches and how much of the question it covers. If that's not
+      enough, it searches once more with a better query, and only then gives up.
+    references:
+      - "Lewis et al., Retrieval-Augmented Generation (NeurIPS 2020)"
+      - "Lewis et al., BART (ACL 2020)"
+
+  - id: p1_answers
+    start: "1:10"
+    end: "1:45"
+    speaker: E
+    main:
+      type: demo
+      label: "Answerable -> Generate; point at the two signals, then the passages"
+      steps:
+        - {at: 1, do: click, target: "radio:Answerable"}
+        - {at: 3, do: click, target: "button:Generate"}
+        - {at: 7, do: scroll, target: "text:1 · First retrieval"}
+        - {at: 9, do: hover, target: "text:s1 · top-1 retrieval score"}
+        - {at: 16, do: hover, target: "text:s2 · question coverage"}
+        - {at: 21, do: scroll, target: "text:Answered on the first retrieval", block: start}
+        - {at: 27, do: scroll, target: "text:Both signals must reach", block: start}
+        - {at: 29, do: hover, target: "testid:stDataFrame"}
+    camera:
+    audio:
+    narration: >-
+      Here's a normal question: "What are the symptoms of gallbladder cancer?" These two numbers are
+      the evidence check. The match score is 0.79, and the bar is 0.71, so it passes. Coverage is 1.0,
+      which means every important word in the question shows up in the passage. Both pass, so it
+      answers, and the answer lists the symptoms, starting with jaundice. Down here you can see
+      exactly which passages it used.
+    references: []
+
+  - id: p1_retry
+    start: "1:45"
+    end: "2:25"
+    speaker: E
+    main:
+      type: demo
+      label: "Retrieve again -> Generate; point at the grey expanded-query box"
+      steps:
+        - {at: 1, do: click, target: "radio:Retrieve again"}
+        - {at: 3, do: click, target: "button:Generate"}
+        - {at: 7, do: scroll, target: "text:1 · First retrieval"}
+        - {at: 9, do: hover, target: "text:s1 · top-1 retrieval score"}
+        - {at: 14, do: scroll, target: "text:2 · Retrieve again"}
+        - {at: 16, do: hover, target: "testid:stCode"}
+        - {at: 22, do: hover, target: "text:Added terms"}
+        - {at: 28, do: scroll, target: "text:Both signals must reach"}
+    camera:
+    audio:
+    narration: >-
+      Now: "Who is at risk for testicular cancer?" The first search scores 0.696, just under the bar.
+      Instead of giving up, it takes the top passages, picks the most telling words from them, like
+      "undescended" and "cryptorchidism", and adds them to the question. Second try: 0.77, so it
+      passes and answers. This is the "retrieve again" step from our title.
+    references: []
+
+  - id: p1_missing
+    start: "2:25"
+    end: "3:10"
+    speaker: E
+    main:
+      type: demo
+      label: "Missing evidence; basic_rag -> Generate, then evidence_rag -> Generate"
+      steps:
+        - {at: 1, do: click, target: "radio:Missing evidence"}
+        - {at: 7, do: click, target: "radio:basic_rag"}
+        - {at: 9, do: click, target: "button:Generate"}
+        - {at: 12, do: scroll, target: "testid:stAlert"}
+        - {at: 14, do: hover, target: "testid:stAlert"}
+        - {at: 22, do: scroll, target: "text:Try an example", block: start}
+        - {at: 24, do: click, target: "radio:evidence_rag"}
+        - {at: 26, do: click, target: "button:Generate"}
+        - {at: 29, do: scroll, target: "text:1 · First retrieval"}
+        - {at: 32, do: hover, target: "text:s1 · top-1 retrieval score"}
+        - {at: 36, do: scroll, target: "text:Abstained: the evidence is not sufficient", block: start}
+        - {at: 38, do: hover, target: "testid:stAlert"}
+    camera:
+    audio:
+    narration: >-
+      For this question we deliberately deleted the right passages from the database: "What is
+      prostate cancer?" Watch basic_rag first. It answers anyway, with something about Gleason scores
+      and cancer spreading to the bladder. It sounds medical, but it doesn't answer the question. Now
+      evidence_rag. First search: 0.65, too low. It tries again: 0.68, still under 0.71. So it says
+      "not enough evidence". That's the behaviour we want.
+    references: []
+
+  - id: p1_ood
+    start: "3:10"
+    end: "3:30"
+    speaker: E
+    main:
+      type: demo
+      label: "Out of domain -> Generate"
+      steps:
+        - {at: 1, do: click, target: "radio:Out of domain"}
+        - {at: 3, do: click, target: "button:Generate"}
+        - {at: 6, do: scroll, target: "text:1 · First retrieval"}
+        - {at: 7, do: hover, target: "text:s1 · top-1 retrieval score"}
+        - {at: 9, do: hover, target: "text:s2 · question coverage"}
+        - {at: 13, do: scroll, target: "text:Abstained: the evidence is not sufficient", block: start}
+    camera:
+    audio:
+    narration: >-
+      And if you ask our cancer knowledge base about COVID symptoms? The match is 0.39 and coverage is
+      only 0.2. It retries, still fails, and abstains, instead of making up a cancer answer.
+    references: []
+
+  - id: p1_graph_explain
+    start: "3:30"
+    end: "4:15"
+    speaker: E
+    main:
+      type: demo
+      label: "coronavirus + graph_rag, 'What is MVO?', open the graph expander; then Distractor, heatmap"
+      steps:
+        - {at: 1, do: click, target: "radio:coronavirus"}
+        - {at: 2.5, do: click, target: "radio:graph_rag"}
+        - {at: 4, do: type, target: "label:Question", text: "What is MVO?"}
+        - {at: 7, do: click, target: "button:Generate"}
+        - {at: 10, do: scroll, target: "text:How the graph connected the question to evidence"}
+        - {at: 11, do: click, target: "text:How the graph connected the question to evidence"}
+        - {at: 19, do: scroll, target: "text:Try an example", block: start}
+        - {at: 20, do: click, target: "radio:Distractor"}
+        - {at: 22, do: click, target: "button:Generate"}
+        - {at: 25, do: scroll, target: "text:Contributions to the whole answer", block: start}
+        - {at: 30, do: hover, target: "text:Evidence [1]"}
+        - {at: 34, do: hover, target: "text:Evidence [2]"}
+    camera:
+    audio:
+    narration: >-
+      Two more things. Here's graph_rag on the COVID papers. "MVO" is a rare abbreviation; the graph
+      links it straight to the two passages that define it. Our teammate will explain this later.
+      Last, every answer can be explained. Here we pasted an asthma passage and an eczema passage and
+      asked about eczema. Red means "this word pushed the answer", so you can check which passage the
+      answer really came from. We compute this with three methods: SHAP, LIME and occlusion. Now
+      let's hand over to the team to show how each part was built.
+    references:
+      - "Lundberg & Lee, SHAP (NeurIPS 2017)"
+      - "Ribeiro et al., LIME (KDD 2016)"
+
+  # --- Part 2: who did what -----------------------------------------------------------------
+  - id: p2_a_data
+    start: "4:15"
+    end: "5:05"
+    speaker: A
+    main:
+      - {type: figure, path: results/figures/video/datasets.png}
+      - {at: "4:27", type: code, file: src/evrag/data/disease_sets.py, lines: "1-25"}
+      - {at: "4:35", type: code, file: src/evrag/data/disease_sets.py, lines: "56-61"}
+      - {at: "4:45", type: figure, path: results/figures/video/datasets.png}
+    camera:
+    audio:
+    narration: >-
+      Hi, I'm Nguyen Khanh Nam, and I built the data. We wanted three different diseases from three
+      different sources, so the results don't depend on one dataset. Coronavirus comes from COVID-QA,
+      which uses research papers. Cancer and neurological disorders come from MedQuAD, which uses NIH
+      patient pages. Long texts are cut into 150-word passages that overlap by 30 words, so an answer
+      is never sliced in half at a border. Every set has three kinds of test question. Answerable
+      ones are the blue part. For the orange part, missing evidence, we removed the right passages.
+      The green part, out of domain, asks about a different disease. So almost half the test
+      questions should not be answered at all.
+    references:
+      - "Möller et al., COVID-QA (2020)"
+      - "Ben Abacha & Demner-Fushman, MedQuAD (BMC Bioinformatics 2019)"
+
+  - id: p2_b_retriever
+    start: "5:05"
+    end: "5:50"
+    speaker: B
+    main:
+      - {type: code, file: src/evrag/retriever.py, lines: "114-140"}
+      - {at: "5:21", type: code, file: src/evrag/methods/basic_rag.py, lines: "1-17"}
+      - {at: "5:30", type: figure, path: results/figures/video/basic_rag_errors.png}
+    camera:
+    audio:
+    narration: >-
+      Hi, I'm Xu Yiwen. I built the shared retriever and basic RAG. The retriever turns every passage
+      into a vector with a small model called MiniLM. A question becomes a vector too, and we take the
+      five closest passages. basic_rag just feeds those to the generator. It's simple, and it works on
+      many questions. But look at this chart. The red part is questions it should have refused, and it
+      answered every one, about 40% of all questions. basic_rag never says no. That's the problem the
+      rest of the project is about.
+    references:
+      - "Reimers & Gurevych, Sentence-BERT (EMNLP 2019)"
+      - "Wang et al., MiniLM (NeurIPS 2020)"
+      - "Johnson et al., FAISS (2019)"
+
+  - id: p2_c_graph
+    start: "5:50"
+    end: "7:20"
+    speaker: C
+    main:
+      - {type: code, file: src/evrag/methods/graph_rag.py, lines: "88-109"}
+      - {at: "5:58", type: code, file: src/evrag/methods/graph_rag.py, lines: "110-131"}
+      - {at: "6:06", type: code, file: src/evrag/methods/graph_rag.py, lines: "132-152"}
+      - {at: "6:14", type: figure, path: results/figures/video/graph_example.png}
+      - {at: "6:32", type: figure, path: results/figures/video/retriever_heatmap.png}
+      - {at: "7:01", type: figure, path: results/figures/video/coronavirus_quality.png}
+    camera:
+    audio:
+    narration: >-
+      Hi, I'm Nur Hapinder, and I built Graph RAG. Instead of vectors, it builds a graph. Every
+      passage is connected to the words in it. A question lights up its words, the words lead to
+      passages, and then we take one extra hop: passages that share rare words with those passages
+      get pulled in too. Common words are ignored for the hop, so it doesn't spread everywhere.
+      Here's a real test question: "What is MVO?" The rare word "mvo" leads straight to the two
+      correct passages, the green ones. MiniLM, on the same question, found none of them. It doesn't
+      know what the abbreviation means. I also compared four retrievers on their own: two classic
+      ones, TF-IDF and our own BM25, the MiniLM model, and my graph. This shows how often the right
+      passage is in the top five. The interesting part: no one wins everywhere. On the NIH pages
+      MiniLM is best, at 0.91 and 0.98. But on the COVID research papers it drops to 0.43, while the
+      word-based methods, including the graph, stay around 0.78. That carries through to the answers.
+      On coronavirus, graph_rag gets the most of the true answer into its reply, 0.55, against 0.38
+      for basic RAG. So for technical papers full of abbreviations, matching exact words still beats
+      embeddings.
+    references:
+      - "Robertson & Zaragoza, BM25 (2009)"
+      - "Edge et al., GraphRAG (2024), the idea our lighter term graph follows"
+
+  - id: p2_d_generator
+    start: "7:20"
+    end: "8:20"
+    speaker: D
+    main:
+      - {type: code, file: src/evrag/generator.py, lines: "116-131"}
+      - {at: "7:37", type: code, file: src/evrag/generator.py, lines: "134-150"}
+      - {at: "7:47", type: figure, path: results/figures/video/closed_vs_open_book.png}
+    camera:
+    audio:
+    narration: >-
+      Hi, I'm Zhan Luming, and I trained the generator. The course didn't allow big models like
+      ChatGPT, so we fine-tuned BART-base, about 140 million parameters, on medical question-answer
+      data. It reads the question plus the passages and writes the answer. fit_contexts makes sure
+      the passages fit into its 1,024-token window. All five methods use this same frozen model, so
+      any difference comes from how they pick evidence, not from the generator. This chart shows why
+      retrieval matters. The blue bars are the same model with no documents: it covers only 10 to 17%
+      of the true answer. Give it the retrieved passages and that jumps to 36 to 47%. A small model
+      can't remember medicine, but it's good at reading. One honest note: part of our training data
+      came from the same NIH websites, so we checked the overlap. Removing the questions it might
+      have seen changes the results by about 0.02.
+    references:
+      - "Lewis et al., BART (ACL 2020)"
+
+  - id: p2_e_abstain
+    start: "8:20"
+    end: "9:35"
+    speaker: E
+    main:
+      - {type: code, file: src/evrag/methods/evidence_rag.py, lines: "44-52"}
+      - {at: "8:30", type: code, file: src/evrag/methods/evidence_rag.py, lines: "94-112"}
+      - {at: "8:37", type: code, file: src/evrag/evaluation/tune.py, lines: "44-50"}
+      - {at: "8:45", type: figure, path: results/figures/reliability.png}
+      - {at: "9:04", type: figure, path: results/figures/abstention_by_scenario.png}
+    camera:
+    audio:
+    narration: >-
+      And I'm Yan Yuxuan again. I built the two methods that can say no, plus the evaluation and the
+      demo. evidence_rag checks the match score and the question coverage, retries once with an
+      expanded query, and abstains if the checks still fail. The thresholds are tuned only on the dev
+      set, never on test. We pick the one that catches the most unanswerable questions while refusing
+      the fewest good ones. Our main measure is reliability: how often the system does the right
+      thing, meaning a correct answer or a correct refusal. Here, the methods that can say no gain
+      about 25 points on every dataset, without losing correct answers, and a paired bootstrap
+      confirms the gain is real. Now the honest part. evidence_rag ties with the simpler
+      threshold_rag; it doesn't beat it. And this chart shows where both still fail. Off-topic
+      questions get caught almost every time, but when the right passage is missing, a similar
+      passage on the same disease is still there, scores almost as high, and the system answers
+      anyway. That's the hardest case, and the clear next step.
+    references:
+      - "Rocchio, relevance feedback (1971)"
+      - "Youden, Youden's J (1950)"
+      - "Kamath et al., Selective Question Answering under Domain Shift (ACL 2020)"
+      - "Geifman & El-Yaniv, risk-coverage (NeurIPS 2017)"
+
+  - id: wrap_up
+    start: "9:35"
+    end: "9:55"
+    speaker: E
+    main: {type: figure, path: results/figures/video/pipeline.png}
+    camera:
+    audio:
+    narration: >-
+      So, to sum up: retrieval is what makes a small model useful, and letting the system say "I
+      don't know" makes it far more reliable. Telling "no answer here" apart from "a similar answer
+      here" is still open. Everything is in our GitHub repo, with a notebook to reproduce every
+      number. Thanks for watching!
+    references: []

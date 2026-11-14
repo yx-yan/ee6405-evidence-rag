@@ -28,3 +28,7 @@ CLAUDE.md
 # Generator training data: rebuilt by python -m evrag.data.generator_data
 data/generator/
 logs/
+
+# Video renders: python scripts/build_video.py
+build/
+video_assets/
