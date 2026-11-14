@@ -9,7 +9,8 @@
 | `final/metrics.csv`, `final/metrics_unseen.csv` | Metrics per dataset, split, method and scenario (all questions / without answers seen in generator training). | `scripts/final_metrics.py` |
 | `final/paired.csv` | Paired bootstrap, evidence_rag against each baseline (test). | `scripts/final_metrics.py` |
 | `final/risk_coverage.csv` | basic_rag coverage and selective accuracy as the score threshold sweeps. | `scripts/final_metrics.py` |
-| `figures/` | Figures for the slides. | `notebooks/final_results.ipynb` |
+| `figures/` | Figures from the results notebook. | `notebooks/final_results.ipynb` |
+| `figures/video/` | Overview and per-member figures for the video ([docs/video_script.md](../docs/video_script.md)). | `scripts/video_figures.py` |
 | `basic_v1/` | Appendix: the first basic_rag vs nlp_only run on WikiDoc (seen in generator training, so not a main evaluation set). | `scripts/run_basic_v1.sh` |
 
 Earlier LLM screens and MedQuAD trials were removed on 2026-11-08 and are in git history.

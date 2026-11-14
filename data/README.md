@@ -1,25 +1,26 @@
 # Data (owner: A)
 
-The knowledge base and evaluation questions come from WikiDoc patient information
-([medalpaca/medical_meadow_wikidoc_patient_information](https://huggingface.co/datasets/medalpaca/medical_meadow_wikidoc_patient_information)),
-keeping every question/answer pair that mentions asthma, diabetes or hypertension. Each answer is
-split into 150-word passages with a 30-word overlap; its question becomes an evaluation question
-whose gold answer is the full answer and whose gold documents are its passages. Questions alternate
-between dev and test. Built by `python -m evrag.data.wikidoc` ([src/evrag/data/wikidoc.py](../src/evrag/data/wikidoc.py)). The general datasets used earlier (MedQuAD,
-LiveQA-Med, Symptom2Disease, MTS-Dialog) were removed on 2026-11-08 and are in git history.
+The main evaluation uses three single-disease knowledge bases, each from its own source, plus
+unanswerable questions built from them. WikiDoc, the first knowledge base, is kept only as an
+appendix because the generator saw it in training.
 
 | Path | Content |
 |------|---------|
-| `processed/corpus.jsonl` | 512 passages: `doc_id, article_id, title, section, text, disease, source_url` |
-| `processed/dataset.csv` | 350 questions, 175 dev / 175 test: `question_id, question, gold_answers, gold_doc_ids, split` |
-| `processed/by_disease/` | The same passages split by the diseases they mention (e.g. `asthma_diabetes.jsonl`) |
+| `processed/<set>/corpus.jsonl`, `processed/<set>/dataset.csv` | The disease sets as built from their sources. |
+| `processed/<set>/eval/` | The evaluation versions with unanswerable questions, and `train_overlap.csv`. These are the main evaluation sets. |
+| `processed/corpus.jsonl`, `processed/dataset.csv`, `processed/by_disease/` | WikiDoc (appendix). |
 | `raw/` | Local downloads, not committed. |
+
+`gold_answers` and `gold_doc_ids` are JSON lists. Corpus rows are
+`doc_id, article_id, title, section, text, disease, source_url`. Question rows are
+`question_id, question, gold_answers, gold_doc_ids, split`; eval sets add `scenario` and
+`source_set`, and metrics are then also reported per scenario.
 
 ## Single-disease sets
 
-Three more sets, one disease category and one source each, in the same schema. Built by
-`python -m evrag.data.disease_sets` ([src/evrag/data/disease_sets.py](../src/evrag/data/disease_sets.py)),
-which downloads COVID-QA and clones MedQuAD into `raw/`.
+One disease category and one source per set. Built by `python -m evrag.data.disease_sets`
+([src/evrag/data/disease_sets.py](../src/evrag/data/disease_sets.py)), which downloads COVID-QA
+and clones MedQuAD into `raw/`.
 
 | Folder | Disease category | Source | Licence | Passages | Questions (dev / test) | MiniLM recall@5 |
 |--------|------------------|--------|---------|---------:|-----------------------:|----------------:|
@@ -29,9 +30,8 @@ which downloads COVID-QA and clones MedQuAD into `raw/`.
 
 Recall@5 counts questions with at least one gold passage in the top 5 (all 300 questions).
 
-- Papers and answers are cut into the same 150-word passages with a 30-word overlap as WikiDoc.
-  Each passage's text starts with its paper title or page focus ("Skin Cancer: ..."), like a
-  page heading; WikiDoc passages have no heading.
+- Papers and answers are cut into 150-word passages with a 30-word overlap. Each passage's text
+  starts with its paper title or page focus ("Skin Cancer: ..."), like a page heading.
 - COVID-QA gold answers are short spans (median 9 words) copied from the paper; its gold documents
   are the passages holding the span. MedQuAD gold answers are whole page sections (up to 300 words);
   their gold documents are all of the section's passages.
@@ -41,16 +41,13 @@ Recall@5 counts questions with at least one gold passage in the top 5 (all 300 q
   per set are drawn with the config seed.
 - MedQuAD questions are templated from the page focus ("What are the treatments for X ?"), which
   makes retrieval easy; COVID-QA questions were written by annotators against one paper.
-- The shared generator was not trained on COVID-QA or MedQuAD, but its MEDIQA-AnS training data
-  comes from NIH pages and may overlap the MedQuAD sets.
 
 ## Evaluation sets with unanswerable questions
 
-The three disease sets are the main evaluation sets (`datasets:` in `configs/default.yaml`). WikiDoc
-was seen in generator training, so it is only used in the appendix (`results/basic_v1/`).
+These are the main evaluation sets (`datasets:` in `configs/default.yaml`).
 `python -m evrag.data.unanswerable` ([src/evrag/data/unanswerable.py](../src/evrag/data/unanswerable.py))
-writes `processed/<set>/eval/{corpus.jsonl,dataset.csv}` without touching the original files. The
-eval dataset adds a `scenario` column (and `source_set`, the set a question comes from):
+writes `processed/<set>/eval/{corpus.jsonl,dataset.csv}` without touching the original files.
+Each question has a `scenario`, and `source_set` names the set it comes from:
 
 - `answerable`: the set's own questions, unchanged.
 - `missing_evidence`: 25 questions per split whose gold passages are removed from the eval corpus;
@@ -70,23 +67,37 @@ Questions are drawn with the config seed within each split, so dev and test neve
 MiniLM recall@5 on the eval answerable questions: coronavirus 0.41, cancer 0.91, neuro 0.99.
 
 **Overlap with generator training.** `python -m evrag.data.train_overlap` writes
-`eval/train_overlap.csv`: an answerable question is `seen` when at least half of the word 8-grams
-of a gold answer occur in the generator's training sources (all splits, an upper bound). MEDIQA-AnS
-takes its sections from NIH pages, including cancer.gov and NINDS. Seen: coronavirus 0 / 213,
-cancer 24 / 250, neuro 14 / 250. The results notebook reports the main table without them too.
+`eval/train_overlap.csv`. An answerable question is `seen` when at least half of the word 8-grams
+of a gold answer occur in the generator's training sources (all splits, so this is an upper bound).
+MEDIQA-AnS takes its sections from NIH pages, including cancer.gov and NINDS. Seen: coronavirus
+0 / 213, cancer 24 / 250, neuro 14 / 250. The results notebook also reports the main table without
+them.
 
-`gold_answers` and `gold_doc_ids` are JSON lists. A dataset may add a `scenario` column; metrics
-are then also reported per scenario.
+## Appendix: WikiDoc
 
-Known limits:
+The first knowledge base came from WikiDoc patient information
+([medalpaca/medical_meadow_wikidoc_patient_information](https://huggingface.co/datasets/medalpaca/medical_meadow_wikidoc_patient_information)).
+It keeps every question/answer pair that mentions asthma, diabetes or hypertension. Each answer is
+split into 150-word passages with a 30-word overlap. Its question becomes an evaluation question
+whose gold answer is the full answer and whose gold documents are its passages. Questions alternate
+between dev and test. Built by `python -m evrag.data.wikidoc`
+([src/evrag/data/wikidoc.py](../src/evrag/data/wikidoc.py)); results are in
+[results/basic_v1/](../results/basic_v1/).
 
-- Every question has a gold answer, so abstention cannot be measured on this set.
-- Three questions occur in both splits (after lower-casing and dropping punctuation): "what causes
-  gum disease", "what causes tetralogy of fallot", "who is at risk for hepatocellular carcinoma".
-- The gold passages hold the gold answer word for word, and a passage's `title` is the first 50
-  characters of its question. The retriever encodes `text` only, so the title does not leak.
-- Questions mention a target disease, but many are about something else (e.g. gum disease).
+| Path | Content |
+|------|---------|
+| `processed/corpus.jsonl` | 512 passages |
+| `processed/dataset.csv` | 350 questions, 175 dev / 175 test |
+| `processed/by_disease/` | The same passages split by the diseases they mention (e.g. `asthma_diabetes.jsonl`) |
+
+Why it is only an appendix:
+
 - The generator was trained on WikiDoc patient information too, so most passages overlap its
   training data (issue #26).
+- Every question has a gold answer, so abstention cannot be measured on it.
+- Three questions occur in both splits (after lower-casing and dropping punctuation): "what causes
+  gum disease", "what causes tetralogy of fallot", "who is at risk for hepatocellular carcinoma".
+- Many questions mention a target disease but are about something else (e.g. gum disease).
 
-TODO(A): document the manual audit results.
+Earlier general datasets (MedQuAD as a whole, LiveQA-Med, Symptom2Disease, MTS-Dialog) were removed
+on 2026-11-08 and are in git history.
