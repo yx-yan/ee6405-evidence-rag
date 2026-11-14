@@ -1,7 +1,7 @@
-# Video script (9:45)
+# Video script (9:55)
 
-**Part 1 (0:00–4:20)** is a full demo walkthrough, narrated by E.
-**Part 2 (4:20–9:45)** has each member explain their part: A → B → C → D → E.
+**Part 1 (0:00–4:15)** is a full demo walkthrough, narrated by E.
+**Part 2 (4:15–9:55)** has each member explain their part: A → B → C → D → E.
 
 ## Before recording
 
@@ -20,6 +20,9 @@ streamlit run app/app.py          # demo at http://localhost:8501
 - **Code shots**: open the file in the editor at the given lines, with the font large enough to read
   on video.
 - **Pace**: about 150 words a minute. Each block below is timed to that, so read at a normal speed.
+- **References**: each part lists its references. Show them as a small caption in the bottom
+  corner of the screen while that part plays; they are not read aloud.
+- Each member starts their part by saying their name, as written in the script.
 
 ---
 
@@ -28,8 +31,10 @@ streamlit run app/app.py          # demo at http://localhost:8501
 ### 0:00–0:30 · The problem
 
 **Show:** the demo's start page (title "Evidence-aware RAG").
+**Action:** while talking, move the mouse over the *Dataset* buttons, the *Method* buttons and the
+collapsed sidebar (explanation settings), so viewers see what can be chosen.
 
-> Hi, we're Group X. Imagine asking a medical chatbot a question it has no information about.
+> Hi, we're Group X, and I'm Yan Yuxuan. Imagine asking a medical chatbot a question it has no information about.
 > Most chatbots built on retrieval will still answer, and they'll sound confident. In medicine
 > that's dangerous. So our project asks a simple question: when should the system answer, when
 > should it go and look again, and when should it just say "I don't know"? Let me show you.
@@ -46,6 +51,9 @@ streamlit run app/app.py          # demo at http://localhost:8501
 > too low. evidence_rag checks two things, how well the passage matches and how much of the
 > question it covers. If that's not enough, it searches once more with a better query, and only
 > then gives up.
+
+*References:* Lewis et al., Retrieval-Augmented Generation (NeurIPS 2020); Lewis et al., BART
+(ACL 2020).
 
 ### 1:10–1:45 · Example 1: it answers
 
@@ -78,14 +86,14 @@ then switch back to **evidence_rag** → **Generate**.
 > Now evidence_rag. First search: 0.65, too low. It tries again: 0.68, still under 0.71. So it
 > says "not enough evidence". That's the behaviour we want.
 
-### 3:10–3:35 · Example 4: wrong topic
+### 3:10–3:30 · Example 4: wrong topic
 
 **Show:** click **Out of domain** → **Generate**.
 
 > And if you ask our cancer knowledge base about COVID symptoms? The match is 0.39 and coverage is
 > only 0.2. It retries, still fails, and abstains, instead of making up a cancer answer.
 
-### 3:35–4:20 · Graph route and "why did it say that?"
+### 3:30–4:15 · Graph route and "why did it say that?"
 
 **Show:**
 1. Dataset *coronavirus*, method **graph_rag**, type `What is MVO?` → **Generate**. Open the
@@ -97,37 +105,47 @@ then switch back to **evidence_rag** → **Generate**.
 > Last, every answer can be explained. Here we pasted an asthma passage and an eczema passage
 > and asked about eczema. Red means "this word pushed the answer", so you can check which
 > passage the answer really came from. We compute this with three methods: SHAP, LIME
-> and occlusion.
+> and occlusion. Now let's hand over to the team to show how each part was built.
+
+*References:* Lundberg & Lee, SHAP (NeurIPS 2017); Ribeiro et al., LIME (KDD 2016).
 
 ---
 
 ## Part 2 — Who did what
 
-### 4:20–5:05 · A: the data
+### 4:15–5:05 · A: the data
 
 **Show:** `results/figures/video/datasets.png`, then the code at
-`src/evrag/data/disease_sets.py` lines 1–25 (the docstring table).
+`src/evrag/data/disease_sets.py` lines 1–25 (the docstring table) and `chunk_spans` at lines 56–61.
 
-> I built the data. We wanted three different diseases from three different sources, so the
+> Hi, I'm Nguyen Khanh Nam, and I built the data. We wanted three different diseases from three different sources, so the
 > results don't depend on one dataset. Coronavirus comes from COVID-QA, which uses research
 > papers. Cancer and neurological disorders come from MedQuAD, which uses NIH patient pages.
+> Long texts are cut into 150-word passages that overlap by 30 words, so an answer is never
+> sliced in half at a border.
 > Every set has three kinds of test question. Answerable ones are the blue part. For the orange
 > part, missing evidence, we removed the right passages. The green part, out of domain, asks
 > about a different disease. So almost half the test questions should not be answered at all.
 
-### 5:05–5:55 · B: retriever and basic RAG
+*References:* Möller et al., COVID-QA (2020); Ben Abacha & Demner-Fushman, MedQuAD (BMC
+Bioinformatics 2019).
+
+### 5:05–5:50 · B: retriever and basic RAG
 
 **Show:** code `src/evrag/retriever.py` lines 114–140 (`search`) and
 `src/evrag/methods/basic_rag.py`, then `results/figures/video/basic_rag_errors.png`.
 
-> I built the shared retriever and basic RAG. The retriever turns every passage into a vector
+> Hi, I'm Xu Yiwen. I built the shared retriever and basic RAG. The retriever turns every passage into a vector
 > with a small model called MiniLM. A question becomes a vector too, and we take the five
 > closest passages. basic_rag just feeds those to the generator.
 > It's simple, and it works on many questions. But look at this chart. The red part is
 > questions it should have refused, and it answered every one, about 40% of all questions.
 > basic_rag never says no. That's the problem the rest of the project is about.
 
-### 5:55–7:25 · C: Graph RAG and the retriever comparison
+*References:* Reimers & Gurevych, Sentence-BERT (EMNLP 2019); Wang et al., MiniLM (NeurIPS 2020);
+Johnson et al., FAISS (2019).
+
+### 5:50–7:20 · C: Graph RAG and the retriever comparison
 
 **Show:**
 1. Code `src/evrag/methods/graph_rag.py` lines 88–152 (`search`: direct matches, then one hop).
@@ -135,7 +153,7 @@ then switch back to **evidence_rag** → **Generate**.
 3. `results/figures/video/retriever_heatmap.png`.
 4. `results/figures/video/coronavirus_quality.png`.
 
-> I built Graph RAG. Instead of vectors, it builds a graph. Every passage is connected to the
+> Hi, I'm Nur Hapinder, and I built Graph RAG. Instead of vectors, it builds a graph. Every passage is connected to the
 > words in it. A question lights up its words, the words lead to passages, and then we take one
 > extra hop: passages that share rare words with those passages get pulled in too. Common words
 > are ignored for the hop, so it doesn't spread everywhere.
@@ -153,15 +171,19 @@ then switch back to **evidence_rag** → **Generate**.
 > answer into its reply, 0.55, against 0.38 for basic RAG. So for technical papers full of
 > abbreviations, matching exact words still beats embeddings.
 
-### 7:25–8:15 · D: the generator
+*References:* Robertson & Zaragoza, BM25 (2009); Edge et al., GraphRAG (2024), the idea our
+lighter term graph follows.
+
+### 7:20–8:20 · D: the generator
 
 **Show:** code `src/evrag/generator.py` lines 116–150 (`generate`, `fit_contexts`), then
 `results/figures/video/closed_vs_open_book.png`.
 
-> I trained the generator. The course didn't allow big models like ChatGPT, so we fine-tuned
+> Hi, I'm Zhan Luming, and I trained the generator. The course didn't allow big models like ChatGPT, so we fine-tuned
 > BART-base, about 140 million parameters, on medical question-answer data. It reads the
 > question plus the passages and writes the answer. fit_contexts makes sure the passages fit
-> into its 1,024-token window.
+> into its 1,024-token window. All five methods use this same frozen model, so any difference
+> comes from how they pick evidence, not from the generator.
 >
 > This chart shows why retrieval matters. The blue bars are the same model with no documents:
 > it covers only 10 to 17% of the true answer. Give it the retrieved passages and that jumps to
@@ -170,7 +192,9 @@ then switch back to **evidence_rag** → **Generate**.
 > One honest note: part of our training data came from the same NIH websites, so we checked the
 > overlap. Removing the questions it might have seen changes the results by about 0.02.
 
-### 8:15–9:25 · E: deciding when to abstain, and what we found
+*Reference:* Lewis et al., BART (ACL 2020).
+
+### 8:20–9:35 · E: deciding when to abstain, and what we found
 
 **Show:**
 1. Code `src/evrag/methods/evidence_rag.py` lines 44–52 (`coverage`) and 94–112 (`decide`).
@@ -178,14 +202,15 @@ then switch back to **evidence_rag** → **Generate**.
 3. `results/figures/reliability.png`.
 4. `results/figures/abstention_by_scenario.png`.
 
-> I built the two methods that can say no, plus the evaluation and the demo. evidence_rag
+> And I'm Yan Yuxuan again. I built the two methods that can say no, plus the evaluation and the demo. evidence_rag
 > checks the match score and the question coverage, retries once with an expanded query, and
-> abstains if the checks still fail. The thresholds are tuned only on the dev set. We
+> abstains if the checks still fail. The thresholds are tuned only on the dev set, never on
+> test. We
 > pick the one that catches the most unanswerable questions while refusing the fewest good ones.
 >
 > Our main measure is reliability: how often the system does the right thing, meaning a correct
 > answer or a correct refusal. Here, the methods that can say no gain about 25 points on every
-> dataset, without losing correct answers.
+> dataset, without losing correct answers, and a paired bootstrap confirms the gain is real.
 >
 > Now the honest part. evidence_rag ties with the simpler threshold_rag; it doesn't beat it.
 > And this chart shows where both still fail. Off-topic questions get caught almost every time,
@@ -193,7 +218,11 @@ then switch back to **evidence_rag** → **Generate**.
 > scores almost as high, and the system answers anyway. That's the hardest case, and the clear
 > next step.
 
-### 9:25–9:45 · Wrap-up (E)
+*References:* Rocchio, relevance feedback (1971); Youden, Youden's J (1950); Kamath et al.,
+Selective Question Answering under Domain Shift (ACL 2020); Geifman & El-Yaniv, risk-coverage
+(NeurIPS 2017).
+
+### 9:35–9:55 · Wrap-up (E)
 
 **Show:** `results/figures/video/pipeline.png` again, or the README results table.
 
