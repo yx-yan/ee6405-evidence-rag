@@ -17,6 +17,9 @@ streamlit run app/app.py          # demo at http://localhost:8501
     graph_example, retriever_heatmap, coronavirus_quality.
   - `results/figures/`: the notebook figures (reliability, abstention_by_scenario, risk_coverage,
     evidence_actions, recall_at_k).
+  - All twelve are 1920x1080 (16:9) in one style (`src/evrag/figures.py`). The top-right corner
+    (right 26% of the width, top 40% of the height) is left empty for the presenter's camera;
+    `python scripts/video_figures.py --guide` outlines it to check the placement.
 - **Code shots**: open the file in the editor at the given lines, with the font large enough to read
   on video.
 - **Pace**: about 150 words a minute. Each block below is timed to that, so read at a normal speed.

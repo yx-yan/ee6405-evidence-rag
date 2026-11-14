@@ -1,9 +1,10 @@
 """Figures for the project video, from results/final only (no model is run). Owner: E.
 
-    python scripts/video_figures.py
+    python scripts/video_figures.py           # add --guide to outline the camera corner
 
 Writes results/figures/video/*.png. The notebook figures in results/figures/ are reused as they are;
-these add the overview and per-member slides:
+these add the overview and per-member slides. All figures share the style in src/evrag/figures.py
+(1920x1080, top-right corner left empty for the camera):
 
     pipeline.png             the five methods as one pipeline (opening)
     datasets.png             test questions per set and scenario (A)
@@ -15,37 +16,30 @@ these add the overview and per-member slides:
 """
 from __future__ import annotations
 
-import json
+import sys
 
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import pandas as pd
-from matplotlib.patches import FancyBboxPatch
+from matplotlib.lines import Line2D
+from matplotlib.patches import FancyBboxPatch, Patch
 
+from evrag import figures as F
 from evrag.config import FINAL_DIR, RESULTS_DIR, dataset_paths
 from evrag.evaluation.metrics import load_dataset, load_runs
 
 OUT = RESULTS_DIR / "figures" / "video"
 SETS = ["coronavirus", "cancer", "neuro"]
-METHODS = ["nlp_only", "basic_rag", "graph_rag", "threshold_rag", "evidence_rag"]
-COLORS = dict(zip(METHODS, ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"]))
-SCENARIO_COLORS = {"answerable": "#2a78d6", "missing_evidence": "#eb6834", "out_of_domain": "#1baf7a"}
-INK, MUTED, LINE = "#2b2a27", "#6b6a66", "#c9c8c3"
-plt.rcParams.update({"figure.dpi": 110, "axes.spines.top": False, "axes.spines.right": False,
-                     "axes.grid": True, "grid.color": "#e4e3df", "grid.linewidth": 0.6,
-                     "axes.edgecolor": "#8a8984", "axes.labelcolor": "#52514e", "xtick.color": "#52514e",
-                     "ytick.color": "#52514e", "legend.frameon": False, "font.size": 12,
-                     "figure.constrained_layout.use": True})
+METHODS = F.METHODS
 
 metrics = pd.read_csv(FINAL_DIR / "metrics.csv")
 test = metrics[metrics.split == "test"]
 
 
 def save(fig, name: str) -> None:
-    fig.savefig(OUT / f"{name}.png", dpi=200, bbox_inches="tight", facecolor="white")
+    F.save(fig, OUT / f"{name}.png")
     plt.close(fig)
-    print(f"Wrote {OUT / name}.png")
 
 
 def value(dataset: str, method: str, column: str, scenario: str = "all") -> float:
@@ -53,98 +47,114 @@ def value(dataset: str, method: str, column: str, scenario: str = "all") -> floa
     return float(row[column].iloc[0])
 
 
-def box(ax, x, y, text, color="#f3f2ee", edge=LINE, w=0.17, h=0.12, weight="normal"):
-    ax.add_patch(FancyBboxPatch((x - w / 2, y - h / 2), w, h, boxstyle="round,pad=0.01,rounding_size=0.02",
-                                facecolor=color, edgecolor=edge, linewidth=1.5))
-    ax.text(x, y, text, ha="center", va="center", fontsize=11, color=INK, weight=weight)
+def box(ax, x, y, text, color=F.PANEL, edge=None, w=0.17, h=0.13, weight="normal"):
+    ax.add_patch(FancyBboxPatch((x - w / 2, y - h / 2), w, h, boxstyle="round,pad=0,rounding_size=0.025",
+                                facecolor=color, edgecolor=edge or color, linewidth=2, mutation_aspect=0.5))
+    ax.text(x, y, text, ha="center", va="center", fontsize=12, color=F.INK, weight=weight, linespacing=1.3)
 
 
-def arrow(ax, a, b, color=MUTED):
-    ax.annotate("", xy=b, xytext=a, arrowprops={"arrowstyle": "-|>", "color": color, "lw": 1.5})
+def arrow(ax, a, b, color=F.MUTED):
+    ax.annotate("", xy=b, xytext=a, arrowprops={"arrowstyle": "-|>", "color": color, "lw": 1.5,
+                                                "shrinkA": 0, "shrinkB": 0})
+
+
+def hbar_labels(ax, i, left, width, color, text):
+    if width > 0.04 * ax.get_xlim()[1]:
+        ax.text(left + width / 2, i, text, ha="center", va="center", color=F.text_on(color), weight="bold")
 
 
 def pipeline() -> None:
-    """Question -> evidence -> decision -> generator, one row per method."""
-    fig, ax = plt.subplots(figsize=(12, 5.6))
-    ax.set(xlim=(-0.01, 1.01), ylim=(-0.1, 1))
+    """Question -> evidence -> decision -> BART, one row per method."""
+    fig, ax = F.figure("Five ways to answer a medical question",
+                       "Same question, same BART generator; the methods differ in evidence and in when they answer",
+                       diagram=True)
+    ax.set(xlim=(0, 1), ylim=(0, 1))
     ax.axis("off")
-    for x, title in [(0.09, "Question"), (0.33, "Evidence"), (0.6, "Decision"), (0.87, "Output")]:
-        ax.text(x, 0.97, title, ha="center", fontsize=13, weight="bold", color=MUTED)
+    for x, title in [(0.1, "Method"), (0.43, "Evidence"), (0.8, "Decision")]:
+        ax.text(x, 0.97, title.upper(), ha="center", fontsize=11, weight="bold", color=F.MUTED)
     rows = [("nlp_only", "none (closed book)", "always answer"),
             ("basic_rag", "MiniLM top 5", "always answer"),
             ("graph_rag", "term graph + 1 hop", "always answer"),
-            ("threshold_rag", "MiniLM top 5", "top-1 score ≥ τ ?"),
-            ("evidence_rag", "MiniLM top 5\n(+ expanded query)", "score & coverage ok?\nelse retry, else abstain")]
+            ("threshold_rag", "MiniLM top 5", "answer if top-1 score ≥ τ,\nelse abstain"),
+            ("evidence_rag", "MiniLM top 5\n(+ expanded query on retry)", "score and coverage ok?\nelse retry, else abstain")]
     for i, (m, evidence, decision) in enumerate(rows):
-        y = 0.84 - i * 0.18
-        box(ax, 0.09, y, m, color="white", edge=COLORS[m], weight="bold")
-        box(ax, 0.33, y, evidence, w=0.2)
-        box(ax, 0.6, y, decision, w=0.22,
-            color="#fdf1d8" if m in ("threshold_rag", "evidence_rag") else "#f3f2ee")
-        box(ax, 0.87, y, "BART answer\nor abstain" if m in ("threshold_rag", "evidence_rag") else "BART answer",
-            w=0.17)
-        arrow(ax, (0.18, y), (0.23, y))
-        arrow(ax, (0.43, y), (0.49, y))
-        arrow(ax, (0.71, y), (0.78, y))
-    ax.annotate("", xy=(0.33, 0.055), xytext=(0.6, 0.055),
-                arrowprops={"arrowstyle": "-|>", "color": COLORS["evidence_rag"], "lw": 1.5,
-                            "connectionstyle": "arc3,rad=-0.3"})
-    ax.text(0.465, -0.07, "not enough evidence: retrieve again once with an expanded query", ha="center",
-            fontsize=10, color=MUTED)
+        y = 0.83 - i * 0.185
+        box(ax, 0.1, y, m, color="white", edge=F.METHOD_COLORS[m], w=0.2, h=0.13, weight="bold")
+        box(ax, 0.43, y, evidence, w=0.32, h=0.13)
+        box(ax, 0.8, y, decision, w=0.32, h=0.13,
+            color="#fdf1d8" if m in ("threshold_rag", "evidence_rag") else F.PANEL)
+        arrow(ax, (0.2, y), (0.27, y))
+        arrow(ax, (0.59, y), (0.64, y))
+    y = 0.83 - 4 * 0.185 - 0.065
+    ax.annotate("", xy=(0.47, y), xytext=(0.76, y),
+                arrowprops={"arrowstyle": "-|>", "color": F.METHOD_COLORS["evidence_rag"], "lw": 2,
+                            "shrinkA": 0, "shrinkB": 0, "connectionstyle": "arc3,rad=-0.3"})
+    F.legend(fig, [Patch(color="#fdf1d8", label="may abstain"), Patch(color=F.PANEL, label="always answers")],
+             title="DECISION")
+    F.note(fig, "Pink arrow: evidence_rag\nretrieves once more with an\nexpanded query before it\ngives up.")
     save(fig, "pipeline")
 
 
 def datasets() -> None:
     counts = {d: load_dataset(dataset_paths(d)["dataset"], "test") for d in SETS}
-    fig, ax = plt.subplots(figsize=(10, 3.4))
+    fig, ax = F.figure("Three knowledge bases, three kinds of question",
+                       "Test questions per set: answerable, and two kinds the system should refuse")
     for i, d in enumerate(SETS):
         left = 0
-        for s, c in SCENARIO_COLORS.items():
+        for s, c in F.SCENARIO_COLORS.items():
             n = sum(q["scenario"] == s for q in counts[d].values())
-            ax.barh(i, n, left=left, color=c, edgecolor="white", linewidth=2, label=s.replace("_", " ") if i == 0 else None)
-            ax.text(left + n / 2, i, str(n), ha="center", va="center", color="white", weight="bold")
+            ax.barh(i, n, left=left, color=c, edgecolor="white", linewidth=2, height=0.6)
+            hbar_labels(ax, i, left, n, c, str(n))
             left += n
     ax.set(yticks=range(3), yticklabels=SETS, xlabel="test questions")
+    ax.tick_params(axis="y", labelsize=13)
     ax.invert_yaxis()
     ax.grid(axis="y", visible=False)
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.25), ncol=3)
-    ax.set_title("Three knowledge bases, three kinds of question", loc="left", weight="bold")
+    F.legend(fig, [Patch(color=c, label=s.replace("_", " ")) for s, c in F.SCENARIO_COLORS.items()],
+             title="SCENARIO")
+    F.note(fig, "Missing evidence: the gold\npassages are removed.\nOut of domain: questions\nfrom the other two sets.")
     save(fig, "datasets")
 
 
 def basic_rag_errors() -> None:
     """Of all test questions: right answers, wrong answers, and answers to unanswerable questions."""
-    parts = {"correct answer": "#1baf7a", "wrong answer": "#eda100", "answered an unanswerable question": "#eb6834"}
-    fig, ax = plt.subplots(figsize=(10, 3.4))
+    parts = {"correct answer": F.STATUS["good"], "wrong answer": F.STATUS["warning"],
+             "answered an\nunanswerable question": F.STATUS["critical"]}
+    fig, ax = F.figure("basic_rag always answers, even when it should not",
+                       "Share of all test questions, by what basic_rag did with them")
     for i, d in enumerate(SETS):
         n = {s: value(d, "basic_rag", "n", s) for s in ("all", "answerable")}
         right = value(d, "basic_rag", "answer_correctness", "answerable") * n["answerable"]
-        shares = [right, n["answerable"] - right, n["all"] - n["answerable"]]
+        shares = np.array([right, n["answerable"] - right, n["all"] - n["answerable"]]) / n["all"]
         left = 0
-        for (label, c), x in zip(parts.items(), np.array(shares) / n["all"]):
-            ax.barh(i, x, left=left, color=c, edgecolor="white", linewidth=2, label=label if i == 0 else None)
-            ax.text(left + x / 2, i, f"{x:.0%}", ha="center", va="center", color="white", weight="bold")
+        for c, x in zip(parts.values(), shares):
+            ax.barh(i, x, left=left, color=c, edgecolor="white", linewidth=2, height=0.6)
+            hbar_labels(ax, i, left, x, c, f"{x:.0%}")
             left += x
     ax.set(yticks=range(3), yticklabels=SETS, xlim=(0, 1), xlabel="share of test questions")
+    ax.xaxis.set_major_formatter(lambda v, _: f"{v:.0%}")
+    ax.tick_params(axis="y", labelsize=13)
     ax.invert_yaxis()
     ax.grid(axis="y", visible=False)
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.25), ncol=3)
-    ax.set_title("basic_rag always answers, even when it should not", loc="left", weight="bold")
+    F.legend(fig, [Patch(color=c, label=label) for label, c in parts.items()], title="OUTCOME")
     save(fig, "basic_rag_errors")
 
 
 def closed_vs_open_book() -> None:
-    fig, ax = plt.subplots(figsize=(8, 3.8))
+    fig, ax = F.figure("Same generator: evidence makes the difference",
+                       "Gold token recall on answerable test questions")
     x = np.arange(3)
-    for i, m in enumerate(["nlp_only", "basic_rag"]):
+    labels = {"nlp_only": "no evidence\n(nlp_only)", "basic_rag": "retrieved evidence\n(basic_rag)"}
+    for i, m in enumerate(labels):
         v = [value(d, m, "gold_token_recall", "answerable") for d in SETS]
-        ax.bar(x + (i - 0.5) * 0.36, v, 0.34, color=COLORS[m],
-               label={"nlp_only": "no evidence (nlp_only)", "basic_rag": "with retrieved evidence (basic_rag)"}[m])
-        for xi, vi in zip(x + (i - 0.5) * 0.36, v):
-            ax.text(xi, vi + 0.01, f"{vi:.2f}", ha="center", color=INK)
+        xs = x + (i - 0.5) * 0.34
+        ax.bar(xs, v, 0.32, color=F.METHOD_COLORS[m], edgecolor="white", linewidth=2)
+        for xi, vi in zip(xs, v):
+            ax.text(xi, vi + 0.012, f"{vi:.2f}", ha="center", color=F.INK, fontsize=12)
     ax.set(xticks=x, xticklabels=SETS, ylim=(0, 0.6), ylabel="gold token recall")
-    ax.legend(loc="upper left")
-    ax.set_title("Same generator: evidence makes the difference", loc="left", weight="bold")
+    ax.tick_params(axis="x", labelsize=13)
+    ax.grid(axis="x", visible=False)
+    F.legend(fig, [Patch(color=F.METHOD_COLORS[m], label=label) for m, label in labels.items()], title="GENERATOR INPUT")
     save(fig, "closed_vs_open_book")
 
 
@@ -159,69 +169,85 @@ def graph_example(qid: str = "cov_Q43") -> None:
         g.add_edge(a, via)
         g.add_edge(via, b)
     layer = {n: 0 if n == "question" else 1 if n.startswith("term:") and g.has_edge("question", n) else
-             2 if any(g.has_edge(t, n) for t in g.successors("question")) else 3 if n.startswith("doc:") else 2.5
+             2 if any(g.has_edge(t, n) for t in g.successors("question")) else 4 if n.startswith("doc:") else 3
              for n in g}
     pos = {}
     for k in set(layer.values()):
         nodes = sorted(n for n in g if layer[n] == k)
         for j, n in enumerate(nodes):
             pos[n] = (k, (len(nodes) - 1) / 2 - j)
-    colors = ["#2a78d6" if n == "question" else "#eda100" if n.startswith("term:") else
-              "#1baf7a" if n[4:] in gold else "#d9d8d3" for n in g]
-    labels = {n: (f'"{question["question"]}"' if n == "question" else n.replace("term:", "")
-                  if n.startswith("term:") else n[4:] + ("  ✓ gold" if n[4:] in gold else "")) for n in g}
-    fig, ax = plt.subplots(figsize=(11, 4.2))
+    kinds = {"question": F.INK, "rare term": F.METHOD_COLORS["threshold_rag"], "gold passage": F.METHOD_COLORS["graph_rag"],
+             "other passage": "#d6d5d0"}
+    kind = {n: "question" if n == "question" else "rare term" if n.startswith("term:") else
+            "gold passage" if n[4:] in gold else "other passage" for n in g}
+    labels = {n: "question" if n == "question" else n.replace("term:", "") if n.startswith("term:") else n[4:]
+              for n in g}
+    fig, ax = F.figure("graph_rag: from a rare term straight to the right passage",
+                       f'Coronavirus test question: "{question["question"]}"', diagram=True)
     ax.axis("off")
-    nx.draw_networkx_edges(g, pos, ax=ax, edge_color=LINE, arrows=True, arrowsize=14, width=1.5,
-                           node_size=1800)
-    nx.draw_networkx_nodes(g, pos, ax=ax, node_color=colors, node_size=1800, edgecolors="white", linewidths=2)
+    nx.draw_networkx_edges(g, pos, ax=ax, edge_color=F.LINE, arrows=True, arrowsize=16, width=1.8, node_size=1500)
+    nx.draw_networkx_nodes(g, pos, ax=ax, node_color=[kinds[kind[n]] for n in g], node_size=1500,
+                           edgecolors="white", linewidths=2)
     for n, (x, y) in pos.items():
-        ax.text(x, y - 0.32, labels[n], ha="center", va="top", fontsize=11, color=INK)
-    for k, title in [(0, "question"), (1, "matched rare term"), (2, "direct match"), (2.5, "shared term"),
-                     (3, "one hop")]:
+        ax.text(x, y - 0.3, labels[n] + ("  ✓" if kind[n] == "gold passage" else ""), ha="center", va="top",
+                fontsize=12, color=F.INK, weight="bold" if kind[n] == "gold passage" else "normal")
+    top = max(y for _, y in pos.values())
+    for k, title in [(0, "question"), (1, "matched term"), (2, "direct match"), (3, "shared term"), (4, "one hop")]:
         if k in layer.values():
-            ax.text(k, max(y for n, (x, y) in pos.items() if layer[n] == k) + 0.45, title, ha="center",
-                    fontsize=11, color=MUTED, weight="bold")
-    ax.set_ylim(min(y for _, y in pos.values()) - 0.8, max(y for _, y in pos.values()) + 0.8)
+            ax.text(k, top + 0.5, title.upper(), ha="center", fontsize=11, color=F.MUTED, weight="bold")
+    ax.set(xlim=(-0.45, max(layer.values()) + 0.45), ylim=(min(y for _, y in pos.values()) - 0.7, top + 0.75))
+    F.legend(fig, [Line2D([], [], ls="", marker="o", ms=13, mec="white", mfc=c, label=k) for k, c in kinds.items()],
+             title="NODE")
     dense = {r["question_id"]: r for r in load_runs([FINAL_DIR / "runs" / "coronavirus" / "basic_rag_test.jsonl"])}[qid]
     hit = gold & {d["doc_id"] for d in dense["retrieved_docs"]}
-    ax.text(0, ax.get_ylim()[0] + 0.1, f"Same question, MiniLM top 5: {'found' if hit else 'no'} gold passage",
-            fontsize=11, color=MUTED)
-    ax.set_title("graph_rag: from a rare term straight to the right passage", loc="left", weight="bold")
+    F.note(fig, f"Same question with MiniLM\ntop 5: {'found' if hit else 'no'} gold passage.")
     save(fig, "graph_example")
 
 
 def retriever_heatmap() -> None:
     r = pd.read_csv(FINAL_DIR / "retrieval.csv")
-    names = ["tfidf", "bm25", "minilm", "graph"]
+    names = list(F.RETRIEVER_LABELS)
     grid = r.pivot(index="retriever", columns="dataset", values="recall_at_5").loc[names, SETS]
-    fig, ax = plt.subplots(figsize=(7, 3.8))
-    ax.imshow(grid.values, cmap="Blues", vmin=0, vmax=1, aspect="auto")
+    fig, ax = F.figure("Recall@5: no single retriever wins everywhere",
+                       "Share of answerable test questions with a gold passage in the top 5")
+    ax.imshow(grid.values, cmap=F.BLUES, vmin=0.3, vmax=1, aspect="auto")
     for i in range(len(names)):
         for j in range(len(SETS)):
             v = grid.values[i, j]
-            ax.text(j, i, f"{v:.2f}", ha="center", va="center", color="white" if v > 0.6 else INK, weight="bold")
+            best = v == grid.values[:, j].max()
+            ax.text(j, i, f"{v:.2f}", ha="center", va="center", fontsize=15 if best else 13,
+                    color=F.text_on(F.BLUES((v - 0.3) / 0.7)), weight="bold" if best else "normal")
     ax.set(xticks=range(3), xticklabels=SETS, yticks=range(4),
-           yticklabels=["TF-IDF", "BM25 (ours)", "MiniLM (dense)", "graph (C)"])
+           yticklabels=F.RETRIEVER_LABELS.values())
+    ax.tick_params(labelsize=13, top=True, labeltop=True, bottom=False, labelbottom=False)
+    ax.spines[:].set_visible(False)
     ax.grid(False)
-    ax.set_title("Recall@5: no single retriever wins everywhere", loc="left", weight="bold")
+    ax.set_xticks(np.arange(-0.5, 3), minor=True)
+    ax.set_yticks(np.arange(-0.5, 4), minor=True)
+    ax.grid(which="minor", color="white", linewidth=3)
+    ax.tick_params(which="minor", length=0)
+    F.note(fig, "Bold: best retriever\nfor that set.")
     save(fig, "retriever_heatmap")
 
 
 def coronavirus_quality() -> None:
-    fig, ax = plt.subplots(figsize=(8, 3.6))
+    fig, ax = F.figure("coronavirus: graph_rag covers the most of the gold answer",
+                       "Gold token recall on answerable coronavirus test questions")
     v = [value("coronavirus", m, "gold_token_recall", "answerable") for m in METHODS]
-    ax.barh(range(5), v, color=[COLORS[m] for m in METHODS], height=0.6)
+    ax.barh(range(5), v, color=[F.METHOD_COLORS[m] for m in METHODS], height=0.6, edgecolor="white", linewidth=2)
     for i, vi in enumerate(v):
-        ax.text(vi + 0.01, i, f"{vi:.2f}", va="center", color=INK)
-    ax.set(yticks=range(5), yticklabels=METHODS, xlim=(0, 0.7), xlabel="gold token recall (answerable questions)")
+        ax.text(vi + 0.008, i, f"{vi:.2f}", va="center", color=F.INK, fontsize=12,
+                weight="bold" if vi == max(v) else "normal")
+    ax.set(yticks=range(5), yticklabels=METHODS, xlim=(0, 0.7), xlabel="gold token recall")
+    ax.tick_params(axis="y", labelsize=13)
     ax.invert_yaxis()
     ax.grid(axis="y", visible=False)
-    ax.set_title("coronavirus: the graph route covers the most of the gold answer", loc="left", weight="bold")
+    F.note(fig, "COVID-QA gold answers are\nshort spans, so token F1\nunderstates every method.")
     save(fig, "coronavirus_quality")
 
 
 def main() -> None:
+    F.GUIDE = "--guide" in sys.argv[1:]
     OUT.mkdir(parents=True, exist_ok=True)
     for make in (pipeline, datasets, basic_rag_errors, closed_vs_open_book, graph_example, retriever_heatmap,
                  coronavirus_quality):
