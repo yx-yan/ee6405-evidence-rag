@@ -13,6 +13,16 @@ these add the overview and per-member slides. All figures share the style in src
     graph_example.png        how the graph retriever finds the evidence for "What is MVO?" (C)
     retriever_heatmap.png    Recall@5 of the four retrievers (C)
     coronavirus_quality.png  gold token recall on coronavirus (C)
+
+Theory slides (docs/video_script_v2.md), one formula per row with a one-line intuition under it:
+
+    theory_task          answer or abstain, reliability, the three scenarios (opening)
+    theory_explain       occlusion, LIME and SHAP attributions (demo)
+    theory_chunking      sliding-window passages and the unanswerable scenarios (A)
+    theory_dense         bi-encoder and cosine similarity (B)
+    theory_sparse_graph  TF-IDF, BM25 and the term graph's one hop (C)
+    theory_bart          BART's input and fine-tuning loss (D)
+    theory_abstain       the two evidence signals, the retry and Youden's J (E)
 """
 from __future__ import annotations
 
@@ -246,11 +256,118 @@ def coronavirus_quality() -> None:
     save(fig, "coronavirus_quality")
 
 
+def theory(name: str, title: str, subtitle: str, rows: list[tuple[str, str]], code: str) -> None:
+    """A theory slide: each row is a formula (mathtext) in large type with its intuition under it, stacked
+    in the left column and centred in the space under the title; the code it matches goes in the right
+    column, under the camera corner. Type shrinks until everything fits."""
+    for size in range(32, 17, -2):
+        fig, ax = F.figure(title, subtitle, diagram=True)
+        ax.remove()
+        renderer = fig.canvas.get_renderer()
+        w, h = fig.bbox.width, fig.bbox.height
+        x, y, placed = 0.06, 0.76, []
+        for formula, intuition in rows:
+            f = fig.text(x, y, formula, fontsize=size, color=F.INK, va="top")
+            fb = f.get_window_extent(renderer)
+            i = fig.text(x, fb.y0 / h - 0.022, intuition, fontsize=max(15, size * 0.56), color=F.TEXT, va="top",
+                         linespacing=1.35)
+            ib = i.get_window_extent(renderer)
+            placed.append((f, i, y, ib.y0 / h))
+            y = ib.y0 / h - 0.06
+        right = max(max(f.get_window_extent(renderer).x1, i.get_window_extent(renderer).x1) for f, i, *_ in placed)
+        bottom = placed[-1][3]
+        if bottom >= 0.07 and right <= 0.72 * w:
+            break
+        plt.close(fig)
+    shift = (bottom - 0.07) / 2                     # centre the stack between the subtitle and the bottom
+    for f, i, top, low in placed:
+        for t in (f, i):
+            t.set_y(t.get_position()[1] - shift)
+        fig.add_artist(Line2D([x - 0.018] * 2, [low - shift, top - shift], transform=fig.transFigure,
+                              color=F.METHOD_COLORS["evidence_rag"], lw=4, solid_capstyle="round"))
+    F.note(fig, "In the code:\n" + code)
+    save(fig, name)
+
+
+def theory_slides() -> None:
+    theory("theory_task", "The task: answer, or abstain",
+           "One decision per question, scored on questions that should and should not be answered",
+           [(r"$f(q, D) \in \{\, y,\ \perp \,\}$",
+             "Given question q and retrieved passages D, output an answer y,\n"
+             "or ⊥: \"not enough evidence\"."),
+            (r"$\mathrm{reliability} = \dfrac{\mathrm{correct\ answers} + \mathrm{correct\ refusals}}"
+             r"{\mathrm{all\ questions}}$",
+             "Answering what it can and refusing what it can't both count as right."),
+            ("answerable  ·  missing evidence  ·  out of domain",
+             "The three test scenarios: only the first should be answered.")],
+           "evaluation/metrics.py")
+    theory("theory_explain", "Why did it say that? Word attributions",
+           "Three ways to score how much each input word drove the same answer y",
+           [(r"$a_i = \log p(y \mid x) - \log p(y \mid x_{\setminus i})$",
+             "Occlusion: how much the answer's probability drops when word i is masked."),
+            (r"LIME:  $g(z) = w_0 + \sum_i w_i z_i$",
+             "A linear model fitted on random masks z; its weights are the attributions."),
+            (r"SHAP:  $\phi_i$ = Shapley value of word $i$",
+             "Each word's contribution averaged over mask combinations. All three score y\n"
+             "by teacher forcing.")],
+           "explain.py")
+    theory("theory_chunking", "Cutting texts into passages",
+           "A sliding window, and two ways to make questions that should not be answered",
+           [(r"passage $k$ = words $[\,120k,\ 120k + 150\,)$",
+             "Passages of 150 words, a new one every 120 words: neighbours overlap by 30."),
+            (r"$|\mathrm{answer}| \leq 30\ \Rightarrow$  one passage holds it whole",
+             "A short answer is never split in half at a border."),
+            ("missing evidence  ·  out of domain",
+             "Missing evidence: delete the gold passages from the corpus.\n"
+             "Out of domain: take questions from the other two sets.")],
+           "data/disease_sets.py\nchunk_spans")
+    theory("theory_dense", "Dense retrieval: one vector per passage",
+           "A bi-encoder: question and passage are encoded separately, then compared",
+           [(r"$\mathbf{q} = E(q), \quad \mathbf{d} = E(d)$",
+             "MiniLM turns a text into one vector (mean pooling over its tokens)."),
+            (r"$\cos(\mathbf{q}, \mathbf{d}) = \dfrac{\mathbf{q} \cdot \mathbf{d}}{\|\mathbf{q}\|\,\|\mathbf{d}\|}$",
+             "Passages pointing the same way as the question score highest; the top 5 are kept."),
+            (r"$\|\mathbf{q}\| = \|\mathbf{d}\| = 1\ \Rightarrow$  FAISS inner product = cosine",
+             "Passages are encoded once; a question costs one encoding.")],
+           "retriever.py")
+    theory("theory_sparse_graph", "Word-based retrieval: BM25 and a term graph",
+           "Exact words, weighted by how rare they are",
+           [(r"TF-IDF:  $\mathrm{tf}(t,d) \cdot \mathrm{idf}(t)$",
+             "A word counts more the more often it appears here, and the rarer it is overall."),
+            (r"BM25:  $\sum_t \mathrm{idf}(t)\,\dfrac{\mathrm{tf}\,(k_1+1)}"
+             r"{\mathrm{tf} + k_1(1 - b + b\,\frac{|d|}{\mathrm{avgdl}})}$",
+             "k₁ = 1.5, b = 0.75: repeated words saturate, long passages are normalised."),
+            (r"one hop:  $\mathrm{score} \times 0.35 \,/\, \log_2(\mathrm{df} + 1)$",
+             "Graph: passages ↔ words. Direct score = share of the question's IDF weight a passage\n"
+             "contains; a hop through rare words spreads, through common words it does not.")],
+           "evaluation/retrieval_eval.py BM25\nmethods/graph_rag.py")
+    theory("theory_bart", "The generator: BART, an encoder–decoder",
+           "Pretrained as a denoiser, fine-tuned on medical question answering",
+           [(r"$x$ = question: … context: [1] … [2] …",
+             "The encoder reads the question and the passages; the decoder writes the answer\n"
+             "while attending to them (cross-attention)."),
+            (r"$\mathcal{L} = -\sum_t \log p(y_t \mid y_{<t}, x)$",
+             "Fine-tuning: predict each next word of the right answer."),
+            ("beam search, 4 beams",
+             "Training: 66k examples, 3 epochs, lr 5e-5, batch 16.")],
+           "generator.py\ndocs/generator.md")
+    theory("theory_abstain", "When to abstain: two signals, one retry",
+           "evidence_rag answers only when the evidence passes both checks",
+           [(r"$s_1$ = top-1 cosine,   $s_2 = \frac{\sum_{w \in q \cap d} \mathrm{idf}(w)}{\sum_{w \in q} \mathrm{idf}(w)}$",
+             "s₂ (coverage): how much of the question's important words the best passage holds."),
+            (r"answer if $s_1 \geq \tau_1$ and $s_2 \geq \tau_2$",
+             "Else expand once (Rocchio: q′ = q + the 5 top TF-IDF words of the top 3 passages),\n"
+             "retrieve again, check again; still failing → abstain."),
+            (r"$J$ = abstention recall $-$ over-refusal rate",
+             "τ₁ and τ₂ are tuned on dev only, by Youden's J.")],
+           "methods/evidence_rag.py\nevaluation/tune.py")
+
+
 def main() -> None:
     F.GUIDE = "--guide" in sys.argv[1:]
     OUT.mkdir(parents=True, exist_ok=True)
     for make in (pipeline, datasets, basic_rag_errors, closed_vs_open_book, graph_example, retriever_heatmap,
-                 coronavirus_quality):
+                 coronavirus_quality, theory_slides):
         make()
 
 
