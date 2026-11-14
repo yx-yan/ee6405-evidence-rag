@@ -1,14 +1,21 @@
-"""One look for every figure (notebook and video): a 1920x1080 (16:9) white canvas, title and
-subtitle top left, the plot below them, legend and note in a column on the right. The top-right
-corner is left empty so the presenters' camera can be placed there in the video; `save` refuses a
-figure that draws into it.
+"""One look for every figure (notebook and video): a 1920x1080 (16:9) white canvas divided into the
+same zones the video uses (pixels, origin top left):
+
+    MAIN        x   60-1400, y   40-940    title, subtitle and the plot (or formulas, code, demo)
+    CAMERA      x 1421-1920, y    0-432    left empty: the presenter's camera goes here
+    NAME        x 1421-1880, y  440-500    the speaker's name tag, under the camera (video only)
+    SIDE        x 1421-1880, y  510-940    legend at the top, note at the bottom
+    SUBTITLES   x  140-1780, y  950-1030   video only
+    REFERENCES  x   60-1880, y 1040-1070   video only
+
+`save` refuses a figure that draws outside MAIN and SIDE.
 
     fig, ax = figures.figure("Title", "subtitle")
     ...
     figures.legend(fig, handles)
     figures.save(fig, path)
 
-Set GUIDE = True (or EVRAG_FIGURE_GUIDE=1) to outline the camera corner while checking a layout.
+Set GUIDE = True (or EVRAG_FIGURE_GUIDE=1) to outline the zones while checking a layout.
 """
 from __future__ import annotations
 
@@ -18,12 +25,35 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, to_rgb
 from matplotlib.patches import Patch, Rectangle
-from matplotlib.transforms import Bbox
 
 SIZE, DPI = (12.8, 7.2), 150                    # 1920 x 1080 px
-CORNER = (0.74, 0.60)                           # kept empty: x > 0.74 and y > 0.60 (figure fraction)
-LEFT, RIGHT, BOTTOM, TOP = 0.13, 0.70, 0.11, 0.76
-SIDE_X, SIDE_TOP = 0.765, 0.56                  # legend / note column under the corner
+W, H = 1920, 1080
+ZONES = {                                       # (x0, y0, x1, y1) in pixels, origin top left
+    "MAIN": (60, 40, 1400, 940),
+    "CAMERA": (1421, 0, 1920, 432),
+    "NAME": (1421, 440, 1880, 500),
+    "SIDE": (1421, 510, 1880, 940),
+    "SUBTITLES": (140, 950, 1780, 1030),
+    "REFERENCES": (60, 1040, 1880, 1070),
+}
+MAIN, CAMERA, NAME, SIDE = ZONES["MAIN"], ZONES["CAMERA"], ZONES["NAME"], ZONES["SIDE"]
+SUBTITLES, REFERENCES = ZONES["SUBTITLES"], ZONES["REFERENCES"]
+
+
+def fx(x: float) -> float:
+    """Pixel column -> figure fraction."""
+    return x / W
+
+
+def fy(y: float) -> float:
+    """Pixel row (from the top) -> figure fraction (from the bottom)."""
+    return 1 - y / H
+
+
+# The plot area inside MAIN: room on the left for tick labels, under the title for the subtitle, and at
+# the bottom for tick labels and the axis label, so nothing reaches the subtitle band.
+LEFT, RIGHT, TOP, BOTTOM = fx(MAIN[0] + 215), fx(MAIN[2] - 35), fy(MAIN[1] + 140), fy(MAIN[3] - 95)
+SIDE_X, SIDE_TOP, SIDE_BOTTOM = fx(SIDE[0]), fy(SIDE[1]), fy(SIDE[3])
 GUIDE = os.environ.get("EVRAG_FIGURE_GUIDE") == "1"
 
 INK, TEXT, MUTED = "#1f1e1c", "#52514e", "#8a8984"
@@ -56,23 +86,24 @@ plt.rcParams.update({
 
 
 def figure(title: str, subtitle: str | None = None, nrows: int = 1, ncols: int = 1, diagram: bool = False,
-           wspace: float = 0.2, hspace: float = 0.35, **subplot_kw):
-    """A titled 16:9 figure with its axes in the plot area; a diagram (no axis labels) starts at the title's edge."""
+           wspace: float = 0.2, hspace: float = 0.35, top: float = TOP, **subplot_kw):
+    """A titled 16:9 figure with its axes filling MAIN under the title; a diagram (no axis labels) uses all
+    of MAIN's width and height."""
     fig = plt.figure(figsize=SIZE, dpi=DPI)
-    grid = fig.add_gridspec(nrows, ncols, left=0.045 if diagram else LEFT, right=RIGHT, bottom=BOTTOM, top=TOP,
-                            wspace=wspace, hspace=hspace)
+    grid = fig.add_gridspec(nrows, ncols, left=fx(MAIN[0] + 15) if diagram else LEFT, right=RIGHT,
+                            bottom=fy(MAIN[3]) if diagram else BOTTOM, top=top, wspace=wspace, hspace=hspace)
     axes = grid.subplots(squeeze=True, **subplot_kw)
-    fig.text(0.045, 0.915, title, fontsize=22, weight="bold", color=INK, va="baseline")
+    fig.text(fx(MAIN[0]), fy(MAIN[1]), title, fontsize=22, weight="bold", color=INK, va="top")
     if subtitle:
-        fig.text(0.045, 0.862, subtitle, fontsize=13, color=TEXT, va="baseline", linespacing=1.4)
+        fig.text(fx(MAIN[0]), fy(MAIN[1] + 62), subtitle, fontsize=13, color=TEXT, va="top", linespacing=1.4)
     return fig, axes
 
 
 def legend(fig, handles, title: str | None = None, y: float = SIDE_TOP):
-    """Legend in the right column, under the camera corner."""
-    leg = fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(SIDE_X - 0.008, y),
+    """Legend at the top of the right column, under the camera and the name tag."""
+    leg = fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(SIDE_X, y),
                      bbox_transform=fig.transFigure, title=title, alignment="left", handlelength=1.2,
-                     handleheight=1.0, labelspacing=0.75, borderaxespad=0)
+                     handleheight=1.0, labelspacing=0.75, borderaxespad=0, borderpad=0)
     if title:
         leg.get_title().set(color=MUTED, fontsize=11, weight="bold")
     return leg
@@ -82,7 +113,7 @@ def method_legend(fig, methods=METHODS, y: float = SIDE_TOP):
     return legend(fig, [Patch(color=METHOD_COLORS[m], label=m) for m in methods], title="METHOD", y=y)
 
 
-def note(fig, text: str, y: float = BOTTOM) -> None:
+def note(fig, text: str, y: float = SIDE_BOTTOM) -> None:
     """A short takeaway at the bottom of the right column."""
     fig.text(SIDE_X, y, text, fontsize=12, color=TEXT, va="bottom", ha="left", linespacing=1.45, wrap=False)
 
@@ -93,21 +124,30 @@ def text_on(color: str) -> str:
     return INK if 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.55 else "white"
 
 
-def _check_corner(fig) -> None:
+def _check_zones(fig) -> None:
+    """Every text, legend and axes (with its labels) must lie inside MAIN or SIDE."""
     renderer = fig.canvas.get_renderer()
-    w, h = fig.bbox.width, fig.bbox.height
-    corner = Bbox.from_extents(CORNER[0] * w + 1, CORNER[1] * h + 1, w, h)
+    scale = W / fig.bbox.width
     for artist in [*fig.texts, *fig.legends, *fig.axes]:
         box = artist.get_tightbbox(renderer) if artist.get_visible() else None
-        if box is not None and box.overlaps(corner):
-            raise ValueError(f"{artist!r} draws into the camera corner")
+        if box is None or not artist.get_visible():
+            continue
+        x0, x1 = box.x0 * scale, box.x1 * scale
+        y0, y1 = H - box.y1 * scale, H - box.y0 * scale
+        if not any(x0 >= z[0] - 2 and x1 <= z[2] + 2 and y0 >= z[1] - 2 and y1 <= z[3] + 2 for z in (MAIN, SIDE)):
+            raise ValueError(f"{artist!r} at x {x0:.0f}-{x1:.0f}, y {y0:.0f}-{y1:.0f} is outside MAIN and SIDE")
+
+
+def draw_guide(fig) -> None:
+    for name, (x0, y0, x1, y1) in ZONES.items():
+        fig.add_artist(Rectangle((fx(x0), fy(y1)), fx(x1 - x0), (y1 - y0) / H, transform=fig.transFigure,
+                                 fill=False, ls="--", lw=1.2, ec="#d03b3b"))
+        fig.text(fx(x0 + 6), fy(y0 + 4), name.lower(), fontsize=8, color="#d03b3b", va="top")
 
 
 def save(fig, path: Path) -> None:
-    _check_corner(fig)
+    _check_zones(fig)
     if GUIDE:
-        fig.add_artist(Rectangle(CORNER, 1 - CORNER[0], 1 - CORNER[1], transform=fig.transFigure,
-                                 fill=False, ls="--", lw=1.5, ec=MUTED))
-        fig.text((1 + CORNER[0]) / 2, (1 + CORNER[1]) / 2, "camera", ha="center", va="center", color=MUTED)
+        draw_guide(fig)
     fig.savefig(path, dpi=DPI)
     print(f"Wrote {path}")

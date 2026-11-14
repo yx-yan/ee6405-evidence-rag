@@ -34,6 +34,7 @@ import numpy as np
 import pandas as pd
 from matplotlib.lines import Line2D
 from matplotlib.patches import FancyBboxPatch, Patch
+from matplotlib.transforms import Affine2D
 
 from evrag import figures as F
 from evrag.config import FINAL_DIR, RESULTS_DIR, dataset_paths
@@ -219,7 +220,8 @@ def retriever_heatmap() -> None:
     names = list(F.RETRIEVER_LABELS)
     grid = r.pivot(index="retriever", columns="dataset", values="recall_at_5").loc[names, SETS]
     fig, ax = F.figure("Recall@5: no single retriever wins everywhere",
-                       "Share of answerable test questions with a gold passage in the top 5")
+                       "Share of answerable test questions with a gold passage in the top 5",
+                       top=F.fy(F.MAIN[1] + 190))     # column labels sit on top: leave room under the subtitle
     ax.imshow(grid.values, cmap=F.BLUES, vmin=0.3, vmax=1, aspect="auto")
     for i in range(len(names)):
         for j in range(len(SETS)):
@@ -257,34 +259,36 @@ def coronavirus_quality() -> None:
 
 
 def theory(name: str, title: str, subtitle: str, rows: list[tuple[str, str]], code: str) -> None:
-    """A theory slide: each row is a formula (mathtext) in large type with its intuition under it, stacked
-    in the left column and centred in the space under the title; the code it matches goes in the right
-    column, under the camera corner. Type shrinks until everything fits."""
-    for size in range(32, 17, -2):
+    """A theory slide: each row is a formula (mathtext) in large type with its intuition under it, spread
+    evenly down MAIN under the title; the code it matches goes at the bottom of the right column. Type
+    shrinks until every row fits MAIN's width and height."""
+    top, bottom, x = F.MAIN[1] + 150, F.MAIN[3] - 10, F.MAIN[0] + 36     # pixels from the top left
+    for size in range(40, 19, -2):
         fig, ax = F.figure(title, subtitle, diagram=True)
         ax.remove()
         renderer = fig.canvas.get_renderer()
-        w, h = fig.bbox.width, fig.bbox.height
-        x, y, placed = 0.06, 0.76, []
+        rows_ = []
         for formula, intuition in rows:
-            f = fig.text(x, y, formula, fontsize=size, color=F.INK, va="top")
-            fb = f.get_window_extent(renderer)
-            i = fig.text(x, fb.y0 / h - 0.022, intuition, fontsize=max(15, size * 0.56), color=F.TEXT, va="top",
+            f = fig.text(F.fx(x), 0.5, formula, fontsize=size, color=F.INK, va="top")
+            i = fig.text(F.fx(x), 0.5, intuition, fontsize=max(13, size * 0.5), color=F.TEXT, va="top",
                          linespacing=1.35)
-            ib = i.get_window_extent(renderer)
-            placed.append((f, i, y, ib.y0 / h))
-            y = ib.y0 / h - 0.06
-        right = max(max(f.get_window_extent(renderer).x1, i.get_window_extent(renderer).x1) for f, i, *_ in placed)
-        bottom = placed[-1][3]
-        if bottom >= 0.07 and right <= 0.72 * w:
+            rows_.append((f, i, f.get_window_extent(renderer), i.get_window_extent(renderer)))
+        k = F.W / fig.bbox.width                    # renderer pixels -> 1920 px (the macOS backend doubles dpi)
+        rows_ = [(f, i, fb.transformed(Affine2D().scale(k)), ib.transformed(Affine2D().scale(k)))
+                 for f, i, fb, ib in rows_]
+        heights = [fb.height + 22 + ib.height for _, _, fb, ib in rows_]
+        right = max(max(fb.x1, ib.x1) for *_, fb, ib in rows_)
+        gap = (bottom - top - sum(heights)) / (len(rows) + 1)
+        if gap >= 30 and right <= F.MAIN[2] - 5 or size <= 20:
             break
         plt.close(fig)
-    shift = (bottom - 0.07) / 2                     # centre the stack between the subtitle and the bottom
-    for f, i, top, low in placed:
-        for t in (f, i):
-            t.set_y(t.get_position()[1] - shift)
-        fig.add_artist(Line2D([x - 0.018] * 2, [low - shift, top - shift], transform=fig.transFigure,
-                              color=F.METHOD_COLORS["evidence_rag"], lw=4, solid_capstyle="round"))
+    y = top + gap
+    for (f, i, fb, ib), hgt in zip(rows_, heights):
+        f.set_y(F.fy(y))
+        i.set_y(F.fy(y + fb.height + 22))
+        fig.add_artist(Line2D([F.fx(F.MAIN[0] + 12)] * 2, [F.fy(y + hgt), F.fy(y)], transform=fig.transFigure,
+                              color=F.METHOD_COLORS["evidence_rag"], lw=5, solid_capstyle="round"))
+        y += hgt + gap
     F.note(fig, "In the code:\n" + code)
     save(fig, name)
 
