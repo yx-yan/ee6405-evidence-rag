@@ -1,4 +1,4 @@
-"""Retrieval-only comparison: TF-IDF vs BM25 vs MiniLM vs the graph retriever. Owner: E.
+"""Retrieval-only comparison: TF-IDF vs BM25 vs MiniLM vs the graph retriever. Owner: C.
 
     python -m evrag.evaluation.retrieval_eval     # -> results/final/retrieval.csv, results/final/recall_curve.csv
 

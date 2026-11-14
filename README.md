@@ -152,7 +152,7 @@ training, so it is not a main evaluation set.
 |------|--------|------|
 | A | Nguyen Khanh Nam ([Illgetgood](https://github.com/Illgetgood)) | data: WikiDoc and the three disease sets |
 | B | Xu Yiwen ([elenaxu610](https://github.com/elenaxu610)) | shared retriever and basic RAG |
-| C | Nur Hapinder ([Victoria0706](https://github.com/Victoria0706)) | Graph RAG |
+| C | Nur Hapinder ([Victoria0706](https://github.com/Victoria0706)) | Graph RAG and the retriever comparison (TF-IDF, BM25, MiniLM, graph) |
 | D | Zhan Luming ([Jojo082099](https://github.com/Jojo082099)) | shared generator (BART-base fine-tuning) |
 | E | Yan Yuxuan ([yx-yan](https://github.com/yx-yan)) | evaluation, threshold and evidence-aware RAG, demo, integration |
 
