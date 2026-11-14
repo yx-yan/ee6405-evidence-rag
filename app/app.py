@@ -17,12 +17,17 @@ with st.form("question_form"):
     submitted = st.form_submit_button("Ask")
 
 if submitted and question.strip():
-    out = get_method(method_name).run(question)
+    with st.spinner("Searching medical passages with RoBERTa..."):
+        out = get_method(method_name).run(question)
     if out.abstained:
         st.warning("The available documents do not contain enough matching evidence to answer.")
     else:
         st.success(out.answer)
     st.caption(f"{out.latency_ms:.0f} ms · {out.method}")
+    semantic_model = out.meta.get("semantic_model")
+    semantic_score = out.meta.get("best_semantic_score")
+    if semantic_model and semantic_score is not None:
+        st.caption(f"{semantic_model} · best cosine similarity {semantic_score:.3f}")
     matched_entities = out.meta.get("matched_entities", [])
     if matched_entities:
         st.caption("Matched graph entities: " + ", ".join(matched_entities))

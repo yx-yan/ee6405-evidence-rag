@@ -17,9 +17,10 @@ We compare three response policies on one shared retriever:
 | 3 | Evidence-aware RAG | judge evidence sufficiency → answer / abstain | D |
 
 The repository includes an asthma, diabetes, and hypertension passage corpus in `data/corpus.jsonl`.
-The interactive demo defaults to a lightweight graph RAG method: it links passages through disease
-labels and shared terms, expands retrieval through those links, and returns matching source sentences
-instead of generating unsupported medical claims.
+The interactive demo defaults to a graph RAG method that uses the RoBERTa-based
+`sentence-transformers/all-distilroberta-v1` model for semantic retrieval, then expands results
+through disease and shared-term links. It returns matching source sentences instead of generating
+unsupported medical claims. Corpus embeddings are cached under `models/retrieval`.
 
 The question dataset and graph corpus paths are set in `configs/default.yaml`. See [data/README.md](data/README.md).
 
@@ -39,8 +40,9 @@ streamlit run app/app.py
 ```
 
 Enter a question in the app and select **Ask**. The result includes an extractive answer, graph
-connections, and the supporting passages. The `dummy` method remains available for the interface
-contract test only.
+connections, and the supporting passages. The first question downloads the embedding model and may
+take longer; subsequent starts reuse the model and cached corpus embeddings. The `dummy` method
+remains available for the interface contract test only.
 
 ## Layout
 

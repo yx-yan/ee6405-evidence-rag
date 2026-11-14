@@ -9,6 +9,13 @@ retrieval:
   cache_dir: models/retrieval
   backend: faiss
 
+graph_rag:
+  embedding_model: sentence-transformers/all-distilroberta-v1
+  semantic_min_score: 0.3
+  semantic_weight: 0.75
+  graph_weight: 0.25
+  cache_dir: models/retrieval
+
 generator:
   # Shared answer generator (src/evrag/generator.py): BART-base fine-tuned on medical QA by D
   # (docs/generator.md). Every route calls it; only the evidence passed in differs.

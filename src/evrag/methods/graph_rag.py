@@ -10,6 +10,7 @@ from pathlib import Path
 
 from evrag.config import ROOT, load_config
 from evrag.methods.base import Method, register
+from evrag.retriever import Retriever
 from evrag.schema import RetrievedDoc
 
 _TOKEN_RE = re.compile(r"[a-z0-9]+")
@@ -28,10 +29,28 @@ def _tokens(text: str) -> set[str]:
 
 
 class MedicalKnowledgeGraph:
-    """A two-hop document/entity graph built from passage text and disease labels."""
+    """A document/entity graph ranked with RoBERTa sentence embeddings."""
 
-    def __init__(self, corpus_path: str | Path):
+    def __init__(
+        self,
+        corpus_path: str | Path,
+        semantic_retriever: Retriever,
+        *,
+        semantic_min_score: float = 0.3,
+        semantic_weight: float = 0.75,
+        graph_weight: float = 0.25,
+    ):
+        if not -1.0 <= semantic_min_score <= 1.0:
+            raise ValueError("semantic_min_score must be between -1 and 1")
+        if semantic_weight < 0 or graph_weight < 0 or not math.isclose(
+            semantic_weight + graph_weight, 1.0
+        ):
+            raise ValueError("semantic_weight and graph_weight must be non-negative and sum to 1")
         self.corpus_path = Path(corpus_path)
+        self.semantic_retriever = semantic_retriever
+        self.semantic_min_score = semantic_min_score
+        self.semantic_weight = semantic_weight
+        self.graph_weight = graph_weight
         if not self.corpus_path.is_absolute():
             self.corpus_path = ROOT / self.corpus_path
         self.documents: list[dict[str, str]] = []
@@ -80,11 +99,25 @@ class MedicalKnowledgeGraph:
         self.entity_frequency = {entity: len(doc_ids) for entity, doc_ids in self.entity_docs.items()}
 
     def search(self, question: str, top_k: int = 5) -> tuple[list[RetrievedDoc], dict]:
-        """Find direct entity matches, then expand once through connected graph entities."""
+        """Blend RoBERTa semantic matches with graph-linked lexical evidence."""
         if not isinstance(question, str) or not question.strip():
             raise ValueError("question must be a non-empty string")
         if isinstance(top_k, bool) or not isinstance(top_k, int) or top_k < 1:
             raise ValueError("top_k must be a positive integer")
+
+        semantic_docs = self.semantic_retriever.search(question, top_k=len(self.documents))
+        best_semantic_score = max((doc.score for doc in semantic_docs), default=-1.0)
+        if best_semantic_score < self.semantic_min_score:
+            return [], {
+                "matched_entities": [],
+                "graph_paths": [],
+                "semantic_model": self.semantic_retriever.model_name,
+                "best_semantic_score": best_semantic_score,
+            }
+        semantic_docs = [
+            doc for doc in semantic_docs if doc.score >= self.semantic_min_score
+        ]
+        semantic_scores = {doc.doc_id: doc.score for doc in semantic_docs}
 
         query_terms = _tokens(question)
         query_entities = {
@@ -93,30 +126,40 @@ class MedicalKnowledgeGraph:
             for entity in (f"term:{term}", f"disease:{term}")
             if entity in self.entity_docs
         }
-        if not query_entities:
-            return [], {"matched_entities": [], "graph_paths": []}
-
-        total_weight = sum(
-            math.log1p((len(self.documents) + 1) / (self.entity_frequency[entity] + 1))
-            for entity in query_entities
-        )
         direct_scores: dict[str, float] = defaultdict(float)
         for entity in query_entities:
             frequency = self.entity_frequency[entity]
             weight = math.log1p((len(self.documents) + 1) / (frequency + 1))
             for doc_id in self.entity_docs[entity]:
                 direct_scores[doc_id] += weight
-        for doc_id in direct_scores:
-            direct_scores[doc_id] /= total_weight
+        if query_entities:
+            total_weight = sum(
+                math.log1p((len(self.documents) + 1) / (self.entity_frequency[entity] + 1))
+                for entity in query_entities
+            )
+            for doc_id in direct_scores:
+                direct_scores[doc_id] /= total_weight
 
-        scores = dict(direct_scores)
         paths: dict[str, list[str]] = {}
         for doc_id in direct_scores:
             matched = sorted(entity for entity in query_entities if doc_id in self.entity_docs[entity])
             paths[doc_id] = [f"question -> {entity} -> doc:{doc_id}" for entity in matched]
+        for doc in semantic_docs:
+            paths.setdefault(
+                doc.doc_id,
+                [f"question -> RoBERTa semantic match -> doc:{doc.doc_id}"],
+            )
 
         max_expansion_frequency = max(2, int(len(self.documents) * 0.25))
-        for seed_id, seed_score in direct_scores.items():
+        semantic_seeds = [doc.doc_id for doc in semantic_docs[: min(5, len(semantic_docs))]]
+        lexical_seeds = sorted(
+            (doc_id for doc_id in direct_scores if doc_id in semantic_scores),
+            key=lambda doc_id: -direct_scores[doc_id],
+        )[:5]
+        seed_ids = list(dict.fromkeys(lexical_seeds + semantic_seeds))
+        graph_scores = dict(direct_scores)
+        for seed_id in seed_ids:
+            seed_score = max(direct_scores.get(seed_id, 0.0), semantic_scores[seed_id])
             for entity in self.doc_entities[seed_id]:
                 frequency = self.entity_frequency[entity]
                 if frequency > max_expansion_frequency:
@@ -124,31 +167,60 @@ class MedicalKnowledgeGraph:
                 related_docs = self.entity_docs[entity]
                 relation_weight = 1 / math.log2(frequency + 1)
                 for related_id in related_docs:
-                    if related_id == seed_id or related_id in direct_scores:
+                    if related_id == seed_id:
                         continue
                     expanded_score = seed_score * 0.35 * relation_weight
-                    if expanded_score > scores.get(related_id, 0.0):
-                        scores[related_id] = expanded_score
-                        paths[related_id] = [
-                            f"question -> {', '.join(sorted(query_entities))} -> doc:{seed_id}",
-                            f"doc:{seed_id} -> {entity} -> doc:{related_id}",
-                        ]
+                    if expanded_score > graph_scores.get(related_id, 0.0):
+                        graph_scores[related_id] = expanded_score
+                    paths.setdefault(related_id, []).append(
+                        f"doc:{seed_id} -> {entity} -> doc:{related_id}"
+                    )
 
+        scores = {
+            doc_id: self.semantic_weight * max(semantic_score, 0.0)
+            + self.graph_weight * graph_scores.get(doc_id, 0.0)
+            for doc_id, semantic_score in semantic_scores.items()
+        }
         ranked_ids = sorted(scores, key=lambda doc_id: (-scores[doc_id], doc_id))[:top_k]
         retrieved = [
-            RetrievedDoc(doc_id, float(min(scores[doc_id], 1.0)), self.by_id[doc_id]["text"])
+            RetrievedDoc(doc_id, float(scores[doc_id]), self.by_id[doc_id]["text"])
             for doc_id in ranked_ids
         ]
         meta = {
             "matched_entities": sorted(query_entities),
-            "graph_paths": [path for doc_id in ranked_ids for path in paths[doc_id]],
+            "graph_paths": [path for doc_id in ranked_ids for path in paths.get(doc_id, [])],
+            "semantic_model": self.semantic_retriever.model_name,
+            "best_semantic_score": best_semantic_score,
         }
         return retrieved, meta
 
 
 @lru_cache(maxsize=2)
-def _load_graph(corpus_path: str) -> MedicalKnowledgeGraph:
-    return MedicalKnowledgeGraph(corpus_path)
+def _load_graph(
+    corpus_path: str,
+    embedding_model: str,
+    cache_dir: str | None,
+    semantic_min_score: float,
+    semantic_weight: float,
+    graph_weight: float,
+) -> MedicalKnowledgeGraph:
+    config = load_config()
+    retrieval_config = dict(config["retrieval"])
+    retrieval_config["embedding_model"] = embedding_model
+    config["retrieval"] = retrieval_config
+    semantic_retriever = Retriever(
+        corpus_path=corpus_path,
+        config=config,
+        cache_dir=cache_dir,
+        backend="numpy",
+    )
+    return MedicalKnowledgeGraph(
+        corpus_path,
+        semantic_retriever,
+        semantic_min_score=semantic_min_score,
+        semantic_weight=semantic_weight,
+        graph_weight=graph_weight,
+    )
 
 
 def _extractive_answer(question: str, docs: list[RetrievedDoc]) -> str | None:
@@ -191,15 +263,37 @@ class GraphRAG(Method):
 
     name = "graph_rag"
 
-    def __init__(self, corpus_path: str | Path | None = None, top_k: int | None = None):
+    def __init__(
+        self,
+        corpus_path: str | Path | None = None,
+        top_k: int | None = None,
+        semantic_retriever: Retriever | None = None,
+    ):
         config = load_config()
+        settings = config.get("graph_rag", {})
         configured_path = corpus_path or config["data"]["corpus"]
         if configured_path == "TODO":
             configured_path = "data/corpus.jsonl"
         path = Path(configured_path)
         if not path.is_absolute():
             path = ROOT / path
-        self.graph = _load_graph(str(path.resolve()))
+        if semantic_retriever is None:
+            self.graph = _load_graph(
+                str(path.resolve()),
+                settings.get("embedding_model", "sentence-transformers/all-distilroberta-v1"),
+                settings.get("cache_dir", config["retrieval"].get("cache_dir")),
+                float(settings.get("semantic_min_score", 0.3)),
+                float(settings.get("semantic_weight", 0.75)),
+                float(settings.get("graph_weight", 0.25)),
+            )
+        else:
+            self.graph = MedicalKnowledgeGraph(
+                path,
+                semantic_retriever,
+                semantic_min_score=float(settings.get("semantic_min_score", 0.3)),
+                semantic_weight=float(settings.get("semantic_weight", 0.75)),
+                graph_weight=float(settings.get("graph_weight", 0.25)),
+            )
         self.top_k = config["retrieval"]["top_k"] if top_k is None else top_k
 
     def _answer(self, question: str) -> tuple[str | None, list[RetrievedDoc], dict]:
