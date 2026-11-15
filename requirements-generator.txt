@@ -5,7 +5,7 @@
 transformers>=4.44
 safetensors
 huggingface_hub
-gdown            # MASH-QA download from Google Drive (or place mashqa.zip manually, see docs/generator.md)
+gdown            # MASH-QA download from Google Drive (or place mashqa.zip manually)
 pyyaml
 numpy
 pytest

@@ -88,7 +88,5 @@ lines += [
     "All questions have gold answers, so abstention recall is N/A. Evidence-support heuristics cannot establish factual correctness.",
     "",
     "Latency includes first-call model/index loading and reflects CPU runs on this machine.",
-    "",
-    "Read docs/reports/basic_rag_v1.md for setup and source provenance.",
 ]
 (results / "RESULTS.md").write_text("\n".join(lines) + "\n")

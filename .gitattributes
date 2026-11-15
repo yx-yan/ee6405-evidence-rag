@@ -1,0 +1,5 @@
+# Left out of the submission archive (git archive); kept in the repository.
+.gitattributes export-ignore
+.github/ export-ignore
+CONTRIBUTING.md export-ignore
+docs/ export-ignore

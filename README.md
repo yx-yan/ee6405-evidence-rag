@@ -116,7 +116,7 @@ streamlit run app/app.py                              # demo
 ```
 
 The generator weights (0.5 GB) are downloaded from the GitHub Release on first use
-([docs/generator.md](docs/generator.md)). A single run:
+(training: `scripts/train_generator.py`). A single run:
 `python -m evrag.evaluation.run_experiment --dataset cancer --method evidence_rag --split dev --limit 20`.
 
 The demo lets you pick a dataset and a method, shows the decision trace (both signals against
@@ -132,7 +132,7 @@ data/                         datasets; see data/README.md
 src/evrag/schema.py           RAGOutput, the interface every method returns
 src/evrag/methods/            base.py (protocol + registry) and the five methods
 src/evrag/retriever.py        shared dense retriever (sentence-transformers + FAISS), one index per dataset
-src/evrag/generator.py        shared answer generator (BART-base, docs/generator.md)
+src/evrag/generator.py        shared answer generator (BART-base)
 src/evrag/explain.py          input-token attributions for the demo (occlusion, LIME, SHAP)
 src/evrag/data/               dataset builders: disease sets, unanswerable scenarios, training overlap
 src/evrag/evaluation/         run_experiment, metrics, threshold tuning, retriever comparison
@@ -140,11 +140,9 @@ scripts/                      run_final.py, final_metrics.py, generator training
 notebooks/final_results.ipynb results with outputs
 results/                      raw outputs and tables; see results/README.md
 app/app.py                    Streamlit demo
-docs/                         generator details, WikiDoc appendix report
 ```
 
-The earlier WikiDoc run ([results/basic_v1/](results/basic_v1/RESULTS.md),
-[report](docs/reports/basic_rag_v1.md)) is kept as an appendix: the generator saw WikiDoc in
+The earlier WikiDoc run ([results/basic_v1/](results/basic_v1/RESULTS.md)) is kept as an appendix: the generator saw WikiDoc in
 training, so it is not a main evaluation set.
 
 ## Team
@@ -156,5 +154,3 @@ training, so it is not a main evaluation set.
 | C | Nur Hapinder ([Victoria0706](https://github.com/Victoria0706)) | Graph RAG and the retriever comparison (TF-IDF, BM25, MiniLM, graph) |
 | D | Zhan Luming ([Jojo082099](https://github.com/Jojo082099)) | shared generator (BART-base fine-tuning) |
 | E | Yan Yuxuan ([yx-yan](https://github.com/yx-yan)) | evaluation, threshold and evidence-aware RAG, demo, integration |
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow.
