@@ -111,7 +111,6 @@ python -m evrag.evaluation.retrieval_eval             # retriever comparison
 python scripts/run_final.py                           # all methods, datasets and splits (~1.5 h on an M-series Mac; resumable)
 python scripts/final_metrics.py                       # metrics, paired bootstrap, risk-coverage
 jupyter nbconvert --to notebook --execute --inplace notebooks/final_results.ipynb
-python scripts/video_figures.py                       # figures for the video -> results/figures/video/
 
 streamlit run app/app.py                              # demo
 ```
@@ -123,8 +122,7 @@ The generator weights (0.5 GB) are downloaded from the GitHub Release on first u
 The demo lets you pick a dataset and a method, shows the decision trace (both signals against
 their thresholds, the expanded query, the passages and scores) and then which input words the
 answer relied on (occlusion, LIME, SHAP). Example buttons cover an answerable question, a retry,
-missing evidence, an out-of-domain question and a distractor passage. The project video follows
-[docs/video_script.md](docs/video_script.md).
+missing evidence, an out-of-domain question and a distractor passage.
 
 ## Layout
 
@@ -138,11 +136,11 @@ src/evrag/generator.py        shared answer generator (BART-base, docs/generator
 src/evrag/explain.py          input-token attributions for the demo (occlusion, LIME, SHAP)
 src/evrag/data/               dataset builders: disease sets, unanswerable scenarios, training overlap
 src/evrag/evaluation/         run_experiment, metrics, threshold tuning, retriever comparison
-scripts/                      run_final.py, final_metrics.py, video_figures.py, generator training, WikiDoc appendix run
+scripts/                      run_final.py, final_metrics.py, generator training, WikiDoc appendix run
 notebooks/final_results.ipynb results with outputs
 results/                      raw outputs and tables; see results/README.md
 app/app.py                    Streamlit demo
-docs/                         generator details, video script, WikiDoc appendix report
+docs/                         generator details, WikiDoc appendix report
 ```
 
 The earlier WikiDoc run ([results/basic_v1/](results/basic_v1/RESULTS_ZH_EN.md),

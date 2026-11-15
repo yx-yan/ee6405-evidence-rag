@@ -29,6 +29,3 @@ CLAUDE.md
 data/generator/
 logs/
 
-# Video renders: python scripts/build_video.py
-build/
-video_assets/

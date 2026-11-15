@@ -1,12 +1,8 @@
-"""One look for every figure (notebook and video): a 1920x1080 (16:9) white canvas divided into the
-same zones the video uses (pixels, origin top left):
+"""One look for every figure: a 1920x1080 (16:9) white canvas divided into zones (pixels, origin top
+left):
 
-    MAIN        x   60-1400, y   40-940    title, subtitle and the plot (or formulas, code, demo)
-    CAMERA      x 1421-1920, y    0-432    left empty: the presenter's camera goes here
-    NAME        x 1421-1880, y  440-500    the speaker's name tag, under the camera (video only)
+    MAIN        x   60-1400, y   40-940    title, subtitle and the plot
     SIDE        x 1421-1880, y  510-940    legend at the top, note at the bottom
-    SUBTITLES   x  140-1780, y  950-1030   video only
-    REFERENCES  x   60-1880, y 1040-1070   video only
 
 `save` refuses a figure that draws outside MAIN and SIDE.
 
@@ -30,14 +26,9 @@ SIZE, DPI = (12.8, 7.2), 150                    # 1920 x 1080 px
 W, H = 1920, 1080
 ZONES = {                                       # (x0, y0, x1, y1) in pixels, origin top left
     "MAIN": (60, 40, 1400, 940),
-    "CAMERA": (1421, 0, 1920, 432),
-    "NAME": (1421, 440, 1880, 500),
     "SIDE": (1421, 510, 1880, 940),
-    "SUBTITLES": (140, 950, 1780, 1030),
-    "REFERENCES": (60, 1040, 1880, 1070),
 }
-MAIN, CAMERA, NAME, SIDE = ZONES["MAIN"], ZONES["CAMERA"], ZONES["NAME"], ZONES["SIDE"]
-SUBTITLES, REFERENCES = ZONES["SUBTITLES"], ZONES["REFERENCES"]
+MAIN, SIDE = ZONES["MAIN"], ZONES["SIDE"]
 
 
 def fx(x: float) -> float:
@@ -100,7 +91,7 @@ def figure(title: str, subtitle: str | None = None, nrows: int = 1, ncols: int =
 
 
 def legend(fig, handles, title: str | None = None, y: float = SIDE_TOP):
-    """Legend at the top of the right column, under the camera and the name tag."""
+    """Legend at the top of the right column."""
     leg = fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(SIDE_X, y),
                      bbox_transform=fig.transFigure, title=title, alignment="left", handlelength=1.2,
                      handleheight=1.0, labelspacing=0.75, borderaxespad=0, borderpad=0)
