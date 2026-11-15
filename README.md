@@ -143,7 +143,7 @@ app/app.py                    Streamlit demo
 docs/                         generator details, WikiDoc appendix report
 ```
 
-The earlier WikiDoc run ([results/basic_v1/](results/basic_v1/RESULTS_ZH_EN.md),
+The earlier WikiDoc run ([results/basic_v1/](results/basic_v1/RESULTS.md),
 [report](docs/reports/basic_rag_v1.md)) is kept as an appendix: the generator saw WikiDoc in
 training, so it is not a main evaluation set.
 
