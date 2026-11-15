@@ -115,8 +115,9 @@ jupyter nbconvert --to notebook --execute --inplace notebooks/final_results.ipyn
 streamlit run app/app.py                              # demo
 ```
 
-The generator weights (0.5 GB) are downloaded from the GitHub Release on first use
-(training: `scripts/train_generator.py`). A single run:
+The generator weights (0.5 GB) are included in the submission archive under
+`models/generator/bart-base/best/`; in a git clone they are downloaded from the GitHub Release on
+first use (training: `scripts/train_generator.py`). A single run:
 `python -m evrag.evaluation.run_experiment --dataset cancer --method evidence_rag --split dev --limit 20`.
 
 The demo lets you pick a dataset and a method, shows the decision trace (both signals against
