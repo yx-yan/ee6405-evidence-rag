@@ -15,7 +15,7 @@ QUESTIONS = [
 
 @pytest.mark.parametrize("name", sorted(REGISTRY))
 def test_run_returns_valid_output(name, monkeypatch):
-    monkeypatch.setattr(retriever, "search", lambda q: [RetrievedDoc("d0", 0.8, "evidence")])
+    monkeypatch.setattr(retriever, "search", lambda q, top_k=None, dataset=None: [RetrievedDoc("d0", 0.8, "evidence")])
     monkeypatch.setattr(generator, "generate", lambda q, contexts=None: "test answer")
     monkeypatch.setattr(generator, "load", lambda: (lambda text: {"input_ids": text.split()}, None, "cpu"))
     method = get_method(name)

@@ -1,14 +1,15 @@
 # Shared answer generator (owner: D)
 
-The three routes we compare (no retrieval, standard RAG, Graph RAG) all answer with the same
-model; only the evidence passed to it differs. The model is **BART-base fine-tuned by us on
+All five methods we compare (nlp_only without retrieval; basic_rag, graph_rag, threshold_rag and
+evidence_rag with retrieved evidence) answer with the same model; only the evidence passed to it,
+and the decision to abstain, differ. The model is **BART-base fine-tuned by us on
 general medical QA**. Code: `src/evrag/generator.py` (inference), `src/evrag/data/generator_data.py`
 (training data), `scripts/train_generator.py` (training), `scripts/train_generator.sbatch` (SLURM).
 
 ```python
 from evrag import generator
-generator.generate("What are the symptoms of eczema?")                 # route 1: no evidence
-generator.generate("What are the symptoms of eczema?", contexts=docs)  # routes 2 and 3: retrieved text or RetrievedDoc objects
+generator.generate("What are the symptoms of eczema?")                 # nlp_only: no evidence
+generator.generate("What are the symptoms of eczema?", contexts=docs)  # RAG methods: retrieved text or RetrievedDoc objects
 ```
 
 **Getting the model.** The trained weights are not in git. They are attached to the GitHub Release
@@ -87,14 +88,14 @@ Test ROUGE-L (1,000 test examples, shared beam settings): **closed 0.136 / conte
 
 What to expect when using it:
 
-- **Closed (route 1)** answers are fluent and on topic but short (median 24 words vs 54 in the
+- **Closed (nlp_only)** answers are fluent and on topic but short (median 24 words vs 54 in the
   references) and sometimes medically wrong or repetitive; the model only knows what fits in 140M
   parameters.
-- **With evidence (routes 2 and 3)** it mostly copies the relevant sentences from the chunks and
+- **With evidence (RAG methods)** it mostly copies the relevant sentences from the chunks and
   ignores distractors (80 MASH-QA test questions: gold + distractors 0.56, gold only 0.57).
 - It **never says "I don't know"**: training always included the answer in the evidence, so with
   evidence that lacks the answer it still copies from it (ROUGE-L 0.11, below closed 0.13).
-  Retrieval quality therefore matters a lot for routes 2 and 3.
+  Retrieval quality therefore matters a lot for the RAG methods, and an abstention policy is needed around the generator.
 
 ROUGE-L here is only a sanity check that the model learned to answer and to use evidence; the
 route comparison is evaluated on the RAG questions.

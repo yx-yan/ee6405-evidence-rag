@@ -1,0 +1,201 @@
+question_id,scenario,answerable,score,coverage,retry_score,retry_coverage,top_doc,retry_top_doc,expanded_query
+neu_Q1,missing_evidence,0,0.6212648153305054,0.7451872415002307,0.8241164684295654,0.7451872415002307,neu_1,neu_0,What is the outlook for Absence of the Septum Pellucidum ? optic septo dysplasia sp brain
+neu_Q3,answerable,1,0.7326532602310181,0.6816545165120125,0.7350304126739502,0.6816545165120125,neu_13,neu_13,What are the treatments for Pompe Disease ? onset dependent babies research age
+neu_Q5,answerable,1,0.704877495765686,0.8207197562643009,0.8263280987739563,0.8207197562643009,neu_24,neu_24,What are the treatments for Acute Disseminated Encephalomyelitis ? adem corticosteroids total individuals corticosteroid
+neu_Q7,answerable,1,0.6221798658370972,1.0,0.7613693475723267,1.0,neu_39,neu_38,What is (are) Agenesis of the Corpus Callosum ? acc abnormalities malformations midline associated
+neu_Q9,answerable,1,0.7617387771606445,0.6771550917331277,0.828070342540741,0.6771550917331277,neu_50,neu_50,What are the treatments for Aicardi Syndrome ? management expertise locate pediatric neurogenetic
+neu_Q11,answerable,1,0.8416228890419006,1.0,0.879367470741272,1.0,neu_60,neu_60,What are the complications of Neurological Complications of AIDS ? hiv causing illnesses immune otherwise
+neu_Q13,answerable,1,0.8658964037895203,0.6536866609756657,0.8716440796852112,0.6536866609756657,neu_63,neu_63,What is the outlook for Neurological Complications of AIDS ? hiv causing illnesses immune otherwise
+neu_Q15,answerable,1,0.594552218914032,1.0,0.7760441303253174,1.0,neu_90,neu_90,What is (are) Anencephaly ? neural tube born brain cerebrum
+neu_Q17,answerable,1,0.6580371856689453,0.7260211535535768,0.7092190980911255,0.7260211535535768,neu_98,neu_98,What are the treatments for Cerebral Aneurysms ? aneurysm arteriosclerosis rupture treatment metal
+neu_Q19,answerable,1,0.887690544128418,0.8160947184911087,0.7846177816390991,0.8160947184911087,neu_107,neu_106,What is the outlook for Von Hippel-Lindau Disease (VHL) ? tumors cancer location size ear
+neu_Q21,missing_evidence,0,0.6248348355293274,1.0,0.739305853843689,1.0,neu_118,neu_117,What is (are) Antiphospholipid Syndrome ? aps clotting clots warfarin aspirin
+neu_Q23,answerable,1,0.6780860424041748,1.0,0.8329634666442871,1.0,neu_121,neu_345,What is (are) Aphasia ? aphasias language disorders memory impaired
+neu_Q25,answerable,1,0.6215437650680542,0.48974121281490013,0.7352035045623779,0.48974121281490013,neu_128,neu_128,What is the outlook for Apraxia ? underlying individuals partly little significantly
+neu_Q27,answerable,1,0.7470291256904602,0.6463334159610545,0.7371006608009338,0.6463334159610545,neu_134,neu_134,What is the outlook for Arachnoid Cysts ? cyst cord spinal fluid doctors
+neu_Q29,answerable,1,0.7555174827575684,1.0,0.8553365468978882,1.0,neu_138,neu_138,What are the treatments for Arachnoiditis ? pain relief outcomes provide term
+neu_Q31,answerable,1,0.7923625707626343,1.0,0.8583385944366455,1.0,neu_147,neu_147,What is (are) Arteriovenous Malformation ? avm avms hemorrhage malformations inherited
+neu_Q33,answerable,1,0.7892417907714844,1.0,0.8396461009979248,1.0,neu_152,neu_152,What is (are) Asperger Syndrome ? childs skills autism repetitive children
+neu_Q35,answerable,1,0.7851297855377197,0.7419357295066493,0.7838625311851501,0.7419357295066493,neu_166,neu_166,What are the treatments for Ataxia Telangiectasia ? treated vitamin therapy friedreich maintain
+neu_Q37,missing_evidence,0,0.6342116594314575,0.0,0.6565173268318176,0.0,neu_155,neu_155,What are the treatments for Autism ? children treatment skills childs earlier
+neu_Q39,answerable,1,0.7052170038223267,1.0,0.8038861751556396,1.0,neu_183,neu_180,What is (are) Dysautonomia ? sympathetic ans generalized failure autonomic
+neu_Q41,answerable,1,0.7680305242538452,0.5131060470083643,0.7883872985839844,0.5131060470083643,neu_183,neu_180,What is the outlook for Dysautonomia ? sympathetic ans generalized failure autonomic
+neu_Q43,answerable,1,0.7216766476631165,0.5453292993608372,0.6385683417320251,0.5453292993608372,neu_184,neu_187,What is the outlook for Back Pain ? acute jolt lifting standard care
+neu_Q45,answerable,1,0.7329022884368896,1.0,0.8193632364273071,1.0,neu_194,neu_194,What is (are) Batten Disease ? lipopigments tests fatal often eye
+neu_Q47,answerable,1,0.827548623085022,0.6993833822044355,0.7592904567718506,0.6993833822044355,neu_204,neu_204,What are the treatments for Behcet's Disease ? inflammation intestinal system cord spinal
+neu_Q49,answerable,1,0.682948887348175,0.7463942162117793,0.7576432228088379,0.7463942162117793,neu_209,neu_209,What are the treatments for Bell's Palsy ? facial nerve knowledge extent damage
+neu_Q51,answerable,1,0.67604660987854,0.7739213133529443,0.7267779111862183,0.7739213133529443,neu_225,neu_223,What are the treatments for Pseudotumor Cerebri ? csf pressure needed remove weight
+neu_Q53,answerable,1,0.7172460556030273,1.0,0.8408757448196411,1.0,neu_232,neu_234,What is (are) Binswanger's Disease ? bd healthy slow progression research
+neu_Q55,missing_evidence,0,0.606570839881897,0.896513355304791,0.7679380774497986,0.896513355304791,neu_245,neu_245,What are the treatments for Erb-Duchenne and Dejerine-Klumpke Palsies ? brachial plexus injuries torn nerve
+neu_Q57,answerable,1,0.7538610100746155,0.6386180097001837,0.7515222430229187,0.6386180097001837,neu_253,neu_253,What is the outlook for Orthostatic Hypotension ? condition increasing treated counterpressure discontinuing
+neu_Q59,answerable,1,0.6958157420158386,1.0,0.7985535860061646,1.0,neu_264,neu_265,What is (are) Traumatic Brain Injury ? state individual unaware unconscious vegetative
+neu_Q61,answerable,1,0.6529342532157898,0.6312166762064666,0.7353808283805847,0.6312166762064666,neu_279,neu_279,What are the treatments for CADASIL ? stroke risk given blood different
+neu_Q63,answerable,1,0.7524986863136292,1.0,0.7906451225280762,1.0,neu_288,neu_288,What is (are) Carpal Tunnel Syndrome ? wrist hand median palm tasks
+neu_Q65,answerable,1,0.6844246983528137,1.0,0.7260223627090454,1.0,neu_294,neu_294,What are the treatments for Complex Regional Pain Syndrome ? stimulation opioids local antidepressants chronic
+neu_Q67,answerable,1,0.7271086573600769,1.0,0.819804847240448,1.0,neu_297,neu_297,What is (are) Cavernous Malformation ? ccm ccms malformations ccm1 lesions
+neu_Q69,missing_evidence,0,0.6401770710945129,0.6468962946039907,0.7910506725311279,0.6468962946039907,neu_299,neu_297,What is the outlook for Cavernous Malformation ? ccm lesions ccm1 brain candidates
+neu_Q71,missing_evidence,0,0.6944246888160706,0.6049315315108135,0.7978489995002747,0.6049315315108135,neu_309,neu_310,What is the outlook for Central Pain Syndrome ? neurontin nortriptyline lowering tricyclic reduction
+neu_Q73,answerable,1,0.7285950779914856,1.0,0.7051215171813965,1.0,neu_339,neu_338,What is (are) Cerebral Arteriosclerosis ? strokes walls hemorrhagic ischemic brain
+neu_Q75,answerable,1,0.6723346710205078,1.0,0.7252452373504639,1.0,neu_357,neu_357,What is (are) Cerebral Palsy ? supranuclear progressive movements cp gait
+neu_Q77,answerable,1,0.579962968826294,1.0,0.8399924039840698,1.0,neu_373,neu_373,What is (are) Chorea ? movement syndenham huntington anti disorders
+neu_Q79,answerable,1,0.7242788076400757,0.7012881258002992,0.79691481590271,0.7012881258002992,neu_388,neu_389,What is the outlook for Postural Tachycardia Syndrome ? pots salt volume blood diet
+neu_Q81,answerable,1,0.8305808305740356,1.0,0.8256804943084717,1.0,neu_394,neu_394,What are the treatments for Chronic Pain ? stimulation central medications employed lessening
+neu_Q83,answerable,1,0.7810715436935425,1.0,0.8363951444625854,1.0,neu_397,neu_398,What is (are) Coffin Lowry Syndrome ? males chromosome equal p22 rsk2
+neu_Q85,answerable,1,0.6712431311607361,0.6377268009859393,0.7045596837997437,0.6377268009859393,neu_403,neu_405,What are the treatments for Colpocephaly ? research nih rely institutes appliances
+neu_Q87,missing_evidence,0,0.6744022369384766,0.4617961670723214,0.7444363236427307,0.4617961670723214,neu_407,neu_407,What is the outlook for Coma ? state vegetative persistent grimace laugh
+neu_Q89,answerable,1,0.6677308082580566,0.6164748786058442,0.7435010075569153,0.6164748786058442,neu_419,neu_421,What is the outlook for Congenital Myasthenia ? subtype muscles activity involved treatments
+neu_Q91,answerable,1,0.7289654612541199,1.0,0.7948980927467346,0.6061442109351086,neu_425,neu_429,What is the outlook for Congenital Myopathy ? breathing weakness floppiness muscle scoliosis
+neu_Q93,answerable,1,0.6489492058753967,1.0,0.8068873882293701,1.0,neu_442,neu_441,What is (are) Craniosynostosis ? skull growth brain accommodate sutures
+neu_Q95,answerable,1,0.8249567747116089,1.0,0.7999230027198792,1.0,neu_448,neu_448,What is (are) Creutzfeldt-Jakob Disease ? cjd called acquired blindness mental
+neu_Q97,answerable,1,0.7343464493751526,1.0,0.802158772945404,1.0,neu_452,neu_452,What is (are) Repetitive Motion Disorders ? rmds perform motions visible injury
+neu_Q99,answerable,1,0.6918351650238037,0.6625084538460015,0.8421874046325684,0.6625084538460015,neu_455,neu_455,What is the outlook for Repetitive Motion Disorders ? rmds perform tasks injury work
+neu_Q101,answerable,1,0.7094529867172241,0.5855062645573152,0.7217085361480713,0.5855062645573152,neu_458,neu_459,What is the outlook for Cushing's Syndrome ? radiotherapy surgery used term treat
+neu_Q103,answerable,1,0.7765241265296936,0.8303967758191715,0.8410213589668274,0.8303967758191715,neu_467,neu_467,What are the treatments for Neurological Consequences of Cytomegalovirus Infection ? cmv vaccines recipients immunocompromised transplant
+neu_Q105,answerable,1,0.8630193471908569,0.8337769502819384,0.8623896837234497,0.8337769502819384,neu_496,neu_496,What are the treatments for Deep Brain Stimulation for Parkinson's Disease ? gov initiative www nih see
+neu_Q107,answerable,1,0.6496414542198181,1.0,0.7841753959655762,1.0,neu_497,neu_82,What is (are) Dementia ? ad memory loss disease problems
+neu_Q109,answerable,1,0.759843111038208,1.0,0.796004593372345,1.0,neu_505,neu_505,What is (are) Multi-Infarct Dementia ? mid having strokes making counting
+neu_Q111,answerable,1,0.7654207944869995,1.0,0.8368281126022339,1.0,neu_508,neu_508,What is (are) Frontotemporal Dementia ? ftd behavior social lack bored
+neu_Q113,answerable,1,0.7833907604217529,0.8452002622056902,0.853683590888977,0.8452002622056902,neu_518,neu_518,What are the treatments for Dyssynergia Cerebellaris Myoclonica ? myoclonus tremor extremity disorders seizures
+neu_Q115,answerable,1,0.7112568020820618,1.0,0.8205241560935974,1.0,neu_530,neu_530,What is (are) Neuromyelitis Optica ? nmo individuals system attacks immune
+neu_Q117,answerable,1,0.7581589221954346,0.5820727696527012,0.79984050989151,0.5820727696527012,neu_544,neu_544,What is the outlook for Schilder's Disease ? sclerosis multiple disorder course standards
+neu_Q119,answerable,1,0.8219887018203735,1.0,0.8207008838653564,1.0,neu_564,neu_564,What are the treatments for Dystonias ? neuroacanthocytosis medications maintain physical variety
+neu_Q121,answerable,1,0.7829974889755249,0.7346913046278002,0.7309520244598389,0.7346913046278002,neu_580,neu_580,What are the treatments for Meningitis and Encephalitis ? individuals full bacterial hours reduce
+neu_Q123,answerable,1,0.6795481443405151,0.581561646278041,0.627290666103363,0.0,neu_594,neu_214,What are the treatments for Encephalopathy ? surgery treatment characterizing clarifying muscles
+neu_Q125,answerable,1,0.64579838514328,0.4307926165910767,0.6950436234474182,0.4307926165910767,neu_606,neu_606,What is the outlook for Epilepsy ? seizures epilepsies brain scientists people
+neu_Q127,answerable,1,0.7655758857727051,0.6949143174885458,0.8125625848770142,0.6949143174885458,neu_619,neu_619,What are the treatments for Fabry Disease ? enzyme lipid heart kidneys replacement
+neu_Q129,answerable,1,0.6133353114128113,1.0,0.709345281124115,0.0,neu_622,neu_618,What is (are) Fahr's Syndrome ? fabry disorder females chance disease
+neu_Q131,missing_evidence,0,0.7416524887084961,0.7377769446655976,0.8243491053581238,0.7377769446655976,neu_635,neu_632,What is the outlook for Familial Periodic Paralyses ? attacks characterized hyperkalemic hypokalemic potassium
+neu_Q133,missing_evidence,0,0.5895854234695435,1.0,0.6852670311927795,0.0,neu_649,neu_1032,What is (are) Fibromuscular Dysplasia ? md myopathy inserted myotonic boys
+neu_Q135,answerable,1,0.6434184908866882,0.5976122953774128,0.7210820913314819,0.5976122953774128,neu_658,neu_658,What are the treatments for Hypotonia ? therapy congenita myotonia diagnostic sensory
+neu_Q137,answerable,1,0.7989168167114258,0.7504242503298376,0.8346925377845764,0.7504242503298376,neu_663,neu_663,What are the treatments for Foot Drop ? ankle peroneal nerve joint leg
+neu_Q139,answerable,1,0.8335456848144531,0.7446506176928717,0.8190603852272034,0.7446506176928717,neu_668,neu_668,What are the treatments for Friedreich's Ataxia ? arms scoliosis problems curving treated
+neu_Q141,answerable,1,0.6538833975791931,0.6418105970173726,0.7410680055618286,0.6418105970173726,neu_681,neu_678,What is the outlook for Generalized Gangliosidoses ? gm1 infantile gangliosidosisis deficiency deaf
+neu_Q143,missing_evidence,0,0.7694458961486816,0.769856109959109,0.7753230929374695,0.769856109959109,neu_691,neu_690,What is the outlook for Gerstmann-Straussler-Scheinker Disease ? gss tses families ataxia aimed
+neu_Q145,answerable,1,0.6934478282928467,0.7320172093231188,0.8561315536499023,0.7320172093231188,neu_698,neu_696,What is the outlook for Giant Axonal Neuropathy ? gan parents children become inherited
+neu_Q147,answerable,1,0.7861889600753784,1.0,0.7795828580856323,1.0,neu_719,neu_716,What is (are) Neurodegeneration with Brain Iron Accumulation ? nbia pump degeneration retinal muscle
+neu_Q149,missing_evidence,0,0.616622269153595,1.0,0.6773028373718262,1.0,neu_729,neu_729,What is (are) Hemicrania Continua ? complete paroxysmal near relief medical
+neu_Q151,answerable,1,0.8492943048477173,0.6568009446137029,0.8410595059394836,0.6568009446137029,neu_734,neu_733,What is the outlook for Hemifacial Spasm ? cases therapy facial effective relieves
+neu_Q153,answerable,1,0.728757381439209,0.5489367229763327,0.8606910705566406,0.5489367229763327,neu_741,neu_742,What is the outlook for Refsum Disease ? shortened visibly toe ard childhood
+neu_Q155,missing_evidence,0,0.6632255911827087,1.0,0.7920106053352356,1.0,neu_773,neu_771,What is (are) Huntington's Disease ? hd gene study since individuals
+neu_Q157,answerable,1,0.7595466375350952,0.6312166762064666,0.7602046728134155,0.6312166762064666,neu_776,neu_774,What are the treatments for Hydranencephaly ? infant fluid hemispheres cerebrospinal normal
+neu_Q159,answerable,1,0.6822832822799683,1.0,0.8200629353523254,1.0,neu_790,neu_790,What is (are) Hydromyelia ? spinal cavity cord fluid syringomyelia
+neu_Q161,answerable,1,0.6591543555259705,0.6158651233124869,0.6498722434043884,0.0,neu_802,neu_658,What are the treatments for Hypertonia ? therapy baclofen dopamine hypotonia diagnostic
+neu_Q163,answerable,1,0.7791231870651245,1.0,0.8267687559127808,1.0,neu_822,neu_823,What is (are) Infantile Spasms ? clusters underlying seizure children hundred
+neu_Q165,answerable,1,0.708952009677887,0.6054152967425114,0.8313103914260864,0.6054152967425114,neu_829,neu_830,What is the outlook for Inflammatory Myopathies ? respond dermatomyositis polymyositis niams national
+neu_Q167,missing_evidence,0,0.6755849719047546,0.7112349052610094,0.7238664627075195,0.7112349052610094,neu_841,neu_838,What are the treatments for Whipple's Disease ? symptoms gastrointestinal system abdominal neurological
+neu_Q169,missing_evidence,0,0.7418573498725891,0.5904581701817887,0.8517463803291321,0.5904581701817887,neu_846,neu_843,What is the outlook for Isaacs' Syndrome ? acquired issacs potassium antibodies autoimmune
+neu_Q171,answerable,1,0.7907235622406006,0.7010631243438042,0.7971129417419434,0.7010631243438042,neu_851,neu_852,What is the outlook for Kearns-Sayre Syndrome ? kss mitochondria endocrinology limitation heart
+neu_Q173,answerable,1,0.9147000312805176,1.0,0.8479629755020142,1.0,neu_867,neu_865,What is (are) Klippel-Trenaunay Syndrome (KTS) ? weber connectivity fistulas coincide parkes
+neu_Q175,missing_evidence,0,0.6211618185043335,1.0,0.6590865850448608,0.6153541771613211,neu_875,neu_1022,What is (are) Spinal Muscular Atrophy ? md msa muscle control cells
+neu_Q177,answerable,1,0.5226565599441528,0.4946010938081759,0.7697564363479614,0.4946010938081759,neu_882,neu_880,What is the outlook for Kuru ? tse tses diseases died discouraging
+neu_Q179,answerable,1,0.7614659667015076,0.7088883758995507,0.7914918661117554,0.34325274301622405,neu_893,neu_555,What are the treatments for Learning Disabilities ? child dyslexia academic treatment educational
+neu_Q181,missing_evidence,0,0.6354869604110718,0.7115176871338872,0.8060697317123413,0.7115176871338872,neu_902,neu_902,What is the outlook for Lennox-Gastaut Syndrome ? spasms seizures children brief epileptic
+neu_Q183,answerable,1,0.6144715547561646,1.0,0.8037794232368469,1.0,neu_916,neu_917,What is (are) Lipoid Proteinosis ? lp skin amygdala discriminating expressions
+neu_Q185,missing_evidence,0,0.6561135053634644,0.706601459372036,0.6211161613464355,0.706601459372036,neu_928,neu_926,What are the treatments for Locked-In Syndrome ? eye mute overdose reason diseases
+neu_Q187,answerable,1,0.7845824956893921,0.7115176871338872,0.8404077291488647,0.7115176871338872,neu_949,neu_949,What is the outlook for Melkersson-Rosenthal Syndrome ? swelling crohn sarcoidosis lip become
+neu_Q189,answerable,1,0.6390467286109924,0.5769147297675544,0.6793513298034668,0.5769147297675544,neu_953,neu_953,What is the outlook for Menkes Disease ? copper al et arteries levels
+neu_Q191,answerable,1,0.6232433915138245,1.0,0.8070046305656433,1.0,neu_965,neu_966,What is (are) Microcephaly ? zika virus development syndromes brain
+neu_Q193,answerable,1,0.6661974191665649,1.0,0.7564996480941772,1.0,neu_721,neu_970,What is (are) Migraine ? flashing hormonal lights attacks number
+neu_Q195,answerable,1,0.682956874370575,1.0,0.9125310778617859,1.0,neu_977,neu_977,What is (are) Transient Ischemic Attack ? tia stroke minutes symptoms difficulty
+neu_Q197,answerable,1,0.7812504768371582,0.625145182829325,0.8194224238395691,0.625145182829325,neu_984,neu_981,What is the outlook for Mitochondrial Myopathy ? myopathies weakness intolerance energy episodes
+neu_Q199,answerable,1,0.6817256808280945,0.670461780857196,0.7785114049911499,0.670461780857196,neu_990,neu_992,What is the outlook for Motor Neuron Diseases ? mnds kennedy muscular research atrophy
+neu_Q201,answerable,1,0.6999786496162415,1.0,0.7566162347793579,1.0,neu_999,neu_1000,What is (are) Mucolipidoses ? ml mucolipidosis cells enzymes produce
+neu_Q203,missing_evidence,0,0.670604944229126,0.5131060470083643,0.760868489742279,0.5131060470083643,neu_999,neu_1000,What is the outlook for Mucolipidoses ? ml mucolipidosis cells enzymes produce
+neu_Q205,answerable,1,0.6106107234954834,0.5131060470083643,0.7104446887969971,0.5131060470083643,neu_1006,neu_1005,What is the outlook for Mucopolysaccharidoses ? syndromes mps mucopolysaccharidosis improve corneal
+neu_Q207,answerable,1,0.7159605026245117,1.0,0.8123360872268677,1.0,neu_1019,neu_1019,What is (are) Multiple Sclerosis ? ms academies medicine patients even
+neu_Q209,answerable,1,0.8289594054222107,0.7786045717666492,0.8000177145004272,0.7786045717666492,neu_1027,neu_1028,What is the outlook for Multiple System Atrophy with Orthostatic Hypotension ? breathing disturbances tube sleep aimed
+neu_Q211,answerable,1,0.6911860108375549,0.4474122623718599,0.7903177738189697,0.4474122623718599,neu_1050,neu_1054,What is the outlook for Myopathy ? life reversed thyrotoxic span disabling
+neu_Q213,answerable,1,0.6737225651741028,1.0,0.8155186772346497,1.0,neu_1056,neu_1056,What is (are) Myotonia ? congenita research muscle disorders membrane
+neu_Q215,missing_evidence,0,0.6816083788871765,0.4946010938081759,0.7368354797363281,0.4946010938081759,neu_1059,neu_1059,What is the outlook for Myotonia ? congenita research disorders grasping conducts
+neu_Q217,answerable,1,0.6833475828170776,0.4946010938081759,0.7799692153930664,0.4946010938081759,neu_1065,neu_1066,What is the outlook for Neurofibromatosis ? nf1 nf2 tumors nerves vestibular
+neu_Q219,answerable,1,0.7902721166610718,0.50609088764728,0.7636722922325134,0.50609088764728,neu_1085,neu_1085,What is the outlook for Neurosarcoidosis ? immunosuppressive drugs illness effects side
+neu_Q221,answerable,1,0.7792510390281677,0.6453883633588061,0.7899166345596313,0.6453883633588061,neu_1094,neu_1094,What are the treatments for Neurotoxicity ? exposure substances neurotoxicants nervous system
+neu_Q223,missing_evidence,0,0.6809601783752441,0.7979058122140225,0.6838140487670898,0.7979058122140225,neu_1097,neu_1097,What are the treatments for Niemann-Pick Disease ? type spleen lipids storage liver
+neu_Q225,answerable,1,0.8000690937042236,1.0,0.8203875422477722,1.0,neu_1105,neu_1105,What are the treatments for Occipital Neuralgia ? pain rest research ended lessened
+neu_Q227,answerable,1,0.6958935856819153,0.50609088764728,0.7385399341583252,0.50609088764728,neu_1119,neu_1118,What is the outlook for Paresthesia ? depends disorders accurate cause appropriate
+neu_Q229,answerable,1,0.7312667965888977,0.6554957870549506,0.7909929752349854,0.6554957870549506,neu_1135,neu_1132,What is the outlook for Paroxysmal Hemicrania ? patients attacks neck experience last
+neu_Q231,answerable,1,0.674422025680542,1.0,0.7401899099349976,1.0,neu_1150,neu_1150,What are the treatments for Tarlov Cysts ? pain fluid alkaline cerebrospinal roots
+neu_Q233,answerable,1,0.7445478439331055,1.0,0.8212448358535767,1.0,neu_1154,neu_1154,What is (are) Peripheral Neuropathy ? acquired toxins systemic deficiencies autoimmune
+neu_Q235,answerable,1,0.7421307563781738,0.5923368445588374,0.771727442741394,0.5923368445588374,neu_1155,neu_1154,What is the outlook for Peripheral Neuropathy ? neuropathies forms toxins systemic avoiding
+neu_Q237,answerable,1,0.6962522864341736,0.7844814971723095,0.8350731134414673,0.7844814971723095,neu_1162,neu_1160,What are the treatments for Periventricular Leukomalacia ? pvl screenings fairly exhibit children
+neu_Q239,missing_evidence,0,0.7461421489715576,0.6077207624819208,0.7542408108711243,0.6077207624819208,neu_1169,neu_1168,What is the outlook for Pinched Nerve ? pain further numbness term damage
+neu_Q241,answerable,1,0.75986647605896,0.6073627371347922,0.691394567489624,0.6073627371347922,neu_1181,neu_1180,What is the outlook for Pituitary Tumors ? tumor hormones used enough grows
+neu_Q243,answerable,1,0.80821293592453,0.6007939320037421,0.8538118600845337,0.6007939320037421,neu_1185,neu_829,What are the treatments for Polymyositis ? respond therapy prednisone myopathies inflammation
+neu_Q245,answerable,1,0.5979296565055847,0.7997732065259672,0.6902186870574951,0.7997732065259672,neu_1193,neu_1193,What are the treatments for Post-Polio Syndrome ? pps muscle survivors therapy muscular
+neu_Q247,answerable,1,0.7772802114486694,0.7273799814887885,0.769973874092102,0.7273799814887885,neu_1206,neu_1207,What is the outlook for Transmissible Spongiform Encephalopathies ? tses cjd aimed few california
+neu_Q249,missing_evidence,0,0.675727903842926,0.6720588933883841,0.7807577252388,0.6720588933883841,neu_1209,neu_1209,What is the outlook for Tabes Dorsalis ? infection carry information degeneration columns
+neu_Q251,answerable,1,0.7482969760894775,0.7028866003138691,0.8458095788955688,0.7028866003138691,neu_1217,neu_1217,What is the outlook for Progressive Multifocal Leukoencephalopathy ? pml following research majorresearch observations
+neu_Q253,missing_evidence,0,0.6835594177246094,0.6916939673598653,0.8348830938339233,0.6916939673598653,neu_1219,neu_1219,What is the outlook for Progressive Supranuclear Palsy ? psp parkinson eye distinguished paper
+neu_Q255,missing_evidence,0,0.8080846071243286,0.7584368145661272,0.8327492475509644,0.7584368145661272,neu_1232,neu_1232,What are the treatments for Rasmussen's Encephalitis ? rasmussens hemisphere deficits brain research
+neu_Q257,answerable,1,0.8211801052093506,1.0,0.8703128099441528,1.0,neu_1234,neu_1234,What is (are) Restless Legs Syndrome ? rls sensations periods symptoms creeping
+neu_Q259,answerable,1,0.5642945170402527,1.0,0.8234459161758423,1.0,neu_1248,neu_1248,What is (are) Sydenham Chorea ? sd movements rheumatic writhing fever
+neu_Q261,answerable,1,0.6951289772987366,0.625527086620692,0.7027426958084106,0.625527086620692,neu_1260,neu_1260,What are the treatments for Schizencephaly ? divert studies clefts absorbed shunt
+neu_Q263,answerable,1,0.7790405750274658,1.0,0.7849979996681213,1.0,neu_1263,neu_1265,What is (are) Shaken Baby Syndrome ? injuries bleeding hemorrhages shaking retina
+neu_Q265,answerable,1,0.7109696269035339,0.706601459372036,0.681423544883728,0.706601459372036,neu_1268,neu_1268,What are the treatments for Sjgren's Syndrome ? mouth go treat symptoms others
+neu_Q267,answerable,1,0.7289407849311829,0.4324337018686013,0.7633513808250427,0.4324337018686013,neu_1279,neu_1277,What is the outlook for Spasticity ? muscle interfere cord spinal stiffness
+neu_Q269,answerable,1,0.7029898166656494,0.7821573558392372,0.7253929972648621,0.7821573558392372,neu_1287,neu_1287,What are the treatments for Spinal Cord Infarction ? research advances patients rehabilitation matched
+neu_Q271,answerable,1,0.7116389274597168,1.0,0.7359972596168518,1.0,neu_1290,neu_1290,What is (are) Spinal Cord Injury ? injuries complete incomplete research fractures
+neu_Q273,answerable,1,0.6299200057983398,1.0,0.7285619378089905,1.0,neu_1304,neu_977,What is (are) Stroke ? sudden infarction trouble blood tia
+neu_Q275,answerable,1,0.6187604665756226,0.31788820343452073,0.7434022426605225,0.31788820343452073,neu_1306,neu_979,What is the outlook for Stroke ? tias smoking factors high alcohol
+neu_Q277,answerable,1,0.7926195859909058,1.0,0.85898357629776,1.0,neu_1320,neu_1320,What is (are) Tardive Dyskinesia ? neuroleptic drugs drug movements rapid
+neu_Q279,answerable,1,0.7846814393997192,1.0,0.8247389793395996,1.0,neu_1326,neu_1326,What is (are) Tay-Sachs Disease ? progressive sandhoff deterioration form rarer
+neu_Q281,answerable,1,0.8108566403388977,1.0,0.8111642599105835,1.0,neu_1331,neu_1331,What is (are) Tethered Spinal Cord Syndrome ? attachments emerge pain undiagnosed column
+neu_Q283,answerable,1,0.8485184907913208,0.7129343193987611,0.8194913864135742,0.7129343193987611,neu_1335,neu_1335,What is the outlook for Tethered Spinal Cord Syndrome ? emerge motor correctable exacerbated presentation
+neu_Q285,answerable,1,0.8045384883880615,0.6368913999050106,0.8283556699752808,0.6368913999050106,neu_1348,neu_1349,What is the outlook for Trigeminal Neuralgia ? recurrences pain research seeking ninds
+neu_Q287,answerable,1,0.7115844488143921,0.706601459372036,0.7971335649490356,0.706601459372036,neu_1353,neu_1351,What are the treatments for Tourette Syndrome ? ts tic medication suppression teens
+neu_Q289,answerable,1,0.7587285041809082,0.5567372059726154,0.8343037366867065,0.5567372059726154,neu_1361,neu_614,What are the treatments for Tremor ? essential stimulation drug primidone propranolol
+neu_Q291,answerable,1,0.7729277014732361,1.0,0.8615519404411316,1.0,neu_1365,neu_1365,What are the treatments for Troyer Syndrome ? spastic progressive results walking legs
+neu_Q293,answerable,1,0.7223894596099854,0.7403455048302757,0.7981936931610107,0.7403455048302757,neu_1369,neu_1369,What are the treatments for Tuberous Sclerosis ? tsc individuals tumors fda special
+neu_Q295,answerable,1,0.802412211894989,0.6377268009859393,0.7946280241012573,0.6377268009859393,neu_1373,neu_1373,What are the treatments for Whiplash ? cervical pain weeks neck application
+neu_Q297,answerable,1,0.7578888535499573,1.0,0.7951205968856812,1.0,neu_1380,neu_1380,What are the treatments for Williams Syndrome ? ws live independently able potential
+neu_Q299,missing_evidence,0,0.6703661680221558,0.6953743100582743,0.6860244274139404,0.6953743100582743,neu_1393,neu_1392,What are the treatments for Zellweger Syndrome ? liver infants acids gastrointestinal research
+cov_Q103,out_of_domain,0,0.3893006443977356,0.1425758059631333,0.6076211929321289,0.0,neu_773,neu_333,What are key limtations of genetic detection? ags cerebellar mutation degeneration gene
+cov_Q35,out_of_domain,0,0.22353816032409668,0.0,0.5470676422119141,0.0,neu_89,neu_89,What is the proposed model? ad alzheimers dbs stimulation commitment
+cov_Q135,out_of_domain,0,0.4195234775543213,0.0,0.6182978749275208,0.0,neu_762,neu_762,What does subsequent transmission of MERS-CoV to other humans require? seropositive infected htlv virus ham
+cov_Q13,out_of_domain,0,0.35560619831085205,0.2087527211637183,0.5595159530639648,0.2087527211637183,neu_1202,neu_1202,What was the median seropresence of C. burnetti in sheep flocks not linked to human outbreaks? cjd tses vcjd animals disease
+cov_Q291,out_of_domain,0,0.28428128361701965,0.3164214235924224,0.6062666177749634,0.3164214235924224,neu_288,neu_288,What has increased hand washing? carpal tunnel wrist median fingers
+cov_Q147,out_of_domain,0,0.13544955849647522,0.0,0.5478619337081909,0.0,neu_188,neu_188,When is a single sample  suggested to be sufficient? pain academies standard comparing drugs
+cov_Q195,out_of_domain,0,0.45148327946662903,0.0893105721844299,0.670940101146698,0.0,neu_54,neu_881,What was the mean delay from symptom onset to detection/hospitalization of a case? kuru syncope symptoms tses similar
+cov_Q111,out_of_domain,0,0.3178006410598755,0.0,0.5412716865539551,0.0,neu_877,neu_108,How were the assays selected ? vhl researchers gabhs growth spinal
+cov_Q277,out_of_domain,0,0.27622589468955994,0.06873631653850279,0.5146650075912476,0.0,neu_64,neu_583,When did the WHO declare COVID to be a Public Health Emergency of International Concern? encephalitis lethargica meningitis aids epidemic
+cov_Q209,out_of_domain,0,0.3726835548877716,0.0,0.5342180728912354,0.0,neu_761,neu_462,When does the infectivity of SARS-COV peak? virus barr guillain infected cmv
+cov_Q255,out_of_domain,0,0.3011719286441803,0.3115390138393273,0.6170958876609802,0.0,neu_1021,neu_1276,What was the authors' recent report on? sleep apnea academies lethargica research
+cov_Q297,out_of_domain,0,0.15996946394443512,0.0,0.6344941258430481,0.0,neu_156,neu_1040,What will happen without the adaptation of existing standards? hypertonia myasthenia gravis weakness cases
+cov_Q21,out_of_domain,0,0.20223699510097504,0.0,0.44214117527008057,0.0,neu_281,neu_281,Who performed the sampling procedures? cadasil national nih institutes pps
+cov_Q133,out_of_domain,0,0.34346097707748413,0.1294152590196689,0.5102424621582031,0.26335517814839415,neu_462,neu_477,How many  viral RNA or virus-specific antibodies been detected? infection sspe cmv jc countries
+cov_Q205,out_of_domain,0,0.20770108699798584,0.0,0.29455938935279846,0.0,neu_368,neu_368,"What would  have the number of confirmed cases on the Diamond Princess cruise ship,  without a movement restriction starting on the 5th February 2020? foot cmt rmds leigh charcot"
+cov_Q257,out_of_domain,0,0.46173301339149475,0.0,0.7214518189430237,0.5007116782976154,neu_1382,neu_100,What genome sequence was available for this study? aneurysms identify genes aneurysm ws
+cov_Q175,out_of_domain,0,0.17475789785385132,0.29111515151268746,0.6256343126296997,0.29111515151268746,neu_782,neu_782,What does the semicontaminated area include? shunt absorbed hydrocephalus csf circulatory
+cov_Q119,out_of_domain,0,0.3498550057411194,0.0,0.56659334897995,0.0,neu_829,neu_829,What are examples of proinflammatory cytokines? jc respond therapy pml myopathies
+cov_Q279,out_of_domain,0,0.42099618911743164,0.3968719829223053,0.6202594041824341,0.3968719829223053,neu_838,neu_838,What are the most common symptoms of COVID19? disease gastrointestinal muscle whipple fever
+cov_Q145,out_of_domain,0,0.2054198682308197,0.0,0.6678427457809448,0.1849102273469185,neu_499,neu_396,What do the recommended samples include? acupuncture endorphins drugs pain chronic
+cov_Q71,out_of_domain,0,0.3434222936630249,0.0,0.5667940378189087,0.0,neu_433,neu_433,What was the fatality rate for SARS-CoV? cofs corticobasal sandhoff degeneration death
+cov_Q263,out_of_domain,0,0.3439614772796631,0.0,0.4936407506465912,0.0,neu_621,neu_678,What do the S1 and S2 subunits of spike glycoprotein contain? fabry hsp gangliosidoses gm1 proteins
+cov_Q7,out_of_domain,0,0.3022567927837372,0.0,0.6322254538536072,0.0,neu_44,neu_1209,Which species are more prevalent but less severe? dorsalis tabes agnosia infection carry
+cov_Q171,out_of_domain,0,0.37059104442596436,0.0,0.5753971934318542,0.0,neu_464,neu_1090,What's the recommended method to disinfect floors for COVID-19? cmv neurosyphilis meningitis infection penicillin
+cov_Q285,out_of_domain,0,0.21431231498718262,0.0,0.4946630001068115,0.0,neu_89,neu_89,How many people  are estimated to need humanitarian assistance in 2020? aids national pml alzheimers neurological
+can_Q279,out_of_domain,0,0.4310426712036133,0.0,0.6087377071380615,0.0,neu_1179,neu_1180,What is the outlook for Prostate Cancer ? tumor pituitary tumors hormones used
+can_Q181,out_of_domain,0,0.5075886845588684,0.0,0.6973210573196411,0.0,neu_1179,neu_1179,Who is at risk for Testicular Cancer? ? tumors pituitary hormones count sperm
+can_Q191,out_of_domain,0,0.5301761031150818,0.4682128305443784,0.6866998672485352,0.4682128305443784,neu_1112,neu_1112,What are the symptoms of Hypopharyngeal Cancer ? vhl paraneoplastic syndromes tumors develop
+can_Q101,out_of_domain,0,0.4272453784942627,0.0,0.6423067450523376,0.0,neu_1035,neu_470,What is the outlook for Ewing Sarcoma ? md opsoclonus alexander prognosis myoclonus
+can_Q235,out_of_domain,0,0.41062647104263306,0.3012085607089173,0.6590266823768616,0.0,neu_1178,neu_1179,Who is at risk for Male Breast Cancer? ? tumors pituitary hormones count sperm
+can_Q173,out_of_domain,0,0.5178971886634827,0.24149414143328593,0.6867555379867554,0.24149414143328593,neu_1178,neu_1178,What are the symptoms of Ovarian Germ Cell Tumors ? pituitary paraneoplastic hormones syndromes sex
+can_Q201,out_of_domain,0,0.4100275933742523,0.19849964475424803,0.47253525257110596,0.0,neu_918,neu_108,What is the outlook for Lip and Oral Cavity Cancer ? vhl nlm pubmed growth tumors
+can_Q41,out_of_domain,0,0.5127454400062561,0.6026520416004458,0.6233123540878296,0.0,neu_255,neu_1112,What is (are) Primary CNS Lymphoma ? tumors tsc paraneoplastic cancer benign
+can_Q177,out_of_domain,0,0.40373772382736206,0.22554450408183296,0.628551721572876,0.22554450408183296,neu_1112,neu_1112,What is the outlook for Ovarian Low Malignant Potential Tumors ? paraneoplastic syndromes opsoclonus loss symptoms
+can_Q63,out_of_domain,0,0.5377575755119324,0.1523624412912479,0.5982489585876465,0.1523624412912479,neu_1254,neu_679,What are the symptoms of Childhood Astrocytomas ? gm1 adult ages include form
+can_Q169,out_of_domain,0,0.3463187515735626,0.0,0.5549752116203308,0.0,neu_649,neu_1315,"How to prevent Ovarian Epithelial, Fallopian Tube, and Primary Peritoneal Cancer ? tumor syringomyelia syrinx surgery individuals"
+can_Q237,out_of_domain,0,0.5443484783172607,0.4316673437412246,0.7072411775588989,0.4316673437412246,neu_1178,neu_1178,What are the symptoms of Male Breast Cancer ? tumors pituitary paraneoplastic hormones syndromes
+can_Q261,out_of_domain,0,0.371940940618515,0.17106712747387395,0.46425962448120117,0.17106712747387395,neu_259,neu_259,What is the outlook for Non-Small Cell Lung Cancer ? tumors researchers tumor molecules cells
+can_Q223,out_of_domain,0,0.39941051602363586,0.0,0.4802757203578949,0.0,neu_1181,neu_1256,What is the outlook for Pancreatic Cancer ? score prognosis tumor tumors sandhoff
+can_Q141,out_of_domain,0,0.4336079955101013,0.21982541319629423,0.5316412448883057,0.0,neu_164,neu_876,What is the outlook for Atypical Chronic Myelogenous Leukemia ? sma first life years rays
+can_Q175,out_of_domain,0,0.4619932472705841,0.27772472296212,0.6541301012039185,0.1571223933129725,neu_1112,neu_1177,What is (are) Ovarian Low Malignant Potential Tumors ? pituitary gland paraneoplastic hormones cells
+can_Q291,out_of_domain,0,0.4104875326156616,0.38745560123370554,0.5870192050933838,0.38745560123370554,neu_1112,neu_1112,What are the symptoms of Small Intestine Cancer ? vhl paraneoplastic syndromes tumors develop
+can_Q85,out_of_domain,0,0.571486234664917,0.14093663012761232,0.6903948187828064,0.29961077792262636,neu_1254,neu_164,What are the symptoms of Childhood Ependymoma ? form rays ataxia amn telangiectasia
+can_Q293,out_of_domain,0,0.4895296096801758,0.07953622605448238,0.562707781791687,0.07953622605448238,neu_1052,neu_1052,What are the symptoms of Thymoma and Thymic Carcinoma ? myopathy thyrotoxic muscle acute rays
+can_Q111,out_of_domain,0,0.4383399486541748,0.11186851282313193,0.6209235787391663,0.11186851282313193,neu_1384,neu_827,What are the symptoms of Polycythemia Vera ? dermatomyositis muscle inflammatory polymyositis first
+can_Q107,out_of_domain,0,0.5000789165496826,0.1032705016765829,0.602835476398468,0.1032705016765829,neu_1112,neu_1112,What are the symptoms of Gastrointestinal Carcinoid Tumors ? tumor paraneoplastic cancer syndromes score
+can_Q203,out_of_domain,0,0.5040432810783386,0.10040740175201399,0.5894597768783569,0.38164495546815647,neu_862,neu_255,What is the outlook for Metastatic Squamous Neck Cancer with Occult Primary ? tumors spinal cns tumor cord
+can_Q115,out_of_domain,0,0.4538441300392151,0.14050062155977927,0.557245135307312,0.14050062155977927,neu_1384,neu_32,What are the symptoms of Primary Myelofibrosis ? form amn childhood wd include
+can_Q47,out_of_domain,0,0.5647723078727722,0.423613708964553,0.7474560141563416,0.423613708964553,neu_164,neu_164,What are the symptoms of Childhood Non-Hodgkin Lymphoma ? form rays ataxia amn telangiectasia
+can_Q249,out_of_domain,0,0.4831680655479431,0.0914601156769918,0.5627149343490601,0.0914601156769918,neu_105,neu_105,What are the symptoms of Merkel Cell Carcinoma ? vhl tumors cancer rays develop

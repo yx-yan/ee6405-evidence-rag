@@ -34,6 +34,7 @@ RUNS = [
 def test_answer_level_scores():
     assert M.token_f1("Dry skin and itching.", "dry skin, itching") == pytest.approx(6 / 7)
     assert M.token_f1("fever", "headache") == 0.0
+    assert M.token_recall("Eczema causes dry skin and itching at night.", "dry skin, itching") == 1.0
     assert M.support("Dry skin and itching.", ["Eczema causes dry skin and itching."]) == 1.0
     assert M.support("Itchy red patches.", []) == 0.0
     assert M.parse_answers('["a", "b "]') == ["a", "b"] == M.parse_answers("a | b")
@@ -47,6 +48,7 @@ def test_table():
     assert m["coverage"] == pytest.approx(2 / 3)
     assert m["answer_correctness"] == pytest.approx(1 / 3)
     assert m["selective_accuracy"] == pytest.approx(1 / 2)
+    assert m["reliability"] == pytest.approx(2 / 3)
     assert m["abstention_recall"] == 1.0
     assert m["over_refusal_rate"] == 0.0
     assert m["unsupported_answer_rate"] == 0.0

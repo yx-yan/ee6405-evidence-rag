@@ -1,0 +1,201 @@
+question_id,scenario,answerable,score,coverage,retry_score,retry_coverage,top_doc,retry_top_doc,expanded_query
+can_Q1,answerable,1,0.7523788809776306,0.6258378777279107,0.7735607624053955,0.6258378777279107,can_9,can_14,What is the outlook for Adult Acute Lymphoblastic Leukemia ? marrow bone blood symptoms recovery
+can_Q3,answerable,1,0.6804300546646118,1.0,0.7351292371749878,1.0,can_36,can_31,Who is at risk for Adult Acute Myeloid Leukemia? ? aml blood having affect myeloblasts
+can_Q5,answerable,1,0.781216025352478,0.6224945491575862,0.8264244794845581,0.6224945491575862,can_42,can_46,What is the outlook for Adult Acute Myeloid Leukemia ? aml treated blasts remission untreated
+can_Q7,missing_evidence,0,0.7205544710159302,0.4080222569000429,0.773310124874115,0.669723984109699,can_4,can_1669,What are the symptoms of Chronic Lymphocytic Leukemia ? feeling tired fever loss bleeding
+can_Q9,answerable,1,0.7983214259147644,1.0,0.8364474177360535,1.0,can_1679,can_1679,What are the symptoms of Chronic Myelogenous Leukemia ? feeling bleeding tired bruising easy
+can_Q11,answerable,1,0.7497683763504028,0.5839116255843225,0.8287177085876465,0.5839116255843225,can_111,can_105,What is the outlook for Chronic Myelogenous Leukemia ? recovery prognosis chance options phase
+can_Q13,missing_evidence,0,0.7678449749946594,0.8030509949052002,0.742854118347168,1.0,can_153,can_125,Who is at risk for Hairy Cell Leukemia? ? blood marrow bone white worse
+can_Q15,answerable,1,0.8270562887191772,0.5567578704878334,0.7885372638702393,0.5567578704878334,can_153,can_125,What is the outlook for Hairy Cell Leukemia ? blood marrow bone white worse
+can_Q17,answerable,1,0.8317239880561829,1.0,0.8589032292366028,1.0,can_158,can_158,What are the symptoms of Childhood Acute Lymphoblastic Leukemia ? feeling bruising bleeding fever pain
+can_Q19,answerable,1,0.7706338763237,1.0000000000000002,0.8383253812789917,1.0000000000000002,can_203,can_213,What are the symptoms of Childhood Acute Myeloid Leukemia and Other Myeloid Malignancies ? aml mds feeling bruising jmml
+can_Q21,answerable,1,0.7183608412742615,0.8284667613466626,0.7609801888465881,0.8284667613466626,can_280,can_263,Who is at risk for Adult Soft Tissue Sarcoma? ? syndrome having thorium thorotrast vinyl
+can_Q23,answerable,1,0.7558077573776245,0.5980485270369619,0.8062219619750977,0.5980485270369619,can_280,can_269,What is the outlook for Adult Soft Tissue Sarcoma ? body tumor recovery tissues prognosis
+can_Q25,answerable,1,0.7899879217147827,1.0,0.7903120517730713,1.0,can_304,can_304,What are the symptoms of Gastrointestinal Stromal Tumors ? carcinoid feeling signs vomit pain
+can_Q27,missing_evidence,0,0.6971017122268677,0.695313205695662,0.8212621212005615,0.530218108178287,can_405,can_1081,What are the symptoms of Childhood Rhabdomyosarcoma ? teratoid rhabdoid atypical headache vomiting
+can_Q29,answerable,1,0.7368730306625366,1.0,0.8187284469604492,0.8183710969629006,can_456,can_444,Who is at risk for Childhood Soft Tissue Sarcoma? ? tumor having smooth retinoblastoma fibrohistiocytic
+can_Q31,answerable,1,0.8244799375534058,1.0,0.8355719447135925,0.7520490410469564,can_540,can_556,How to diagnose Childhood Vascular Tumors ? tests time always results ups
+can_Q33,answerable,1,0.7487782835960388,1.0,0.8467047214508057,1.0,can_566,can_566,What are the symptoms of Adult Hodgkin Lymphoma ? sweats night fever weight loss
+can_Q35,missing_evidence,0,0.7219129800796509,0.7811010802080577,0.7320020198822021,0.7811010802080577,can_585,can_565,Who is at risk for Adult Non-Hodgkin Lymphoma? ? having late factors unfavorable factor
+can_Q37,answerable,1,0.757973313331604,1.0,0.8385270833969116,1.0,can_680,can_680,What are the symptoms of AIDS-Related Lymphoma ? immunodeficiency sweats night fever weight
+can_Q39,answerable,1,0.8165971040725708,0.8619988848470408,0.8321881294250488,1.0,can_712,can_713,What are the symptoms of Mycosis Fungoides and the Szary Syndrome ? rash phase reddened skin hard
+can_Q41,answerable,1,0.7955935001373291,1.0,0.8028262853622437,1.0,can_758,can_749,What is (are) Primary CNS Lymphoma ? lymph system cord spinal form
+can_Q43,answerable,1,0.7832927107810974,0.5514537147819499,0.8447595834732056,0.5514537147819499,can_764,can_764,What is the outlook for Primary CNS Lymphoma ? trials clinical treatment patient options
+can_Q45,answerable,1,0.7549011707305908,0.7491343736103571,0.8307576179504395,1.0,can_836,can_783,What are the symptoms of Childhood Hodgkin Lymphoma ? sweats night reason fever weight
+can_Q47,answerable,1,0.7525791525840759,0.8057122857745169,0.8195566534996033,0.7744692528091384,can_836,can_783,What are the symptoms of Childhood Non-Hodgkin Lymphoma ? sweats night reason fever weight
+can_Q49,answerable,1,0.7102635502815247,1.0,0.8755365610122681,1.0,can_918,can_885,Who is at risk for Anal Cancer? ? hpv infected papillomavirus cases factors
+can_Q51,answerable,1,0.7196254730224609,0.6652403682825813,0.7857582569122314,0.6652403682825813,can_909,can_909,How to diagnose Anal Cancer ? stage treatment trials clinical remains
+can_Q53,answerable,1,0.6828527450561523,0.8501637866112933,0.7931123375892639,1.0,can_996,can_946,Who is at risk for Adult Central Nervous System Tumors? ? syndrome cns nf2 turcot nevoid
+can_Q55,answerable,1,0.7903764843940735,1.0,0.8178071975708008,1.0,can_948,can_949,What are the symptoms of Adult Central Nervous System Tumors ? brain spinal cord trouble tumor
+can_Q57,answerable,1,0.7129262685775757,0.8020709122294419,0.7805144786834717,1.0,can_963,can_962,What are the stages of Adult Central Nervous System Tumors ? brain spinal cord tumor grade
+can_Q59,answerable,1,0.8314095139503479,1.0,0.9084814190864563,1.0,can_1005,can_1005,What are the symptoms of Childhood Brain and Spinal Cord Tumors ? walking trouble signs unusual child
+can_Q61,answerable,1,0.834741473197937,0.623707099164446,0.874137282371521,0.623707099164446,can_1032,can_1032,What causes Childhood Astrocytomas ? brain benign glial known noncancer
+can_Q63,answerable,1,0.8351411819458008,1.0,0.8342191576957703,1.0,can_1034,can_1034,What are the symptoms of Childhood Astrocytomas ? weight child loss personality sleepiness
+can_Q65,answerable,1,0.7563912868499756,0.917458946397042,0.805313766002655,0.917458946397042,can_1095,can_1095,Who is at risk for Childhood Central Nervous System Atypical Teratoid/Rhabdoid Tumor? ? pediatric children brain oncologist tumors
+can_Q67,missing_evidence,0,0.8077749013900757,0.7739678202352164,0.8302590847015381,0.7739678202352164,can_1078,can_1078,What is the outlook for Childhood Central Nervous System Atypical Teratoid/Rhabdoid Tumor ? pediatric children brain oncologist tumors
+can_Q69,answerable,1,0.887413740158081,0.7619248432121829,0.9049520492553711,0.7619248432121829,can_1111,can_1118,What causes Childhood Brain Stem Glioma ? unknown difference tell tumors between
+can_Q71,answerable,1,0.8286556005477905,0.6130660303200541,0.8948469758033752,0.6130660303200541,can_1111,can_1118,What is the outlook for Childhood Brain Stem Glioma ? unknown difference tell tumors between
+can_Q73,answerable,1,0.7165880799293518,0.8769452719354403,0.8295776844024658,1.0,can_1158,can_1148,Who is at risk for Childhood Central Nervous System Embryonal Tumors? ? syndrome cns having tumor factors
+can_Q75,answerable,1,0.8264520168304443,0.6870484142252765,0.8715745210647583,0.6870484142252765,can_1158,can_1158,What is the outlook for Childhood Central Nervous System Embryonal Tumors ? brain cns embryonic benign malignant
+can_Q77,answerable,1,0.8885602951049805,0.8258152084941897,0.9260916709899902,0.8258152084941897,can_1191,can_1191,What causes Childhood Central Nervous System Germ Cell Tumors ? cns fetus form cells known
+can_Q79,answerable,1,0.825950562953949,0.701240362699251,0.8657761812210083,0.701240362699251,can_1191,can_1219,What is the outlook for Childhood Central Nervous System Germ Cell Tumors ? cns tumor recovery recurrent prognosis
+can_Q81,missing_evidence,0,0.678278923034668,0.710338349192621,0.7958635091781616,0.710338349192621,can_1223,can_1220,What are the symptoms of Childhood Craniopharyngioma ? craniopharyngiomas pituitary gland vision benign
+can_Q83,answerable,1,0.7182877659797668,0.6673468309144863,0.8130248188972473,0.6673468309144863,can_1232,can_1232,What are the stages of Childhood Craniopharyngioma ? trials clinical treatment known staging
+can_Q85,answerable,1,0.8385360240936279,0.9999999999999999,0.8533642888069153,0.9999999999999999,can_1262,can_1262,What are the symptoms of Childhood Ependymoma ? child trouble pain signs blurry
+can_Q87,answerable,1,0.7951784133911133,0.6666435097305647,0.851950466632843,0.6666435097305647,can_1290,can_1262,What are the stages of Childhood Ependymoma ? child trouble symptoms pain signs
+can_Q89,answerable,1,0.8443446755409241,1.0,0.8688781261444092,1.0,can_1296,can_1296,What are the symptoms of Adult Primary Liver Cancer ? lump abdomen right loss pain
+can_Q91,answerable,1,0.7173430919647217,1.0,0.7537356019020081,0.8510745402046156,can_1335,can_1345,Who is at risk for Bile Duct Cancer (Cholangiocarcinoma)? ? whether ducts trials cholangitis sclerosing
+can_Q93,answerable,1,0.7831752300262451,0.6377460503319511,0.8911620378494263,0.6377460503319511,can_1345,can_1349,What is the outlook for Bile Duct Cancer (Cholangiocarcinoma) ? whether trials options clinical completely
+can_Q95,answerable,1,0.8274658918380737,1.0,0.8670493364334106,1.0,can_1388,can_1388,What are the symptoms of Childhood Liver Cancer ? lump abdomen loss pain signs
+can_Q97,answerable,1,0.7875152230262756,1.0,0.7828772664070129,1.0,can_1432,can_1450,What is (are) Liver (Hepatocellular) Cancer ? hepatitis states united stools harmful
+can_Q99,answerable,1,0.8514151573181152,1.0,0.7645663619041443,1.0,can_1489,can_1453,What is (are) Ewing Sarcoma ? soft tissue arms legs bone
+can_Q101,answerable,1,0.825491189956665,0.4888983797400109,0.8159180879592896,0.4888983797400109,can_1489,can_1465,What is the outlook for Ewing Sarcoma ? initial came whether tumor back
+can_Q103,answerable,1,0.746020495891571,0.8873988447426424,0.8099117875099182,0.8873988447426424,can_1504,can_1495,Who is at risk for Osteosarcoma and Malignant Fibrous Histiocytoma of Bone? ? bones adolescents ewing forms common
+can_Q105,answerable,1,0.8532181978225708,0.7082672676280464,0.8829619884490967,0.7082672676280464,can_1504,can_1504,What is the outlook for Osteosarcoma and Malignant Fibrous Histiocytoma of Bone ? tests treatment repeated sports recurred
+can_Q107,answerable,1,0.7618367671966553,1.0,0.78155916929245,1.0,can_1540,can_1542,What are the symptoms of Gastrointestinal Carcinoid Tumors ? signs pain diarrhea abdominal intestine
+can_Q109,missing_evidence,0,0.6726495027542114,0.7821269679828041,0.7598839402198792,0.7821269679828041,can_1623,can_1616,What are the stages of Chronic Myeloproliferative Neoplasms ? trials clinical leukemia myelofibrosis treatment
+can_Q111,answerable,1,0.7563490271568298,1.0,0.8236280679702759,1.0,can_1626,can_1626,What are the symptoms of Polycythemia Vera ? blood headaches stroke fullness ribs
+can_Q113,answerable,1,0.7662007212638855,0.8396146847853816,0.7900565266609192,0.8396146847853816,can_1628,can_1628,What are the treatments for Polycythemia Vera ? phlebotomy interferon chronic treatment myelofibrosis
+can_Q115,answerable,1,0.7532082796096802,1.0,0.8529477119445801,1.0,can_1631,can_1631,What are the symptoms of Primary Myelofibrosis ? feeling tired fever bleeding ribs
+can_Q117,answerable,1,0.7660994529724121,0.7913546283699637,0.7994465827941895,0.7913546283699637,can_1634,can_1633,What are the treatments for Primary Myelofibrosis ? erythropoietic anemia prednisone pomalidomide thalidomide
+can_Q119,answerable,1,0.7463564872741699,1.0,0.7875514030456543,1.0,can_1636,can_1636,What are the symptoms of Essential Thrombocythemia ? platelets too signs platelet hands
+can_Q121,answerable,1,0.7244917154312134,0.8431612422875668,0.7503279447555542,0.8431612422875668,can_1638,can_1638,What are the treatments for Essential Thrombocythemia ? platelet interferon clinical acceptable anagrelide
+can_Q123,answerable,1,0.7746692895889282,0.8553207195998385,0.7880522012710571,0.8553207195998385,can_1640,can_1640,What are the treatments for Chronic Neutrophilic Leukemia ? interferon clinical search alfa using
+can_Q125,answerable,1,0.7989652156829834,0.9999999999999998,0.8557823896408081,0.9999999999999998,can_1642,can_1642,What are the symptoms of Chronic Eosinophilic Leukemia ? eosinophils feeling tired fever signs
+can_Q127,answerable,1,0.7776661515235901,1.0,0.81044602394104,1.0,can_98,can_95,What is (are) Chronic Myelogenous Leukemia ? blood white marrow bone cml
+can_Q129,answerable,1,0.6867982149124146,0.7917044482051421,0.7381231784820557,0.7917044482051421,can_1649,can_1654,What are the stages of Myelodysplastic/ Myeloproliferative Neoplasms ? neoplasm unclassifiable staging feeling mpn
+can_Q131,answerable,1,0.6670151948928833,0.3776523541056806,0.7581262588500977,1.0,can_36,can_1668,Who is at risk for Chronic Myelomonocytic Leukemia? ? having male exposed past factor
+can_Q133,missing_evidence,0,0.7074815034866333,0.33736322186408124,0.8237742185592651,0.33736322186408124,can_111,can_111,What is the outlook for Chronic Myelomonocytic Leukemia ? trials clinical myelogenous treatment listing
+can_Q135,answerable,1,0.7516047954559326,1.0,0.7772823572158813,1.0,can_1672,can_1672,What is (are) Juvenile Myelomonocytic Leukemia ? blood marrow bone white cells
+can_Q137,answerable,1,0.7160381078720093,0.6309414836951128,0.7826076149940491,0.6309414836951128,can_1672,can_1672,What is the outlook for Juvenile Myelomonocytic Leukemia ? monocytes myelocytes blood white cells
+can_Q139,missing_evidence,0,0.7388455271720886,1.0,0.8492012023925781,1.0,can_1679,can_1679,What is (are) Atypical Chronic Myelogenous Leukemia ? feeling bleeding weak bruising easy
+can_Q141,missing_evidence,0,0.738243579864502,0.4690283502404775,0.8093242645263672,0.4690283502404775,can_111,can_105,What is the outlook for Atypical Chronic Myelogenous Leukemia ? recovery prognosis chance options phase
+can_Q143,answerable,1,0.8095613121986389,1.0,0.8108782768249512,1.0,can_1684,can_1684,"What are the symptoms of Myelodysplastic/ Myeloproliferative Neoplasm, Unclassifiable ? uc myelomonocytic mds blood mpn"
+can_Q145,answerable,1,0.7375057935714722,1.0,0.7589898705482483,1.0,can_1790,can_1790,Who is at risk for Endometrial Cancer? ? having high age reaching estrogen
+can_Q147,answerable,1,0.8548855781555176,0.39598437886842325,0.8396950960159302,0.39598437886842325,can_1789,can_1789,What is the outlook for Endometrial Cancer ? black women slightly cured uterine
+can_Q149,missing_evidence,0,0.6901338696479797,0.7613187506623221,0.8149188756942749,0.7613187506623221,can_1762,can_1788,Who is at risk for Uterine Sarcoma? ? endometrial uterus black women cancer
+can_Q151,answerable,1,0.7810537815093994,0.49561611865744215,0.8248368501663208,0.49561611865744215,can_1762,can_1736,What is the outlook for Uterine Sarcoma ? uterus support recovery prognosis chance
+can_Q153,answerable,1,0.9131328463554382,0.782087359409281,0.8740344047546387,0.782087359409281,can_1800,can_1802,What causes Childhood Extracranial Germ Cell Tumors ? females cause lump signs abdomen
+can_Q155,answerable,1,0.8365775346755981,1.0,0.8357820510864258,1.0,can_1802,can_1802,What are the symptoms of Childhood Extracranial Germ Cell Tumors ? signs females puberty urination frequent
+can_Q157,missing_evidence,0,0.8312332630157471,1.0,0.8442038297653198,1.0,can_1859,can_1866,What is (are) Extragonadal Germ Cell Tumors ? tumor prognosis poor seminoma ldh
+can_Q159,answerable,1,0.8175221085548401,1.0,0.8124299645423889,1.0,can_1854,can_1854,What are the symptoms of Extragonadal Germ Cell Tumors ? signs females cause pain fever
+can_Q161,answerable,1,0.7846604585647583,1.0,0.8357046842575073,1.0,can_1886,can_1886,Who is at risk for Intraocular (Uveal) Melanoma? ? fair having factors mean whether
+can_Q163,answerable,1,0.8805809020996094,0.6159324613944452,0.8462671041488647,0.6159324613944452,can_1930,can_1895,What is the outlook for Intraocular (Uveal) Melanoma ? eye iris recovery prognosis chance
+can_Q165,answerable,1,0.7605302929878235,0.6463902481794225,0.7946826219558716,1.0,can_1979,can_1938,Who is at risk for Retinoblastoma? ? child heritable trilateral regular brain
+can_Q167,missing_evidence,0,0.8392245769500732,0.36025682800087444,0.7536128759384155,0.36025682800087444,can_1979,can_1979,What is the outlook for Retinoblastoma ? genetic trials retina counseling clinical
+can_Q169,answerable,1,0.8413751721382141,0.8304050585494542,0.8163309693336487,0.8304050585494542,can_2112,can_2106,"How to prevent Ovarian Epithelial, Fallopian Tube, and Primary Peritoneal Cancer ? risk factors smoking avoiding woman"
+can_Q171,missing_evidence,0,0.850566565990448,0.7479321609511009,0.8637208938598633,0.7479321609511009,can_2003,can_1986,"What is the outlook for Ovarian Epithelial, Fallopian Tube, and Primary Peritoneal Cancer ? risk women cancers increased consider"
+can_Q173,answerable,1,0.7870955467224121,1.0,0.7790078520774841,0.7998697469484088,can_2024,can_2022,What are the symptoms of Ovarian Germ Cell Tumors ? ovary egg ovaries reproductive female
+can_Q175,answerable,1,0.8618959188461304,1.0,0.8818463087081909,1.0,can_2062,can_2062,What is (are) Ovarian Low Malignant Potential Tumors ? ovary ovaries female disease carefully
+can_Q177,missing_evidence,0,0.8564996719360352,0.684696820601588,0.9072637557983398,0.684696820601588,can_2089,can_2064,What is the outlook for Ovarian Low Malignant Potential Tumors ? ovary pain signs symptoms swelling
+can_Q179,answerable,1,0.7872886657714844,1.0,0.8711434602737427,1.0,can_2124,can_2124,What are the symptoms of Gallbladder Cancer ? jaundice fever pain signs malignant
+can_Q181,answerable,1,0.6960710287094116,0.6946376756608099,0.7692563533782959,1.0,can_2196,can_2198,Who is at risk for Testicular Cancer? ? having testicle undescended men cryptorchidism
+can_Q183,answerable,1,0.7367984056472778,0.4120329066194694,0.7676680684089661,0.4120329066194694,can_2193,can_2194,What is the outlook for Testicular Cancer ? testicles testicle sperm spermatic scrotum
+can_Q185,answerable,1,0.6949961185455322,0.8068006164220202,0.8220887184143066,1.0,can_2241,can_2209,What are the symptoms of Gestational Trophoblastic Disease ? invasive thyroid overactive moles pregnancy
+can_Q187,answerable,1,0.775029718875885,0.8201413869729043,0.7426230907440186,1.0,can_2288,can_2242,Who is at risk for Langerhans Cell Histiocytosis? ? lch damage lesions places nails
+can_Q189,answerable,1,0.7463623881340027,0.7650750180574915,0.8339232206344604,0.7650750180574915,can_2288,can_2291,What are the stages of Langerhans Cell Histiocytosis ? lch database lesions trials pathologist
+can_Q191,missing_evidence,0,0.6559808850288391,1.0,0.7964597940444946,0.4395481459815966,can_2292,can_2460,What are the symptoms of Hypopharyngeal Cancer ? throat hypopharynx nasopharyngeal speaking trouble
+can_Q193,answerable,1,0.7862402200698853,0.8374734025739808,0.7868858575820923,0.8374734025739808,can_2332,can_2332,Who is at risk for Oral Cavity and Oropharyngeal Cancer? ? number men women cases factors
+can_Q195,answerable,1,0.6518813967704773,1.0,0.6997004151344299,1.0,can_2335,can_2335,Who is at risk for Laryngeal Cancer? ? larynx throat products cords vocal
+can_Q197,answerable,1,0.735708475112915,0.41990421631512614,0.8120364546775818,0.41990421631512614,can_2335,can_2375,What is the outlook for Laryngeal Cancer ? larynx treatment throat trials recovery
+can_Q199,answerable,1,0.7384026646614075,1.0,0.7985007762908936,1.0,can_2378,can_2378,Who is at risk for Lip and Oral Cavity Cancer? ? lips mouth use tobacco alcohol
+can_Q201,answerable,1,0.7805895209312439,0.6145484589865962,0.8052294254302979,0.6145484589865962,can_2376,can_2376,What is the outlook for Lip and Oral Cavity Cancer ? lips mouth tongue use second
+can_Q203,missing_evidence,0,0.8852192163467407,0.7152244827226617,0.9015495777130127,0.7152244827226617,can_2456,can_2456,What is the outlook for Metastatic Squamous Neck Cancer with Occult Primary ? clinical trials tract formed known
+can_Q205,answerable,1,0.8571264147758484,1.0,0.9237128496170044,1.0,can_2476,can_2490,What is (are) Nasopharyngeal Cancer ? nci listing retrieved website available
+can_Q207,answerable,1,0.7828457951545715,1.0,0.860821008682251,1.0,can_2460,can_2460,What are the symptoms of Nasopharyngeal Cancer ? speaking trouble hearing breathing ringing
+can_Q209,missing_evidence,0,0.8027017116546631,1.0,0.8245394825935364,1.0,can_2514,can_2510,What is (are) Oropharyngeal Cancer ? oropharynx stage centimeters lung situ
+can_Q211,missing_evidence,0,0.7126226425170898,0.6578147919214502,0.8248991370201111,0.6578147919214502,can_2499,can_2499,What are the symptoms of Oropharyngeal Cancer ? trials clinical exam neck tests
+can_Q213,answerable,1,0.7423691749572754,1.0,0.8366439342498779,1.0,can_2541,can_2541,Who is at risk for Paranasal Sinus and Nasal Cavity Cancer? ? dust workplace chemicals chance work
+can_Q215,answerable,1,0.8295475840568542,0.6891689868962825,0.8262133598327637,0.6891689868962825,can_2548,can_2548,What is the outlook for Paranasal Sinus and Nasal Cavity Cancer ? lifetime recovery prognosis granulomas chance
+can_Q217,answerable,1,0.7949694395065308,0.7955674731353078,0.78603196144104,0.7955674731353078,can_2607,can_2607,Who is at risk for Salivary Gland Cancer? ? glands saliva exposed mouth certain
+can_Q219,answerable,1,0.8533722162246704,0.5452157750183334,0.8172197341918945,0.5452157750183334,can_2607,can_2607,What is the outlook for Salivary Gland Cancer ? glands saliva mouth rare pairs
+can_Q221,answerable,1,0.730091392993927,0.6727867590183618,0.7945748567581177,1.0,can_2682,can_2648,Who is at risk for Pancreatic Cancer? ? having syndrome factor mean hereditary
+can_Q223,answerable,1,0.8020328283309937,0.38778255392929506,0.7561167478561401,0.38778255392929506,can_2682,can_2660,What is the outlook for Pancreatic Cancer ? pancreas recovery prognosis end chance
+can_Q225,answerable,1,0.8306027054786682,0.6815733625116406,0.8788584470748901,0.6815733625116406,can_2737,can_2737,What is the outlook for Pancreatic Neuroendocrine Tumors (Islet Cell Tumors) ? pancreas clinical whether trials recovery
+can_Q227,answerable,1,0.8756372332572937,1.0,0.885665237903595,1.0,can_2770,can_2770,What are the symptoms of Transitional Cell Cancer of the Renal Pelvis and Ureter ? pain urine signs form cells
+can_Q229,missing_evidence,0,0.8241445422172546,0.8350652536293601,0.7988378405570984,0.8350652536293601,can_2839,can_2839,What are the symptoms of Wilms Tumor and Other Childhood Kidney Tumors ? urine kidneys bladder renal increase
+can_Q231,answerable,1,0.7605006098747253,1.0,0.8067370057106018,1.0,can_3059,can_3039,How to prevent Breast Cancer ? risk factors smoking quitting ways
+can_Q233,answerable,1,0.7014963626861572,0.605265129436513,0.776869535446167,0.605265129436513,can_2986,can_2879,What are the symptoms of Breast Cancer ? nipple skin lump change bloody
+can_Q235,missing_evidence,0,0.6963797807693481,1.0,0.822417140007019,1.0,can_2944,can_2877,Who is at risk for Male Breast Cancer? ? mutated men gene genes hereditary
+can_Q237,answerable,1,0.6881880760192871,0.7568995530660089,0.7604582905769348,0.7568995530660089,can_2944,can_2949,What are the symptoms of Male Breast Cancer ? men felt lumps survival ductal
+can_Q239,answerable,1,0.7327843904495239,1.0,0.7768646478652954,1.0,can_2870,can_2871,What is (are) Breast Cancer ? lobes breasts ducts form malignant
+can_Q241,answerable,1,0.6388164758682251,1.0,0.7417038083076477,1.0,can_3067,can_3067,How to diagnose Skin Cancer ? cells epidermis keratosis actinic sunlight
+can_Q243,missing_evidence,0,0.6571353673934937,1.0,0.7083841562271118,1.0,can_1886,can_3209,Who is at risk for Melanoma? ? fair having skin burns easily
+can_Q245,answerable,1,0.6744226813316345,1.0,0.7320342063903809,1.0,can_3158,can_3119,How to diagnose Melanoma ? tests abnormal mole repeated continue
+can_Q247,answerable,1,0.7749587297439575,1.0,0.867998480796814,1.0,can_3161,can_3161,What is (are) Merkel Cell Carcinoma ? skin sun rare sensation trabecular
+can_Q249,answerable,1,0.6839994192123413,0.7861526158551849,0.7770945429801941,0.7861526158551849,can_3160,can_3160,What are the symptoms of Merkel Cell Carcinoma ? skin sun rare sensation trabecular
+can_Q251,answerable,1,0.7686315774917603,0.5646876306878711,0.8639942407608032,0.5646876306878711,can_3166,can_3166,What is the outlook for Merkel Cell Carcinoma ? prognosis recovery chance deeply grown
+can_Q253,answerable,1,0.7853372693061829,0.7422008203966339,0.8318518400192261,0.7422008203966339,can_3266,can_3266,What is the outlook for Plasma Cell Neoplasms (Including Multiple Myeloma) ? trials therapy supportive clinical plasmapheresis
+can_Q255,answerable,1,0.7026682496070862,1.0,0.7590069770812988,1.0,can_3275,can_3275,Is Neuroblastoma inherited ? gene parent mutation passed child
+can_Q257,answerable,1,0.7922899723052979,0.3587280704492979,0.8793885707855225,0.3587280704492979,can_3285,can_3319,What is the outlook for Neuroblastoma ? known trials clinical listing retrieved
+can_Q259,missing_evidence,0,0.6675543785095215,1.0,0.750554084777832,0.8292966500107302,can_3326,can_3341,Who is at risk for Non-Small Cell Lung Cancer? ? lungs recovery prognosis chance breathing
+can_Q261,answerable,1,0.7812930941581726,0.599454222626243,0.8059951663017273,0.599454222626243,can_3395,can_3341,What is the outlook for Non-Small Cell Lung Cancer ? lungs recovery prognosis chance breathing
+can_Q263,answerable,1,0.8472996354103088,1.0,0.8702307939529419,1.0,can_3403,can_3403,What are the symptoms of Small Cell Lung Cancer ? trouble cough loss signs chest
+can_Q265,answerable,1,0.7727718353271484,1.0,0.8019702434539795,1.0,can_3504,can_3472,What is (are) Parathyroid Cancer ? gland pth calcium neck glands
+can_Q267,answerable,1,0.8284416198730469,1.0,0.8287767767906189,1.0,can_3476,can_3476,What are the symptoms of Parathyroid Cancer ? neck signs glands weakness calcium
+can_Q269,answerable,1,0.8476579189300537,1.0,0.8420819640159607,1.0,can_3523,can_3505,What is (are) Penile Cancer ? penis erectile growths tissue stage
+can_Q271,answerable,1,0.748240053653717,0.6730700889228186,0.7842406034469604,0.6730700889228186,can_3509,can_3509,What are the symptoms of Penile Cancer ? penis erectile sores discharge form
+can_Q273,answerable,1,0.8112497329711914,0.42077912457761607,0.8323840498924255,0.42077912457761607,can_3523,can_3544,What is the outlook for Penile Cancer ? having hygiene pulled trials clinical
+can_Q275,answerable,1,0.7712811827659607,0.45220363852449125,0.7695299386978149,0.45220363852449125,can_3580,can_3562,What is the outlook for Pituitary Tumors ? gland tumor whether hormones recovery
+can_Q277,missing_evidence,0,0.6525870561599731,1.0,0.6797577738761902,1.0,can_3601,can_3611,What is (are) Prostate Cancer ? men hormones therapy bladder seminal
+can_Q279,answerable,1,0.7208352088928223,0.3912488546300924,0.758705198764801,0.3912488546300924,can_3589,can_3635,What is the outlook for Prostate Cancer ? men factors risk african american
+can_Q281,answerable,1,0.7250661849975586,1.0,0.7718751430511475,1.0,can_3683,can_3660,What is (are) Colon Cancer ? digestive colonography bowel tissues system
+can_Q283,missing_evidence,0,0.6333208084106445,0.8709379643949379,0.7186967730522156,0.4856092879754862,can_1543,can_3710,What are the symptoms of Colon Cancer ? stool carcinoid feeling abdominal diarrhea
+can_Q285,answerable,1,0.7406608462333679,1.0,0.8235366344451904,1.0,can_3714,can_3706,What is (are) Rectal Cancer ? rectum digestive bowel colon system
+can_Q287,answerable,1,0.7752788066864014,1.0,0.8371703624725342,1.0,can_3710,can_3710,What are the symptoms of Rectal Cancer ? carcinoid feeling bowel signs conditions
+can_Q289,answerable,1,0.7102441787719727,1.0,0.7683020830154419,1.0,can_3771,can_3662,Who is at risk for Colorectal Cancer? ? having colon history number increase
+can_Q291,answerable,1,0.7938753366470337,1.0,0.8796048164367676,1.0,can_3782,can_3782,What are the symptoms of Small Intestine Cancer ? unexplained weight loss abdomen pain
+can_Q293,answerable,1,0.6745935678482056,1.0,0.7713412642478943,1.0,can_3809,can_3812,What are the symptoms of Thymoma and Thymic Carcinoma ? thymus tests cough chest diseases
+can_Q295,answerable,1,0.8042652010917664,1.0,0.8268389105796814,1.0,can_3843,can_3843,What are the symptoms of Urethral Cancer ? urethra bladder urine urination trouble
+can_Q297,answerable,1,0.7466059923171997,1.0,0.7948067784309387,1.0,can_3882,can_3882,What are the symptoms of Vulvar Cancer ? vulva itching area bleeding lips
+can_Q299,answerable,1,0.799794614315033,0.41820771890593567,0.8135597705841064,0.41820771890593567,can_3881,can_3879,What is the outlook for Vulvar Cancer ? vaginal vin risk intraepithelial lips
+cov_Q293,out_of_domain,0,0.3036152124404907,0.0,0.610749363899231,0.0,can_3216,can_3216,For what  there is evidence for  the efficacy of hand washing? prevention trials prevent cancer clinical
+cov_Q75,out_of_domain,0,0.3460797965526581,0.0,0.5875811576843262,0.0,can_2332,can_2332,What percentage of people infected with MERS-CoV died? kaposi oropharyngeal sarcoma oral hpv
+cov_Q137,out_of_domain,0,0.3978499472141266,0.0,0.492127388715744,0.0,can_2250,can_2250,What do the DCs suffer with MERS-CoV infection? lch pediatric trouble affects bruising
+cov_Q11,out_of_domain,0,0.39566749334335327,0.12182394408880029,0.5991964936256409,0.0,can_2331,can_327,What age group had the most MERS-COV infections? kaposi sarcoma hhv groups risk
+cov_Q205,out_of_domain,0,0.23261681199073792,0.0403976315210015,0.3942863941192627,0.0,can_223,can_119,"What would  have the number of confirmed cases on the Diamond Princess cruise ship,  without a movement restriction starting on the 5th February 2020? treatment options tests prognosis depend"
+cov_Q179,out_of_domain,0,0.4827401041984558,0.0,0.5823150873184204,0.0,can_2279,can_2279,What responses must EMICT consider once a disease has been identified? tests reactivation repeated trials test
+cov_Q155,out_of_domain,0,0.2170615941286087,0.0,0.46837282180786133,0.0,can_2232,can_2232,How long MERS-CoV remained viable at high ambient temperature (30°C) and low RH (30 %) ? hydatidiform hcg mole egg become
+cov_Q195,out_of_domain,0,0.43200334906578064,0.0,0.5450144410133362,0.0,can_1598,can_25,What was the mean delay from symptom onset to detection/hospitalization of a case? tests continue treatment repeated follow
+cov_Q41,out_of_domain,0,0.25305938720703125,0.0,0.7086047530174255,0.0,can_888,can_887,What does ANFIS offer? rectum short anal lighted exam
+cov_Q279,out_of_domain,0,0.3910071849822998,0.19660439905014176,0.5030800104141235,0.19660439905014176,can_2250,can_2250,What are the most common symptoms of COVID19? bleeding feeling bruising easy tired
+cov_Q23,out_of_domain,0,0.29355254769325256,0.16230576928825038,0.4090256690979004,0.16230576928825038,can_382,can_382,What is the length of the replicase gene ORF1ab? chromosomes genes laboratory slide look
+cov_Q173,out_of_domain,0,0.3463118076324463,0.0,0.6557265520095825,0.0,can_3238,can_757,What must the data gathering include? blood red sample number cells
+cov_Q263,out_of_domain,0,0.27985483407974243,0.0,0.552227258682251,0.0,can_738,can_712,What do the S1 and S2 subunits of spike glycoprotein contain? szary fungoides mycosis brain syndrome
+cov_Q211,out_of_domain,0,0.18162399530410767,0.0,0.7257809638977051,0.0,can_3598,can_3599,What is assumed for the mean serial interval? psa gleason score level prostate
+cov_Q219,out_of_domain,0,0.4826928377151489,0.31277420103853215,0.6409884691238403,0.31277420103853215,can_3277,can_783,What symptoms were reported? fever signs loss sweats child
+cov_Q189,out_of_domain,0,0.2946186065673828,0.0,0.5190385580062866,0.10329431395402261,can_1489,can_327,What  could account for the high transmission rate of the 2019-nCOV virus? kaposi sarcoma lymphoma hhv starts
+cov_Q187,out_of_domain,0,0.496650367975235,0.0,0.6983127593994141,0.10854878152065622,can_1251,can_1225,What test could give an indication for special care for 2019-nCOV patients? exam tests craniopharyngioma check history
+cov_Q53,out_of_domain,0,0.3051159381866455,0.06083000662103906,0.5454383492469788,0.06083000662103906,can_922,can_2497,Use of SIR/SEIR model in Statistics-Based Predictions of Coronavirus Epidemic Spreading? hpv risk oropharyngeal cancer anal
+cov_Q153,out_of_domain,0,0.16921119391918182,0.0,0.455275297164917,0.0,can_153,can_2232,When does the camel calving season? hydatidiform hcg mole hairy until
+cov_Q21,out_of_domain,0,0.34397369623184204,0.0,0.6737427711486816,0.3677615667851525,can_757,can_3064,Who performed the sampling procedures? blood breast thermography sample red
+cov_Q27,out_of_domain,0,0.4238954186439514,0.0869124577178464,0.5537060499191284,0.0869124577178464,can_825,can_825,What plays a role in regulating the immune response to a viral infection? lymphocytes lymph network system blood
+cov_Q139,out_of_domain,0,0.334639310836792,0.0,0.4853332042694092,0.0,can_25,can_105,What is the median time to death in case of progressive illness? treatment recovery prognosis options late
+cov_Q277,out_of_domain,0,0.23813436925411224,0.0,0.5775350332260132,0.0,can_684,can_575,When did the WHO declare COVID to be a Public Health Emergency of International Concern? lymphoma hodgkin trials risk clinical
+cov_Q91,out_of_domain,0,0.5198242664337158,0.10262119721724806,0.6395959258079529,0.10262119721724806,can_40,can_40,What enhancements to the molecular tests were looked at? chromosomes test changes look cells
+cov_Q209,out_of_domain,0,0.38092121481895447,0.0,0.7584304213523865,0.0,can_327,can_337,When does the infectivity of SARS-COV peak? kaposi sarcoma epidemic lesions hiv
+neu_Q119,out_of_domain,0,0.4243374466896057,0.2184222507506824,0.657246470451355,0.0,can_1063,can_1072,What are the treatments for Dystonias ? lch childhood grade astrocytoma mek
+neu_Q261,out_of_domain,0,0.5421874523162842,0.0,0.7420499920845032,0.2184222507506824,can_1235,can_1237,What are the treatments for Schizencephaly ? trials clinical craniopharyngioma treatment pediatric
+neu_Q113,out_of_domain,0,0.47042831778526306,0.0,0.6221559047698975,0.0,can_1072,can_746,What are the treatments for Dyssynergia Cerebellaris Myoclonica ? topical fungoides mycosis therapy clinical
+neu_Q35,out_of_domain,0,0.4939035177230835,0.0,0.630703866481781,0.0,can_1072,can_1072,What are the treatments for Ataxia Telangiectasia ? clinical trials topical astrocytoma nci
+neu_Q291,out_of_domain,0,0.46693581342697144,0.0,0.6246840357780457,0.2600225321113874,can_1072,can_744,What are the treatments for Troyer Syndrome ? topical fungoides mycosis therapy clinical
+neu_Q189,out_of_domain,0,0.3942312002182007,0.12715310712242195,0.5526430010795593,0.0,can_2278,can_1782,What is the outlook for Menkes Disease ? syndrome reactivation metabolic endometrial lch
+neu_Q93,out_of_domain,0,0.5612131357192993,0.0,0.6544653177261353,0.0,can_944,can_944,What is (are) Craniosynostosis ? craniopharyngioma tsh acth craniopharyngiomas brain
+neu_Q69,out_of_domain,0,0.46917012333869934,0.0,0.6634957790374756,0.0,can_3506,can_3506,What is the outlook for Cavernous Malformation ? penis erectile penile corpus spongiosum
+neu_Q179,out_of_domain,0,0.4519912004470825,0.15929865460829185,0.6925356388092041,0.0,can_1234,can_1235,What are the treatments for Learning Disabilities ? trials clinical craniopharyngioma treatment improved
+neu_Q65,out_of_domain,0,0.46373263001441956,0.1786859855770355,0.6561759114265442,0.1786859855770355,can_744,can_746,What are the treatments for Complex Regional Pain Syndrome ? therapy topical fungoides mycosis clinical
+neu_Q213,out_of_domain,0,0.34141308069229126,0.0,0.6009659767150879,0.0,can_717,can_1883,What is (are) Myotonia ? light eye iris intraocular layer
+neu_Q187,out_of_domain,0,0.41398096084594727,0.13033238526500118,0.7343422770500183,0.13033238526500118,can_718,can_712,What is the outlook for Melkersson-Rosenthal Syndrome ? szary fungoides mycosis cancerous blood
+neu_Q103,out_of_domain,0,0.47409942746162415,0.0,0.5176349878311157,0.0,can_967,can_748,What are the treatments for Neurological Consequences of Cytomegalovirus Infection ? lesions therapy steroid chemotherapy topical
+neu_Q39,out_of_domain,0,0.309123158454895,0.0,0.6963977217674255,0.0,can_1735,can_812,What is (are) Dysautonomia ? hodgkin lymphoma proteasome drugs antibodies
+neu_Q255,out_of_domain,0,0.5046671628952026,0.0,0.6389179229736328,0.0,can_1136,can_1136,What are the treatments for Rasmussen's Encephalitis ? lesions steroid chemotherapy therapy glioma
+neu_Q75,out_of_domain,0,0.4648806154727936,0.0,0.5834862589836121,0.0,can_931,can_931,What is (are) Cerebral Palsy ? brain controls exam cord spinal
+neu_Q243,out_of_domain,0,0.48231881856918335,0.0,0.6485967040061951,0.0,can_1628,can_1628,What are the treatments for Polymyositis ? polycythemia vera plasma therapy extra
+neu_Q105,out_of_domain,0,0.4299471974372864,0.09742830827014796,0.6147898435592651,0.09742830827014796,can_767,can_767,What are the treatments for Deep Brain Stimulation for Parkinson's Disease ? radiation therapy cns stem lymphoma
+neu_Q223,out_of_domain,0,0.45314544439315796,0.10870605200499726,0.6804924011230469,0.10870605200499726,can_739,can_720,What are the treatments for Niemann-Pick Disease ? trials szary fungoides mycosis clinical
+neu_Q293,out_of_domain,0,0.5564532279968262,0.8404754587877677,0.6374884843826294,0.0,can_1069,can_2282,What are the treatments for Tuberous Sclerosis ? lesions steroid therapy lch bone
+neu_Q287,out_of_domain,0,0.43470749258995056,0.0,0.6367708444595337,0.0,can_1069,can_1048,What are the treatments for Tourette Syndrome ? clinical trials astrocytoma astrocytomas treatment
+neu_Q123,out_of_domain,0,0.5213985443115234,0.0,0.6796067953109741,0.2184222507506824,can_1136,can_1049,What are the treatments for Encephalopathy ? fluid brain glioma diversion astrocytomas
+neu_Q15,out_of_domain,0,0.3460350036621094,0.0,0.5494813919067383,0.0,can_1259,can_950,What is (are) Anencephaly ? brain cord spinal exam controls
+neu_Q165,out_of_domain,0,0.46420612931251526,0.0,0.5694519281387329,0.0,can_720,can_3811,What is the outlook for Inflammatory Myopathies ? thymoma trials clinical topical syndrome
+neu_Q61,out_of_domain,0,0.5313910245895386,0.2184222507506824,0.6525850892066956,0.0,can_1870,can_2269,What are the treatments for CADASIL ? chemotherapy lch cells drugs late

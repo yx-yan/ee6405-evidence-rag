@@ -26,6 +26,9 @@ def get_method(name: str, **kwargs) -> "Method":
 class Method(ABC):
     name: str = "base"
 
+    def __init__(self, dataset: str | None = None):
+        self.dataset = dataset          # evaluation set name; None means config.dataset_name()
+
     @abstractmethod
     def _answer(self, question: str) -> tuple[str | None, list[RetrievedDoc], dict]:
         """Return (answer or None to abstain, retrieved docs, meta)."""

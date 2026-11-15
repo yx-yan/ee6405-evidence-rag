@@ -107,7 +107,7 @@ def load(model_dir: str | None = None):
         if model_dir != cfg["model_dir"] or not cfg.get("release"):
             raise RuntimeError(f"Generator model not found at {model_dir}")
         download(model_dir, cfg["release"])
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_dir).to(device).eval()
     return tokenizer, model, device
@@ -129,6 +129,23 @@ def generate(question: str, contexts=None, *, model_dir: str | None = None, **ov
     with torch.no_grad():
         output = model.generate(**batch, **gen)
     return tokenizer.decode(output[0], skip_special_tokens=True).strip()
+
+
+def fit_contexts(question: str, docs: list) -> tuple[list, int]:
+    """The first retrieval.context_k docs that fit generator.max_source_tokens together with the
+    question (a doc that does not fit is skipped), and the resulting input length in tokens."""
+    tokenizer, _, _ = load()
+    budget = int(settings().get("max_source_tokens", 1024))
+    context_k = load_config()["retrieval"]["context_k"]
+    contexts = []
+    for doc in docs:
+        if len(tokenizer(format_input(question, contexts + [doc]))["input_ids"]) <= budget:
+            contexts.append(doc)
+        if len(contexts) == context_k:
+            break
+    if docs and not contexts:
+        raise ValueError("No retrieved passage fits the generator input budget")
+    return contexts, len(tokenizer(format_input(question, contexts))["input_ids"])
 
 
 def decoding(cfg: dict | None = None) -> dict:

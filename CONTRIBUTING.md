@@ -3,7 +3,7 @@
 ## Branches & pull requests
 
 - `main` is always runnable and protected: changes go in through a pull request with one approval and passing CI.
-- Branch per task, prefixed with your role: `a-corpus`, `b-retriever`, `c-threshold`, `d-judge`, `e-metrics`.
+- Branch per task, prefixed with your role letter: e.g. `a-three-datasets`, `c-graph-rag`, `e-metrics`.
 - Keep PRs small (one feature each), and pull `main` often (`git pull origin main`).
 - PRs are squash-merged.
 
@@ -15,10 +15,10 @@
 
 ## Experimental rules
 
-- Read model names, `top_k` and the seed from `configs/default.yaml`. Never hard-code them.
+- Read model names, `top_k`, the seed and dataset paths from `configs/default.yaml` (`evrag.config.dataset_paths`). Never hard-code them.
 - Tune thresholds and prompts on the **dev** split only. The **test** split is for final numbers.
-- Retrieval goes only through `evrag.retriever`.
-- A method PR includes a 20-question smoke run: `results/runs/<method>_dev20.jsonl`.
+- Dense retrieval goes through `evrag.retriever.search(query, top_k, dataset)`; answers through `evrag.generator`.
+- A method PR includes a 20-question smoke run: `python -m evrag.evaluation.run_experiment --dataset cancer --method <name> --split dev --limit 20`.
 
 ## Commits
 
@@ -39,4 +39,4 @@
 
 ## AI tools
 
-Our submission includes an AI disclosure form. If you use an AI tool (ChatGPT, Claude, Copilot, ...), keep the shareable chat link and note what you used it for in the PR. Understand and be able to explain every line you commit.
+Our submission includes an AI disclosure form. If you use an AI tool (ChatGPT, Claude, Copilot, ...) for writing code, keep the shareable chat link and note what you used it for in the PR. Understand and be able to explain every line you commit.

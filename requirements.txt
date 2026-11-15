@@ -5,10 +5,12 @@ pyyaml
 tqdm
 matplotlib
 jupyter
+nltk              # BLEU-4 and METEOR in scripts/final_metrics.py
 
 # Retrieval
 sentence-transformers
 faiss-cpu
+scikit-learn      # TF-IDF baseline in the retrieval comparison
 
 # Front-end and token attributions (the demo also needs torch + transformers, see requirements-generator.txt)
 streamlit>=1.67   # st.pills, st.segmented_control, st.iframe, st.context.theme, persist_state

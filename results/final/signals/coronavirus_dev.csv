@@ -1,0 +1,183 @@
+question_id,scenario,answerable,score,coverage,retry_score,retry_coverage,top_doc,retry_top_doc,expanded_query
+cov_Q2,answerable,1,0.6963850259780884,0.7741521724677367,0.791162371635437,0.7741521724677367,cov_2,cov_2,What is the size of the orf1ab gene in bovine coronavirus? bcov nucleotide accession identity strain
+cov_Q4,answerable,1,0.7659866809844971,0.843822540205687,0.923675537109375,0.843822540205687,cov_11,cov_11,Which Human Coronavirus showed species specific clinical characteristics of its infection? hcov adolescents otherwise adults ili
+cov_Q8,missing_evidence,0,0.6893157958984375,0.15386223532148355,0.6863362789154053,0.3859751090960289,cov_699,cov_31,What influenza virus was identified in China in 2013? epidemic italy emergency public health
+cov_Q10,missing_evidence,0,0.5909378528594971,0.3489251403401241,0.6649336814880371,0.3489251403401241,cov_42,cov_42,What is the incubation period for MERS-COV? days illness mouth ranging nose
+cov_Q12,answerable,1,0.5164605975151062,0.09543304674890128,0.6467094421386719,0.09401021300828045,cov_62,cov_70,What health regulations were changes due to the outbreak of C. burnetti? farmers market fever anti asked
+cov_Q14,answerable,1,0.5978097915649414,0.3854843762367048,0.7327951192855835,0.3854843762367048,cov_57,cov_57,What important risk factors to infection were found during the second case-controlled study? suspected cases demographic mers data
+cov_Q16,answerable,1,0.5561522245407104,0.4767087351543779,0.5648803114891052,0.4767087351543779,cov_91,cov_91,What public event was linked with the outbreak? information media lessons journalists farmers
+cov_Q18,answerable,1,0.44400960206985474,0.693429724737059,0.5968740582466125,0.5499817492767545,cov_65,cov_63,What is the primary reservoir for Coxiella burnetii? fever sheep approximately market wind
+cov_Q20,answerable,1,0.7393360137939453,0.6090322483103199,0.8822710514068604,0.6090322483103199,cov_118,cov_118,Where have most outbreaks of equine coronavirus occurred in the United States? horses ecov ireland foals usa
+cov_Q22,answerable,1,0.37626969814300537,0.4446490784651958,0.6793584227561951,0.258933832601508,cov_464,cov_236,What reference genome was used in the study? cov ratg13 mers sars sequencing
+cov_Q24,missing_evidence,0,0.6550522446632385,0.21610825744484968,0.7170299291610718,0.21610825744484968,cov_146,cov_146,What type of coronavirus was detected in R. affinis and R. sinicus species? btcov yn2012 rh distinct sampled
+cov_Q26,answerable,1,0.6450889706611633,0.5149741697202499,0.7944234609603882,0.12758113378397462,cov_467,cov_468,What is the genome size of the coronavirus? changes genetic mers clade sequences
+cov_Q28,missing_evidence,0,0.7254064083099365,0.05457379855855926,0.8119440078735352,0.05457379855855926,cov_842,cov_842,What is the conclusion of the coronavirus long-term surveillance studies? january reporting rate ci number
+cov_Q30,answerable,1,0.5742044448852539,0.8435374303392277,0.6525581479072571,0.552770630106826,cov_182,cov_183,What proportion of healthcare workers reported symptoms  of depression? item health vs insomnia iqr
+cov_Q32,answerable,1,0.4770765006542206,0.7772800133940561,0.6345648169517517,0.5924474168573723,cov_181,cov_183,What were the Generalized Anxiety Disorder scale scores? vs workers health insomnia iqr
+cov_Q34,answerable,1,0.5366682410240173,0.688932539827405,0.6738736033439636,0.688932539827405,cov_225,cov_225,What is the number of confirmed cases reached on 8 February 2020? january commission data china official
+cov_Q36,answerable,1,0.5363086462020874,0.6405723861434173,0.5509732365608215,0.3746464893848291,cov_210,cov_195,"What did the comparison of  the FPASSA-ANFIS model with several existing models, show? fpa solution method layer proposed"
+cov_Q38,missing_evidence,0,0.3114190995693207,0.0,0.4510185122489929,0.0,cov_58,cov_232,What were the outcomes of the test? wj suspected cases only help
+cov_Q42,answerable,1,0.272052139043808,0.0,0.3500872254371643,0.0,cov_520,cov_32,In which applications has it been applied? cardiologist pennsylvania words restricted installed
+cov_Q44,answerable,1,0.3117692172527313,1.0,0.5153511166572571,0.21982656208122614,cov_192,cov_198,What may be a problem with individual SI algorithm? pollination anfis output layer optimization
+cov_Q46,missing_evidence,0,0.5698513984680176,0.4576083305411098,0.6348903179168701,0.4576083305411098,cov_195,cov_195,What  is the FPA optimization algorithm inspired by? solution fpassa ssa value method
+cov_Q48,answerable,1,0.35753676295280457,0.6217518736492812,0.5082828998565674,0.6217518736492812,cov_195,cov_195,How does the proposed FPASSA start? solution anfis fpa ssa method
+cov_Q50,missing_evidence,0,0.6926428079605103,0.19310749689983916,0.7552354335784912,0.19310749689983916,cov_565,cov_976,What can be the main challenges in managing a hospital outbreak of COVID-19? crises humanitarian ct spread individuals
+cov_Q52,answerable,1,0.7091938853263855,0.7625600407076214,0.7237503528594971,0.28230736511208937,cov_553,cov_541,Why exposure risk of COVID-19 is very high for ICU staff and what precautions should be taken? area contaminated procedures contact includes
+cov_Q54,answerable,1,0.20885738730430603,0.0,0.39460107684135437,0.0,cov_282,cov_100,What  is it most similar to? seroprevalence urban flocks cov human
+cov_Q56,answerable,1,0.6975675821304321,0.6678329912160201,0.7725327610969543,0.6678329912160201,cov_236,cov_236,How much is the difference between the human SARS-CoV-2 and the bat RaTG13-CoV? ace2 covs evolutionary laboratory pattern
+cov_Q58,answerable,1,0.3938419222831726,0.0,0.4251912832260132,0.0,cov_561,cov_561,What did the Nature Medicine paper report? www shaded cn developments nhc
+cov_Q60,answerable,1,0.7453964948654175,0.8382183598823619,0.7881900072097778,0.8382183598823619,cov_238,cov_238,How did  the SARS-CoV gain elevated replication and lung pathogenesis in aged mice ? host resilience ma15 claim mutations
+cov_Q62,answerable,1,0.38609522581100464,0.0,0.5516481995582581,0.0,cov_232,cov_232,What were the results of this test? wj health points publically circles
+cov_Q66,answerable,1,0.3549268841743469,0.0,0.5159749388694763,0.0,cov_833,cov_23,What happened to the report with initial claims? swerdlow pfizer january number ci
+cov_Q68,answerable,1,0.7841653227806091,0.5109324792029093,0.8215783834457397,0.5109324792029093,cov_235,cov_235,"When did we discover that SARS-CoV-2, which causes COVID-19, was a novel coronavirus? laboratory claims credible engineering supporting"
+cov_Q70,answerable,1,0.6996654868125916,0.3049703668470631,0.8299950957298279,0.2213056146735093,cov_236,cov_242,How long did it take to publish the full genomic sequence of SARS-CoV-2 after it was identified? laboratory hiv credible ratg13 claim
+cov_Q72,answerable,1,0.5592399835586548,0.28433961714637157,0.7253572344779968,0.28433961714637157,cov_979,cov_979,Who is at risk when health workers fail to wash their hands? humanitarian hygiene hand crises autoinfection
+cov_Q74,answerable,1,0.6373860836029053,0.14305244407106418,0.7566661834716797,0.14305244407106418,cov_271,cov_237,What family of virus does SARS reside in? cov laboratory ratg13 origin bat
+cov_Q76,answerable,1,0.6422608494758606,0.5595384229542897,0.7577387094497681,0.5595384229542897,cov_704,cov_704,What percentage of people infected with SARS-CoV died? less pregnant caused mothers mers
+cov_Q78,answerable,1,0.6485487222671509,0.7200488500634579,0.758992075920105,0.7200488500634579,cov_282,cov_282,How does cell-entry differ between SARS-CoV and MERS-CoV? coronaviruses ratg13 emerging tolerant response
+cov_Q80,answerable,1,0.6408405900001526,0.5615207910707968,0.6992781162261963,0.13345490309244845,cov_283,cov_238,How do SARS-CoV and MERS-CoV evade the immune system sensing it's genome? mice ratg13 ma15 bat mouse
+cov_Q82,answerable,1,0.7115998268127441,0.5837374534376315,0.7229604721069336,0.5837374534376315,cov_283,cov_283,How do SARS-CoV viral proteins interact with the immune response? mice ma15 coronaviruses mers mouse
+cov_Q86,answerable,1,0.38180896639823914,1.0,0.487687349319458,1.0,cov_8,cov_8,What are the symptoms at the onset? symptom severity scores score sum
+cov_Q88,answerable,1,0.25008121132850647,1.0,0.5011807680130005,0.0,cov_939,cov_841,What studies  were excluded? imai effort cases imported screening
+cov_Q90,answerable,1,0.23351937532424927,0.6820054679468401,0.4829350709915161,0.6820054679468401,cov_307,cov_307,How does RT-LAMP compare with other methods? pcr algorithms depicts assay iipcr
+cov_Q92,answerable,1,0.3738967478275299,1.0,0.5494776964187622,0.7341586247708923,cov_310,cov_308,What is the threshold sensitivity of  Real time PCR? rt assay rrt diagnostic equivalents
+cov_Q94,answerable,1,0.501018226146698,0.7304446230870729,0.5608491897583008,0.7304446230870729,cov_328,cov_328,What are potential vaccines based on? vaccine vaccination development given emerging
+cov_Q96,answerable,1,0.5231744050979614,0.2628251685841402,0.5957529544830322,0.2628251685841402,cov_328,cov_328,What is te safety of the vaccines? vaccine vaccination ncov webpage cepi
+cov_Q98,answerable,1,0.31770071387290955,0.46714356633555354,0.6056489944458008,0.5328564336644463,cov_611,cov_639,What were  the T-cell responses? ifn cells autophagy il ifns
+cov_Q100,answerable,1,0.35199904441833496,0.11585081443377639,0.46358346939086914,0.11585081443377639,cov_58,cov_58,What are the many prospective and restrospective studies  conducted on? suspected factors www demographic help
+cov_Q102,missing_evidence,0,0.48255395889282227,0.19821542047021481,0.6411008834838867,0.0,cov_58,cov_547,What  are ways to perform laboratory diagnostics? suspected cases ct confirmed patient
+cov_Q104,answerable,1,0.42501944303512573,0.1981891346139822,0.6356075406074524,0.1981891346139822,cov_58,cov_58,What is a key limitation of serological  testing? suspected cases mers fatal demographic
+cov_Q106,missing_evidence,0,0.4616900086402893,0.5052702820273383,0.4232025742530823,0.5052702820273383,cov_317,cov_317,What  superiority did the treatment with integrative chinese and western medicine treatment have compared with using control treatment alone? usage participants tongue trial www
+cov_Q108,answerable,1,0.4183995723724365,0.32129399038021494,0.5415525436401367,0.0,cov_427,cov_557,What is the disadvantage of upper respiratory tract specimens? urt lrt ct examination chest
+cov_Q110,answerable,1,0.5996659994125366,1.0,0.6349577903747559,1.0,cov_322,cov_322,Why are Nucleic amplification tests (NAAT) usually preferred as in the case of MERS-CoV diagnosis? rt viral lamp loads serology
+cov_Q112,answerable,1,0.39122992753982544,0.0,0.4543409049510956,1.0,cov_232,cov_841,What were the results? imai effort wj www screening
+cov_Q114,answerable,1,0.5599472522735596,0.5901198254035724,0.6278300285339355,0.5901198254035724,cov_362,cov_372,What ion channel is essential for 3a-mediated IL-1Beta secretion? cys et al nlrp3 protein
+cov_Q120,answerable,1,0.5913513898849487,0.8378746271719628,0.6232002973556519,0.8378746271719628,cov_350,cov_350,How many amino acids are in the SARS-CoV E protein? et al 3a ion nlrp3
+cov_Q122,answerable,1,0.7880468368530273,0.421185525467967,0.8549546003341675,0.421185525467967,cov_244,cov_242,Where was SARS-CoV-2 first identified? credible hiv laboratory claims engineering
+cov_Q124,answerable,1,0.6901064515113831,0.4759132431398096,0.7730382680892944,0.539707207023746,cov_446,cov_465,In what animals MERS-CoV sequences have been found ? variants genomes dc epidemiology fragment
+cov_Q134,answerable,1,0.33417946100234985,0.2012312791808292,0.5448827743530273,0.0,cov_959,cov_953,What did the discovery process over two to three years reveal? 3i tool isolate inform identify
+cov_Q136,missing_evidence,0,0.625053882598877,0.15343459163370174,0.7407699823379517,0.15343459163370174,cov_461,cov_462,Who gets more severe disease from MERS? proportion ksa fatal females days
+cov_Q138,answerable,1,0.5284557342529297,0.23335326249867644,0.5884556770324707,0.09025113126165879,cov_672,cov_753,What is the duration between when illness begins in one person and subsequently spreads to another? days onset period incidence dataset
+cov_Q140,answerable,1,0.3416516184806824,0.0,0.53264319896698,0.0,cov_440,cov_440,What is severe MARS noted for? dcs mers cov arabian peninsula
+cov_Q142,answerable,1,0.6658315658569336,1.0,0.7177561521530151,0.37511622100800535,cov_407,cov_462,What was mortality in  South Korea from MERS disease? cases females proportion ksa male
+cov_Q144,answerable,1,0.6988016366958618,1.0,0.741843581199646,1.0,cov_413,cov_413,What is the sensitivity with which immunochromatographic tool could detect recombinant MERS-CoV nucleocapsid protein? assays rtpcr validated specificity rt
+cov_Q146,missing_evidence,0,0.25588247179985046,0.0,0.558093786239624,0.0,cov_282,cov_920,What paired sera are preferable? resuscitation dilution cov anti kg
+cov_Q150,missing_evidence,0,0.775942325592041,0.39895926271843707,0.7962431907653809,0.39895926271843707,cov_61,cov_61,What is the the proportion of deaths among those infected with MERS-CoV? sustained caused transmission cases outbreaks
+cov_Q152,answerable,1,0.5818358659744263,0.1497223053256066,0.641273021697998,0.1497223053256066,cov_101,cov_101,What must be reported to the world organization for animal health as an emerging disease ? animals recommendations farm awareness human
+cov_Q154,answerable,1,0.7290787100791931,0.3335141105363965,0.838255763053894,0.3335141105363965,cov_61,cov_61,What ablated MERS-COV infection completely? dc detected laboratory epidemiology unclear
+cov_Q156,answerable,1,0.6431187391281128,1.0,0.708543062210083,1.0,cov_455,cov_455,How long can pathogenic bacteria remain viable and airborne in a coughed aerosol? rooms mers doctor periods cov
+cov_Q158,missing_evidence,0,0.4523468315601349,0.5397566228410455,0.5058862566947937,0.5397566228410455,cov_488,cov_405,Why has MERS had a constant presence in the Arabian Peninsula? cov definition ksa bars nonetheless
+cov_Q160,answerable,1,0.48957622051239014,0.5362050733998676,0.5709609985351562,0.5362050733998676,cov_57,cov_462,Which city has had has had more MERS cases than any other region of the KSA ? females proportion male always among
+cov_Q162,missing_evidence,0,0.30405372381210327,0.17426035946825802,0.4489324390888214,0.17426035946825802,cov_664,cov_664,How were the transmission circumstances created? people bats defined person model
+cov_Q164,missing_evidence,0,0.358136922121048,0.08243514957943554,0.6490200161933899,0.08243514957943554,cov_78,cov_78,What would  aid accurate calculation of a case fatality ratio? children cases adults fever estimated
+cov_Q166,answerable,1,0.7584068179130554,0.3436924093233902,0.7949967384338379,0.23031518397681067,cov_485,cov_421,Is there any evidence that MERS-CoV is a virus of pandemic concern? hcov laboratory transmission elisa essential
+cov_Q168,answerable,1,0.442705899477005,1.0,0.8116815686225891,1.0,cov_263,cov_263,How is PHEIC defined? ebola emergency declaration committee lessons
+cov_Q170,missing_evidence,0,0.7904050350189209,0.5856758008211539,0.8223780393600464,0.4164270812444933,cov_551,cov_548,What's the recommended procedure to disinfect at CT scanner after a COVID-19 exposure? examination disinfection technologist patient chest
+cov_Q172,answerable,1,0.5875419974327087,0.3328715988355672,0.6593844294548035,0.3328715988355672,cov_546,cov_546,What thickness of layers is recommended for CT image reconstruction in COVID-19 assessment? procedure examination technologist dose chest
+cov_Q174,answerable,1,0.2676648497581482,0.7152168253761496,0.5264765620231628,0.7152168253761496,cov_541,cov_540,What does the clean area include? room humanitarian contaminated fever areas
+cov_Q176,answerable,1,0.1878272444009781,0.7124978307455914,0.5827381610870361,0.3014980548501455,cov_540,cov_76,What does the buffer area include? 3a wind pen sheep fever
+cov_Q178,missing_evidence,0,0.38359037041664124,0.1643213220695872,0.5108011960983276,0.1643213220695872,cov_182,cov_182,What can lower the physical and mental stress levels of staff members? workers health care vs iqr
+cov_Q180,missing_evidence,0,0.35506775975227356,0.0,0.5196409821510315,0.0,cov_873,cov_873,What is the conclusion of the report? evidence pheic quality guideline experts
+cov_Q182,missing_evidence,0,0.4209376573562622,0.0,0.6915534734725952,0.0,cov_79,cov_79,How many people have come in contact and how many of these are in observation? attack children visitors adults fever
+cov_Q184,answerable,1,0.8043477535247803,0.720070283697303,0.8847243189811707,0.6049321366715418,cov_799,cov_798,"In addition to oral swabs, which tests detected the presence of 2019-nCOV virus? anal patients positive serological molecular"
+cov_Q186,answerable,1,0.6770601272583008,0.5753219184385125,0.7620887756347656,0.47968211759419627,cov_579,cov_581,What is the relationship between the presence of virus in blood sample and disease severity? day anal swab ct detected
+cov_Q188,answerable,1,0.794711709022522,1.0,0.870959997177124,1.0,cov_798,cov_798,What could be the implication of 2019-nCOV virus in anal swabs? oral day swab positive serological
+cov_Q190,answerable,1,0.6580372452735901,0.18548020199404147,0.7147036194801331,0.18548020199404147,cov_596,cov_654,What is the structure of a coronavirus? host species sense virus genomic
+cov_Q192,answerable,1,0.19528517127037048,0.33538691444904745,0.3977987468242645,0.33538691444904745,cov_58,cov_58,What was the focus of the study? suspected studies search factors help
+cov_Q194,answerable,1,0.6142696142196655,0.4554193738403481,0.7125306129455566,0.4554193738403481,cov_244,cov_244,What was the SARS-COV-2 reservoir? laboratory claims credible engineering supporting
+cov_Q196,answerable,1,0.5301417112350464,0.3948768889410365,0.5856739282608032,0.3948768889410365,cov_751,cov_751,What was the duration from illness onset to first medical visit ? incidence period date mean contact
+cov_Q198,answerable,1,0.5098407864570618,1.0,0.5137150287628174,0.22667351705487238,cov_674,cov_825,What is mobile  population in Wuhan? million january exported cases number
+cov_Q202,answerable,1,0.7445638179779053,0.9188274780552166,0.8501639366149902,0.9188274780552166,cov_748,cov_748,Who was the first COVID-19 identified case patient on the Diamond Princess cruise ship? incidence without february close restriction
+cov_Q204,answerable,1,0.4976382255554199,0.7992272695049465,0.5870147943496704,0.7992272695049465,cov_748,cov_748,What was the effect of movement restriction policy on the Diamond Princess cruise ship started on 5th February 2020. incidence without close contact passengers
+cov_Q206,answerable,1,0.48871302604675293,0.42549606466643597,0.6434227228164673,0.3175027477619814,cov_380,cov_764,What is the number of inbound passengers from China? incidence estimated cases travel cumulative
+cov_Q208,missing_evidence,0,0.5159549713134766,0.19765525378176202,0.5186140537261963,0.19765525378176202,cov_961,cov_961,"Why is the determination of asymptomatic or pre-symptomatic transmission, an urgent priority? onset definition symptom tool case"
+cov_Q210,answerable,1,0.5799341797828674,0.5364766664270392,0.7343204021453857,0.5364766664270392,cov_21,cov_955,How can the 2019-nCov spread? declared january concern us health
+cov_Q212,answerable,1,0.5627901554107666,0.21958012539733812,0.5661672949790955,0.21958012539733812,cov_751,cov_751,What  are the delays between infection to illness and illness to laboratory confirmatiion? onset date symptom tool fs
+cov_Q214,answerable,1,0.7405433058738708,0.24055676067023707,0.7534056901931763,0.14301436886582788,cov_576,cov_798,Why is important to  determine the spectrum of clinical manifestations of 2019-nCoV infections? vs patients percentage investigation swabs
+cov_Q216,answerable,1,0.7698757648468018,0.40358767352022257,0.835917055606842,0.5095627005636977,cov_799,cov_798,"Is oral swab for detecting 2019-nCOV infection, sufficient? swabs anal positive positives molecular"
+cov_Q218,missing_evidence,0,0.718481719493866,0.37135900865560406,0.7850531339645386,0.37135900865560406,cov_886,cov_584,What tests should  be done before a 2019-nCOV infected patient is discharged? day blood ct detectable transferred
+cov_Q220,answerable,1,0.367561399936676,0.24937117030679992,0.5287694334983826,0.24937117030679992,cov_499,cov_499,What did the collected data include? scientists smart urban sectors increase
+cov_Q222,missing_evidence,0,0.24375410377979279,0.4052703806456896,0.6750311851501465,0.4052703806456896,cov_58,cov_58,What does the study include? suspected cases mers confirmed factors
+cov_Q224,answerable,1,0.4999123215675354,1.0,0.5686520338058472,1.0,cov_808,cov_808,When was the first reported death in France? european cases region february bruno
+cov_Q228,missing_evidence,0,0.617152750492096,0.24659914239865147,0.6875491142272949,0.24659914239865147,cov_62,cov_62,How many reported viral pneumonia? january market fever farmers hundreds
+cov_Q230,answerable,1,0.5210820436477661,0.0964365406906627,0.5474927425384521,0.0964365406906627,cov_751,cov_751,What was the duration of hospitalisation reported for 16 cases ? days illness board defined february
+cov_Q232,answerable,1,0.4099547564983368,0.5842128310694813,0.5094987154006958,0.5842128310694813,cov_379,cov_379,What was common to all imported cases? locations exported importation eid2607 undetected
+cov_Q234,answerable,1,0.45427048206329346,0.0,0.7031031847000122,0.0,cov_58,cov_58,Why are serological tests vital? suspected lab cases minority mers
+cov_Q236,answerable,1,0.4622686803340912,0.741706458956921,0.7114641666412354,0.0,cov_820,cov_515,How can present systems of surveillance be used? data smart airports covid monitoring
+cov_Q238,missing_evidence,0,0.4098777770996094,1.0,0.6579567193984985,1.0,cov_27,cov_13,What is R0? pdm09 h1n1 influenza transmissibility rp
+cov_Q240,answerable,1,0.38194626569747925,0.30612800488500774,0.4504837691783905,0.4156071898654242,cov_230,cov_834,What is the estimated value of R0? number ci cases cumulative blue
+cov_Q242,answerable,1,0.5382682681083679,0.7428585502976317,0.7073285579681396,0.7428585502976317,cov_838,cov_225,What was the cumulative number of reported cases by 1 January 2020? official daily data china february
+cov_Q244,answerable,1,0.6140055656433105,0.22482732559673982,0.6475368738174438,0.22482732559673982,cov_224,cov_224,How was the epidemic curve modelled? persons sir incidence dataset infinity
+cov_Q246,missing_evidence,0,0.39151376485824585,0.2884971242187896,0.4509398341178894,0.2884971242187896,cov_55,cov_58,What study  is reported in this report? suspected factors pen cases demographic
+cov_Q248,answerable,1,0.665645956993103,0.4347674123443415,0.788666844367981,0.16955740196216337,cov_244,cov_242,How different is it from SARS-related viruses? hiv claim laboratory cov credible
+cov_Q252,answerable,1,0.5074587464332581,0.10257155364037347,0.6664180755615234,0.11928867976166663,cov_597,cov_436,Where did these viruses originate before crossing the barrier to infect humans? host virus infections droplet mers
+cov_Q254,answerable,1,0.48451748490333557,0.7973604206148514,0.5960742235183716,0.0,cov_6,cov_373,What do HCoV-OC43 and HCoV-HKU1 cause? et al inflammasome nlrp3 species
+cov_Q260,answerable,1,0.44764444231987,0.7777370787081304,0.5196858048439026,0.7777370787081304,cov_851,cov_851,What was done for the prediction of protein secondary structures? tmhmm amino predicted using structure
+cov_Q262,answerable,1,0.22409847378730774,0.0,0.573680579662323,0.0,cov_76,cov_76,Where is the major distinction? wind pen sheep age stands
+cov_Q264,answerable,1,0.32794955372810364,0.6682018435714179,0.3828042447566986,0.0,cov_851,cov_165,Where are the amino acid differences? hcq prediction cq using ec
+cov_Q266,answerable,1,0.2733878791332245,0.0,0.5857018828392029,0.0,cov_251,cov_503,what will the investigation of external subdomain reveal? countries sharing information data health
+cov_Q268,answerable,1,0.3892958462238312,0.0,0.42351430654525757,0.0,cov_825,cov_825,What is the consequence of  lack of deletions in Yunnan strains? accessed retrieved shtml nhc s9496
+cov_Q272,answerable,1,0.29758164286613464,0.0,0.634141206741333,0.49696294255455264,cov_148,cov_857,What high possibility does the novel  orf8 have? orf3b orf9 sars apoptosis cov
+cov_Q274,answerable,1,0.6879943013191223,0.3850156511454621,0.7136588096618652,0.3850156511454621,cov_325,cov_325,What genes have been targeted for the diagnostic RT-PCR tests in 2019-nCoV? protocol assay kits diagnostics table
+cov_Q276,answerable,1,0.6901698112487793,0.23652876300465522,0.7743260264396667,0.23652876300465522,cov_808,cov_808,When was the second COVID19 case reported in the US? european cases january france covid
+cov_Q278,answerable,1,0.5990824699401855,0.4661078672239997,0.6704344153404236,0.2966349723786486,cov_935,cov_535,When did the United States declare COVID19 a public health emergency? crises humanitarian covid sichuan international
+cov_Q280,answerable,1,0.6016563177108765,0.1607199042702249,0.7144910097122192,0.0,cov_808,cov_184,What symptoms might people experience with COVID19? workers health item care mental
+cov_Q282,answerable,1,0.616672694683075,0.3692524735634088,0.6813412308692932,0.0,cov_958,cov_771,How long is the incubation time for COVID19? reproductive estimated number serial days
+cov_Q284,answerable,1,0.5443570017814636,0.3901612154754964,0.6890842318534851,0.0,cov_14,cov_244,Is it possible to get infected with COVID and another virus? transmissible cov sars natural species
+cov_Q286,answerable,1,0.682523787021637,0.4255869810008995,0.8240786790847778,0.4255869810008995,cov_244,cov_244,For whom does the  SARS-COV-2 pose a great threat? laboratory claims credible engineering supporting
+cov_Q288,answerable,1,0.35413193702697754,0.6573729709859061,0.484097421169281,0.0,cov_475,cov_543,What can prevent contact tracing? wechat emict circumstance consuming passive
+cov_Q290,answerable,1,0.4067443311214447,0.297240038626279,0.5894604921340942,0.3256381071959083,cov_978,cov_731,What has been demonstrated to  be  effective for prevention? hygiene measures humanitarian pregnant women
+cov_Q292,answerable,1,0.6238895058631897,0.6356253069646346,0.81194669008255,0.6356253069646346,cov_979,cov_979,What is hand washing to protect one's own health  consistent with? humanitarian hygiene crises soap settings
+cov_Q294,answerable,1,0.6349272131919861,1.0,0.811273992061615,1.0,cov_979,cov_979,What are humanitarian WASH standards  based on? hygiene hand crises latrines pandemic
+cov_Q296,answerable,1,0.4164741337299347,1.0,0.6924440264701843,1.0,cov_981,cov_981,What  will maximize the effectiveness of interventions? pandemic measures estimated transparent crisis
+cov_Q298,answerable,1,0.6507452130317688,1.0,0.7743088603019714,1.0,cov_981,cov_981,What is essential when pandemics threaten vulnerable populations? crises humanitarian pandemic interventions health
+can_Q20,out_of_domain,0,0.34963592886924744,0.0,0.48648959398269653,0.0,cov_895,cov_892,What is (are) Adult Soft Tissue Sarcoma ? thickening interlobular like grid ct
+can_Q110,out_of_domain,0,0.24848005175590515,0.0,0.4398404657840729,0.0,cov_909,cov_910,What is (are) Polycythemia Vera ? swabs granules oral cold dampness
+can_Q180,out_of_domain,0,0.27093958854675293,0.0,0.49863362312316895,0.0,cov_943,cov_943,What is the outlook for Gallbladder Cancer ? smoking smokers group former covid
+can_Q56,out_of_domain,0,0.2623923718929291,0.0,0.4336300492286682,0.0,cov_290,cov_222,What is the outlook for Adult Central Nervous System Tumors ? tried corticosteroids patients ncov mortality
+can_Q148,out_of_domain,0,0.35188066959381104,0.0,0.5294141173362732,0.0,cov_701,cov_711,What is (are) Uterine Sarcoma ? sars women pregnant placentas maternal
+can_Q36,out_of_domain,0,0.3717603087425232,0.0,0.4779760539531708,0.0,cov_33,cov_33,What is the outlook for Adult Non-Hodgkin Lymphoma ? jama journal jacr surgery hcov
+can_Q236,out_of_domain,0,0.22777056694030762,0.0,0.4705970883369446,0.0,cov_409,cov_447,Is Male Breast Cancer inherited ? mers dcs females proportion cov
+can_Q80,out_of_domain,0,0.40669333934783936,0.0,0.40239831805229187,0.0,cov_778,cov_778,Who is at risk for Childhood Craniopharyngioma? ? children question adults attack seroprevalence
+can_Q156,out_of_domain,0,0.34510576725006104,0.0,0.5149517059326172,0.0,cov_779,cov_741,What is the outlook for Childhood Extracranial Germ Cell Tumors ? baby question whether ncov nanny
+can_Q124,out_of_domain,0,0.334164559841156,0.0,0.36686667799949646,0.0,cov_899,cov_899,What is (are) Chronic Eosinophilic Leukemia ? vs day ct percentage absolute
+can_Q112,out_of_domain,0,0.3798828125,0.0,0.5002196431159973,0.0,cov_44,cov_910,How to diagnose Polycythemia Vera ? granules cold dampness huoxiang zhengqi
+can_Q192,out_of_domain,0,0.385100394487381,0.0,0.47848108410835266,0.0,cov_23,cov_23,What is the outlook for Hypopharyngeal Cancer ? swerdlow pfizer cme us course
+can_Q252,out_of_domain,0,0.35288286209106445,0.0,0.47360751032829285,0.0,cov_802,cov_23,Who is at risk for Plasma Cell Neoplasms (Including Multiple Myeloma)? ? swerdlow pfizer bruno dr inc
+can_Q98,out_of_domain,0,0.3272869884967804,0.13687779536332242,0.45712435245513916,0.13687779536332242,cov_55,cov_943,Who is at risk for Liver (Hepatocellular) Cancer? ? smoking factors autoinfection workers health
+can_Q8,out_of_domain,0,0.3499980568885803,0.0,0.5142422318458557,0.0,cov_943,cov_943,What is the outlook for Chronic Lymphocytic Leukemia ? vs cell smoking cycle percentage
+can_Q144,out_of_domain,0,0.2779945135116577,0.0,0.44230061769485474,0.0,cov_905,cov_905,"What are the treatments for Myelodysplastic/ Myeloproliferative Neoplasm, Unclassifiable ? antibacterial drugs qi case prescription"
+can_Q34,out_of_domain,0,0.39455294609069824,0.0,0.44563916325569153,0.0,cov_527,cov_33,What is the outlook for Adult Hodgkin Lymphoma ? jama journal jacr surgery zhao
+can_Q64,out_of_domain,0,0.2926296591758728,0.0,0.4234270751476288,0.0,cov_736,cov_740,What is the outlook for Childhood Astrocytomas ? baby infant pregnant women delivered
+can_Q202,out_of_domain,0,0.3245781660079956,0.0,0.37332552671432495,0.0,cov_892,cov_892,What are the symptoms of Metastatic Squamous Neck Cancer with Occult Primary ? jama ct surgery thickening density
+can_Q24,out_of_domain,0,0.3511420488357544,0.1291580135868525,0.5512456297874451,0.0,cov_748,cov_23,Who is at risk for Gastrointestinal Stromal Tumors? ? swerdlow pfizer dr inc stock
+can_Q104,out_of_domain,0,0.3013606667518616,0.0,0.43810442090034485,0.0,cov_894,cov_892,What are the symptoms of Osteosarcoma and Malignant Fibrous Histiocytoma of Bone ? thickening interlobular like grid ct
+can_Q264,out_of_domain,0,0.4171390235424042,1.0,0.5432078838348389,1.0,cov_557,cov_557,What is (are) Lung Cancer ? ct smokers smoking dose covid
+can_Q30,out_of_domain,0,0.3679337501525879,0.0,0.501923680305481,0.0,cov_894,cov_892,What are the symptoms of Childhood Soft Tissue Sarcoma ? thickening interlobular like grid ct
+can_Q240,out_of_domain,0,0.39681732654571533,0.19010405323558136,0.5787191390991211,0.19010405323558136,cov_256,cov_256,Who is at risk for Skin Cancer? ? workers healthcare autoinfection among cases
+can_Q276,out_of_domain,0,0.2567753791809082,0.22173513126339886,0.3164393901824951,0.0,cov_895,cov_33,What are the stages of Pituitary Tumors ? jama surgery bruno psychiatry opinion
+neu_Q12,out_of_domain,0,0.4157278537750244,0.0,0.5118297338485718,0.0,cov_222,cov_905,What are the treatments for Neurological Complications of AIDS ? antibacterial corticosteroids drugs patients tried
+neu_Q76,out_of_domain,0,0.3610004782676697,0.0,0.5060821771621704,0.0,cov_908,cov_908,What are the treatments for Charcot-Marie-Tooth Disease ? herbs feet bath dried ginger
+neu_Q188,out_of_domain,0,0.335435688495636,0.0,0.5479325652122498,0.0,cov_406,cov_406,What is (are) Menkes Disease ? presenting cases autoinfection mers suspected
+neu_Q180,out_of_domain,0,0.3693348467350006,0.128931989432536,0.4664735794067383,0.0,cov_906,cov_911,What are the treatments for Lennox-Gastaut Syndrome ? tongue injection lung reactions patients
+neu_Q260,out_of_domain,0,0.1919623464345932,0.0,0.5428352355957031,0.0,cov_100,cov_100,What is (are) Schizencephaly ? burnetii seroprevalence flocks innate sheep
+neu_Q94,out_of_domain,0,0.3107498288154602,0.0,0.43132054805755615,0.0,cov_908,cov_908,What are the treatments for Craniosynostosis ? herbs tongue dried prescription feet
+neu_Q186,out_of_domain,0,0.35463687777519226,0.0,0.40776824951171875,0.0,cov_908,cov_908,What are the treatments for Neurological Sequelae Of Lupus ? herbs treatment feet tried resilience
+neu_Q18,out_of_domain,0,0.3553961217403412,0.0,0.47487252950668335,0.19221414998770753,cov_915,cov_910,What are the treatments for Angelman Syndrome ? cold injection tongue recommended dampness
+neu_Q84,out_of_domain,0,0.23540519177913666,0.0,0.4588271677494049,0.0,cov_237,cov_895,What is (are) Colpocephaly ? innate cov stage nodules ct
+neu_Q194,out_of_domain,0,0.2688058018684387,0.0,0.47831207513809204,0.0,cov_690,cov_183,What is the outlook for Migraine ? vs iqr item workers care
+neu_Q126,out_of_domain,0,0.2833303213119507,0.0,0.3588310480117798,0.0,cov_222,cov_925,What is the outlook for Essential Tremor ? doctor protection reactions medical oxygen
+neu_Q182,out_of_domain,0,0.3229225277900696,0.0,0.4720197021961212,0.0,cov_908,cov_908,What are the treatments for Leukodystrophy ? antibacterial herbs drugs feet methylprednisolone
+neu_Q120,out_of_domain,0,0.3342798948287964,0.0,0.5386857390403748,0.0,cov_916,cov_911,What are the treatments for Empty Sella Syndrome ? tongue recommended prescription cold qi
+neu_Q298,out_of_domain,0,0.3759394884109497,0.0,0.49980485439300537,0.0,cov_444,cov_910,What is (are) Wilson Disease ? patients diseases ncov zheng infected
+neu_Q22,out_of_domain,0,0.3197372555732727,0.19221414998770753,0.4262029528617859,0.0,cov_906,cov_905,What are the treatments for Antiphospholipid Syndrome ? et al antibacterial drugs methylprednisolone
+neu_Q32,out_of_domain,0,0.37498924136161804,0.0,0.375552237033844,0.0,cov_656,cov_802,What is the outlook for Arteriovenous Malformation ? host bruno players christine maria
+neu_Q4,out_of_domain,0,0.4232114255428314,0.0,0.5121538639068604,0.0,cov_59,cov_23,What is the outlook for Pompe Disease ? swerdlow pfizer suspected dr cases
+neu_Q292,out_of_domain,0,0.3049356937408447,0.0,0.5194723606109619,0.0,cov_461,cov_461,What is the outlook for Troyer Syndrome ? host fatal autoinfection mers proportion
+neu_Q24,out_of_domain,0,0.18013963103294373,0.0,0.32021328806877136,0.0,cov_103,cov_912,What is (are) Apraxia ? yellow recommendations phlegm end ephedra
+neu_Q28,out_of_domain,0,0.23890900611877441,0.0,0.46585512161254883,0.0,cov_103,cov_798,What is (are) Arachnoiditis ? placentas anal swab positive positives
+neu_Q124,out_of_domain,0,0.281945139169693,0.0,0.5306545495986938,0.0,cov_221,cov_930,What is the outlook for Encephalopathy ? nutrition ncov patients enteral given
+neu_Q20,out_of_domain,0,0.34786441922187805,0.0,0.49126988649368286,0.0,cov_901,cov_901,What are the treatments for Cerebral Hypoxia ? oxygen patients respiratory distress shock
+neu_Q282,out_of_domain,0,0.29457342624664307,0.0,0.41197893023490906,0.0,cov_221,cov_908,What are the treatments for Tethered Spinal Cord Syndrome ? herbs tongue dried prescription feet
+neu_Q66,out_of_domain,0,0.25885796546936035,0.0,0.4348706603050232,0.0,cov_183,cov_183,What is the outlook for Complex Regional Pain Syndrome ? hubei outside vs ci workers
+neu_Q228,out_of_domain,0,0.2858678102493286,0.0,0.3785342574119568,0.0,cov_908,cov_908,What are the treatments for Paroxysmal Choreoathetosis ? herbs granules dried water feet

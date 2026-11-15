@@ -5,19 +5,19 @@ import json
 from pathlib import Path
 
 from evrag.evaluation.metrics import score_rows, load_dataset, load_runs
-from evrag.config import ROOT, RESULTS_DIR, load_config
+from evrag.config import RESULTS_DIR, dataset_paths
 
-rows = list(csv.DictReader((ROOT / load_config()["data"]["dataset"]).open()))
+rows = list(csv.DictReader(dataset_paths("wikidoc")["dataset"].open()))
 questions = {r["question_id"]: r for r in rows}
-corpus = {d["doc_id"]: d for d in map(json.loads, (ROOT / load_config()["data"]["corpus"]).open())}
+corpus = {d["doc_id"]: d for d in map(json.loads, dataset_paths("wikidoc")["corpus"].open())}
 results = RESULTS_DIR
 comparison = []
 sources = []
 for split in ("dev", "test"):
-    dataset = load_dataset(ROOT / load_config()["data"]["dataset"], split)
+    dataset = load_dataset(dataset_paths("wikidoc")["dataset"], split)
     outputs = {}
     for method in ("nlp_only", "basic_rag"):
-        runs = load_runs([results / "runs" / f"{method}_{split}.jsonl"])
+        runs = load_runs([results / "runs" / "wikidoc" / f"{method}_{split}.jsonl"])
         assert len(runs) == len(dataset)
         assert len({r["question_id"] for r in runs}) == len(runs)
         assert {r["question_id"] for r in runs} == set(dataset)

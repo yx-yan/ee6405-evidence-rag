@@ -1,0 +1,35 @@
+{
+  "coronavirus": {
+    "threshold_rag": {
+      "tau": 0.425,
+      "dev_youden": 0.5009345794392523
+    },
+    "evidence_rag": {
+      "tau_score": 0.257,
+      "tau_coverage": 0.2,
+      "dev_youden": 0.626417445482866
+    }
+  },
+  "cancer": {
+    "threshold_rag": {
+      "tau": 0.668,
+      "dev_youden": 0.728
+    },
+    "evidence_rag": {
+      "tau_score": 0.71,
+      "tau_coverage": 0.25,
+      "dev_youden": 0.7253333333333333
+    }
+  },
+  "neuro": {
+    "threshold_rag": {
+      "tau": 0.606,
+      "dev_youden": 0.648
+    },
+    "evidence_rag": {
+      "tau_score": 0.651,
+      "tau_coverage": 0.5,
+      "dev_youden": 0.6853333333333332
+    }
+  }
+}

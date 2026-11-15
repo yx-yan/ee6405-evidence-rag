@@ -1,0 +1,13 @@
+dataset,retriever,n,recall_at_1,recall_at_5,mrr
+coronavirus,tfidf,106,0.5660,0.7736,0.6624
+coronavirus,bm25,106,0.6038,0.7925,0.6885
+coronavirus,minilm,106,0.2736,0.4340,0.3480
+coronavirus,graph,106,0.5566,0.7830,0.6625
+cancer,tfidf,125,0.1200,0.3920,0.2486
+cancer,bm25,125,0.2640,0.6160,0.4164
+cancer,minilm,125,0.5040,0.9120,0.6797
+cancer,graph,125,0.4480,0.8320,0.6237
+neuro,tfidf,125,0.2320,0.8480,0.4647
+neuro,bm25,125,0.3760,0.9040,0.5750
+neuro,minilm,125,0.7360,0.9840,0.8432
+neuro,graph,125,0.5520,0.8880,0.6904
