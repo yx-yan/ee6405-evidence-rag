@@ -9,7 +9,7 @@
 - src/evrag/evaluation/run_experiment.py runs a method over a split and saves per-question JSONL.
 - src/evrag/evaluation/metrics.py is E's shared evaluation code (PR #29).
 - scripts/summarize_basic.py checks the outputs, evidence text and input lengths, and writes the paired comparison and source tables.
-- scripts/run_basic_v1.sh runs both methods on the full dev and test splits and evaluates them.
+- scripts/run_basic_v1.py runs both methods on the full dev and test splits and evaluates them.
 
 ## Run
 
@@ -19,7 +19,7 @@ Create a Python 3.11 virtual environment in the project root and install the dep
     source .venv/bin/activate
     pip install torch
     pip install -r requirements.txt -r requirements-generator.txt
-    scripts/run_basic_v1.sh
+    python scripts/run_basic_v1.py
 
 ## Explanation
 
@@ -31,7 +31,7 @@ Automatic correctness uses E's token-F1 threshold of 0.5. No human labels were a
 
 All questions have gold answers, so abstention recall is N/A. Three normalized questions occur in both splits. The existing checkpoint may overlap the corpus in its training data. The local checkpoint archive hash differs from the published Release archive hash, but its model.safetensors is identical to the one in the Release archive (checked 2026-11-12). These limitations are recorded in results/basic_v1/run_manifest.json. Parameters are fixed for this draft-data comparison.
 
-scripts/run_basic_v1.sh uses the BART checkpoint in models/generator/bart-base/best (downloaded from the GitHub Release on first use); EVRAG_GENERATOR_DIR selects another checkpoint directory. sentence-transformers downloads MiniLM. Every setting is read from configs/default.yaml.
+scripts/run_basic_v1.py uses the BART checkpoint in models/generator/bart-base/best (downloaded from the GitHub Release on first use); EVRAG_GENERATOR_DIR selects another checkpoint directory. sentence-transformers downloads MiniLM. Every setting is read from configs/default.yaml.
 
 The results/basic_v1/runs directory contains the four raw run files. metrics_dev.csv and metrics_test.csv contain automatic metrics. paired_comparison.csv aligns both answers for every question and reports individual gold-passage recall and complete-gold retrieval. context_sources.csv links actual generator contexts to the corpus metadata. Source fields are inherited from the supplied data and may not identify a specific original webpage. Empty CSV metrics mean the measure is undefined for these inputs.
 

@@ -22,6 +22,8 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, to_rgb
 from matplotlib.patches import Patch, Rectangle
 
+from evrag.config import ROOT
+
 SIZE, DPI = (12.8, 7.2), 150                    # 1920 x 1080 px
 W, H = 1920, 1080
 ZONES = {                                       # (x0, y0, x1, y1) in pixels, origin top left
@@ -141,4 +143,4 @@ def save(fig, path: Path) -> None:
     if GUIDE:
         draw_guide(fig)
     fig.savefig(path, dpi=DPI)
-    print(f"Wrote {path}")
+    print(f"Wrote {os.path.relpath(path, ROOT)}")

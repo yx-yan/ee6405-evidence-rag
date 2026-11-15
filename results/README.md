@@ -10,6 +10,6 @@
 | `final/paired.csv` | Paired bootstrap, evidence_rag against each baseline (test). | `scripts/final_metrics.py` |
 | `final/risk_coverage.csv` | basic_rag coverage and selective accuracy as the score threshold sweeps. | `scripts/final_metrics.py` |
 | `figures/` | Figures from the results notebook. | `notebooks/final_results.ipynb` |
-| `basic_v1/` | Appendix: the first basic_rag vs nlp_only run on WikiDoc (seen in generator training, so not a main evaluation set). | `scripts/run_basic_v1.sh` |
+| `basic_v1/` | Appendix: the first basic_rag vs nlp_only run on WikiDoc (seen in generator training, so not a main evaluation set). | `scripts/run_basic_v1.py` |
 
 Earlier LLM screens and MedQuAD trials were removed on 2026-11-08 and are in git history.
