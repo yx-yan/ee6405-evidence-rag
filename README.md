@@ -2,6 +2,9 @@
 
 **When should a medical RAG system answer, retrieve again, or abstain?** — EE6405 NLP group project.
 
+> **Status:** completed. A group project for EE6405 Natural Language Processing at Nanyang
+> Technological University, submitted in November 2026. It is no longer maintained.
+
 A retrieval-augmented QA system answers from whatever it retrieves. Our generator, a BART-base
 model we fine-tuned on medical QA, never says "I don't know": when the evidence lacks the answer it
 still copies from it. We compare five ways of using the same retriever and generator, from no
@@ -20,7 +23,9 @@ Three single-disease knowledge bases from three sources ([data/README.md](data/R
 | neuro | MedQuAD, ninds.nih.gov | 1,333 | 125 / 25 / 50 |
 
 Each set is split into dev (for tuning) and test. **Missing evidence** questions have their gold
-passages removed from the corpus; **out of domain** questions come from the other two sets.
+passages removed from the corpus; **out of domain** questions come from the other two sets. The
+passage counts are for this evaluation corpus; the full corpora in [data/README.md](data/README.md)
+are larger (982 / 3,918 / 1,394) because they still hold those gold passages.
 
 ## Methods
 
@@ -75,6 +80,8 @@ of answerable questions it declined.
 | | graph_rag | 1.00 | 0.31 | 0.32 | 0.01 | 0.00 | 0.46 |
 | | threshold_rag | 0.72 | 0.33 | **0.59** | 0.68 | 0.04 | 0.48 |
 | | evidence_rag | 0.70 | 0.32 | **0.59** | **0.71** | 0.06 | 0.47 |
+
+![Reliability of the five methods on the three test sets](results/figures/reliability.png)
 
 What the results show:
 
@@ -155,3 +162,8 @@ training, so it is not a main evaluation set.
 | C | Nur Hapinder ([Victoria0706](https://github.com/Victoria0706)) | Graph RAG and the retriever comparison (TF-IDF, BM25, MiniLM, graph) |
 | D | Zhan Luming ([Jojo082099](https://github.com/Jojo082099)) | shared generator (BART-base fine-tuning) |
 | E | Yan Yuxuan ([yx-yan](https://github.com/yx-yan)) | evaluation, threshold and evidence-aware RAG, demo, integration |
+
+## License
+
+Code: [MIT](LICENSE). Data keeps the licence of its source: COVID-QA is Apache 2.0, MedQuAD is
+CC BY 4.0 ([data/README.md](data/README.md)).

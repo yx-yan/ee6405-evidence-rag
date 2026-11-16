@@ -1,5 +1,8 @@
 # Contributing
 
+> The project is finished and no longer accepts contributions. These are the rules the team
+> followed during the course; they are kept as a record of how we worked.
+
 ## Branches & pull requests
 
 - `main` is always runnable and protected: changes go in through a pull request with one approval and passing CI.
